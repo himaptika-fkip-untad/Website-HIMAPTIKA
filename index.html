@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    
+
+<script type="module">
+  import { initializeApp, getApps, getApp }
+    from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAGz2OR4fxdXO_IfGJ4_teyN4rlKcC5vQA",
+    authDomain: "himaptika-fkip-untad-1c56c.firebaseapp.com",
+    projectId: "himaptika-fkip-untad-1c56c",
+    storageBucket: "himaptika-fkip-untad-1c56c.firebasestorage.app",
+    messagingSenderId: "1080539410314",
+    appId: "1:1080539410314:web:2fea6f34974338d605a273"
+  };
+
+  const app = getApps().length
+    ? getApp()
+    : initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+
+  // Sembunyikan halaman sampai status login diperiksa.
+  document.documentElement.style.visibility = "hidden";
+
+  // Periksa apakah halaman dibuka melalui refresh.
+  const navigation = performance.getEntriesByType("navigation")[0];
+
+  if (navigation && navigation.type === "reload") {
+    try {
+      await signOut(auth);
+    } finally {
+      window.location.replace("login.html");
+    }
+  } else {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.documentElement.style.visibility = "visible";
+      } else {
+        window.location.replace("login.html");
+      }
+    });
+  }
+</script>
+
+
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HIMAPTIKA FKIP UNTAD</title>
+
+    <!-- FONT INTER -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script type="module">
+  
+</script>
+</head>
+
+    
+<!-- ================= HEADER ================= -->
+
+<header class="site-header">
+
+    <!-- Tombol hamburger -->
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Identitas di header atas -->
+    <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+        <div class="brand-text">
+            <h1>HIMAPTIKA</h1>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <nav id="mainNav">
+
+        <div class="drawer-brand">
+            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+            <div>
+                <h2>HIMAPTIKA</h2>
+                <p>FKIP UNIVERSITAS TADULAKO</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="active">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="struktur-pengurus.html">Struktur Pengurus</a>
+        <a href="divisi.html">Divisi & Program Kerja</a>
+        <a href="informasi.html">Informasi</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="kontak.html">Kontak</a>
+        
+
+        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
+            🌙
+        </button>
+
+    </nav>
+</header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero-modern">
+
+            <!-- Background decoration -->
+
+            <div class="hero-shape shape-one"></div>
+            <div class="hero-shape shape-two"></div>
+
+            <div class="hero-line line-one"></div>
+            <div class="hero-line line-two"></div>
+
+
+            <div class="hero-modern-container">
+
+
+                <!-- HERO TEXT -->
+
+                <div class="hero-modern-content">
+
+                    <p class="hero-label">
+                        HIMAPTIKA FKIP UNTAD
+                    </p>
+
+
+                    <h2>
+                        Himpunan Mahasiswa
+                        <span>
+                            Pendidikan Matematika
+                        </span>
+                    </h2>
+
+
+                    <p class="hero-university">
+                        Fakultas Keguruan dan Ilmu Pendidikan
+                        <br>
+                        Universitas Tadulako
+                    </p>
+
+
+                    <p class="hero-description">
+
+                        Wadah mahasiswa Pendidikan Matematika
+                        untuk berkembang, berkarya, berkolaborasi,
+                        dan memberikan kontribusi bagi lingkungan
+                        akademik maupun masyarakat.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+                    
+                        <a href="tentang.html" class="tombol">
+                            Tentang HIMAPTIKA
+                        </a>
+
+                        <a href="divisi.html"
+                           class="tombol tombol-outline">
+
+                            Divisi & Program Kerja
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- SCROLL -->
+
+                    <div class="scroll-indicator">
+
+                        <span></span>
+
+                        <p>
+                            Jelajahi HIMAPTIKA
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HERO LOGO -->
+
+                <div class="hero-modern-visual">
+
+                    <div class="logo-ring ring-one"></div>
+                    <div class="logo-ring ring-two"></div>
+
+
+                    <div class="logo-circle">
+
+                        <img
+                            src="images/logo himaptika.png"
+                            alt="Logo HIMAPTIKA FKIP UNTAD"
+                        >
+
+                    </div>
+
+
+                    <!-- Simbol matematika -->
+
+                    <div class="math-symbol symbol-one">
+                        ∑
+                    </div>
+
+                    <div class="math-symbol symbol-two">
+                        π
+                    </div>
+
+                    <div class="math-symbol symbol-three">
+                        ∞
+                    </div>
+
+                    <div class="math-symbol symbol-four">
+                        √
+                    </div>
+
+                    <div class="math-symbol symbol-five">
+                        x²
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= INTRO ================= -->
+
+        <section class="intro-section">
+
+            <div class="container">
+
+                <div class="intro-content">
+
+
+                    <div class="intro-text">
+
+                        <p class="section-label">
+                            TENTANG HIMAPTIKA
+                        </p>
+
+
+                        <h2>
+                            Ruang Tumbuh dan Berkarya
+                            Mahasiswa Pendidikan Matematika
+                        </h2>
+
+
+                        <p>
+
+                            HIMAPTIKA FKIP UNTAD merupakan wadah
+                            mahasiswa Pendidikan Matematika untuk
+                            mengembangkan kemampuan akademik,
+                            organisasi, kreativitas, dan kepedulian
+                            sosial.
+
+                        </p>
+
+
+                        <a
+                            href="tentang.html"
+                            class="text-link">
+
+                            Selengkapnya tentang HIMAPTIKA →
+
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="intro-box">
+
+
+                        <div class="intro-box-item">
+
+                            <strong>
+                                HIMAPTIKA
+                            </strong>
+
+                            <span>
+                                Himpunan Mahasiswa
+                                Pendidikan Matematika
+                            </span>
+
+                        </div>
+
+
+                        <div class="intro-box-item">
+
+                            <strong>
+                                FKIP
+                            </strong>
+
+                            <span>
+                                Fakultas Keguruan dan
+                                Ilmu Pendidikan
+                            </span>
+
+                        </div>
+
+
+                        <div class="intro-box-item">
+
+                            <strong>
+                                UNTAD
+                            </strong>
+
+                            <span>
+                                Universitas Tadulako
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        
+          <!-- PROGRAM KERJA UNGGULAN -->
+
+        <section class="program-unggulan">
+        <div class="container">
+        <div class="section-title">
+            <span>KEGIATAN KAMI</span>
+            <h2>Program Kerja Unggulan</h2>
+            <p>
+                Berbagai program dan kegiatan HIMAPTIKA
+                untuk mendukung pengembangan mahasiswa.
+            </p>
+        </div>
+
+        <div class="program-grid">
+
+            <div class="program-card">
+                <div class="program-icon">📚</div>
+                <h3>Seminar Akademik</h3>
+                <p>
+                    Kegiatan pengembangan wawasan dan kemampuan
+                    akademik mahasiswa.
+                </p>
+                <a href="informasi.html">Lihat Informasi →</a>
+            </div>
+
+            <div class="program-card">
+                <div class="program-icon">🎓</div>
+                <h3>Pelayanan Akademik</h3>
+                <p>
+                    Pusat informasi dan panduan untuk membantu
+                    kebutuhan akademik mahasiswa.
+                </p>
+                <a href="pelayanan-akademik.html">Selengkapnya →</a>
+            </div>
+
+            <div class="program-card">
+                <div class="program-icon">🤝</div>
+                <h3>Pengembangan Mahasiswa</h3>
+                <p>
+                    Ruang untuk mengembangkan potensi,
+                    kreativitas, dan kemampuan mahasiswa.
+                </p>
+                <a href="divisi.html">Lihat Program →</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        ```html
+<!-- ================= STATISTIK HIMAPTIKA ================= -->
+
+<section class="statistik-section">
+
+    <div class="statistik-container">
+
+        <div class="statistik-heading">
+
+            <span>HIMAPTIKA DALAM ANGKA</span>
+
+            <h2>Bersama Tumbuh dan Berkembang</h2>
+
+            <p>
+                Menjadi ruang kolaborasi dan pengembangan
+                potensi mahasiswa Pendidikan Matematika.
+            </p>
+
+        </div>
+
+        <div class="statistik-grid">
+
+            <div class="statistik-card">
+
+                <div class="statistik-icon">🏛️</div>
+
+                <h3>07</h3>
+
+                <p>Divisi Organisasi</p>
+
+            </div>
+
+            <div class="statistik-card">
+
+                <div class="statistik-icon">04</div>
+
+                <h3>Program Akademik</h3>
+
+                <p>Pelayanan dan Pengembangan Akademik</p>
+
+            </div>
+
+            <div class="statistik-card">
+
+                <div class="statistik-icon">∞</div>
+
+                <h3>Ruang Kolaborasi</h3>
+
+                <p>Bersama Berkarya dan Berkontribusi</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+```
+
+
+
+              <!-- INFORMASI TERBARU -->              
+<section class="informasi-section">
+
+    <div class="informasi-container">
+
+        <div class="informasi-header">
+            <div>
+                <span class="informasi-label">UPDATE HIMAPTIKA</span>
+                <h2>Informasi Terbaru</h2>
+                <p>
+                    Temukan informasi dan kabar terbaru
+                    seputar kegiatan HIMAPTIKA.
+                </p>
+            </div>
+
+            <a href="informasi.html" class="lihat-semua">
+                Lihat Semua →
+            </a>
+        </div>
+
+        <div class="informasi-grid">
+
+            <!-- KARTU 1 -->
+            <div class="informasi-card">
+
+                <div class="informasi-image image-blue">
+                    <span>📢</span>
+                    <div class="image-overlay"></div>
+                    <span class="kategori">Pengumuman</span>
+                </div>
+
+                <div class="informasi-content">
+                    <div class="informasi-meta">
+                        <span>HIMAPTIKA</span>
+                        <span>Informasi</span>
+                    </div>
+
+                    <h3>Informasi Terbaru HIMAPTIKA</h3>
+
+                    <p>
+                        Dapatkan berbagai informasi dan
+                        pengumuman terbaru dari HIMAPTIKA.
+                    </p>
+
+                    <a href="informasi.html">
+                        Baca Selengkapnya →
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- KARTU 2 -->
+            <div class="informasi-card">
+
+                <div class="informasi-image image-purple">
+                    <span>🎓</span>
+                    <div class="image-overlay"></div>
+                    <span class="kategori">Akademik</span>
+                </div>
+
+                <div class="informasi-content">
+                    <div class="informasi-meta">
+                        <span>Pelayanan Akademik</span>
+                        <span>Akademik</span>
+                    </div>
+
+                    <h3>Informasi Pelayanan Akademik</h3>
+
+                    <p>
+                        Akses berbagai panduan dan informasi
+                        untuk mendukung kebutuhan akademik.
+                    </p>
+
+                    <a href="pelayanan-akademik.html">
+                        Baca Selengkapnya →
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- KARTU 3 -->
+            <div class="informasi-card">
+
+                <div class="informasi-image image-orange">
+                    <span>📅</span>
+                    <div class="image-overlay"></div>
+                    <span class="kategori">Kegiatan</span>
+                </div>
+
+                <div class="informasi-content">
+                    <div class="informasi-meta">
+                        <span>Agenda HIMAPTIKA</span>
+                        <span>Kegiatan</span>
+                    </div>
+
+                    <h3>Agenda Kegiatan HIMAPTIKA</h3>
+
+                    <p>
+                        Ikuti perkembangan agenda dan
+                        kegiatan mahasiswa Pendidikan Matematika.
+                    </p>
+
+                    <a href="agenda.html">
+                        Baca Selengkapnya →
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+ 
+<!-- AGENDA KEGIATAN -->
+<section class="agenda-section">
+
+    <div class="agenda-container">
+
+        <div class="agenda-heading">
+            <div>
+                <span class="agenda-label">JANGAN LEWATKAN</span>
+                <h2>Agenda Mendatang</h2>
+                <p>
+                    Ikuti berbagai kegiatan dan aktivitas
+                    HIMAPTIKA yang akan datang.
+                </p>
+            </div>
+
+            <a href="agenda.html" class="agenda-all">
+                Semua Agenda →
+            </a>
+        </div>
+
+        <div class="agenda-grid">
+
+            <!-- KEGIATAN 1 -->
+            <div class="agenda-card">
+
+                <div class="agenda-poster">
+                    <img src="images/seminar.jpg"
+                         alt="Pamflet kegiatan HIMAPTIKA">
+
+                    <span class="agenda-status">
+                        Akan Datang
+                    </span>
+                </div>
+
+                <div class="agenda-content">
+
+                    <span class="agenda-category">
+                        SEMINAR
+                    </span>
+
+                    <h3>Seminar Akademik HIMAPTIKA</h3>
+
+                    <div class="agenda-detail">
+                        <span>📅 11-oktober-2026</span>
+                        <span>📍 AULA FKIP UNTAD</span>
+                    </div>
+
+                    <a href="https://www.instagram.com/p/DeNxyJpEmoP/?utm_source=ig_web_copy_link&psln=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="agenda-button">
+                        Lihat Informasi →
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- KEGIATAN 2 -->
+            <div class="agenda-card">
+
+                <div class="agenda-poster">
+                    <img src="images/dies natalis.jpg"
+                         alt="Pamflet kegiatan HIMAPTIKA">
+
+                    <span class="agenda-status">
+                        Akan Datang
+                    </span>
+                </div>
+
+                <div class="agenda-content">
+
+                    <span class="agenda-category">
+                        KEGIATAN
+                    </span>
+
+                    <h3>Dies Natalies HIMAPTIKA KE-XVIII</h3>
+
+                    <div class="agenda-detail">
+                        <span>📅 Tanggal kegiatan</span>
+                        <span>📍 Lokasi kegiatan</span>
+                    </div>
+
+                    <a href="https://www.instagram.com/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="agenda-button">
+                        Lihat Informasi →
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- KEGIATAN 3 -->
+            <div class="agenda-card">
+
+                <div class="agenda-poster">
+                    <img src="images/Sparta.jpeg"
+                         alt="Pamflet kegiatan HIMAPTIKA">
+
+                    <span class="agenda-status">
+                        Sedang berlangsung
+                    </span>
+                </div>
+
+                <div class="agenda-content">
+
+                    <span class="agenda-category">
+                        SPORT & ART
+                    </span>
+
+                    <h3>Sport and Art HIMAPTIKA</h3>
+
+                    <div class="agenda-detail">
+                        <span>📅 jum'at,02 oktober 2026</span>
+                        <span>📍 fkip 07</span>
+                    </div>
+
+                    <a href="https://www.instagram.com/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="agenda-button">
+                        Lihat Informasi →
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        <!-- ================= ACADEMIC SURVIVAL WEB ================= -->
+
+        <section class="survival-section">
+
+            <div class="container">
+
+                <div class="survival-content">
+
+
+                    <div class="survival-text">
+
+                        <p class="section-label">
+                            ACADEMIC SURVIVAL WEB
+                        </p>
+
+                        <h2>
+                            Teman Perjalanan Akademik
+                            Mahasiswa Pendidikan Matematika.
+                        </h2>
+
+                        <p>
+                            Academic Survival Web merupakan ruang
+                            informasi yang dikembangkan untuk membantu
+                            mahasiswa dalam menemukan berbagai informasi
+                            dan kebutuhan yang berkaitan dengan kehidupan
+                            akademik.
+                        </p>
+
+                    </div>
+
+
+                    <div class="survival-action">
+
+                        <div class="survival-symbol">
+                            ∑
+                        </div>
+
+                        <a
+                            href="pelayanan-akademik.html"
+                            class="tombol">
+
+                            Jelajahi Akademik →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= DIVISI & PROGRAM KERJA ================= -->
+
+        <section class="program-section">
+
+            <div class="container">
+
+
+                <div class="section-heading">
+
+                    <p class="section-label">
+                        DIVISI & PROGRAM KERJA
+                    </p>
+
+                    <h2>
+                        Bergerak Bersama dalam Tujuh Divisi
+                    </h2>
+
+                    <p>
+                        Setiap divisi memiliki peran dan program
+                        kerja dalam menjalankan kegiatan HIMAPTIKA.
+                    </p>
+
+                </div>
+
+
+
+                <div class="program-grid">
+
+
+                    <div class="program-card">
+
+                        <div class="program-icon">
+                            01
+                        </div>
+
+                        <h3>
+                            Pemikat
+                        </h3>
+
+                        <p>
+                            Mendukung kegiatan dan pengembangan
+                            mahasiswa melalui bidang olahraga.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="program-card">
+
+                        <div class="program-icon">
+                            02
+                        </div>
+
+                        <h3>
+                            Event Organizer
+                        </h3>
+
+                        <p>
+                            Mengelola dan mendukung pelaksanaan
+                            berbagai kegiatan HIMAPTIKA.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="program-card">
+
+                        <div class="program-icon">
+                            03
+                        </div>
+
+                        <h3>
+                            Admeinfo
+                        </h3>
+
+                        <p>
+                            Mendukung pengelolaan administrasi
+                            dan informasi organisasi.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="program-card">
+
+                        <div class="program-icon">
+                            04
+                        </div>
+
+                        <h3>
+                            Pelayanan Akademik
+                        </h3>
+
+                        <p>
+                            Mendukung kebutuhan dan perjalanan
+                            akademik mahasiswa.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="program-card">
+
+                        <div class="program-icon">
+                            05
+                        </div>
+
+                        <h3>
+                            Kerohanian
+                        </h3>
+
+                        <p>
+                            Menjadi ruang kegiatan dan
+                            pengembangan kerohanian mahasiswa.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="program-card">
+
+                        <div class="program-icon">
+                            06
+                        </div>
+
+                        <h3>
+                            Kewirausahaan
+                        </h3>
+
+                        <p>
+                            Mengembangkan kegiatan kewirausahaan
+                            dan kreativitas mahasiswa.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="program-card">
+
+                        <div class="program-icon">
+                            07
+                        </div>
+
+                        <h3>
+                            Hubungan Masyarakat
+                        </h3>
+
+                        <p>
+                            Membangun komunikasi dan hubungan
+                            HIMAPTIKA dengan lingkungan sekitar.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="center-button">
+
+                    <a
+                        href="divisi.html"
+                        class="tombol tombol-outline">
+
+                        Lihat Semua Divisi →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="home-cta">
+
+            <div class="container">
+
+                <div class="home-cta-content">
+
+                    <div>
+
+                        <p class="section-label">
+                            HIMAPTIKA FKIP UNTAD
+                        </p>
+
+                        <h2>
+                            Mari tumbuh, berkarya,
+                            dan berkontribusi bersama.
+                        </h2>
+
+                    </div>
+
+
+                    <a
+                        href="kontak.html"
+                        class="tombol">
+
+                        Terhubung dengan HIMAPTIKA →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>
+                    HIMAPTIKA
+                </h3>
+
+                <p>
+                    Himpunan Mahasiswa
+                    Pendidikan Matematika
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    FKIP UNTAD
+                </h3>
+
+                <p>
+                    Fakultas Keguruan dan
+                    Ilmu Pendidikan
+                </p>
+
+                <p>
+                    Universitas Tadulako
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 HIMAPTIKA FKIP UNTAD
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

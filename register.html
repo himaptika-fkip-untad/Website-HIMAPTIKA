@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrasi Akun | HIMAPTIKA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    }
+
+    .register-card {
+      width: 100%;
+      max-width: 440px;
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand h1 {
+      color: #1d4ed8;
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+
+    .brand p {
+      color: #64748b;
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    h2 {
+      color: #0f172a;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .description {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 23px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 9px;
+      background: #1d4ed8;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+
+    button:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    #message {
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 17px;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .login-link {
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 23px;
+    }
+
+    a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .register-card {
+        padding: 26px 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="register-card">
+    <div class="brand">
+      <h1>HIMAPTIKA</h1>
+      <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+    </div>
+
+    <h2>Buat Akun</h2>
+    <p class="description">
+      Isi data diri dengan benar untuk mendaftar akun website HIMAPTIKA.
+    </p>
+
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="nim">Nomor Induk Mahasiswa (NIM)</label>
+        <input
+          type="text"
+          id="nim"
+          placeholder="Masukkan NIM"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="nama">Nama Lengkap</label>
+        <input
+          type="text"
+          id="nama"
+          placeholder="Masukkan nama lengkap"
+          autocomplete="name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Aktif</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="nama@email.com"
+          autocomplete="email"
+          required
+        >
+      </div>
+      
+<div class="form-group">
+  <label for="password">Kata Sandi</label>
+  <input
+    type="password"
+    id="password"
+    placeholder="Minimal 6 karakter"
+    autocomplete="new-password"
+    minlength="6"
+    required
+  >
+</div>
+
+<div class="form-group">
+  <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+  <input
+    type="password"
+    id="confirmPassword"
+    placeholder="Ulangi kata sandi"
+    autocomplete="new-password"
+    minlength="6"
+    required
+  >
+</div>
+
+
+      <button type="submit" id="registerButton">
+        Daftar Sekarang
+      </button>
+
+      <div id="message" role="status" aria-live="polite"></div>
+    </form>
+
+    <p class="login-link">
+      Sudah memiliki akun?
+      <a href="login.html">Masuk di sini</a>
+    </p>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      sendEmailVerification
+    } from
+      "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      setDoc
+    } from
+      "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+    
+const firebaseConfig = {
+  apiKey: "AIzaSyAGz2OR4fxdXO_IfGJ4_teyN4rlKcC5vQA",
+  authDomain: "himaptika-fkip-untad-1c56c.firebaseapp.com",
+  databaseURL: "https://himaptika-fkip-untad-1c56c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "himaptika-fkip-untad-1c56c",
+  storageBucket: "himaptika-fkip-untad-1c56c.firebasestorage.app",
+  messagingSenderId: "1080539410314",
+  appId: "1:1080539410314:web:2fea6f34974338d605a273"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("registerForm");
+    const button = document.getElementById("registerButton");
+    const message = document.getElementById("message");
+
+    function showMessage(text, success = false) {
+      message.style.display = "block";
+      message.style.background = success ? "#dcfce7" : "#fee2e2";
+      message.style.color = success ? "#166534" : "#991b1b";
+      message.textContent = text;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const nim = document.getElementById("nim").value.trim();
+      const nama = document.getElementById("nama").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        showMessage("Konfirmasi kata sandi tidak cocok.");
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Memproses pendaftaran...";
+
+      let userCredential = null;
+
+      try {
+        userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        const user = userCredential.user;
+
+        await setDoc(doc(db, "pendaftaran", user.uid), {
+          nim,
+          nama,
+          email,
+          statusVerifikasi: "menunggu",
+          statusPersetujuan: "menunggu",
+          createdAt: new Date().toISOString()
+        });
+
+        await sendEmailVerification(user);
+
+        showMessage(
+          "Pendaftaran berhasil. Silakan buka email untuk melakukan verifikasi. Akun tetap menunggu persetujuan admin HIMAPTIKA.",
+          true
+        );
+
+        form.reset();
+      } catch (error) {
+        console.error(error);
+
+        if (userCredential?.user) {
+          showMessage(
+            "Akun sudah terbuat, tetapi proses penyimpanan atau pengiriman email belum selesai. Jangan mendaftar ulang dahulu. Hubungi admin."
+          );
+        } else if (error.code === "auth/email-already-in-use") {
+          showMessage("Email ini sudah terdaftar. Silakan masuk.");
+        } else if (error.code === "auth/weak-password") {
+          showMessage("Kata sandi terlalu lemah. Gunakan minimal 6 karakter.");
+        } else if (
+          error.code === "permission-denied" ||
+          error.code === "firestore/permission-denied"
+        ) {
+          showMessage(
+            "Database menolak penyimpanan data. Aturan keamanan Firestore perlu diperiksa."
+          );
+        } else {
+  showMessage(
+    "Kode error: " + (error.code || "tidak diketahui") +
+    " — " + (error.message || "Tidak ada keterangan error.")
+  );
+}
+      } finally {
+        button.disabled = false;
+        button.textContent = "Daftar Sekarang";
+      }
+    });
+  </script>
+</body>
+</html>
+```

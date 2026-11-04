@@ -1,0 +1,1630 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda | HIMAPTIKA FKIP UNTAD</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================
+           AGENDA HIMAPTIKA
+        ===================================== */
+
+        :root {
+            --agenda-primary: #173b70;
+            --agenda-primary-light: #285b9e;
+            --agenda-accent: #f0b429;
+            --agenda-background: #f5f7fb;
+            --agenda-surface: #ffffff;
+            --agenda-text: #17243a;
+            --agenda-muted: #718096;
+            --agenda-border: #e5eaf1;
+            --agenda-success: #16845b;
+            --agenda-radius: 18px;
+            --agenda-shadow: 0 8px 28px rgba(23, 59, 112, 0.08);
+        }
+
+        .agenda-page {
+            background: var(--agenda-background);
+            color: var(--agenda-text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .agenda-page * {
+            box-sizing: border-box;
+        }
+
+        .agenda-page a {
+            text-decoration: none;
+        }
+
+        /* =====================================
+           HEADER MENYESUAIKAN INDEX.HTML
+        ===================================== */
+
+        .agenda-page header {
+            background: #173b70;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .agenda-page .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .agenda-page .brand img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .agenda-page .brand-text h1 {
+            font-size: 22px;
+            line-height: 1.2;
+            margin: 0;
+            color: white;
+            font-weight: 800;
+        }
+
+        .agenda-page .brand-text p {
+            font-size: 11px;
+            margin: 4px 0 0;
+            color: #d5e0f0;
+            letter-spacing: 0.4px;
+        }
+
+        .agenda-page nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px 22px;
+        }
+
+        .agenda-page nav a {
+            color: #e3eaf5;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            padding: 10px 0;
+            transition: 0.3s;
+        }
+
+        .agenda-page nav a:hover,
+        .agenda-page nav a.active {
+            color: white;
+        }
+
+        .agenda-page nav a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            width: 100%;
+            height: 3px;
+            background: var(--agenda-accent);
+            border-radius: 5px;
+        }
+
+        .agenda-page .dark-mode-toggle {
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.12);
+            color: white;
+            padding: 8px 11px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* =====================================
+           HERO
+        ===================================== */
+
+        .agenda-hero {
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(255,255,255,0.12),
+                    transparent 25%
+                ),
+                linear-gradient(125deg, #102c55, #285b9e);
+
+            color: white;
+            padding: 90px 24px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agenda-hero-content {
+            max-width: 800px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .agenda-hero-label {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            padding: 7px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .agenda-hero h2 {
+            font-size: clamp(35px, 6vw, 58px);
+            line-height: 1.15;
+            margin: 0 0 18px;
+            color: white;
+        }
+
+        .agenda-hero p {
+            color: #e0e9f6;
+            font-size: 15px;
+            max-width: 620px;
+            margin: auto;
+        }
+
+        .agenda-hero-decoration {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50%;
+            right: -80px;
+            bottom: -120px;
+        }
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        .agenda-main {
+            max-width: 1200px;
+            margin: -35px auto 80px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .agenda-intro {
+            background: var(--agenda-surface);
+            padding: 28px;
+            border-radius: var(--agenda-radius);
+            box-shadow: var(--agenda-shadow);
+            margin-bottom: 30px;
+        }
+
+        .agenda-intro h2 {
+            color: var(--agenda-primary);
+            font-size: 22px;
+            margin: 0 0 8px;
+        }
+
+        .agenda-intro p {
+            color: var(--agenda-muted);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* =====================================
+           FILTER
+        ===================================== */
+
+        .agenda-filter {
+            background: var(--agenda-surface);
+            padding: 22px;
+            border-radius: var(--agenda-radius);
+            box-shadow: var(--agenda-shadow);
+            margin-bottom: 35px;
+        }
+
+        .agenda-filter h3 {
+            font-size: 16px;
+            color: var(--agenda-primary);
+            margin: 0 0 15px;
+        }
+
+        .agenda-filter-controls {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 12px;
+        }
+
+        .agenda-filter-controls input,
+        .agenda-filter-controls select {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid var(--agenda-border);
+            border-radius: 10px;
+            background: var(--agenda-surface);
+            color: var(--agenda-text);
+            outline: none;
+            font: inherit;
+        }
+
+        .agenda-filter-controls input:focus,
+        .agenda-filter-controls select:focus {
+            border-color: var(--agenda-primary-light);
+        }
+
+        /* =====================================
+           DIVISI
+        ===================================== */
+
+        .agenda-division {
+            margin-bottom: 45px;
+        }
+
+        .agenda-division-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .agenda-division-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--agenda-primary);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .agenda-division-heading h2 {
+            font-size: 21px;
+            color: var(--agenda-primary);
+            margin: 0;
+        }
+
+        .agenda-division-heading p {
+            color: var(--agenda-muted);
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* =====================================
+           KARTU AGENDA
+        ===================================== */
+
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .agenda-card {
+            background: var(--agenda-surface);
+            border: 1px solid var(--agenda-border);
+            border-radius: var(--agenda-radius);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .agenda-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--agenda-shadow);
+        }
+
+        .agenda-card-top {
+            height: 6px;
+            background: linear-gradient(
+                90deg,
+                var(--agenda-primary),
+                var(--agenda-accent)
+            );
+        }
+
+        .agenda-card-content {
+            padding: 23px;
+        }
+
+        .agenda-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 13px;
+        }
+
+        .agenda-category {
+            font-size: 11px;
+            color: var(--agenda-primary-light);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .agenda-status {
+            font-size: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #fff4d8;
+            color: #936800;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .agenda-status.berlangsung {
+            background: #e0f6ed;
+            color: var(--agenda-success);
+        }
+
+        .agenda-status.selesai {
+            background: #f1f2f5;
+            color: #687386;
+        }
+
+        .agenda-card h3 {
+            font-size: 19px;
+            color: var(--agenda-text);
+            margin: 0 0 9px;
+            line-height: 1.4;
+        }
+
+        .agenda-description {
+            color: var(--agenda-muted);
+            font-size: 13px;
+            margin: 0 0 20px;
+        }
+
+        /* JADWAL BERULANG */
+
+        .pelaksanaan-title {
+            font-size: 13px;
+            color: var(--agenda-primary);
+            font-weight: 700;
+            margin: 20px 0 12px;
+        }
+
+        .pelaksanaan-item {
+            border: 1px solid var(--agenda-border);
+            background: var(--agenda-background);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .pelaksanaan-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .pelaksanaan-heading strong {
+            color: var(--agenda-primary);
+            font-size: 13px;
+        }
+
+        .pelaksanaan-item .agenda-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .agenda-meta {
+            border-top: 1px solid var(--agenda-border);
+            padding-top: 15px;
+        }
+
+        .meta-item {
+            font-size: 12px;
+            color: var(--agenda-muted);
+            min-width: 0;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--agenda-text);
+            font-size: 13px;
+            margin-top: 3px;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        .agenda-actions {
+            margin-top: 15px;
+        }
+
+        .agenda-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--agenda-primary);
+            color: white !important;
+            padding: 10px 15px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .agenda-link:hover {
+            background: var(--agenda-primary-light);
+            transform: translateY(-2px);
+        }
+
+        .no-link {
+            color: var(--agenda-muted);
+            font-size: 11px;
+            font-style: italic;
+        }
+
+        .empty-message {
+            background: var(--agenda-surface);
+            padding: 35px;
+            border-radius: var(--agenda-radius);
+            text-align: center;
+            color: var(--agenda-muted);
+            border: 1px dashed var(--agenda-border);
+        }
+
+        .empty-message h3 {
+            margin: 0 0 8px;
+            color: var(--agenda-primary);
+        }
+
+        /* =====================================
+           CTA
+        ===================================== */
+
+        .agenda-cta {
+            background: linear-gradient(120deg, #173b70, #285b9e);
+            padding: 45px 25px;
+            border-radius: 22px;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .agenda-cta h2 {
+            font-size: 25px;
+            margin: 0 0 10px;
+            color: white;
+        }
+
+        .agenda-cta p {
+            font-size: 13px;
+            color: #e0e9f6;
+            max-width: 550px;
+            margin: auto;
+        }
+
+        .agenda-cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 22px;
+            background: var(--agenda-accent);
+            color: #25344a !important;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        .agenda-footer {
+            background: #102744;
+            color: white;
+            padding: 35px 24px;
+            text-align: center;
+        }
+
+        .agenda-footer p {
+            font-size: 12px;
+            color: #c4d0df;
+            margin: 0;
+        }
+        
+
+        /* =====================================
+           DARK MODE
+        ===================================== */
+
+        body.dark-mode .agenda-page {
+            --agenda-background: #101827;
+            --agenda-surface: #1c293b;
+            --agenda-text: #edf3fb;
+            --agenda-muted: #a8b6c9;
+            --agenda-border: #34445b;
+            --agenda-primary: #8db8f3;
+            --agenda-primary-light: #a8cbfa;
+            --agenda-shadow: 0 8px 28px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode .agenda-page .agenda-card h3,
+        body.dark-mode .agenda-page .meta-item strong {
+            color: #edf3fb;
+        }
+
+        body.dark-mode .agenda-page .agenda-division-number {
+            color: #102744;
+        }
+
+        body.dark-mode .agenda-page .agenda-filter-controls input,
+        body.dark-mode .agenda-page .agenda-filter-controls select {
+            background: #172438;
+            color: #edf3fb;
+        }
+
+        body.dark-mode .agenda-page .pelaksanaan-item {
+            background: #172438;
+        }
+
+       /* =====================================
+   RESPONSIVE HEADER AGENDA
+===================================== */
+
+@media (max-width: 900px) {
+
+    .agenda-page header.site-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        padding: 13px 20px;
+        min-height: 85px;
+    }
+
+    .agenda-page .menu-toggle {
+        display: flex;
+        flex-shrink: 0;
+        order: 1;
+    }
+
+    .agenda-page .brand {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .agenda-page .brand img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .agenda-page .brand-text h1 {
+        font-size: 19px;
+    }
+
+    .agenda-page .brand-text p {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .agenda-page header.site-header {
+        padding: 12px 15px;
+    }
+
+    .agenda-page .brand {
+        gap: 9px;
+    }
+
+    .agenda-page .brand img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .agenda-page .brand-text h1 {
+        font-size: 17px;
+    }
+
+    .agenda-page .brand-text p {
+        font-size: 9px;
+    }
+
+    .agenda-hero {
+        padding: 65px 20px 80px;
+    }
+
+    .agenda-main {
+        padding: 0 15px;
+    }
+
+    .agenda-filter-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .agenda-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .agenda-intro {
+        padding: 22px;
+    }
+
+    .agenda-division-heading h2 {
+        font-size: 18px;
+    }
+
+    .agenda-card-content {
+        padding: 20px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+<div class="agenda-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+    <!-- Tombol hamburger -->
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Identitas di header atas -->
+    <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+        <div class="brand-text">
+            <h1>HIMAPTIKA</h1>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <nav id="mainNav">
+
+        <div class="drawer-brand">
+            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+            <div>
+                <h2>HIMAPTIKA</h2>
+                <p>FKIP UNIVERSITAS TADULAKO</p>
+            </div>
+        </div>
+
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="struktur-pengurus.html">Struktur Pengurus</a>
+        <a href="divisi.html">Divisi & Program Kerja</a>
+        <a href="informasi.html">Informasi</a>
+        <a href="agenda.html" class="active">Agenda</a>
+        <a href="kontak.html">Kontak</a>
+
+        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
+            🌙
+        </button>
+
+    </nav>
+</header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="agenda-hero">
+
+        <div class="agenda-hero-content">
+
+            <span class="agenda-hero-label">
+                HIMAPTIKA FKIP UNTAD
+            </span>
+
+            <h2>Agenda Kegiatan</h2>
+
+            <p>
+                Temukan informasi kegiatan, program kerja, dan agenda
+                HIMAPTIKA dari setiap divisi dalam satu halaman.
+            </p>
+
+        </div>
+
+        <div class="agenda-hero-decoration"></div>
+
+    </section>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="agenda-main">
+
+        <section class="agenda-intro">
+
+            <h2>Kalender Kegiatan HIMAPTIKA</h2>
+
+            <p>
+                Halaman ini menyediakan informasi agenda kegiatan
+                dari seluruh divisi HIMAPTIKA. Informasi tanggal,
+                waktu, lokasi, dan tautan publikasi dapat diperbarui
+                oleh pengelola website.
+            </p>
+
+        </section>
+
+        <!-- FILTER -->
+
+        <section class="agenda-filter">
+
+            <h3>Temukan Agenda</h3>
+
+            <div class="agenda-filter-controls">
+
+                <input
+                    type="search"
+                    id="searchAgenda"
+                    placeholder="Cari nama kegiatan..."
+                    aria-label="Cari agenda"
+                >
+
+                <select id="filterDivisi" aria-label="Pilih divisi">
+
+                    <option value="semua">Semua Divisi</option>
+                    <option value="Pemikat">Pemikat</option>
+                    <option value="Event Organizer">Event Organizer</option>
+                    <option value="Admeinfo">Admeinfo</option>
+                    <option value="Pelayanan Akademik">Pelayanan Akademik</option>
+                    <option value="Kerohanian">Kerohanian</option>
+                    <option value="Kewirausahaan">Kewirausahaan</option>
+                    <option value="Hubungan Masyarakat">Hubungan Masyarakat</option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+        <div id="agendaContainer"></div>
+
+        <!-- CTA -->
+
+        <section class="agenda-cta">
+
+            <h2>Ikuti Perkembangan HIMAPTIKA</h2>
+
+            <p>
+                Dapatkan informasi terbaru mengenai kegiatan,
+                program kerja, dan aktivitas mahasiswa Pendidikan
+                Matematika melalui kanal resmi HIMAPTIKA.
+            </p>
+
+            <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="agenda-cta-button"
+            >
+                Kunjungi Instagram →
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="agenda-footer">
+
+        <p>
+            © 2026 HIMAPTIKA FKIP Universitas Tadulako.
+            Seluruh hak cipta dilindungi.
+        </p>
+
+    </footer>
+
+</div>
+
+<script>
+    /*
+    ==========================================
+    DATA AGENDA HIMAPTIKA
+    ==========================================
+
+    Satu program kerja dapat memiliki beberapa
+    pelaksanaan.
+
+    Untuk menambahkan jadwal:
+    tambahkan objek baru di dalam array pelaksanaan.
+
+    Isi link dengan URL publikasi jika tersedia.
+    Jika belum ada, gunakan link: "".
+    */
+
+    const daftarAgenda = [
+
+        // =====================================
+        // PEMIKAT
+        // =====================================
+
+        {
+            divisi: "Pemikat",
+            nama: "Member Futsal",
+            kategori: "Olahraga",
+            deskripsi: "Kegiatan olahraga futsal sebagai wadah kebersamaan dan pengembangan minat mahasiswa.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Pemikat",
+            nama: "Member Badminton",
+            kategori: "Olahraga",
+            deskripsi: "Kegiatan badminton untuk meningkatkan kebugaran dan mempererat hubungan antaranggota.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Pemikat",
+            nama: "Pengadaan Alat Olahraga",
+            kategori: "Program Kerja",
+            deskripsi: "Pengadaan perlengkapan olahraga untuk menunjang kegiatan olahraga HIMAPTIKA.",
+            pelaksanaan: [
+                {
+                    tanggal: "Informasi menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "HIMAPTIKA",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Pemikat",
+            nama: "Hari Olahraga",
+            kategori: "Kegiatan HIMAPTIKA",
+            deskripsi: "Kegiatan olahraga bersama sebagai sarana kebersamaan dan menjaga kesehatan.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        // =====================================
+        // EVENT ORGANIZER
+        // =====================================
+
+        {
+            divisi: "Event Organizer",
+            nama: "Latihan Manajemen Organisasi",
+            kategori: "Pengembangan Organisasi",
+            deskripsi: "Kegiatan pengembangan kemampuan manajemen dan organisasi bagi mahasiswa.",
+            pelaksanaan:[
+                {
+                    tanggal: "Minggu,19-april-2026",
+                    waktu: "09.00-selesai",
+                    lokasi: "FKIP 47",
+                    status: "selesai",
+                    link: "https://www.instagram.com/p/DXS2Go_D6tI/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA=="
+                }
+            ]
+        },
+
+        {
+            divisi: "Event Organizer",
+            nama: "Math Camp",
+            kategori: "Kegiatan HIMAPTIKA",
+            deskripsi: "Kegiatan kebersamaan dan pengembangan mahasiswa Pendidikan Matematika.",
+            pelaksanaan: [
+                {
+                    tanggal: "sabtu-minggu,1-2 agustus 2026",
+                    waktu: "08-00-selesai",
+                    lokasi: "pusat laut",
+                    status: "Selesai",
+                    link: "https://www.instagram.com/reel/DbjzVpgvlew/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA=="
+                }
+            ]
+        },
+
+        {
+            divisi: "Event Organizer",
+            nama: "Sport and Art HIMAPTIKA",
+            kategori: "Olahraga dan Seni",
+            deskripsi: "Wadah pengembangan minat dan bakat mahasiswa dalam bidang olahraga dan seni.",
+            pelaksanaan: [
+                {
+                    tanggal: "jum'at-minggu,2-18 oktober 2026",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Event Organizer",
+            nama: "Dies Natalis HIMAPTIKA",
+            kategori: "Perayaan Organisasi",
+            deskripsi: "Kegiatan peringatan hari lahir HIMAPTIKA sebagai momentum kebersamaan dan refleksi organisasi.",
+            pelaksanaan: [
+                {
+                    tanggal: "24 oktober 2026",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        // =====================================
+        // ADMEINFO
+        // =====================================
+
+        {
+            divisi: "Admeinfo",
+            nama: "Pendataan",
+            kategori: "Administrasi",
+            deskripsi: "Pendataan anggota dan informasi administrasi yang dibutuhkan HIMAPTIKA.",
+            pelaksanaan: [
+                {
+                    tanggal: "Informasi menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Online",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Admeinfo",
+            nama: "Pengadaan",
+            kategori: "Administrasi",
+            deskripsi: "Pengadaan kebutuhan administrasi dan perlengkapan penunjang organisasi.",
+            pelaksanaan: [
+                {
+                    tanggal: "Informasi menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "HIMAPTIKA",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Admeinfo",
+            nama: "Pengelolaan",
+            kategori: "Administrasi",
+            deskripsi: "Pengelolaan media sosial,sekret,dokumentasi,arsip aktif dan arsip pasif.",
+            pelaksanaan: [
+                {
+                    tanggal: "-l",
+                    waktu: "Menyesuaikan",
+                    lokasi: "HIMAPTIKA",
+                    status: "selesai",
+                    link: ""
+                }
+            ]
+        },
+
+        // =====================================
+        // PELAYANAN AKADEMIK
+        // =====================================
+
+        {
+            divisi: "Pelayanan Akademik",
+            nama: "Pengadaan Buku Kontrol",
+            kategori: "Pelayanan Akademik",
+            deskripsi: "Penyediaan buku kontrol untuk membantu mahasiswa dalam proses bimbingan dan penyelesaian tugas akhir.",
+            pelaksanaan: [
+                {
+                    tanggal: "Informasi menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Informasi HIMAPTIKA",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Pelayanan Akademik",
+            nama: "HIMAPTIKA Mengajar",
+            kategori: "Pengabdian Pendidikan",
+            deskripsi: "Kegiatan pengabdian melalui layanan pendidikan dan pembelajaran kepada masyarakat.",
+            pelaksanaan: [
+                {
+                    tanggal: "Pelaksanaan 1 - jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+
+                /*
+                CONTOH JIKA ADA PELAKSANAAN KEDUA:
+
+                ,
+                {
+                    tanggal: "Pelaksanaan 2 - tanggal",
+                    waktu: "09.00 - selesai",
+                    lokasi: "Lokasi kegiatan",
+                    status: "Akan Datang",
+                    link: "https://www.instagram.com/"
+                }
+                */
+            ]
+        },
+
+        {
+            divisi: "Pelayanan Akademik",
+            nama: "Seminar",
+            kategori: "Pengembangan Akademik",
+            deskripsi: "Kegiatan pengembangan wawasan dan kemampuan akademik mahasiswa melalui forum seminar.",
+            pelaksanaan: [
+                {
+                    tanggal: "Minggu,11-oktober-2026",
+                    waktu: "08.00-selesai",
+                    lokasi: "AULA FKIP UNTAD",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Pelayanan Akademik",
+            nama: "Academic Survival Guide",
+            kategori: "Informasi Akademik",
+            deskripsi: "Rencana penyediaan panduan dan informasi akademik bagi mahasiswa Pendidikan Matematika.",
+            pelaksanaan: [
+                {
+                    tanggal: "-",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Sekret HIMAPTIKA",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        // =====================================
+        // KEROHANIAN
+        // =====================================
+
+        {
+            divisi: "Kerohanian",
+            nama: "Kajian Angkatan",
+            kategori: "Kerohanian",
+            deskripsi: "Kegiatan kajian untuk mempererat hubungan dan meningkatkan nilai spiritual mahasiswa.",
+            pelaksanaan: [
+                {
+                    tanggal: "25-april-2026",
+                    waktu: "16.00-selesai",
+                    lokasi: "Masjid Al-Amin",
+                    status: "Selesai",
+                    link: "https://www.instagram.com/p/DXdeI3wjz5d/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA=="
+                }
+                ,
+                {
+                    tanggal: "22-mei-2026",
+                    waktu: "19.30 - selesai",
+                    lokasi: "Masjid Al-Amin",
+                    status: "selesai",
+                    link: "https://www.instagram.com/p/DYl1qG_ugBY/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA=="
+                }
+            ]
+        },
+
+        {
+            divisi: "Kerohanian",
+            nama: "HIMAPTIKA Berbagi",
+            kategori: "Sosial dan Kerohanian",
+            deskripsi: "Kegiatan berbagi sebagai bentuk kepedulian dan kebersamaan keluarga HIMAPTIKA.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Kerohanian",
+            nama: "HIMAPTIKA Pemanis",
+            kategori: "Kerohanian",
+            deskripsi: "Kegiatan pembinaan dan penguatan nilai-nilai spiritual dalam lingkungan HIMAPTIKA.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Kerohanian",
+            nama: "M.A.T.H.",
+            kategori: "Kerohanian",
+            deskripsi: "Program kerja divisi Kerohanian HIMAPTIKA.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        // =====================================
+        // KEWIRAUSAHAAN
+        // =====================================
+
+        {
+            divisi: "Kewirausahaan",
+            nama: "Pengadaan PDH",
+            kategori: "Kewirausahaan",
+            deskripsi: "Pengadaan pakaian dinas harian sebagai identitas mahasiswa Pendidikan Matematika.",
+            pelaksanaan: [
+                {
+                    tanggal: "18 mei-6 juni 2026",
+                    waktu: "-",
+                    lokasi: "-",
+                    status: "-",
+                    link: "https://www.instagram.com/p/DYefLdCPOyD/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA=="
+                }
+            ]
+        },
+
+        {
+            divisi: "Kewirausahaan",
+            nama: "Bazar HIMAPTIKA",
+            kategori: "Kewirausahaan",
+            deskripsi: "Kegiatan bazar untuk mengembangkan kreativitas dan jiwa kewirausahaan mahasiswa.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Kewirausahaan",
+            nama: "Hi Mart",
+            kategori: "Kewirausahaan",
+            deskripsi: "Program usaha dan penyediaan kebutuhan melalui kegiatan kewirausahaan HIMAPTIKA.",
+            pelaksanaan: [
+                {
+                    tanggal: "Informasi menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        // =====================================
+        // HUBUNGAN MASYARAKAT
+        // =====================================
+
+        {
+            divisi: "Hubungan Masyarakat",
+            nama: "BAKTI LINGKUNGAN",
+            kategori: "Sosial dan Lingkungan",
+            deskripsi: "Kegiatan kepedulian terhadap lingkungan sebagai bentuk kontribusi mahasiswa.",
+            pelaksanaan: [
+                {
+                    tanggal: "09-05-2026",
+                    waktu: "09.00-selesai",
+                    lokasi: "prodi pendidikan matematika FKIP UNTAD",
+                    status: "Selesai",
+                    link: "https://www.instagram.com/p/DYBq-DRDwfz/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA=="
+                }
+            ]
+        },
+
+        {
+            divisi: "Hubungan Masyarakat",
+            nama: "Peduli Bersama",
+            kategori: "Sosial",
+            deskripsi: "Kegiatan sosial untuk menumbuhkan rasa kepedulian dan solidaritas.",
+            pelaksanaan: [
+                {
+                    tanggal: "Jadwal menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        },
+
+        {
+            divisi: "Hubungan Masyarakat",
+            nama: "SAPA",
+            kategori: "Hubungan Masyarakat",
+            deskripsi: "Program kerja untuk mempererat komunikasi dan hubungan dengan lingkungan HIMAPTIKA.",
+            pelaksanaan: [
+                {
+                    tanggal: "Informasi menyusul",
+                    waktu: "Menyesuaikan",
+                    lokasi: "Menyesuaikan",
+                    status: "Akan Datang",
+                    link: ""
+                }
+            ]
+        }
+
+    ];
+
+    // =====================================
+    // FUNGSI KEAMANAN TEKS
+    // =====================================
+
+    function escapeHTML(teks) {
+        return String(teks ?? "").replace(/[&<>"']/g, function (karakter) {
+            const pengganti = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            };
+
+            return pengganti[karakter];
+        });
+    }
+
+    // =====================================
+    // MEMBUAT JADWAL PELAKSANAAN
+    // =====================================
+
+    function buatPelaksanaan(pelaksanaan, index) {
+
+        const statusClass =
+            pelaksanaan.status === "Berlangsung"
+                ? "berlangsung"
+                : pelaksanaan.status === "Selesai"
+                    ? "selesai"
+                    : "";
+
+        const tombolLink = pelaksanaan.link
+            ? `
+                <div class="agenda-actions">
+                    <a
+                        href="${escapeHTML(pelaksanaan.link)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="agenda-link"
+                    >
+                        Lihat Informasi →
+                    </a>
+                </div>
+            `
+            : `
+                <div class="agenda-actions">
+                    <span class="no-link">
+                        Tautan informasi belum tersedia.
+                    </span>
+                </div>
+            `;
+
+        return `
+            <div class="pelaksanaan-item">
+
+                <div class="pelaksanaan-heading">
+
+                    <strong>
+                        Pelaksanaan ${index + 1}
+                    </strong>
+
+                    <span class="agenda-status ${statusClass}">
+                        ${escapeHTML(pelaksanaan.status)}
+                    </span>
+
+                </div>
+
+                <div class="agenda-meta">
+
+                    <div class="meta-item">
+                        Tanggal
+                        <strong>${escapeHTML(pelaksanaan.tanggal)}</strong>
+                    </div>
+
+                    <div class="meta-item">
+                        Waktu
+                        <strong>${escapeHTML(pelaksanaan.waktu)}</strong>
+                    </div>
+
+                    <div class="meta-item">
+                        Lokasi
+                        <strong>${escapeHTML(pelaksanaan.lokasi)}</strong>
+                    </div>
+
+                </div>
+
+                ${tombolLink}
+
+            </div>
+        `;
+    }
+
+    // =====================================
+    // MEMBUAT KARTU AGENDA
+    // =====================================
+
+    function buatKartuAgenda(item) {
+
+        return `
+            <article class="agenda-card">
+
+                <div class="agenda-card-top"></div>
+
+                <div class="agenda-card-content">
+
+                    <div class="agenda-card-header">
+
+                        <span class="agenda-category">
+                            ${escapeHTML(item.kategori)}
+                        </span>
+
+                    </div>
+
+                    <h3>${escapeHTML(item.nama)}</h3>
+
+                    <p class="agenda-description">
+                        ${escapeHTML(item.deskripsi)}
+                    </p>
+
+                    <div class="pelaksanaan-title">
+                        Jadwal Pelaksanaan
+                    </div>
+
+                    ${item.pelaksanaan.map(buatPelaksanaan).join("")}
+
+                    <div class="meta-item">
+                        Divisi
+                        <strong>${escapeHTML(item.divisi)}</strong>
+                    </div>
+
+                </div>
+
+            </article>
+        `;
+    }
+
+    // =====================================
+    // MENAMPILKAN AGENDA
+    // =====================================
+
+    function tampilkanAgenda() {
+
+        const container = document.getElementById("agendaContainer");
+
+        const kataKunci = document.getElementById("searchAgenda")
+            .value.toLowerCase().trim();
+
+        const divisiDipilih =
+            document.getElementById("filterDivisi").value;
+
+        const daftarDivisi = [
+            "Pemikat",
+            "Event Organizer",
+            "Admeinfo",
+            "Pelayanan Akademik",
+            "Kerohanian",
+            "Kewirausahaan",
+            "Hubungan Masyarakat"
+        ];
+
+        let hasilHTML = "";
+        let nomor = 0;
+
+        daftarDivisi.forEach(function (divisi) {
+
+            if (divisiDipilih !== "semua" && divisiDipilih !== divisi) {
+                return;
+            }
+
+            const kegiatanDivisi = daftarAgenda.filter(function (item) {
+
+                const cocokDivisi = item.divisi === divisi;
+
+                const teksPelaksanaan = item.pelaksanaan.map(function (p) {
+                    return [
+                        p.tanggal,
+                        p.waktu,
+                        p.lokasi,
+                        p.status
+                    ].join(" ");
+                }).join(" ");
+
+                const teksPencarian = [
+                    item.nama,
+                    item.deskripsi,
+                    item.kategori,
+                    teksPelaksanaan
+                ].join(" ").toLowerCase();
+
+                const cocokPencarian =
+                    teksPencarian.includes(kataKunci);
+
+                return cocokDivisi && cocokPencarian;
+            });
+
+            if (kegiatanDivisi.length === 0) {
+                return;
+            }
+
+            nomor++;
+
+            hasilHTML += `
+                <section class="agenda-division">
+
+                    <div class="agenda-division-heading">
+
+                        <div class="agenda-division-number">
+                            ${String(nomor).padStart(2, "0")}
+                        </div>
+
+                        <div>
+                            <h2>${escapeHTML(divisi)}</h2>
+                            <p>${kegiatanDivisi.length} program/kegiatan</p>
+                        </div>
+
+                    </div>
+
+                    <div class="agenda-grid">
+                        ${kegiatanDivisi.map(buatKartuAgenda).join("")}
+                    </div>
+
+                </section>
+            `;
+        });
+
+        if (hasilHTML === "") {
+
+            container.innerHTML = `
+                <div class="empty-message">
+                    <h3>Agenda tidak ditemukan</h3>
+                    <p>
+                        Coba gunakan kata kunci atau pilihan divisi lain.
+                    </p>
+                </div>
+            `;
+
+        } else {
+
+            container.innerHTML = hasilHTML;
+
+        }
+    }
+
+    // =====================================
+    // EVENT FILTER
+    // =====================================
+
+    document.getElementById("searchAgenda")
+        .addEventListener("input", tampilkanAgenda);
+
+    document.getElementById("filterDivisi")
+        .addEventListener("change", tampilkanAgenda);
+
+    // =====================================
+    // DARK MODE
+    // =====================================
+
+    const darkModeToggle =
+        document.getElementById("darkModeToggle");
+
+    darkModeToggle.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+        darkModeToggle.textContent =
+            document.body.classList.contains("dark-mode")
+                ? "☀️"
+                : "🌙";
+
+    });
+
+    // TAMPILKAN AGENDA SAAT HALAMAN DIBUKA
+
+    tampilkanAgenda();
+// =====================================
+// HAMBURGER MENU AGENDA
+// =====================================
+
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+if (menuToggle && mainNav) {
+
+    menuToggle.addEventListener("click", function () {
+
+        const isOpen = mainNav.classList.toggle("active");
+
+        menuToggle.classList.toggle("active", isOpen);
+
+        menuToggle.setAttribute("aria-expanded", isOpen);
+
+    });
+
+    mainNav.querySelectorAll("a").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            mainNav.classList.remove("active");
+            menuToggle.classList.remove("active");
+
+            menuToggle.setAttribute("aria-expanded", "false");
+
+        });
+
+    });
+
+}
+</script>
+
+</body>
+</html>

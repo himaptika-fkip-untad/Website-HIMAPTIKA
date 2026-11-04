@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda | HIMAPTIKA FKIP UNTAD</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .agenda-list-section {
+            padding: 70px 8%;
+        }
+
+        .agenda-group {
+            margin-bottom: 70px;
+        }
+
+        .agenda-list-heading {
+            margin-bottom: 30px;
+        }
+
+        .agenda-list-heading h2 {
+            font-size: clamp(26px, 4vw, 38px);
+            margin: 10px 0;
+        }
+
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .agenda-card {
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(128,128,128,.2);
+            background: var(--card-bg, #fff);
+            color: var(--text-color, #222);
+            box-shadow: 0 10px 30px rgba(0,0,0,.06);
+            transition: .3s ease;
+        }
+
+        .agenda-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 35px rgba(0,0,0,.12);
+        }
+
+        .agenda-card-content {
+            padding: 25px;
+        }
+
+        .agenda-status {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 15px;
+            border-radius: 30px;
+            background: rgba(40,100,220,.1);
+            color: #2455a4;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-selesai {
+            background: rgba(30,150,80,.12);
+            color: #21834c;
+        }
+
+        .status-berlangsung {
+            background: rgba(230,160,30,.15);
+            color: #a66b00;
+        }
+
+        .agenda-card-date {
+            display: inline-block;
+            padding: 10px 14px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            background: rgba(40,100,220,.08);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .agenda-card-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            opacity: .65;
+            text-transform: uppercase;
+        }
+
+        .agenda-card h3 {
+            font-size: 21px;
+            margin: 10px 0;
+        }
+
+        .agenda-card p {
+            line-height: 1.7;
+        }
+
+        .agenda-meta {
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(128,128,128,.2);
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .agenda-actions {
+            margin-top: 20px;
+        }
+
+        .agenda-link {
+            display: inline-block;
+            padding: 11px 17px;
+            border-radius: 9px;
+            background: #234e9b;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: .3s ease;
+        }
+
+        .agenda-link:hover {
+            opacity: .85;
+            transform: translateY(-2px);
+        }
+
+        .agenda-empty,
+        .agenda-loading,
+        .agenda-error {
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 15px;
+            background: rgba(128,128,128,.08);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .agenda-list-section {
+                padding: 50px 6%;
+            }
+
+            .agenda-card-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="agenda-page">
+
+    <!-- HEADER -->
+    <header>
+        <div class="brand">
+            <img src="images/logo.png" alt="Logo HIMAPTIKA">
+
+            <div class="brand-text">
+                <h1>HIMAPTIKA</h1>
+                <p>Himpunan Mahasiswa Pendidikan Matematika FKIP UNTAD</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">Beranda</a>
+            <a href="tentang.html">Tentang</a>
+            <a href="struktur-pengurus.html">Struktur Pengurus</a>
+            <a href="divisi.html">Divisi & Program Kerja</a>
+            <a href="informasi.html">Informasi</a>
+            <a href="agenda.html" class="active">Agenda</a>
+            <a href="kontak.html">Kontak</a>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="agenda-hero">
+
+        <div class="agenda-symbol agenda-symbol-one">01</div>
+        <div class="agenda-symbol agenda-symbol-two">∞</div>
+
+        <div class="agenda-hero-content">
+
+            <p class="section-label">
+                AGENDA HIMAPTIKA
+            </p>
+
+            <h2>
+                Kegiatan HIMAPTIKA.
+            </h2>
+
+            <p>
+                Temukan berbagai agenda dan kegiatan HIMAPTIKA
+                FKIP UNTAD.
+            </p>
+
+            <div class="agenda-line"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AGENDA -->
+    <section class="agenda-list-section">
+
+        <div class="agenda-list-heading">
+
+            <p class="section-label">
+                AGENDA KEGIATAN
+            </p>
+
+            <h2>
+                Informasi Kegiatan HIMAPTIKA
+            </h2>
+
+            <p>
+                Pantau kegiatan yang akan datang,
+                sedang berlangsung, dan kegiatan yang telah selesai.
+            </p>
+
+        </div>
+
+
+        <div id="agendaContainer">
+
+            <p class="agenda-loading">
+                Memuat agenda HIMAPTIKA...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="agenda-highlight">
+
+        <div class="container">
+
+            <div class="agenda-highlight-box">
+
+                <div>
+
+                    <p class="section-label">
+                        HIMAPTIKA FKIP UNTAD
+                    </p>
+
+                    <h2>
+                        Jangan lewatkan agenda HIMAPTIKA.
+                    </h2>
+
+                    <p>
+                        Pantau terus informasi terbaru mengenai
+                        kegiatan dan agenda HIMAPTIKA.
+                    </p>
+
+                </div>
+
+                <div class="agenda-highlight-number">
+                    ∞
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026 HIMAPTIKA FKIP UNTAD
+            </p>
+
+            <p>
+                Himpunan Mahasiswa Pendidikan Matematika
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+
+    <!-- SCRIPT AGENDA -->
+    <script>
+
+        const API_URL =
+        "https://script.google.com/macros/s/AKfycbwce2txBdv_7mg3yt7imCDvMIDVM3eZVpDDseO-OhRgYZDaq9QmXbYfQ3XOWGhBrz4T/exec";
+
+
+        const agendaContainer =
+        document.getElementById("agendaContainer");
+
+
+        function escapeHTML(value) {
+
+            return String(value ?? "").replace(/[&<>"']/g, function(char) {
+
+                return {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+                }[char];
+
+            });
+
+        }
+
+
+        function buatLinkAman(url) {
+
+            const nilai =
+            String(url || "").trim();
+
+            if (!/^https?:\/\//i.test(nilai)) {
+                return "";
+            }
+
+            return nilai;
+
+        }
+
+
+        function buatKartuAgenda(item, statusTampilan) {
+
+            const nama =
+            escapeHTML(item["Nama Kegiatan"]);
+
+            const kategori =
+            escapeHTML(
+                item["Kategori"] ||
+                "Kegiatan HIMAPTIKA"
+            );
+
+            const tanggal =
+            escapeHTML(
+                item["Tanggal Mulai"] ||
+                "Tanggal menyusul"
+            );
+
+            const tanggalSelesai =
+            item["Tanggal Selesai"];
+
+            const waktu =
+            escapeHTML(
+                item["Waktu"] ||
+                "Waktu menyusul"
+            );
+
+            const lokasi =
+            escapeHTML(
+                item["Lokasi"] ||
+                "Lokasi menyusul"
+            );
+
+            const deskripsi =
+            escapeHTML(
+                item["Deskripsi"] ||
+                "Informasi kegiatan HIMAPTIKA."
+            );
+
+
+            const rentangTanggal =
+
+                tanggalSelesai &&
+                tanggalSelesai !== item["Tanggal Mulai"]
+
+                ?
+
+                tanggal +
+                " – " +
+                escapeHTML(tanggalSelesai)
+
+                :
+
+                tanggal;
+
+
+            const instagram =
+            buatLinkAman(
+                item["Link Instagram"]
+            );
+
+
+            const pamflet =
+            buatLinkAman(
+                item["URL Pamflet"]
+            );
+
+
+            /*
+             * Untuk kegiatan yang sudah selesai,
+             * tombol akan menuju portal dokumentasi.
+             */
+
+            const idKegiatan =
+            encodeURIComponent(
+                item["ID"] || nama
+            );
+
+
+            let tombol = "";
+
+
+            if (statusTampilan === "Selesai") {
+
+                tombol += `
+
+                    <a
+                        class="agenda-link"
+                        href="dokumentasi.html?id=${idKegiatan}"
+                    >
+
+                        Lihat Dokumentasi →
+
+                    </a>
+
+                `;
+
+            }
+
+
+            if (instagram) {
+
+                tombol += `
+
+                    <a
+                        class="agenda-link"
+                        href="${escapeHTML(instagram)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Instagram
+
+                    </a>
+
+                `;
+
+            }
+
+
+            if (pamflet) {
+
+                tombol += `
+
+                    <a
+                        class="agenda-link"
+                        href="${escapeHTML(pamflet)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Pamflet
+
+                    </a>
+
+                `;
+
+            }
+
+
+            const kelasStatus =
+
+                statusTampilan === "Selesai"
+
+                ?
+
+                "status-selesai"
+
+                :
+
+                statusTampilan === "Berlangsung"
+
+                ?
+
+                "status-berlangsung"
+
+                :
+
+                "";
+
+
+            return `
+
+                <article class="agenda-card">
+
+                    <div class="agenda-card-content">
+
+                        <span
+                            class="agenda-status ${kelasStatus}"
+                        >
+
+                            ${statusTampilan}
+
+                        </span>
+
+
+                        <div class="agenda-card-date">
+
+                            ${rentangTanggal}
+
+                        </div>
+
+
+                        <p class="agenda-card-label">
+
+                            ${kategori}
+
+                        </p>
+
+
+                        <h3>
+
+                            ${nama}
+
+                        </h3>
+
+
+                        <p>
+
+                            ${deskripsi}
+
+                        </p>
+
+
+                        <div class="agenda-meta">
+
+                            <div>
+                                ◷ ${waktu}
+                            </div>
+
+                            <div>
+                                ⌖ ${lokasi}
+                            </div>
+
+                        </div>
+
+
+                        <div class="agenda-actions">
+
+                            ${tombol}
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+
+        function buatBagianAgenda(
+            judul,
+            deskripsi,
+            daftar,
+            status,
+            kosong
+        ) {
+
+            return `
+
+                <section class="agenda-group">
+
+                    <div class="agenda-list-heading">
+
+                        <p class="section-label">
+
+                            HIMAPTIKA FKIP UNTAD
+
+                        </p>
+
+                        <h2>
+
+                            ${judul}
+
+                        </h2>
+
+                        <p>
+
+                            ${deskripsi}
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="agenda-grid">
+
+                        ${
+                            daftar.length > 0
+
+                            ?
+
+                            daftar
+                            .map(item =>
+                                buatKartuAgenda(
+                                    item,
+                                    status
+                                )
+                            )
+                            .join("")
+
+                            :
+
+                            `<p class="agenda-empty">
+                                ${kosong}
+                            </p>`
+                        }
+
+                    </div>
+
+                </section>
+
+            `;
+
+        }
+
+
+        async function muatAgenda() {
+
+            try {
+
+                const response =
+                await fetch(API_URL);
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Gagal mengambil data agenda."
+                    );
+
+                }
+
+
+                const data =
+                await response.json();
+
+
+                if (!Array.isArray(data)) {
+
+                    throw new Error(
+                        "Format data tidak sesuai."
+                    );
+
+                }
+
+
+                const agendaMendatang = [];
+
+                const agendaBerlangsung = [];
+
+                const riwayatAgenda = [];
+
+
+                data.forEach(item => {
+
+                    const status =
+                    String(
+                        item["Status"] || ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                    if (
+                        status === "dibatalkan"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        status === "akan datang"
+                    ) {
+
+                        agendaMendatang.push(item);
+
+                    }
+
+                    else if (
+                        status === "berlangsung"
+                    ) {
+
+                        agendaBerlangsung.push(item);
+
+                    }
+
+                    else if (
+                        status === "selesai"
+                    ) {
+
+                        riwayatAgenda.push(item);
+
+                    }
+
+                });
+
+
+                agendaContainer.innerHTML = `
+
+                    ${buatBagianAgenda(
+
+                        "Agenda Mendatang",
+
+                        "Kegiatan HIMAPTIKA yang akan dilaksanakan.",
+
+                        agendaMendatang,
+
+                        "Akan Datang",
+
+                        "Belum ada agenda mendatang."
+
+                    )}
+
+
+                    ${buatBagianAgenda(
+
+                        "Sedang Berlangsung",
+
+                        "Kegiatan HIMAPTIKA yang sedang berjalan.",
+
+                        agendaBerlangsung,
+
+                        "Berlangsung",
+
+                        "Tidak ada kegiatan yang sedang berlangsung."
+
+                    )}
+
+
+                    ${buatBagianAgenda(
+
+                        "Riwayat Kegiatan",
+
+                        "Kegiatan HIMAPTIKA yang telah terlaksana.",
+
+                        riwayatAgenda,
+
+                        "Selesai",
+
+                        "Belum ada riwayat kegiatan."
+
+                    )}
+
+                `;
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Kesalahan agenda:",
+                    error
+                );
+
+
+                agendaContainer.innerHTML = `
+
+                    <div class="agenda-error">
+
+                        <h3>
+                            Agenda belum dapat dimuat.
+                        </h3>
+
+                        <p>
+                            Periksa koneksi atau konfigurasi Google Sheets.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        muatAgenda();
+
+    </script>
+
+</body>
+</html>

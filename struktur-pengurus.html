@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Struktur Pengurus | HIMAPTIKA</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+:root {
+    --biru: #1e6091;
+    --gelap: #123b65;
+    --bg: #f5f9fd;
+    --card: #ffffff;
+    --teks: #26384a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--teks);
+}
+
+/* HERO */
+.struktur-hero {
+    padding: 85px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #123b65, #2878b9, #65a5d5);
+    position: relative;
+    overflow: hidden;
+}
+
+.struktur-hero h2 {
+    font-size: clamp(28px, 5vw, 44px);
+    margin: 0 0 12px;
+    animation: masuk 0.8s ease both;
+}
+
+.struktur-hero p {
+    margin: 7px 0;
+    animation: masuk 1s ease both;
+}
+
+@keyframes masuk {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* KONTEN */
+.struktur-container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 50px auto;
+}
+
+.struktur-heading {
+    text-align: center;
+    margin: 55px 0 30px;
+}
+
+.struktur-heading h2 {
+    color: var(--gelap);
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.struktur-heading p {
+    color: #718096;
+}
+
+/* FOTO PENGURUS */
+.foto-placeholder {
+    width: 125px;
+    height: 125px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #dcecf9, #b8d8ef);
+    border: 4px solid white;
+    box-shadow: 0 5px 18px rgba(30,96,145,.15);
+    font-size: 40px;
+    color: var(--biru);
+    transition: transform .35s ease;
+}
+
+.foto-placeholder:hover {
+    transform: scale(1.08);
+}
+
+.foto-placeholder img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+}
+
+/* KETUA */
+.bagan-inti {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bagan-card {
+    width: 270px;
+    padding: 25px;
+    text-align: center;
+    background: var(--card);
+    border-radius: 17px;
+    border-top: 5px solid var(--biru);
+    box-shadow: 0 8px 28px rgba(20,65,105,.08);
+    transition: transform .35s, box-shadow .35s;
+}
+
+.bagan-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(30,96,145,.15);
+}
+
+.bagan-card h3 {
+    color: var(--gelap);
+}
+
+.bagan-card p {
+    color: #718096;
+    margin-bottom: 0;
+}
+
+.bagan-penghubung {
+    width: 3px;
+    height: 35px;
+    background: linear-gradient(#2878b9, #a6d2ef);
+}
+
+/* PENGURUS INTI */
+.inti-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.inti-card {
+    background: var(--card);
+    padding: 25px 15px;
+    text-align: center;
+    border-radius: 16px;
+    border-bottom: 4px solid #70acd7;
+    box-shadow: 0 8px 28px rgba(20,65,105,.08);
+    transition: transform .35s, box-shadow .35s;
+}
+
+.inti-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(30,96,145,.15);
+}
+
+.inti-card h3 {
+    color: var(--gelap);
+    font-size: 17px;
+}
+
+.inti-card p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* DIVISI */
+.divisi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.divisi-card {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 17px;
+    border-top: 4px solid var(--biru);
+    box-shadow: 0 8px 28px rgba(20,65,105,.08);
+    transition: transform .35s, box-shadow .35s;
+}
+
+.divisi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(30,96,145,.13);
+}
+
+.divisi-card h3 {
+    color: var(--gelap);
+    text-align: center;
+    font-size: 20px;
+    margin: 0 0 20px;
+}
+
+.profil-pengurus {
+    text-align: center;
+    padding: 20px;
+    border-radius: 13px;
+    background: #f0f6fb;
+    transition: background .3s;
+}
+
+.profil-pengurus:hover {
+    background: #e5f1fa;
+}
+
+.profil-pengurus h4 {
+    color: var(--gelap);
+    margin: 0 0 6px;
+}
+
+.profil-pengurus p {
+    color: #718096;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* ANGGOTA */
+.divisi-anggota {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #e3edf5;
+}
+
+.divisi-anggota h4 {
+    color: var(--biru);
+    margin: 0 0 15px;
+}
+
+.anggota-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    gap: 12px;
+}
+
+.anggota-list li.anggota-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 12px 6px;
+    color: #526477;
+    border: 1px solid #edf1f5;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 0;
+    transition: .3s;
+}
+
+.anggota-list li.anggota-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 18px rgba(30,96,145,.10);
+}
+
+.anggota-card .foto-placeholder {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 10px;
+    flex-shrink: 0;
+}
+
+.anggota-card .foto-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.anggota-card .nama-anggota {
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+/* TOMBOL */
+.struktur-back {
+    text-align: center;
+    margin: 55px 0;
+}
+
+.struktur-back a {
+    display: inline-block;
+    padding: 13px 25px;
+    background: var(--biru);
+    color: white;
+    text-decoration: none;
+    border-radius: 9px;
+    transition: .3s;
+}
+
+.struktur-back a:hover {
+    background: var(--gelap);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(30,96,145,.2);
+}
+
+/* ANIMASI SCROLL */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MODE GELAP */
+body.dark-mode {
+    background: #111c29;
+    color: #e8eef5;
+}
+
+body.dark-mode .bagan-card,
+body.dark-mode .inti-card,
+body.dark-mode .divisi-card {
+    background: #202e3e;
+}
+
+body.dark-mode .bagan-card h3,
+body.dark-mode .inti-card h3,
+body.dark-mode .divisi-card h3,
+body.dark-mode .profil-pengurus h4 {
+    color: #a6d5ff;
+}
+
+body.dark-mode .bagan-card p,
+body.dark-mode .inti-card p,
+body.dark-mode .profil-pengurus p,
+body.dark-mode .anggota-list li {
+    color: #d1dce8;
+}
+
+body.dark-mode .profil-pengurus {
+    background: #2b3d50;
+}
+
+body.dark-mode .profil-pengurus:hover {
+    background: #354b62;
+}
+
+body.dark-mode .divisi-anggota {
+    border-color: #43566b;
+}
+
+body.dark-mode .anggota-list li {
+    border-color: #43566b;
+}
+
+body.dark-mode .anggota-list li.anggota-card {
+    color: #d1dce8;
+}
+
+body.dark-mode .struktur-heading h2 {
+    color: #a6d5ff;
+}
+
+body.dark-mode .struktur-heading p {
+    color: #b9c7d5;
+}
+
+/* RESPONSIVE */
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .struktur-hero {
+        margin-top: 16px;
+        padding: 48px 15px;
+    }
+
+
+    .struktur-container {
+        width: 92%;
+        margin: 35px auto;
+    }
+
+    .inti-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    max-width: 100%;
+    gap: 8px;
+}
+
+.inti-card {
+    padding: 15px 8px;
+    min-width: 0;
+}
+
+.inti-card img {
+    width: 100%;
+    max-width: 110px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.inti-card h3 {
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+}
+
+.inti-card p {
+    font-size: 12px;
+    line-height: 1.5;
+}
+.inti-card .foto-placeholder {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 12px;
+    flex-shrink: 0;
+}
+
+.inti-card .foto-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+    .divisi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .struktur-heading h2 {
+        font-size: 23px;
+    }
+
+    .divisi-card {
+        padding: 20px;
+    }
+}
+
+/* AKSESIBILITAS */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <button class="menu-toggle" id="menuToggle"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+        <div class="brand-text">
+            <h1>HIMAPTIKA</h1>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+        </div>
+    </div>
+
+    <nav id="mainNav">
+
+        <div class="drawer-brand">
+            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+            <div>
+                <h2>HIMAPTIKA</h2>
+                <p>FKIP UNIVERSITAS TADULAKO</p>
+            </div>
+        </div>
+
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="struktur-pengurus.html" class="active">Struktur Pengurus</a>
+        <a href="divisi.html">Divisi & Program Kerja</a>
+        <a href="informasi.html">Informasi</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="kontak.html">Kontak</a>
+
+        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
+            🌙
+        </button>
+
+    </nav>
+</header>
+
+<section class="struktur-hero">
+    <h2>Struktur Kepengurusan</h2>
+    <p>HIMAPTIKA FKIP Universitas Tadulako</p>
+    <p>Periode 2026</p>
+</section>
+
+<main class="struktur-container">
+
+    <section>
+        <div class="struktur-heading reveal">
+            <h2>Pengurus Inti</h2>
+            <p>Susunan kepengurusan HIMAPTIKA</p>
+        </div>
+
+        <div class="bagan-inti">
+
+            <div class="bagan-card reveal">
+                <div class="foto-placeholder">
+                    <img src="images/PAK KETUA.jpeg" alt="Ketua Umum">
+                </div>
+                <h3>I MADE AGUS SUFRIYANTO</h3>
+                <p>Ketua Umum</p>
+            </div>
+
+            <div class="bagan-penghubung"></div>
+
+            <div class="inti-grid">
+
+                <div class="inti-card reveal">
+                    <div class="foto-placeholder">
+                        <img src="images/ibu sekum.jpg" alt="Sekretaris Umum">
+                    </div>
+                    <h3>FAIZAH BUNAI</h3>
+                    <p>Sekretaris Umum</p>
+                </div>
+
+                <div class="inti-card reveal">
+                    <div class="foto-placeholder">
+                        <img src="images/pak wakil.JPG" alt="Wakil ketua umum">
+                    </div>
+                    <h3>DEWA GONSALES</h3>
+                    <p>Wakil Ketua Umum</p>
+                </div>
+
+                <div class="inti-card reveal">
+                    <div class="foto-placeholder">
+                        <img src="images/bu bend.jpg" alt="bendahara umum">
+                    </div>
+                    <h3>IMELDA BRIGITA</h3>
+                    <p>Bendahara Umum</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="struktur-heading reveal">
+            <h2>Struktur Divisi</h2>
+            <p>Bidang dan anggota kepengurusan HIMAPTIKA</p>
+        </div>
+
+        <div class="divisi-grid">
+
+            <!-- PEMIKAT -->
+            <div class="divisi-card reveal">
+                <h3>Divisi Pemikat</h3>
+
+                <div class="profil-pengurus">
+                    <div class="foto-placeholder">
+                        <img src="images/koor pemikat.JPG" alt="Koordinator Pemikat">
+                    </div>
+                    <h4>M. AGUS ARIEFFANDI</h4>
+                    <p>Koordinator Pemikat</p>
+                </div>
+
+                <div class="divisi-anggota">
+                    <h4>Anggota</h4>
+                    <ul class="anggota-list">
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/afandi (1).jpg" alt="Anggota Pemikat">
+                            </div>
+                            <span class="nama-anggota">NURLAN AFANDI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Naya.JPG" alt="Anggota PEMIKAT">
+                            </div>
+                            <span class="nama-anggota">ALIFA ZAHWA INAYAH</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Nurul (1).jpg" alt="Anggota PEMIKAT">
+                            </div>
+                            <span class="nama-anggota">NURUL</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Zulfahmi.jpg" alt="Anggota PEMIKAT">
+                            </div>
+                            <span class="nama-anggota">ZULFAHMI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Rasya.jpg" alt="Anggota Pemikat">
+                            </div>
+                            <span class="nama-anggota">M.RASYA WAHYU</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- EVENT ORGANIZER -->
+            <div class="divisi-card reveal">
+                <h3>Divisi Event Organizer</h3>
+
+                <div class="profil-pengurus">
+                    <div class="foto-placeholder">
+                        <img src="images/Koor eo.jpeg" alt="Koordinator Event Organizer">
+                    </div>
+                    <h4>RANGGA ZAKI</h4>
+                    <p>Koordinator Event Organizer</p>
+                </div>
+
+                <div class="divisi-anggota">
+                    <h4>Anggota</h4>
+                    <ul class="anggota-list">
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Giska (1).jpg" alt="Anggota Event Organizer">
+                            </div>
+                            <span class="nama-anggota">GISKA DESYANA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/syahrul.JPG" alt="Anggota Event Organizer">
+                            </div>
+                            <span class="nama-anggota">AHMAD SYAHRUL ARIFIN</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Sunarti.jpeg" alt="Anggota Event Organizer">
+                            </div>
+                            <span class="nama-anggota">SUNARTI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/nova.JPG" alt="Anggota Event Organizer">
+                            </div>
+                            <span class="nama-anggota">DWI NOVA ANGGRAENI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Aysah.jpeg" alt="Anggota Event Organizer">
+                            </div>
+                            <span class="nama-anggota">AYSAH DWI SAFITRI</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ADMEINFO -->
+            <div class="divisi-card reveal">
+                <h3>Divisi Admeinfo</h3>
+
+                <div class="profil-pengurus">
+                    <div class="foto-placeholder">
+                        <img src="images/Koor admeinfo.jpeg" alt="Koordinator Admeinfo">
+                    </div>
+                    <h4>MUH IKSAN</h4>
+                    <p>Koordinator Admeinfo</p>
+                </div>
+
+                <div class="divisi-anggota">
+                    <h4>Anggota</h4>
+                    <ul class="anggota-list">
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Desrin.jpeg" alt="Anggota Admeinfo">
+                            </div>
+                            <span class="nama-anggota">DESRIN NATALIN SUMBA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Zaskyah.jpg" alt="Anggota Admeinfo">
+                            </div>
+                            <span class="nama-anggota">ZASKYAH NUR BALOSI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Muhzin (1).jpg" alt="Anggota Admeinfo">
+                            </div>
+                            <span class="nama-anggota">MUHZIN ALATAS</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PELAYANAN AKADEMIK -->
+            <div class="divisi-card reveal">
+                <h3>Divisi Pelayanan Akademik</h3>
+
+                <div class="profil-pengurus">
+                    <div class="foto-placeholder">👤</div>
+                    <h4>ARIL THANDY ANGKA</h4>
+                    <p>Koordinator Pelayanan Akademik</p>
+                </div>
+
+                <div class="divisi-anggota">
+                    <h4>Anggota</h4>
+                    <ul class="anggota-list">
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/q.jpg" alt="Anggota Pelayanan Akademik">
+                            </div>
+                            <span class="nama-anggota">MOH.RISQI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Dela.jpg" alt="Anggota Pelayanan Akademik">
+                            </div>
+                            <span class="nama-anggota">DELA SAFITRI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/dila.jpg" alt="Anggota Pelayanan Akademik">
+                            </div>
+                            <span class="nama-anggota">NUR FADHILAH</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Putriana.JPG" alt="Anggota Pelayanan Akademik">
+                            </div>
+                            <span class="nama-anggota">PUTRIANA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/nadya.JPG" alt="Anggota Pelayanan Akademik">
+                            </div>
+                            <span class="nama-anggota">NUR ANADYA PUTRI</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- KEROHANIAN -->
+            <div class="divisi-card reveal">
+                <h3>Divisi Kerohanian</h3>
+
+                <div class="profil-pengurus">
+                    <div class="foto-placeholder">
+                        <img src="images/Koor kerohanian.jpeg" alt="Koordinator Kerohanian">
+                    </div>
+                    <h4>Liyana Fuadah</h4>
+                    <p>Koordinator Kerohanian</p>
+                </div>
+
+                <div class="divisi-anggota">
+                    <h4>Anggota</h4>
+                    <ul class="anggota-list">
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/heri (1).jpg" alt="Anggota Kerohanian">
+                            </div>
+                            <span class="nama-anggota">HERIYANTO SEPTIAN SAPUTRA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/rafy (1).jpg" alt="Anggota Kerohanian">
+                            </div>
+                            <span class="nama-anggota">RAFYAL KHANI FIKRI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Gita.jpg" alt="Anggota Kerohanian">
+                            </div>
+                            <span class="nama-anggota">GITA AFRIANI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/alya (2).jpg" alt="Anggota Kerohanian">
+                            </div>
+                            <span class="nama-anggota">ALYA SULISTYA</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- KEWIRAUSAHAAN -->
+            <div class="divisi-card reveal">
+                <h3>Divisi Kewirausahaan</h3>
+
+                <div class="profil-pengurus">
+                    <div class="foto-placeholder">
+                        <img src="images/Koor KWU.jpg" alt="Koordinator Kewirausahaan">
+                    </div>
+                    <h4>Anjelita menggau</h4>
+                    <p>Koordinator Kewirausahaan</p>
+                </div>
+
+                <div class="divisi-anggota">
+                    <h4>Anggota</h4>
+                    <ul class="anggota-list">
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/nabila.JPG" alt="Anggota Kewirausahaan">
+                            </div>
+                            <span class="nama-anggota">NABILLA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/wulan.jpg" alt="Anggota Kewirausahaan">
+                            </div>
+                            <span class="nama-anggota">SARI WULANDARI</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/hidaa.jpeg" alt="Anggota Kewirausahaan">
+                            </div>
+                            <span class="nama-anggota">HIDAYANTI RUKMANA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/agung (1).jpg" alt="Anggota Kewirausahaane">
+                            </div>
+                            <span class="nama-anggota">AGUNG</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- HUBUNGAN MASYARAKAT -->
+            <div class="divisi-card reveal">
+                <h3>Divisi Hubungan Masyarakat</h3>
+
+                <div class="profil-pengurus">
+                    <div class="foto-placeholder">
+                        <img src="images/koor humas.jpeg" alt="Koordinator Hubungan Masyarakat">
+                    </div>
+                    <h4>Mutmainnah</h4>
+                    <p>Koordinator Hubungan Masyarakat</p>
+                </div>
+
+                <div class="divisi-anggota">
+                    <h4>Anggota</h4>
+                    <ul class="anggota-list">
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/ananda ziat.jpeg" alt="Anggota Hubungan Masyarakat">
+                            </div>
+                            <span class="nama-anggota">ANANDA ZIAT</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/Lina.JPG" alt="Anggota Hubungan Masyarakat">
+                            </div>
+                            <span class="nama-anggota">NURLINA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/khusnul.jpg" alt="Anggota Hubungan Masyarakat">
+                            </div>
+                            <span class="nama-anggota">KHUSNUL KHATIMA</span>
+                        </li>
+
+                        <li class="anggota-card">
+                            <div class="foto-placeholder">
+                                <img src="images/isra.JPG" alt="Anggota hubungan masyarakat">
+                            </div>
+                            <span class="nama-anggota">ISRA NURHIDAYAH</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="struktur-back">
+        <a href="index.html">← Kembali ke Beranda</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 HIMAPTIKA FKIP Universitas Tadulako</p>
+    <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+</footer>
+
+<script>
+// ==================================
+// HAMBURGER MENU
+// ==================================
+
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+if (menuToggle && mainNav) {
+
+    menuToggle.addEventListener("click", function () {
+
+        const isOpen = mainNav.classList.toggle("active");
+
+        menuToggle.classList.toggle("active", isOpen);
+
+        document.body.classList.toggle("menu-open", isOpen);
+
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+    });
+
+    // Tutup menu setelah memilih halaman
+    mainNav.querySelectorAll("a").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            mainNav.classList.remove("active");
+            menuToggle.classList.remove("active");
+            document.body.classList.remove("menu-open");
+
+            menuToggle.setAttribute("aria-expanded", "false");
+
+        });
+
+    });
+
+    // Tutup ketika klik di luar menu
+    document.addEventListener("click", function (event) {
+
+        if (
+            document.body.classList.contains("menu-open") &&
+            !mainNav.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
+
+            mainNav.classList.remove("active");
+            menuToggle.classList.remove("active");
+            document.body.classList.remove("menu-open");
+
+            menuToggle.setAttribute("aria-expanded", "false");
+
+        }
+
+    });
+
+    // Tutup dengan tombol Escape
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            mainNav.classList.remove("active");
+            menuToggle.classList.remove("active");
+            document.body.classList.remove("menu-open");
+
+            menuToggle.setAttribute("aria-expanded", "false");
+
+        }
+
+    });
+
+}
+
+// ==================================
+// MODE GELAP
+// ==================================
+
+const darkModeToggle = document.getElementById("darkModeToggle");
+
+if (darkModeToggle) {
+
+    darkModeToggle.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+        darkModeToggle.textContent =
+            document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+
+    });
+
+}
+
+// ==================================
+// ANIMASI SCROLL
+// ==================================
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, { threshold: 0.08 });
+
+    revealElements.forEach((element, index) => {
+
+        element.style.transitionDelay = `${(index % 3) * 0.12}s`;
+        observer.observe(element);
+
+    });
+
+} else {
+
+    revealElements.forEach(element => element.classList.add("show"));
+
+}
+</script>
+
+</body>
+</html>

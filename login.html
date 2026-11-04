@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Mahasiswa | HIMAPTIKA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #071a3d, #174ea6);
+    }
+
+    .login-card {
+      background: white;
+      width: 100%;
+      max-width: 400px;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px #0003;
+    }
+
+    .logo {
+      display: block;
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+      margin: 0 auto 16px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #102b55;
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #253858;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d5deeb;
+      border-radius: 9px;
+      margin-bottom: 18px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #174ea6;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      background: #174ea6;
+      color: white;
+      border-radius: 9px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    #message {
+      display: none;
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #b42318;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #174ea6;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="login-card">
+    <img
+      src="images/logo himaptika.png"
+      alt="Logo HIMAPTIKA"
+      class="logo"
+    >
+
+    <h1>Login Mahasiswa</h1>
+
+    <p class="subtitle">
+      HIMAPTIKA FKIP Universitas Tadulako<br>
+      Masuk menggunakan akun terdaftar.
+    </p>
+
+    <form id="loginForm">
+      <label for="email">Email akun</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Masukkan email terdaftar"
+        autocomplete="username"
+        required
+      >
+
+      <label for="password">Kata sandi</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Masukkan kata sandi"
+        autocomplete="current-password"
+        required
+      >
+
+      <button id="loginButton" type="submit">Masuk</button>
+
+      <p id="message" role="alert"></p>
+      <button
+  id="resendVerification"
+  type="button"
+  style="display:none; margin-top:10px;"
+>
+  Kirim Ulang Email Verifikasi
+</button>
+    </form>
+
+    <p class="register-link">
+      Belum punya akun?
+      <a href="register.html">Daftar Akun</a>
+    </p>
+  </main>
+
+  
+
+<script type="module">
+  import { initializeApp } from
+    "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    sendEmailVerification,
+    signOut,
+    reload
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    getDoc
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+  apiKey: "AIzaSyAGz2OR4fxdXO_IfGJ4_teyN4rlKcC5vQA",
+  authDomain: "himaptika-fkip-untad-1c56c.firebaseapp.com",
+  databaseURL: "https://himaptika-fkip-untad-1c56c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "himaptika-fkip-untad-1c56c",
+  storageBucket: "himaptika-fkip-untad-1c56c.firebasestorage.app",
+  messagingSenderId: "1080539410314",
+  appId: "1:1080539410314:web:2fea6f34974338d605a273"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const form = document.getElementById("loginForm");
+  const message = document.getElementById("message");
+  const button = document.getElementById("loginButton");
+  const resendButton = document.getElementById("resendVerification");
+
+  function showMessage(text, success = false) {
+    message.textContent = text;
+    message.style.display = "block";
+    message.style.color = success ? "#166534" : "#b42318";
+    message.style.background = success ? "#dcfce7" : "#fee2e2";
+    message.style.padding = "10px";
+    message.style.borderRadius = "8px";
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    message.style.display = "none";
+    resendButton.style.display = "none";
+    button.disabled = true;
+    button.textContent = "Memeriksa akun...";
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    try {
+      const credential = await signInWithEmailAndPassword(
+        auth, email, password
+      );
+
+      const user = credential.user;
+      await reload(user);
+
+      if (!user.emailVerified) {
+        showMessage(
+          "Email belum terverifikasi. Silakan verifikasi email terlebih dahulu."
+        );
+        resendButton.style.display = "block";
+        await signOut(auth);
+        return;
+      }
+
+      const pendaftaranRef = doc(db, "pendaftaran", user.uid);
+      const pendaftaranSnap = await getDoc(pendaftaranRef);
+
+      if (!pendaftaranSnap.exists()) {
+        showMessage(
+          "Data pendaftaran tidak ditemukan. Hubungi admin HIMAPTIKA."
+        );
+        await signOut(auth);
+        return;
+      }
+
+      const data = pendaftaranSnap.data();
+      const status = String(data.statusPersetujuan || "")
+        .trim().toLowerCase();
+
+      if (status === "menunggu") {
+        showMessage(
+          "Email sudah terverifikasi, tetapi akun masih menunggu persetujuan admin HIMAPTIKA."
+        );
+        await signOut(auth);
+        return;
+      }
+
+      if (status !== "disetujui") {
+        showMessage(
+          "Akun belum dapat mengakses website. Silakan hubungi admin HIMAPTIKA."
+        );
+        await signOut(auth);
+        return;
+      }
+
+      showMessage(
+        "Akun disetujui! Pemeriksaan login berhasil. Halaman tujuan belum diatur.",
+        true
+      );
+
+      // Setelah menentukan halaman tujuan, pengalihan dapat ditambahkan di sini.
+
+    } catch (error) {
+      console.error("Login error:", error.code, error.message);
+
+      if (error.code === "permission-denied" ||
+          error.code === "firestore/permission-denied") {
+        showMessage(
+          "Firestore menolak pembacaan data pendaftaran. Aturan keamanan perlu diperiksa."
+        );
+      } else {
+        showMessage(
+          "Kode error: " + (error.code || "tidak diketahui") +
+          " — " + (error.message || "Tidak ada keterangan error.")
+        );
+      }
+
+      if (auth.currentUser) {
+        await signOut(auth).catch(() => {});
+      }
+    } finally {
+      button.disabled = false;
+      button.textContent = "Masuk";
+    }
+  });
+
+  resendButton.addEventListener("click", async () => {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    resendButton.disabled = true;
+
+    try {
+      const credential = await signInWithEmailAndPassword(
+        auth, email, password
+      );
+
+      await reload(credential.user);
+
+      if (credential.user.emailVerified) {
+        showMessage("Email sudah terverifikasi. Silakan login kembali.", true);
+      } else {
+        await sendEmailVerification(credential.user);
+        showMessage(
+          "Email verifikasi dikirim ulang. Periksa kotak masuk dan folder spam.",
+          true
+        );
+      }
+
+      await signOut(auth);
+    } catch (error) {
+      showMessage(
+        "Gagal mengirim verifikasi. Kode: " +
+        (error.code || "tidak diketahui") +
+        " — " + (error.message || "Tidak ada keterangan error.")
+      );
+    } finally {
+      resendButton.disabled = false;
+    }
+  });
+</script>
+
+
+</body>
+</html>
+```
