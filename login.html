@@ -1,348 +1,667 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b46">
+
   <title>Login Mahasiswa | HIMAPTIKA</title>
 
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    :root {
+      --primary: #102b46;
+      --secondary: #1c496d;
+      --accent: #d9a441;
+      --text: #263445;
+      --muted: #788797;
+      --white: #ffffff;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
+      display: flex;
+      background: #f2f5f9;
+      color: var(--text);
+    }
+
+    .login-wrapper {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    /* BAGIAN KIRI */
+
+    .login-banner {
+      width: 48%;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(10, 34, 57, 0.96),
+          rgba(24, 70, 105, 0.92)
+        );
+      color: white;
+      padding: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-banner::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      right: -150px;
+      bottom: -120px;
+    }
+
+    .login-banner::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 50%;
+      right: -60px;
+      bottom: -35px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand img {
+      width: 65px;
+      height: 65px;
+      object-fit: contain;
+      background: white;
+      border-radius: 12px;
+      padding: 5px;
+    }
+
+    .brand h2 {
+      font-size: 23px;
+      letter-spacing: 2px;
+    }
+
+    .brand p {
+      font-size: 11px;
+      color: #c7d6e4;
+      margin-top: 4px;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+    }
+
+    .banner-content .tagline {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .banner-content h1 {
+      font-size: clamp(35px, 4vw, 55px);
+      line-height: 1.2;
+      margin-bottom: 22px;
+    }
+
+    .banner-content p {
+      color: #d3deea;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .banner-footer {
+      position: relative;
+      z-index: 1;
+      color: #b6c8d9;
+      font-size: 12px;
+    }
+
+    /* BAGIAN KANAN */
+
+    .login-content {
+      width: 52%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      background: linear-gradient(135deg, #071a3d, #174ea6);
+      padding: 40px;
     }
 
     .login-card {
+      width: 100%;
+      max-width: 420px;
       background: white;
-      width: 100%;
-      max-width: 400px;
-      padding: 32px;
-      border-radius: 18px;
-      box-shadow: 0 15px 40px #0003;
+      padding: 42px;
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(20, 45, 70, 0.07);
+      animation: fadeIn 0.7s ease;
     }
 
-    .logo {
-      display: block;
-      width: 85px;
-      height: 85px;
-      object-fit: contain;
-      margin: 0 auto 16px;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    h1 {
-      text-align: center;
-      color: #102b55;
-      font-size: 25px;
-      margin-bottom: 8px;
+    .login-heading {
+      margin-bottom: 32px;
     }
 
-    .subtitle {
-      text-align: center;
-      color: #64748b;
-      font-size: 13px;
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
+    .login-heading .small-title {
+      color: var(--secondary);
+      font-size: 12px;
       font-weight: bold;
-      margin-bottom: 8px;
-      color: #253858;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
     }
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d5deeb;
-      border-radius: 9px;
-      margin-bottom: 18px;
-      outline: none;
+    .login-heading h2 {
+      font-size: 30px;
+      color: var(--primary);
+      margin-bottom: 10px;
     }
 
-    input:focus {
-      border-color: #174ea6;
-    }
-
-    button {
-      width: 100%;
-      border: none;
-      padding: 14px;
-      background: #174ea6;
-      color: white;
-      border-radius: 9px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      opacity: 0.65;
-      cursor: wait;
-    }
-
-    #message {
-      display: none;
-      margin-top: 16px;
-      font-size: 13px;
-      line-height: 1.5;
-      color: #b42318;
-    }
-
-    .register-link {
-      text-align: center;
-      margin-top: 18px;
+    .login-heading p {
+      color: var(--muted);
       font-size: 14px;
+      line-height: 1.6;
     }
 
-    a {
-      color: #174ea6;
-      font-weight: bold;
+    .form-group {
+      margin-bottom: 21px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 9px;
+      color: #344558;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      height: 52px;
+      padding: 0 15px;
+      border: 1px solid #dce3eb;
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      transition: 0.3s;
+      background: #fbfcfe;
+    }
+
+    .input-wrapper input:focus {
+      border-color: var(--secondary);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(28,73,109,0.08);
+    }
+
+    .password-input {
+      padding-right: 65px !important;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: none;
+      color: var(--secondary);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: flex-end;
+      margin: -3px 0 25px;
+    }
+
+    .form-options a {
+      color: var(--secondary);
       text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .login-button {
+      width: 100%;
+      height: 52px;
+      border: none;
+      border-radius: 10px;
+      background: var(--primary);
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-button:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 7px 18px rgba(16,43,70,0.18);
+    }
+
+    .login-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .message.error {
+      display: block;
+      color: #a52a2a;
+      background: #fff0f0;
+      border: 1px solid #ffd3d3;
+    }
+
+    .message.success {
+      display: block;
+      color: #17643b;
+      background: #eaf8ef;
+      border: 1px solid #c5ecd2;
+    }
+
+    .login-note {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid #edf0f4;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .login-note strong {
+      color: var(--primary);
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 23px;
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .back-home:hover {
+      color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 850px) {
+      .login-banner {
+        width: 40%;
+        padding: 30px;
+      }
+
+      .login-content {
+        width: 60%;
+        padding: 25px;
+      }
+
+      .login-card {
+        padding: 30px;
+      }
+
+      .banner-content h1 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .login-wrapper {
+        flex-direction: column;
+      }
+
+      .login-banner {
+        width: 100%;
+        min-height: 220px;
+        padding: 25px;
+      }
+
+      .brand img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .brand h2 {
+        font-size: 19px;
+      }
+
+      .banner-content {
+        margin-top: 30px;
+      }
+
+      .banner-content .tagline {
+        font-size: 10px;
+        margin-bottom: 10px;
+      }
+
+      .banner-content h1 {
+        font-size: 27px;
+        margin-bottom: 10px;
+      }
+
+      .banner-content p {
+        font-size: 12px;
+      }
+
+      .banner-footer {
+        display: none;
+      }
+
+      .login-content {
+        width: 100%;
+        padding: 25px 18px;
+      }
+
+      .login-card {
+        max-width: 450px;
+        padding: 28px 23px;
+      }
+
+      .login-heading h2 {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="login-card">
-    <img
-      src="images/logo himaptika.png"
-      alt="Logo HIMAPTIKA"
-      class="logo"
-    >
 
-    <h1>Login Mahasiswa</h1>
+  <div class="login-wrapper">
 
-    <p class="subtitle">
-      HIMAPTIKA FKIP Universitas Tadulako<br>
-      Masuk menggunakan akun terdaftar.
-    </p>
+    <!-- BAGIAN IDENTITAS HIMAPTIKA -->
 
-    <form id="loginForm">
-      <label for="email">Email akun</label>
-      <input
-        type="email"
-        id="email"
-        placeholder="Masukkan email terdaftar"
-        autocomplete="username"
-        required
-      >
+    <section class="login-banner">
 
-      <label for="password">Kata sandi</label>
-      <input
-        type="password"
-        id="password"
-        placeholder="Masukkan kata sandi"
-        autocomplete="current-password"
-        required
-      >
+      <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
 
-      <button id="loginButton" type="submit">Masuk</button>
+        <div>
+          <h2>HIMAPTIKA</h2>
+          <p>FKIP UNIVERSITAS TADULAKO</p>
+        </div>
+      </div>
 
-      <p id="message" role="alert"></p>
-      <button
-  id="resendVerification"
-  type="button"
-  style="display:none; margin-top:10px;"
->
-  Kirim Ulang Email Verifikasi
-</button>
-    </form>
+      <div class="banner-content">
+        <div class="tagline">STUDENT PORTAL</div>
 
-    <p class="register-link">
-      Belum punya akun?
-      <a href="register.html">Daftar Akun</a>
-    </p>
-  </main>
+        <h1>Selamat Datang di Portal Mahasiswa</h1>
+
+        <p>
+          Ruang digital mahasiswa Pendidikan Matematika
+          untuk memperoleh informasi, layanan akademik,
+          dan berbagai kegiatan HIMAPTIKA.
+        </p>
+      </div>
+
+      <div class="banner-footer">
+        © 2026 HIMAPTIKA FKIP UNTAD
+      </div>
+
+    </section>
+
+
+    <!-- BAGIAN FORM LOGIN -->
+
+    <main class="login-content">
+
+      <div class="login-card">
+
+        <div class="login-heading">
+          <div class="small-title">PORTAL MAHASISWA</div>
+
+          <h2>Login Akun</h2>
+
+          <p>
+            Silakan masuk menggunakan email dan password
+            akun mahasiswa yang telah terdaftar.
+          </p>
+        </div>
+
+
+        <!-- PESAN STATUS -->
+
+        <div id="message" class="message" role="alert"></div>
+
+
+        <!-- FORM LOGIN -->
+
+        <form id="loginForm">
+
+          <div class="form-group">
+            <label for="email">Email Mahasiswa</label>
+
+            <div class="input-wrapper">
+              <input
+                type="email"
+                id="email"
+                placeholder="nama@email.com"
+                autocomplete="username"
+                required
+              >
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="password">Password</label>
+
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="password"
+                class="password-input"
+                placeholder="Masukkan password"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="toggle-password"
+                id="togglePassword"
+              >
+                
+              </button>
+            </div>
+          </div>
+
+
+          <div class="form-options">
+            <a href="lupa-password.html">
+              Lupa password?
+            </a>
+          </div>
+
+
+          <button
+            type="submit"
+            class="login-button"
+            id="loginButton"
+          >
+            MASUK
+          </button>
+
+        </form>
+
+
+        <div class="login-note">
+          Akses ini diperuntukkan bagi mahasiswa
+          <strong>Pendidikan Matematika FKIP UNTAD.</strong>
+          <br>
+          Pastikan menggunakan akun yang telah terdaftar.
+        </div>
+
+
+        <a href="index.html" class="back-home">
+          ← Kembali ke Beranda
+        </a>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- JAVASCRIPT TAMPILAN -->
+
+  <script>
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", function () {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePassword.textContent = "Sembunyi";
+      } else {
+        passwordInput.type = "password";
+        togglePassword.textContent = "Lihat";
+      }
+    });
+  </script>
+
 
   
-
 <script type="module">
-  import { initializeApp } from
-    "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { auth } from "./js/firebase.js";
 
   import {
-    getAuth,
-    signInWithEmailAndPassword,
-    sendEmailVerification,
-    signOut,
-    reload
-  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-  import {
-    getFirestore,
-    doc,
-    getDoc
-  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-  apiKey: "AIzaSyAGz2OR4fxdXO_IfGJ4_teyN4rlKcC5vQA",
-  authDomain: "himaptika-fkip-untad-1c56c.firebaseapp.com",
-  databaseURL: "https://himaptika-fkip-untad-1c56c-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "himaptika-fkip-untad-1c56c",
-  storageBucket: "himaptika-fkip-untad-1c56c.firebasestorage.app",
-  messagingSenderId: "1080539410314",
-  appId: "1:1080539410314:web:2fea6f34974338d605a273"
-};
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  const form = document.getElementById("loginForm");
+  const loginForm = document.getElementById("loginForm");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const loginButton = document.getElementById("loginButton");
   const message = document.getElementById("message");
-  const button = document.getElementById("loginButton");
-  const resendButton = document.getElementById("resendVerification");
 
-  function showMessage(text, success = false) {
+  // Menampilkan pesan
+  function showMessage(text, type) {
     message.textContent = text;
-    message.style.display = "block";
-    message.style.color = success ? "#166534" : "#b42318";
-    message.style.background = success ? "#dcfce7" : "#fee2e2";
-    message.style.padding = "10px";
-    message.style.borderRadius = "8px";
+    message.className = "message " + type;
   }
 
-  form.addEventListener("submit", async (event) => {
+  // Proses login mahasiswa
+  loginForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    message.style.display = "none";
-    resendButton.style.display = "none";
-    button.disabled = true;
-    button.textContent = "Memeriksa akun...";
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    loginButton.disabled = true;
+    loginButton.textContent = "MEMPROSES...";
+
+    message.className = "message";
+    message.textContent = "";
 
     try {
-      const credential = await signInWithEmailAndPassword(
-        auth, email, password
-      );
-
-      const user = credential.user;
-      await reload(user);
-
-      if (!user.emailVerified) {
-        showMessage(
-          "Email belum terverifikasi. Silakan verifikasi email terlebih dahulu."
-        );
-        resendButton.style.display = "block";
-        await signOut(auth);
-        return;
-      }
-
-      const pendaftaranRef = doc(db, "pendaftaran", user.uid);
-      const pendaftaranSnap = await getDoc(pendaftaranRef);
-
-      if (!pendaftaranSnap.exists()) {
-        showMessage(
-          "Data pendaftaran tidak ditemukan. Hubungi admin HIMAPTIKA."
-        );
-        await signOut(auth);
-        return;
-      }
-
-      const data = pendaftaranSnap.data();
-      const status = String(data.statusPersetujuan || "")
-        .trim().toLowerCase();
-
-      if (status === "menunggu") {
-        showMessage(
-          "Email sudah terverifikasi, tetapi akun masih menunggu persetujuan admin HIMAPTIKA."
-        );
-        await signOut(auth);
-        return;
-      }
-
-      if (status !== "disetujui") {
-        showMessage(
-          "Akun belum dapat mengakses website. Silakan hubungi admin HIMAPTIKA."
-        );
-        await signOut(auth);
-        return;
-      }
+      // Menghubungkan login dengan Firebase Authentication
+      await signInWithEmailAndPassword(auth, email, password);
 
       showMessage(
-        "Akun disetujui! Pemeriksaan login berhasil. Halaman tujuan belum diatur.",
-        true
+        "Login berhasil! Mengarahkan ke dashboard...",
+        "success"
       );
 
-      // Setelah menentukan halaman tujuan, pengalihan dapat ditambahkan di sini.
+      // Arahkan ke dashboard
+      window.location.href = "index.html";
 
     } catch (error) {
       console.error("Login error:", error.code, error.message);
 
-      if (error.code === "permission-denied" ||
-          error.code === "firestore/permission-denied") {
-        showMessage(
-          "Firestore menolak pembacaan data pendaftaran. Aturan keamanan perlu diperiksa."
-        );
-      } else {
-        showMessage(
-          "Kode error: " + (error.code || "tidak diketahui") +
-          " — " + (error.message || "Tidak ada keterangan error.")
-        );
+      let errorText = "Login gagal. Silakan coba kembali.";
+
+      switch (error.code) {
+        case "auth/invalid-credential":
+        case "auth/wrong-password":
+        case "auth/user-not-found":
+          errorText = "Email atau password yang kamu masukkan salah.";
+          break;
+
+        case "auth/invalid-email":
+          errorText = "Format email tidak valid.";
+          break;
+
+        case "auth/user-disabled":
+          errorText = "Akun mahasiswa telah dinonaktifkan.";
+          break;
+
+        case "auth/too-many-requests":
+          errorText = "Terlalu banyak percobaan. Silakan coba lagi nanti.";
+          break;
+
+        case "auth/network-request-failed":
+          errorText = "Koneksi internet bermasalah. Periksa jaringan kamu.";
+          break;
+
+        case "auth/operation-not-allowed":
+          errorText = "Metode login Email/Password belum diaktifkan.";
+          break;
       }
 
-      if (auth.currentUser) {
-        await signOut(auth).catch(() => {});
-      }
+      showMessage(errorText, "error");
+
     } finally {
-      button.disabled = false;
-      button.textContent = "Masuk";
-    }
-  });
-
-  resendButton.addEventListener("click", async () => {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    resendButton.disabled = true;
-
-    try {
-      const credential = await signInWithEmailAndPassword(
-        auth, email, password
-      );
-
-      await reload(credential.user);
-
-      if (credential.user.emailVerified) {
-        showMessage("Email sudah terverifikasi. Silakan login kembali.", true);
-      } else {
-        await sendEmailVerification(credential.user);
-        showMessage(
-          "Email verifikasi dikirim ulang. Periksa kotak masuk dan folder spam.",
-          true
-        );
-      }
-
-      await signOut(auth);
-    } catch (error) {
-      showMessage(
-        "Gagal mengirim verifikasi. Kode: " +
-        (error.code || "tidak diketahui") +
-        " — " + (error.message || "Tidak ada keterangan error.")
-      );
-    } finally {
-      resendButton.disabled = false;
+      loginButton.disabled = false;
+      loginButton.textContent = "MASUK";
     }
   });
 </script>
-
+</body>
+</html>
 
 </body>
 </html>
-```

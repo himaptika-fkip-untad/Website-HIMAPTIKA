@@ -3,54 +3,45 @@
 
 <head>
     
+ 
 
 <script type="module">
-  import { initializeApp, getApps, getApp }
-    from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-
+  import { auth } from "./js/firebase.js";
   import {
-    getAuth,
     onAuthStateChanged,
     signOut
-  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+  } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAGz2OR4fxdXO_IfGJ4_teyN4rlKcC5vQA",
-    authDomain: "himaptika-fkip-untad-1c56c.firebaseapp.com",
-    projectId: "himaptika-fkip-untad-1c56c",
-    storageBucket: "himaptika-fkip-untad-1c56c.firebasestorage.app",
-    messagingSenderId: "1080539410314",
-    appId: "1:1080539410314:web:2fea6f34974338d605a273"
-  };
-
-  const app = getApps().length
-    ? getApp()
-    : initializeApp(firebaseConfig);
-
-  const auth = getAuth(app);
-
-  // Sembunyikan halaman sampai status login diperiksa.
   document.documentElement.style.visibility = "hidden";
 
-  // Periksa apakah halaman dibuka melalui refresh.
-  const navigation = performance.getEntriesByType("navigation")[0];
-
-  if (navigation && navigation.type === "reload") {
-    try {
-      await signOut(auth);
-    } finally {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      document.documentElement.style.visibility = "visible";
+    } else {
       window.location.replace("login.html");
     }
-  } else {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        document.documentElement.style.visibility = "visible";
-      } else {
+  });
+
+  const logoutButton = document.getElementById("logoutButton");
+
+  if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+      const konfirmasi = confirm("Apakah kamu yakin ingin keluar dari akun?");
+
+      if (!konfirmasi) return;
+
+      try {
+        await signOut(auth);
         window.location.replace("login.html");
+      } catch (error) {
+        console.error("Logout error:", error);
+        alert("Gagal keluar. Silakan coba kembali.");
       }
     });
   }
 </script>
+
+
 
 
 </script>
@@ -120,6 +111,11 @@
         <button id="darkModeToggle" class="dark-mode-toggle" type="button">
             🌙
         </button>
+        
+<button id="logoutButton" class="logout-button">
+  Logout
+</button>
+
 
     </nav>
 </header>
