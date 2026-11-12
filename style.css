@@ -12697,3 +12697,38 @@ body.dark-mode .lpj-back-button {
     }
 
 }
+/* HIGHLIGHT PROGRAM LPJ */
+
+.lpj-program-card {
+    scroll-margin-top: 120px;
+}
+
+.lpj-program-card.lpj-highlight {
+    border: 2px solid #1476ca;
+    box-shadow: 0 8px 30px rgba(20, 118, 202, 0.15);
+    animation: lpjHighlight 1.5s ease;
+}
+
+@keyframes lpjHighlight {
+    0% {
+        background: #e8f3ff;
+    }
+
+    100% {
+        background: var(--card-bg, #fff);
+    }
+}
+.academic-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    color: #1769aa;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.academic-link:hover {
+    color: #0b477b;
+    text-decoration: underline;
+}
