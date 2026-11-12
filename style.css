@@ -12535,3 +12535,165 @@ body.dark-mode .lpj-back-button {
         max-width: 280px;
     }
 }
+
+/* =================================
+   LPJ DATA ANGGOTA BIDANG
+================================= */
+
+.lpj-member-group {
+    margin-top: 28px;
+}
+
+.lpj-member-group h3 {
+    color: #123456;
+    font-size: 17px;
+    margin-bottom: 16px;
+}
+
+.lpj-coordinator-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 24px;
+    background: #f3f7fc;
+    border: 1px solid #dce7f3;
+    border-left: 4px solid #2563a6;
+    border-radius: 12px;
+}
+
+.lpj-member-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lpj-member-detail span {
+    font-size: 12px;
+    color: #718096;
+}
+
+.lpj-member-detail strong {
+    font-size: 14px;
+    color: #243b53;
+    overflow-wrap: anywhere;
+}
+
+.lpj-member-table {
+    min-width: 950px;
+}
+
+.lpj-member-table td {
+    vertical-align: middle;
+}
+
+.lpj-instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #1769aa;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lpj-instagram-link:hover {
+    color: #0b3d70;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+
+    .lpj-coordinator-box {
+        grid-template-columns: 1fr;
+        padding: 18px;
+        gap: 15px;
+    }
+
+}
+
+/* =====================================
+   LPJ LAPORAN ARUS KEUANGAN
+===================================== */
+
+.lpj-finance-group {
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+.lpj-finance-group h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #123456;
+    margin-bottom: 15px;
+}
+
+.lpj-finance-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    table-layout: auto;
+    background: white;
+}
+
+.lpj-finance-table th,
+.lpj-finance-table td {
+    border: 1px solid #263746;
+    padding: 11px 9px;
+    font-size: 12px;
+    color: #243b53;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.lpj-finance-table th {
+    background: #eaf1f8;
+    color: #123456;
+    font-weight: 700;
+}
+
+.lpj-finance-table tbody td {
+    height: 42px;
+}
+
+.lpj-finance-table tbody tr:hover {
+    background: #f5f9fd;
+}
+
+.lpj-finance-total-row td {
+    font-weight: 700;
+    background: #edf3f9;
+}
+
+.lpj-expense-table {
+    min-width: 850px;
+}
+
+.lpj-expense-table th {
+    white-space: nowrap;
+}
+
+.lpj-expense-table td:nth-child(3),
+.lpj-expense-table td:nth-child(4) {
+    text-align: left;
+}
+
+@media print {
+
+    .lpj-finance-table {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .lpj-finance-table th,
+    .lpj-finance-table td {
+        font-size: 9px;
+        padding: 6px 4px;
+        color: #000;
+    }
+
+    .lpj-finance-group {
+        break-inside: avoid;
+    }
+
+}
