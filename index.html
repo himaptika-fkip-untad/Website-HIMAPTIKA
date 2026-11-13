@@ -5,46 +5,7 @@
     
  
 
-<script type="module">
-  import { auth } from "./js/firebase.js";
-  import {
-    onAuthStateChanged,
-    signOut
-  } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-  document.documentElement.style.visibility = "hidden";
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      document.documentElement.style.visibility = "visible";
-    } else {
-      window.location.replace("login.html");
-    }
-  });
-
-  const logoutButton = document.getElementById("logoutButton");
-
-  if (logoutButton) {
-    logoutButton.addEventListener("click", async () => {
-      const konfirmasi = confirm("Apakah kamu yakin ingin keluar dari akun?");
-
-      if (!konfirmasi) return;
-
-      try {
-        await signOut(auth);
-        window.location.replace("login.html");
-      } catch (error) {
-        console.error("Logout error:", error);
-        alert("Gagal keluar. Silakan coba kembali.");
-      }
-    });
-  }
-</script>
-
-
-
-
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -57,10 +18,124 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-    <script type="module">
-  
-</script>
+
+<style>
+/* ================= JADWAL SEMINAR DI BERANDA ================= */
+.home-seminar-section {
+    padding: 75px 20px;
+    background: #f4f8ff;
+}
+.home-seminar-container {
+    width: min(1150px, 100%);
+    margin: 0 auto;
+}
+.home-seminar-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+.home-seminar-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #1763b6;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+.home-seminar-heading h2 {
+    margin: 0 0 10px;
+    color: #123456;
+    font-size: clamp(25px, 4vw, 34px);
+}
+.home-seminar-heading p {
+    max-width: 650px;
+    margin: 0;
+    color: #64748b;
+    line-height: 1.7;
+}
+.home-seminar-all {
+    flex-shrink: 0;
+    color: #1763b6;
+    font-weight: 700;
+    text-decoration: none;
+}
+.home-seminar-all:hover { text-decoration: underline; }
+.home-seminar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+.home-seminar-card {
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #e1eaf5;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(18, 52, 86, .06);
+}
+.home-seminar-type {
+    display: inline-block;
+    padding: 6px 11px;
+    margin-bottom: 14px;
+    border-radius: 30px;
+    background: #e8f2ff;
+    color: #1763b6;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+.home-seminar-card h3 {
+    margin: 0 0 12px;
+    color: #173b60;
+    font-size: 18px;
+    line-height: 1.45;
+}
+.home-seminar-meta {
+    display: grid;
+    gap: 8px;
+    color: #526579;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.home-seminar-student {
+    margin-top: 15px;
+    padding-top: 13px;
+    border-top: 1px solid #edf1f6;
+    color: #64748b;
+    font-size: 13px;
+}
+.home-seminar-message {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 24px;
+    border: 1px dashed #b8cce3;
+    border-radius: 14px;
+    color: #64748b;
+    text-align: center;
+    background: rgba(255,255,255,.75);
+}
+@media (max-width: 800px) {
+    .home-seminar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+    .home-seminar-section { padding: 55px 18px; }
+    .home-seminar-heading { align-items: flex-start; flex-direction: column; }
+    .home-seminar-grid { grid-template-columns: 1fr; }
+}
+body.dark-mode .home-seminar-section { background: #101d2c; }
+body.dark-mode .home-seminar-heading h2 { color: #e6f0ff; }
+body.dark-mode .home-seminar-heading p,
+body.dark-mode .home-seminar-meta,
+body.dark-mode .home-seminar-student { color: #b7c7d9; }
+body.dark-mode .home-seminar-card { background: #17283b; border-color: #29415c; }
+body.dark-mode .home-seminar-card h3 { color: #e6f0ff; }
+body.dark-mode .home-seminar-message { background: #17283b; border-color: #395574; color: #c4d3e4; }
+</style>
+
 </head>
+
+<body>
 
     
 <!-- ================= HEADER ================= -->
@@ -107,6 +182,7 @@
 <a href="informasi.html">Informasi</a>
 <a href="agenda.html">Agenda</a>
 <a href="kontak.html">Kontak</a>
+
         
 
         <button id="darkModeToggle" class="dark-mode-toggle" type="button">
@@ -400,7 +476,6 @@
 </section>
 
 
-        ```html
 <!-- ================= STATISTIK HIMAPTIKA ================= -->
 
 <section class="statistik-section">
@@ -457,7 +532,6 @@
     </div>
 
 </section>
-```
 
 
 
@@ -707,7 +781,26 @@
     </div>
 </section>
 
-        <!-- ================= ACADEMIC SURVIVAL WEB ================= -->
+        
+<!-- ================= JADWAL SEMINAR TERDEKAT ================= -->
+<section class="home-seminar-section">
+    <div class="home-seminar-container">
+        <div class="home-seminar-heading">
+            <div>
+                <span class="home-seminar-label">INFORMASI AKADEMIK</span>
+                <h2>Jadwal Seminar Terdekat</h2>
+                <p>Informasi jadwal Seminar Proposal dan Seminar Hasil mahasiswa Pendidikan Matematika.</p>
+            </div>
+            <a href="jadwal-seminar.html" class="home-seminar-all">Lihat Semua Jadwal →</a>
+        </div>
+
+        <div id="homeSeminarList" class="home-seminar-grid" aria-live="polite">
+            <p class="home-seminar-message">Memuat jadwal seminar...</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= ACADEMIC SURVIVAL WEB ================= -->
 
         <section class="survival-section">
 
@@ -1036,7 +1129,232 @@
 
 
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
+
+    <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
+    <script type="module">
+        import { auth } from "./js/firebase.js";
+        import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+        document.documentElement.style.visibility = "hidden";
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.documentElement.style.visibility = "visible";
+            } else {
+                window.location.replace("login.html");
+            }
+        });
+
+        const logoutButton = document.getElementById("logoutButton");
+        if (logoutButton) {
+            logoutButton.addEventListener("click", async () => {
+                if (!confirm("Apakah kamu yakin ingin keluar dari akun?")) return;
+                try {
+                    await signOut(auth);
+                    window.location.replace("login.html");
+                } catch (error) {
+                    console.error("Logout error:", error);
+                    alert("Gagal keluar. Silakan coba kembali.");
+                }
+            });
+        }
+    </script>
+
+    <!-- JADWAL SEMINAR DARI GOOGLE SHEETS -->
+    <script>
+       const SEMINAR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq3a1AyVPkuMx-KqObYcwH2g_QscvZACuB-fe2M6ywQTzJbDyChw5rUt5qd7Ts6WZ3d1m3YUwdFL21/pub?gid=1444305561&single=true&output=csv";
+
+function parseCSV(text) {
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let quoted = false;
+
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"' && quoted && next === '"') {
+            cell += '"';
+            i++;
+        } else if (char === '"') {
+            quoted = !quoted;
+        } else if (char === "," && !quoted) {
+            row.push(cell.trim());
+            cell = "";
+        } else if ((char === "\n" || char === "\r") && !quoted) {
+            if (char === "\r" && next === "\n") i++;
+
+            row.push(cell.trim());
+
+            if (row.some(v => v !== "")) rows.push(row);
+
+            row = [];
+            cell = "";
+        } else {
+            cell += char;
+        }
+    }
+
+    row.push(cell.trim());
+
+    if (row.some(v => v !== "")) rows.push(row);
+
+    return rows;
+}
+
+async function loadHomeSeminar() {
+    const container = document.getElementById("homeSeminarList");
+
+    if (!container) return;
+
+    try {
+        const response = await fetch(
+            SEMINAR_CSV_URL + "&t=" + Date.now()
+        );
+
+        if (!response.ok) {
+            throw new Error("Gagal mengambil data Google Sheets");
+        }
+
+        const csvText = await response.text();
+        const rows = parseCSV(csvText);
+
+        if (rows.length <= 1) {
+            container.innerHTML =
+                "<p>Belum ada jadwal seminar.</p>";
+            return;
+        }
+
+        const seminars = rows.slice(1).filter(row =>
+            row.some(value => value.trim() !== "")
+        );
+
+        container.innerHTML = "";
+
+        seminars.slice(-3).reverse().forEach(row => {
+            const card = document.createElement("div");
+            card.className = "home-seminar-card";
+
+            card.innerHTML = `
+                <h3>${escapeHTML(row[1] || "Seminar")}</h3>
+                <p><strong>Nama:</strong> ${escapeHTML(row[0])}</p>
+                <p><strong>Judul:</strong> ${escapeHTML(row[2])}</p>
+                <p><strong>Tanggal:</strong> ${escapeHTML(row[3])}</p>
+                <p><strong>Waktu:</strong> ${escapeHTML(row[4])}</p>
+                <p><strong>Ruangan:</strong> ${escapeHTML(row[5])}</p>
+            `;
+
+            container.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Gagal memuat jadwal seminar:", error);
+
+        container.innerHTML =
+            "<p>Jadwal seminar belum dapat dimuat.</p>";
+    }
+}
+
+function escapeHTML(value) {
+    return String(value || "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[char]);
+}
+
+loadHomeSeminar();
+setInterval(loadHomeSeminar, 60000);
+function normalizeHeader(value) {
+    return String(value || "").toLowerCase().normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
+}
+function getColumnIndex(headers, aliases) {
+    const normalized = headers.map(normalizeHeader);
+    for (const alias of aliases) { const i = normalized.indexOf(normalizeHeader(alias)); if (i !== -1) return i; }
+    return -1;
+}
+function parseSeminarDate(value) {
+    const raw = String(value || "").trim(); if (!raw) return null;
+    let m = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if (m) return new Date(Number(m[1]), Number(m[2])-1, Number(m[3]));
+    m = raw.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})$/);
+    if (m) {
+        const a=Number(m[1]), b=Number(m[2]), y=Number(m[3]);
+        let day=a, month=b; if (a<=12 && b>12) { month=a; day=b; }
+        const d=new Date(y, month-1, day);
+        return d.getFullYear()===y && d.getMonth()===month-1 && d.getDate()===day ? d : null;
+    }
+    const d=new Date(raw); return Number.isNaN(d.getTime()) ? null : new Date(d.getFullYear(),d.getMonth(),d.getDate());
+}
+function formatSeminarDate(value) {
+    const d=value instanceof Date ? value : parseSeminarDate(value);
+    return d ? new Intl.DateTimeFormat("id-ID", {weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(d) : String(value || "Tanggal belum ditentukan");
+}
+function rowsToSeminars(csvText) {
+    const rows=parseCSV(csvText); if(rows.length<2) return [];
+    const h=rows[0];
+    const c={
+        nama:getColumnIndex(h,["Nama Lengkap","Nama Mahasiswa","Nama"]),
+        jenis:getColumnIndex(h,["Jenis Seminar","Jenis"]),
+        judul:getColumnIndex(h,["Judul Penelitian","Judul Skripsi","Judul"]),
+        tanggal:getColumnIndex(h,["Tanggal Seminar","Tanggal"]),
+        waktu:getColumnIndex(h,["Waktu Seminar","Waktu"]),
+        ruangan:getColumnIndex(h,["Ruangan","Ruang","Lokasi"]),
+        pembimbing:getColumnIndex(h,["Dosen Pembimbing","Pembimbing"]),
+        penguji1:getColumnIndex(h,["Dosen Penguji I","Penguji I","Penguji 1"]),
+        penguji2:getColumnIndex(h,["Dosen Penguji II","Penguji II","Penguji 2"]),
+        penguji3:getColumnIndex(h,["Dosen Penguji III","Penguji III","Penguji 3"])
+    };
+    return rows.slice(1).map(r=>{
+        const v=k=>c[k]>=0 ? (r[c[k]]||"").trim() : "";
+        return {nama:v("nama"),jenis:v("jenis"),judul:v("judul"),tanggal:v("tanggal"),tanggalObj:parseSeminarDate(v("tanggal")),waktu:v("waktu"),ruangan:v("ruangan"),pembimbing:v("pembimbing"),penguji1:v("penguji1"),penguji2:v("penguji2"),penguji3:v("penguji3")};
+    }).filter(x=>x.nama||x.judul||x.tanggal);
+}
+async function loadSeminarData() {
+    const response=await fetch(SEMINAR_CSV_URL+"&cache="+Date.now(),{cache:"no-store"});
+    if(!response.ok) throw new Error("Google Sheets tidak dapat diakses (HTTP "+response.status+").");
+    const csv=await response.text();
+    if(!csv || csv.trim().startsWith("<!DOCTYPE html")) throw new Error("Data CSV tidak terbaca. Periksa pengaturan Publikasikan ke web.");
+    return rowsToSeminars(csv);
+}
+function addInfoLine(container,label,value) {
+    if(!value) return;
+    const p=document.createElement("p"), strong=document.createElement("strong");
+    strong.textContent=label+": "; p.append(strong,document.createTextNode(value)); container.appendChild(p);
+}
+
+        const seminarList=document.getElementById("homeSeminarList");
+        function createHomeSeminarCard(item) {
+            const card=document.createElement("article"); card.className="home-seminar-card";
+            const type=document.createElement("span"); type.className="home-seminar-type"; type.textContent=item.jenis||"Seminar Akademik";
+            const title=document.createElement("h3"); title.textContent=item.judul||"Judul penelitian belum dicantumkan";
+            const meta=document.createElement("div"); meta.className="home-seminar-meta";
+            ["📅 "+formatSeminarDate(item.tanggalObj||item.tanggal),"🕒 "+(item.waktu||"Waktu belum ditentukan"),"📍 "+(item.ruangan||"Ruangan belum ditentukan")].forEach(value=>{const span=document.createElement("span");span.textContent=value;meta.appendChild(span);});
+            const student=document.createElement("div"); student.className="home-seminar-student"; student.textContent="Mahasiswa: "+(item.nama||"Tidak dicantumkan");
+            card.append(type,title,meta,student); return card;
+        }
+        async function renderHomeSeminars() {
+            if(!seminarList) return;
+            try {
+                const all=await loadSeminarData(); const today=new Date(); today.setHours(0,0,0,0);
+                const upcoming=all.filter(x=>x.tanggalObj&&x.tanggalObj>=today).sort((a,b)=>(a.tanggalObj-b.tanggalObj)||(a.waktu||"").localeCompare(b.waktu||"")).slice(0,3);
+                seminarList.replaceChildren();
+                if(!upcoming.length){const p=document.createElement("p");p.className="home-seminar-message";p.textContent="Belum ada jadwal seminar mendatang yang tersedia.";seminarList.appendChild(p);return;}
+                upcoming.forEach(x=>seminarList.appendChild(createHomeSeminarCard(x)));
+            } catch(error) {
+                console.error("Gagal memuat jadwal dari Google Sheets:",error); seminarList.replaceChildren();
+                const p=document.createElement("p");p.className="home-seminar-message";p.textContent="Jadwal seminar belum dapat dimuat. Silakan coba kembali nanti.";seminarList.appendChild(p);
+            }
+        }
+        renderHomeSeminars();
+        // Perbarui data secara berkala selama halaman terbuka.
+        setInterval(renderHomeSeminars, 60000);
+    </script>
 
 </body>
 

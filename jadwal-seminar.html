@@ -1,0 +1,1062 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jadwal Seminar | HIMAPTIKA FKIP UNTAD</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================= HERO ================= */
+
+        .seminar-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 85px 8%;
+            color: white;
+            background: linear-gradient(120deg, #102c4b, #17609b, #287fc0);
+        }
+
+        .seminar-hero::after {
+            content: "∑";
+            position: absolute;
+            right: 9%;
+            top: 0;
+            font-size: 250px;
+            font-weight: 800;
+            color: rgba(255,255,255,.07);
+            pointer-events: none;
+        }
+
+        .seminar-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .seminar-hero-label {
+            display: inline-block;
+            padding: 8px 14px;
+            border: 1px solid rgba(255,255,255,.3);
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #dcecff;
+        }
+
+        .seminar-hero h1 {
+            max-width: 750px;
+            font-size: clamp(34px, 5vw, 55px);
+            line-height: 1.15;
+            margin: 22px 0 16px;
+        }
+
+        .seminar-hero p {
+            max-width: 650px;
+            color: #dcecff;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        /* ================= SECTION ================= */
+
+        .seminar-section {
+            padding: 75px 20px;
+            background: #f4f8fc;
+        }
+
+        .seminar-container {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .seminar-section-heading {
+            margin-bottom: 30px;
+        }
+
+        .seminar-section-label {
+            color: #2875b8;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .seminar-section-heading h2 {
+            color: #123456;
+            font-size: clamp(26px, 4vw, 35px);
+            margin: 12px 0;
+        }
+
+        .seminar-section-heading p {
+            color: #64748b;
+            line-height: 1.8;
+            max-width: 650px;
+        }
+
+        /* ================= GOOGLE FORM ================= */
+
+        .seminar-form-card {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 35px;
+            margin-bottom: 65px;
+            background: white;
+            border: 1px solid #e1eaf3;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(16,47,80,.06);
+        }
+
+        .seminar-form-card h2 {
+            color: #123456;
+            font-size: 25px;
+            margin: 12px 0;
+        }
+
+        .seminar-form-card p {
+            max-width: 650px;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .seminar-form-icon {
+            flex: 0 0 65px;
+            width: 65px;
+            height: 65px;
+            display: grid;
+            place-items: center;
+            color: #2875b8;
+            background: #eaf4ff;
+            border-radius: 17px;
+            font-size: 30px;
+        }
+
+        .seminar-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            flex-shrink: 0;
+            padding: 14px 22px;
+            background: #123f68;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .seminar-submit:hover {
+            background: #2875b8;
+            transform: translateY(-3px);
+        }
+
+        /* ================= LIST JADWAL ================= */
+
+        .seminar-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 23px;
+        }
+
+        .seminar-item {
+            position: relative;
+            overflow: hidden;
+            padding: 27px;
+            background: white;
+            border: 1px solid #e2eaf3;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(16,47,80,.05);
+            transition: .3s;
+        }
+
+        .seminar-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(16,47,80,.1);
+        }
+
+        .seminar-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #123f68, #45a0e8);
+        }
+
+        .seminar-type {
+            display: inline-block;
+            padding: 7px 12px;
+            color: #1763a5;
+            background: #eaf4ff;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 17px;
+        }
+
+        .seminar-item h3 {
+            color: #123456;
+            font-size: 20px;
+            line-height: 1.4;
+            margin: 0 0 10px;
+        }
+
+        .seminar-title {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.8;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #edf1f6;
+        }
+
+        .seminar-info-group {
+            display: grid;
+            gap: 13px;
+            padding: 20px 0;
+            border-bottom: 1px solid #edf1f6;
+        }
+
+        .seminar-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #526579;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .seminar-info-icon {
+            display: grid;
+            place-items: center;
+            flex: 0 0 31px;
+            width: 31px;
+            height: 31px;
+            color: #2875b8;
+            background: #edf6ff;
+            border-radius: 9px;
+        }
+
+        .seminar-info-row strong {
+            display: block;
+            color: #243b53;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .seminar-lecturers {
+            padding-top: 20px;
+        }
+
+        .seminar-lecturers h4 {
+            color: #123456;
+            font-size: 13px;
+            margin: 0 0 14px;
+        }
+
+        .seminar-lecturer {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 11px;
+            color: #526579;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .seminar-lecturer span:first-child {
+            color: #2875b8;
+        }
+
+        /* ================= EMPTY / LOADING ================= */
+
+        .seminar-empty {
+            grid-column: 1 / -1;
+            padding: 45px 20px;
+            background: white;
+            border: 1px dashed #c8d8e8;
+            border-radius: 15px;
+            text-align: center;
+            color: #718096;
+            line-height: 1.8;
+        }
+
+        .seminar-loading {
+            color: #718096;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .seminar-count {
+            margin-bottom: 20px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* ================= DARK MODE ================= */
+
+        body.dark-mode .seminar-section {
+            background: #0f1720;
+        }
+
+        body.dark-mode .seminar-section-heading h2,
+        body.dark-mode .seminar-form-card h2,
+        body.dark-mode .seminar-item h3,
+        body.dark-mode .seminar-lecturers h4,
+        body.dark-mode .seminar-info-row strong {
+            color: #e6f0ff;
+        }
+
+        body.dark-mode .seminar-form-card,
+        body.dark-mode .seminar-item,
+        body.dark-mode .seminar-empty {
+            background: #182330;
+            border-color: #263b50;
+        }
+
+        body.dark-mode .seminar-form-card p,
+        body.dark-mode .seminar-title,
+        body.dark-mode .seminar-info-row,
+        body.dark-mode .seminar-lecturer,
+        body.dark-mode .seminar-count {
+            color: #bdcbd8;
+        }
+
+        body.dark-mode .seminar-info-group,
+        body.dark-mode .seminar-title {
+            border-color: #30445a;
+        }
+
+        body.dark-mode .seminar-type,
+        body.dark-mode .seminar-info-icon {
+            background: #203b56;
+            color: #91caff;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+            .seminar-list {
+                grid-template-columns: 1fr;
+            }
+
+            .seminar-form-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .seminar-submit {
+                width: 100%;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .seminar-hero {
+                padding: 65px 7%;
+            }
+
+            .seminar-hero::after {
+                font-size: 150px;
+                right: 2%;
+            }
+
+            .seminar-section {
+                padding: 55px 18px;
+            }
+
+            .seminar-form-card,
+            .seminar-item {
+                padding: 22px;
+            }
+
+            .seminar-form-card h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER HIMAPTIKA ================= -->
+
+<header class="site-header">
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        type="button">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+    <div class="brand">
+
+        <img
+            src="images/logo himaptika.png"
+            alt="Logo HIMAPTIKA">
+
+        <div class="brand-text">
+            <h1>HIMAPTIKA</h1>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+        </div>
+
+    </div>
+
+    <nav id="mainNav">
+
+        <div class="drawer-brand">
+
+            <img
+                src="images/logo himaptika.png"
+                alt="Logo HIMAPTIKA">
+
+            <div>
+                <h2>HIMAPTIKA</h2>
+                <p>FKIP UNIVERSITAS TADULAKO</p>
+            </div>
+
+        </div>
+
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="struktur-pengurus.html">Struktur Pengurus</a>
+        <a href="divisi.html">Divisi & Program Kerja</a>
+        <a href="informasi.html">Informasi</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="kontak.html">Kontak</a>
+
+        <button
+            id="darkModeToggle"
+            class="dark-mode-toggle"
+            type="button">
+            🌙
+        </button>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="seminar-hero">
+
+        <div class="seminar-hero-content">
+
+            <span class="seminar-hero-label">
+                HIMAPTIKA ACADEMIC PORTAL
+            </span>
+
+            <h1>
+                Jadwal Seminar Mahasiswa.
+            </h1>
+
+            <p>
+                Temukan informasi jadwal Seminar Proposal dan
+                Seminar Hasil mahasiswa Pendidikan Matematika.
+                Satu ruang informasi akademik untuk mendukung
+                perjalanan penelitian mahasiswa.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= JADWAL SEMINAR ================= -->
+
+    <section class="seminar-section">
+
+        <div class="seminar-container">
+
+            <!-- FORM PENGAJUAN -->
+
+            <div class="seminar-form-card">
+
+                <div class="seminar-form-icon">✎</div>
+
+                <div style="flex:1">
+
+                    <span class="seminar-section-label">
+                        PENGAJUAN JADWAL
+                    </span>
+
+                    <h2>Ajukan Jadwal Seminar</h2>
+
+                    <p>
+                        Mahasiswa yang akan melaksanakan Seminar
+                        Proposal atau Seminar Hasil dapat mengirimkan
+                        informasi jadwal melalui formulir resmi HIMAPTIKA.
+                        Pastikan seluruh data yang dimasukkan sudah benar.
+                    </p>
+
+                </div>
+
+                <a
+                    class="seminar-submit"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdKRhoUcp2W9JU11u1PY3sSW7j86aI-3Mo-jU2Pcpq1iEHfww/viewform?usp=header"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    Isi Formulir →
+                </a>
+
+            </div>
+
+
+            <!-- DAFTAR JADWAL -->
+
+            <div class="seminar-section-heading">
+
+                <span class="seminar-section-label">
+                    INFORMASI AKADEMIK
+                </span>
+
+                <h2>Daftar Jadwal Seminar</h2>
+
+                <p>
+                    Informasi jadwal seminar mahasiswa yang telah
+                    dikirimkan melalui Google Form HIMAPTIKA.
+                </p>
+
+            </div>
+
+            <p id="seminarCount" class="seminar-count">
+                Memuat informasi jadwal...
+            </p>
+
+            <div id="seminarList" class="seminar-list">
+
+                <p class="seminar-loading">
+                    Memuat jadwal seminar...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container">
+
+        <p>© 2026 HIMAPTIKA FKIP Universitas Tadulako</p>
+        <p>Academic Survival Web</p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+<!-- ================= GOOGLE SHEETS ================= -->
+
+<script>
+
+const SEMINAR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq3a1AyVPkuMx-KqObYcwH2g_QscvZACuB-fe2M6ywQTzJbDyChw5rUt5qd7Ts6WZ3d1m3YUwdFL21/pub?gid=1444305561&single=true&output=csv";
+
+
+function parseCSV(text) {
+
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let quoted = false;
+
+    for (let i = 0; i < text.length; i++) {
+
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"' && quoted && next === '"') {
+            cell += '"';
+            i++;
+        }
+
+        else if (char === '"') {
+            quoted = !quoted;
+        }
+
+        else if (char === "," && !quoted) {
+            row.push(cell.trim());
+            cell = "";
+        }
+
+        else if ((char === "\n" || char === "\r") && !quoted) {
+
+            if (char === "\r" && next === "\n") i++;
+
+            row.push(cell.trim());
+
+            if (row.some(value => value !== "")) {
+                rows.push(row);
+            }
+
+            row = [];
+            cell = "";
+        }
+
+        else {
+            cell += char;
+        }
+    }
+
+    row.push(cell.trim());
+
+    if (row.some(value => value !== "")) {
+        rows.push(row);
+    }
+
+    return rows;
+}
+
+
+function normalizeHeader(value) {
+
+    return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+}
+
+
+function getColumnIndex(headers, aliases) {
+
+    const normalized = headers.map(normalizeHeader);
+
+    for (const alias of aliases) {
+
+        const index = normalized.indexOf(
+            normalizeHeader(alias)
+        );
+
+        if (index !== -1) return index;
+    }
+
+    return -1;
+}
+
+
+function parseSeminarDate(value) {
+
+    const raw = String(value || "").trim();
+
+    if (!raw) return null;
+
+    let match = raw.match(
+        /^(\d{4})-(\d{1,2})-(\d{1,2})/
+    );
+
+    if (match) {
+
+        return new Date(
+            Number(match[1]),
+            Number(match[2]) - 1,
+            Number(match[3])
+        );
+    }
+
+    match = raw.match(
+        /^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/
+    );
+
+    if (match) {
+
+        const a = Number(match[1]);
+        const b = Number(match[2]);
+        const year = Number(match[3]);
+
+        let day = a;
+        let month = b;
+
+        if (a <= 12 && b > 12) {
+            month = a;
+            day = b;
+        }
+
+        const date = new Date(year, month - 1, day);
+
+        return date.getFullYear() === year &&
+            date.getMonth() === month - 1 &&
+            date.getDate() === day
+            ? date
+            : null;
+    }
+
+    const date = new Date(raw);
+
+    return Number.isNaN(date.getTime())
+        ? null
+        : new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
+}
+
+
+function formatSeminarDate(value) {
+
+    const date = value instanceof Date
+        ? value
+        : parseSeminarDate(value);
+
+    return date
+        ? new Intl.DateTimeFormat("id-ID", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }).format(date)
+        : String(value || "Tanggal belum ditentukan");
+}
+
+
+function rowsToSeminars(csvText) {
+
+    const rows = parseCSV(csvText);
+
+    if (rows.length < 2) return [];
+
+    const headers = rows[0];
+
+    const columns = {
+
+        nama: getColumnIndex(headers, [
+            "Nama Lengkap",
+            "Nama Mahasiswa",
+            "Nama"
+        ]),
+
+        jenis: getColumnIndex(headers, [
+            "Jenis Seminar",
+            "Jenis"
+        ]),
+
+        judul: getColumnIndex(headers, [
+            "Judul Penelitian",
+            "Judul Skripsi",
+            "Judul"
+        ]),
+
+        tanggal: getColumnIndex(headers, [
+            "Tanggal Seminar",
+            "Tanggal"
+        ]),
+
+        waktu: getColumnIndex(headers, [
+            "Waktu Seminar",
+            "Waktu"
+        ]),
+
+        ruangan: getColumnIndex(headers, [
+            "Ruangan",
+            "Ruang",
+            "Lokasi"
+        ]),
+
+        pembimbing: getColumnIndex(headers, [
+            "Dosen Pembimbing",
+            "Pembimbing"
+        ]),
+
+        penguji1: getColumnIndex(headers, [
+            "Dosen Penguji I",
+            "Penguji I",
+            "Penguji 1"
+        ]),
+
+        penguji2: getColumnIndex(headers, [
+            "Dosen Penguji II",
+            "Penguji II",
+            "Penguji 2"
+        ]),
+
+        penguji3: getColumnIndex(headers, [
+            "Dosen Penguji III",
+            "Penguji III",
+            "Penguji 3"
+        ])
+
+    };
+
+    return rows.slice(1).map(row => {
+
+        const getValue = key =>
+            columns[key] >= 0
+                ? (row[columns[key]] || "").trim()
+                : "";
+
+        return {
+
+            nama: getValue("nama"),
+            jenis: getValue("jenis"),
+            judul: getValue("judul"),
+            tanggal: getValue("tanggal"),
+            tanggalObj: parseSeminarDate(getValue("tanggal")),
+            waktu: getValue("waktu"),
+            ruangan: getValue("ruangan"),
+            pembimbing: getValue("pembimbing"),
+            penguji1: getValue("penguji1"),
+            penguji2: getValue("penguji2"),
+            penguji3: getValue("penguji3")
+
+        };
+
+    }).filter(item =>
+        item.nama || item.judul || item.tanggal
+    );
+}
+
+
+async function loadSeminarData() {
+
+    const response = await fetch(
+        SEMINAR_CSV_URL + "&cache=" + Date.now(),
+        { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+        throw new Error("Google Sheets tidak dapat diakses.");
+    }
+
+    const csv = await response.text();
+
+    if (
+        !csv ||
+        csv.trim().startsWith("<!DOCTYPE html")
+    ) {
+        throw new Error(
+            "Data CSV tidak terbaca. Periksa publikasi Google Sheets."
+        );
+    }
+
+    return rowsToSeminars(csv);
+}
+
+
+function createInfoRow(icon, label, value) {
+
+    if (!value) return null;
+
+    const row = document.createElement("div");
+    row.className = "seminar-info-row";
+
+    const symbol = document.createElement("span");
+    symbol.className = "seminar-info-icon";
+    symbol.textContent = icon;
+
+    const content = document.createElement("div");
+
+    const strong = document.createElement("strong");
+    strong.textContent = label;
+
+    const text = document.createElement("span");
+    text.textContent = value;
+
+    content.append(strong, text);
+    row.append(symbol, content);
+
+    return row;
+}
+
+
+function createLecturerRow(label, value) {
+
+    if (!value) return null;
+
+    const row = document.createElement("div");
+    row.className = "seminar-lecturer";
+
+    const icon = document.createElement("span");
+    icon.textContent = "●";
+
+    const text = document.createElement("span");
+    text.textContent = label + ": " + value;
+
+    row.append(icon, text);
+
+    return row;
+}
+
+
+function createSeminarCard(item) {
+
+    const card = document.createElement("article");
+    card.className = "seminar-item";
+
+    const type = document.createElement("span");
+    type.className = "seminar-type";
+    type.textContent = item.jenis || "Seminar Akademik";
+
+    const name = document.createElement("h3");
+    name.textContent = item.nama || "Nama mahasiswa tidak dicantumkan";
+
+    const title = document.createElement("p");
+    title.className = "seminar-title";
+    title.textContent = item.judul || "Judul penelitian belum dicantumkan";
+
+    const info = document.createElement("div");
+    info.className = "seminar-info-group";
+
+    [
+        createInfoRow(
+            "▦",
+            "TANGGAL SEMINAR",
+            formatSeminarDate(item.tanggalObj || item.tanggal)
+        ),
+
+        createInfoRow(
+            "◷",
+            "WAKTU SEMINAR",
+            item.waktu ? item.waktu + " WITA" : ""
+        ),
+
+        createInfoRow(
+            "⌖",
+            "RUANGAN",
+            item.ruangan
+        )
+
+    ].forEach(element => {
+        if (element) info.appendChild(element);
+    });
+
+
+    const lecturers = document.createElement("div");
+    lecturers.className = "seminar-lecturers";
+
+    const lecturerHeading = document.createElement("h4");
+    lecturerHeading.textContent = "TIM DOSEN PENGUJI & PEMBIMBING";
+
+    lecturers.appendChild(lecturerHeading);
+
+    [
+        createLecturerRow("Dosen Pembimbing", item.pembimbing),
+        createLecturerRow("Dosen Penguji I", item.penguji1),
+        createLecturerRow("Dosen Penguji II", item.penguji2),
+        createLecturerRow("Dosen Penguji III", item.penguji3)
+    ].forEach(element => {
+        if (element) lecturers.appendChild(element);
+    });
+
+    card.append(
+        type,
+        name,
+        title,
+        info,
+        lecturers
+    );
+
+    return card;
+}
+
+
+const seminarList = document.getElementById("seminarList");
+const seminarCount = document.getElementById("seminarCount");
+
+
+async function renderAllSeminars() {
+
+    try {
+
+        const all = await loadSeminarData();
+
+        all.sort((a, b) => {
+
+            if (!a.tanggalObj && !b.tanggalObj) return 0;
+            if (!a.tanggalObj) return 1;
+            if (!b.tanggalObj) return -1;
+
+            return (
+                (a.tanggalObj - b.tanggalObj) ||
+                (a.waktu || "").localeCompare(b.waktu || "")
+            );
+
+        });
+
+        seminarList.replaceChildren();
+
+        seminarCount.textContent =
+            all.length + " jadwal seminar terdaftar";
+
+        if (!all.length) {
+
+            const empty = document.createElement("p");
+            empty.className = "seminar-empty";
+            empty.textContent =
+                "Belum ada jadwal seminar yang tersedia.";
+
+            seminarList.appendChild(empty);
+            return;
+        }
+
+        all.forEach(item => {
+
+            seminarList.appendChild(
+                createSeminarCard(item)
+            );
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Gagal mengambil jadwal seminar:",
+            error
+        );
+
+        seminarCount.textContent =
+            "Informasi jadwal belum tersedia";
+
+        seminarList.replaceChildren();
+
+        const message = document.createElement("p");
+        message.className = "seminar-empty";
+
+        message.textContent =
+            "Jadwal belum dapat dimuat. Periksa koneksi internet atau pengaturan publikasi Google Sheets.";
+
+        seminarList.appendChild(message);
+
+    }
+}
+
+
+renderAllSeminars();
+
+setInterval(renderAllSeminars, 60000);
+
+</script>
+
+</body>
+</html>
