@@ -465,7 +465,7 @@
           <h2>Login Akun</h2>
 
           <p>
-            Silakan masuk menggunakan email dan password
+            Silakan masuk menggunakan NIM dan password
             akun mahasiswa yang telah terdaftar.
           </p>
         </div>
@@ -481,17 +481,17 @@
         <form id="loginForm">
 
           <div class="form-group">
-            <label for="email">Email Mahasiswa</label>
+            <label for="nim">NIM Mahasiswa</label>
 
             <div class="input-wrapper">
-              <input
-                type="email"
-                id="email"
-                placeholder="nama@email.com"
-                autocomplete="username"
-                required
-              >
-            </div>
+            <input
+            type="text"
+            id="nim"
+            placeholder="Contoh: A23124080"
+            autocomplete="username"
+            required
+           >
+           </div>
           </div>
 
 
@@ -516,13 +516,6 @@
                 
               </button>
             </div>
-          </div>
-
-
-          <div class="form-options">
-            <a href="lupa-password.html">
-              Lupa password?
-            </a>
           </div>
 
 
@@ -575,6 +568,7 @@
 
 
   
+
 <script type="module">
   import { auth } from "./js/firebase.js";
 
@@ -583,56 +577,58 @@
   } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
   const loginForm = document.getElementById("loginForm");
-  const emailInput = document.getElementById("email");
+  const nimInput = document.getElementById("nim");
   const passwordInput = document.getElementById("password");
   const loginButton = document.getElementById("loginButton");
   const message = document.getElementById("message");
 
-  // Menampilkan pesan
   function showMessage(text, type) {
     message.textContent = text;
     message.className = "message " + type;
   }
 
-  // Proses login mahasiswa
   loginForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const email = emailInput.value.trim();
+    const nim = nimInput.value.trim();
     const password = passwordInput.value;
+
+    if (!nim || !password) {
+      showMessage("NIM dan password wajib diisi.", "error");
+      return;
+    }
+
+    // Mengubah NIM menjadi email internal
+    const email = nim.toLowerCase() + "@gmail.com";
 
     loginButton.disabled = true;
     loginButton.textContent = "MEMPROSES...";
-
     message.className = "message";
-    message.textContent = "";
 
     try {
-      // Menghubungkan login dengan Firebase Authentication
       await signInWithEmailAndPassword(auth, email, password);
 
       showMessage(
-        "Login berhasil! Mengarahkan ke dashboard...",
+        "Login berhasil! Mengarahkan ke portal...",
         "success"
       );
 
-      // Arahkan ke dashboard
       window.location.href = "index.html";
 
     } catch (error) {
       console.error("Login error:", error.code, error.message);
 
-      let errorText = "Login gagal. Silakan coba kembali.";
+      let errorText = "Login gagal. Periksa NIM dan password kamu.";
 
       switch (error.code) {
         case "auth/invalid-credential":
         case "auth/wrong-password":
         case "auth/user-not-found":
-          errorText = "Email atau password yang kamu masukkan salah.";
+          errorText = "NIM atau password yang kamu masukkan salah.";
           break;
 
         case "auth/invalid-email":
-          errorText = "Format email tidak valid.";
+          errorText = "Format NIM tidak valid.";
           break;
 
         case "auth/user-disabled":
@@ -644,11 +640,11 @@
           break;
 
         case "auth/network-request-failed":
-          errorText = "Koneksi internet bermasalah. Periksa jaringan kamu.";
+          errorText = "Koneksi internet bermasalah.";
           break;
 
         case "auth/operation-not-allowed":
-          errorText = "Metode login Email/Password belum diaktifkan.";
+          errorText = "Login Email/Password belum diaktifkan di Firebase.";
           break;
       }
 
