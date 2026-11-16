@@ -12998,6 +12998,34 @@ body {
     }
 }
 
+/* =========================================
+   JARAK HERO LPJ DARI NAVBAR
+========================================= */
+
+/* Memberikan ruang setelah navbar */
+.lpj-page .lpj-hero {
+    margin-top: 25px;
+}
+
+/* Memberikan ruang antara hero dan ringkasan */
+.lpj-page .lpj-summary {
+    padding-top: 35px;
+}
+
+/* Tampilan HP */
+@media screen and (max-width: 768px) {
+    .lpj-page .lpj-hero {
+        margin-top: 18px;
+        padding-top: 65px;
+        padding-bottom: 65px;
+    }
+
+    .lpj-page .lpj-summary {
+        padding-top: 25px;
+    }
+}
+
+
 
 /* =========================================
    JADWAL SEMINAR - ELEGANT DESIGN
@@ -13720,5 +13748,257 @@ body.dark-mode .home-seminar-card h3 {
 
     .home-seminar-all {
         width: 100%;
+    }
+}
+
+/* =========================================
+   AGENDA - TAMBAHAN FINISHING DESIGN
+   Tempel paling bawah CSS lama
+========================================= */
+
+/* Transisi halus */
+.agenda-page .agenda-card,
+.agenda-page .agenda-stat-card,
+.agenda-page .agenda-intro,
+.agenda-page .agenda-filter {
+    transition: all .3s ease;
+}
+
+/* Kartu agenda */
+.agenda-page .agenda-card {
+    position: relative;
+    box-shadow: 0 5px 20px rgba(20, 55, 100, .045);
+}
+
+.agenda-page .agenda-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(20, 55, 100, .12);
+}
+
+/* Garis atas kartu */
+.agenda-page .agenda-card-top {
+    height: 4px;
+    background: linear-gradient(90deg, #173b70, #72afe5);
+}
+
+/* Judul program */
+.agenda-page .agenda-card h3 {
+    letter-spacing: -.35px;
+}
+
+/* Area pelaksanaan */
+.agenda-page .pelaksanaan-item {
+    border-radius: 13px;
+    transition: all .25s ease;
+}
+
+.agenda-page .pelaksanaan-item:hover {
+    transform: translateX(3px);
+}
+
+/* Tombol Instagram */
+.agenda-page .agenda-link {
+    box-shadow: 0 4px 12px rgba(23, 59, 112, .12);
+}
+
+.agenda-page .agenda-link:hover {
+    box-shadow: 0 7px 18px rgba(23, 59, 112, .2);
+}
+
+/* Judul divisi */
+.agenda-page .agenda-division-heading {
+    padding-bottom: 13px;
+    border-bottom: 1px solid #e2eaf4;
+}
+
+.agenda-page .agenda-division-number {
+    box-shadow: 0 5px 13px rgba(23, 59, 112, .18);
+}
+
+/* Kolom pencarian */
+.agenda-page .agenda-filter {
+    box-shadow: 0 8px 25px rgba(23, 59, 112, .05);
+}
+
+.agenda-page .agenda-filter-controls input,
+.agenda-page .agenda-filter-controls select {
+    border-radius: 12px;
+}
+
+/* Statistik */
+.agenda-page .agenda-stat-card {
+    border-radius: 17px;
+}
+
+.agenda-page .agenda-stat-card:hover {
+    border-color: #c7d9ed;
+}
+
+/* CTA */
+.agenda-page .agenda-cta {
+    box-shadow: 0 15px 35px rgba(16, 39, 68, .13);
+}
+
+.agenda-page .agenda-cta-button {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+}
+
+/* Dark mode */
+body.dark-mode .agenda-page .agenda-division-heading {
+    border-bottom-color: #34445b;
+}
+
+body.dark-mode .agenda-page .agenda-card,
+body.dark-mode .agenda-page .agenda-stat-card,
+body.dark-mode .agenda-page .agenda-intro,
+body.dark-mode .agenda-page .agenda-filter {
+    box-shadow: 0 7px 22px rgba(0, 0, 0, .13);
+}
+
+/* Tampilan HP */
+@media (max-width: 600px) {
+    .agenda-page .agenda-card:hover {
+        transform: none;
+    }
+
+    .agenda-page .pelaksanaan-item:hover {
+        transform: none;
+    }
+
+    .agenda-page .agenda-division-heading {
+        padding-bottom: 11px;
+    }
+
+    .agenda-page .agenda-card-content {
+        padding: 18px;
+    }
+}
+
+/* Menghormati pengaturan animasi perangkat */
+@media (prefers-reduced-motion: reduce) {
+    .agenda-page *,
+    .agenda-page *::before,
+    .agenda-page *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* =========================================
+   HIMAPTIKA - AGENDA HERO PREMIUM
+   Tambahkan di bagian paling bawah style.css
+   Navbar dan header tidak diubah
+========================================= */
+
+.agenda-page .agenda-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 510px;
+    display: flex;
+    align-items: center;
+    padding: 100px 25px 115px;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 29, 57, .94) 0%,
+            rgba(15, 48, 88, .84) 48%,
+            rgba(18, 55, 99, .55) 100%
+        ),
+        url("images/agenda-bg.jpg") center 45% / cover no-repeat;
+}
+
+.agenda-page .agenda-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        0deg,
+        rgba(10, 35, 67, .42),
+        transparent 55%
+    );
+    pointer-events: none;
+}
+
+.agenda-page .agenda-hero::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -150px;
+    bottom: -270px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.agenda-page .agenda-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.agenda-page .agenda-hero-label {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    backdrop-filter: blur(8px);
+    color: #d9ecff;
+    padding: 9px 17px;
+    border-radius: 30px;
+    letter-spacing: 1.4px;
+}
+
+.agenda-page .agenda-hero h2 {
+    color: #ffffff;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 850;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    max-width: 750px;
+    margin: 0 0 22px;
+    text-shadow: 0 4px 20px rgba(0,0,0,.15);
+}
+
+.agenda-page .agenda-hero h2 span {
+    color: #a9d8ff;
+}
+
+.agenda-page .agenda-hero p {
+    color: #e0ebf8;
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 600px;
+}
+
+.agenda-page .agenda-hero-bottom {
+    margin-top: 30px;
+    color: #d7e8fa;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+}
+
+.agenda-page .agenda-hero-bottom span {
+    color: #a9d8ff;
+}
+
+/* RESPONSIVE HERO AGENDA */
+@media (max-width: 600px) {
+    .agenda-page .agenda-hero {
+        min-height: 440px;
+        padding: 75px 20px 95px;
+        background-position: center;
+    }
+
+    .agenda-page .agenda-hero h2 {
+        font-size: 43px;
+        letter-spacing: -1.2px;
+    }
+
+    .agenda-page .agenda-hero p {
+        font-size: 13px;
     }
 }
