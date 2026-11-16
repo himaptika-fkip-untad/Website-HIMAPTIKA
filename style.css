@@ -14002,3 +14002,137 @@ body.dark-mode .agenda-page .agenda-filter {
         font-size: 13px;
     }
 }
+
+/* =========================================
+   PERBAIKAN SPACING HERO LPJ
+   Khusus halaman LPJ Pelayanan Akademik
+   Navbar dan header TIDAK DIUBAH
+========================================= */
+
+/* Hero utama */
+.lpj-page .lpj-hero {
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Kontainer hero */
+.lpj-page .lpj-hero .lpj-container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Konten hero */
+.lpj-page .lpj-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Label dokumen */
+.lpj-page .lpj-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Judul LPJ */
+.lpj-page .lpj-hero-content h1 {
+    margin-top: 0;
+    margin-bottom: 22px;
+    line-height: 1.18;
+}
+
+/* Deskripsi */
+.lpj-page .lpj-hero-content > p {
+    margin-top: 0;
+    margin-bottom: 35px;
+    line-height: 1.9;
+}
+
+/* Tombol */
+.lpj-page .lpj-hero-actions {
+    margin-top: 0;
+}
+
+/* =========================================
+   KHUSUS TABLET DAN HP
+========================================= */
+
+@media (max-width: 768px) {
+
+    .lpj-page .lpj-hero {
+        min-height: auto;
+        padding: 125px 20px 100px !important;
+    }
+
+    .lpj-page .lpj-hero-content {
+        padding-top: 10px;
+    }
+
+    .lpj-page .lpj-eyebrow {
+        margin-bottom: 25px;
+        padding: 10px 15px;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .lpj-page .lpj-hero-content h1 {
+        font-size: clamp(32px, 7vw, 45px);
+        line-height: 1.2;
+        margin-bottom: 24px;
+    }
+
+    .lpj-page .lpj-hero-content > p {
+        font-size: 14px;
+        line-height: 1.85;
+        margin-bottom: 32px;
+    }
+
+    .lpj-page .lpj-hero-actions {
+        width: 100%;
+        max-width: 530px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 14px;
+    }
+}
+
+/* =========================================
+   KHUSUS HP KECIL
+========================================= */
+
+@media (max-width: 480px) {
+
+    .lpj-page .lpj-hero {
+        padding: 145px 20px 85px !important;
+    }
+
+    .lpj-page .lpj-hero-content {
+        padding-top: 5px;
+    }
+
+    .lpj-page .lpj-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.2px;
+        padding: 9px 12px;
+        margin-bottom: 25px;
+    }
+
+    .lpj-page .lpj-hero-content h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .lpj-page .lpj-hero-content > p {
+        font-size: 13px;
+        line-height: 1.9;
+    }
+}
