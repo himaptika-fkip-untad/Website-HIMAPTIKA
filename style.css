@@ -13089,3 +13089,370 @@ body.dark-mode .seminar-message {
         text-align: left;
     }
 }
+/* =====================================================
+   HIMAPTIKA — ACADEMIC MODERN
+   NAVBAR TETAP MENGIKUTI STYLE.CSS ASLI
+   ===================================================== */
+
+/* Jangan mengubah warna header, navbar, menu, dan drawer */
+
+/* HERO */
+.hero-modern {
+  background: linear-gradient(
+    135deg,
+    #f7fbff 0%,
+    #eaf3ff 55%,
+    #dcecff 100%
+  );
+}
+
+.hero-modern-content h2 {
+  color: #102f50;
+  letter-spacing: -.035em;
+  line-height: 1.15;
+}
+
+.hero-modern-content h2 span {
+  color: #1763b6;
+}
+
+.hero-description {
+  color: #536b83;
+  line-height: 1.85;
+}
+
+.hero-label,
+.section-label {
+  color: #1763b6;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+/* JUDUL SECTION */
+.section-title h2,
+.section-heading h2,
+.statistik-heading h2,
+.informasi-header h2,
+.agenda-heading h2,
+.home-seminar-heading h2 {
+  color: #102f50;
+}
+
+.section-title p,
+.section-heading p,
+.informasi-header p,
+.agenda-heading p,
+.home-seminar-heading p {
+  color: #64778c;
+  line-height: 1.8;
+}
+
+/* KARTU PROGRAM */
+.program-card,
+.statistik-card,
+.informasi-card,
+.agenda-card,
+.home-seminar-card {
+  border: 1px solid #e1eaf5;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(16,47,80,.07);
+  transition: .25s ease;
+}
+
+.program-card:hover,
+.statistik-card:hover,
+.informasi-card:hover,
+.agenda-card:hover,
+.home-seminar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 38px rgba(16,47,80,.12);
+}
+
+/* WARNA IKON */
+.program-icon,
+.statistik-icon {
+  color: #1763b6;
+}
+
+/* KONTEN KARTU */
+.program-card h3,
+.informasi-content h3,
+.agenda-content h3,
+.home-seminar-card h3 {
+  color: #183653;
+}
+
+.program-card p,
+.informasi-content p,
+.agenda-detail,
+.home-seminar-meta {
+  color: #64778c;
+  line-height: 1.75;
+}
+
+/* BAGIAN SEMINAR */
+.home-seminar-section {
+  background: #f0f6ff;
+}
+
+.home-seminar-card {
+  background: #fff;
+}
+
+/* CTA */
+.home-cta {
+  background: linear-gradient(
+    120deg,
+    #102f50,
+    #174f86,
+    #1763b6
+  );
+}
+
+/* FOOTER */
+footer {
+  background: #0c2742;
+}
+
+/* DARK MODE */
+body.dark-mode .hero-modern {
+  background: linear-gradient(
+    135deg,
+    #10243a,
+    #142f4d,
+    #183c62
+  );
+}
+
+body.dark-mode .hero-modern-content h2,
+body.dark-mode .hero-description {
+  color: #e6f1ff;
+}
+
+body.dark-mode .home-seminar-section {
+  background: #101f31;
+}
+
+body.dark-mode .program-card,
+body.dark-mode .statistik-card,
+body.dark-mode .informasi-card,
+body.dark-mode .agenda-card,
+body.dark-mode .home-seminar-card {
+  background: #14283d;
+  border-color: #29435e;
+}
+
+@media (max-width: 600px) {
+  .hero-modern-content h2 {
+    letter-spacing: -.02em;
+  }
+
+  .program-card,
+  .statistik-card,
+  .informasi-card,
+  .agenda-card,
+  .home-seminar-card {
+    border-radius: 14px;
+  }
+}
+
+/* =========================================
+   PERBAIKAN TAMPILAN JADWAL SEMINAR BERANDA
+========================================= */
+
+.home-seminar-section {
+    position: relative;
+    padding: 85px 24px;
+    background: #f3f7fc;
+}
+
+.home-seminar-container {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.home-seminar-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.home-seminar-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #2874b9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.home-seminar-heading h2 {
+    margin: 0 0 12px;
+    color: #153b60;
+    font-size: clamp(27px, 3.5vw, 36px);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.home-seminar-heading p {
+    max-width: 650px;
+    margin: 0;
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.home-seminar-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 12px 20px;
+    border: 1px solid #1e6091;
+    border-radius: 9px;
+    background: #1e6091;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: .25s ease;
+}
+
+.home-seminar-all:hover {
+    background: #123b65;
+    border-color: #123b65;
+    transform: translateY(-2px);
+}
+
+.home-seminar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.home-seminar-card {
+    padding: 27px;
+    background: #fff;
+    border: 1px solid #e2eaf3;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(20, 55, 90, .07);
+    transition: .25s ease;
+}
+
+.home-seminar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 32px rgba(20, 55, 90, .12);
+}
+
+.home-seminar-type {
+    display: inline-block;
+    padding: 7px 12px;
+    margin-bottom: 16px;
+    border-radius: 30px;
+    background: #e8f2fc;
+    color: #1e6091;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .6px;
+}
+
+.home-seminar-card h3 {
+    margin: 0 0 18px;
+    color: #173b60;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.home-seminar-meta {
+    display: grid;
+    gap: 11px;
+    color: #526579;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.home-seminar-student {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #edf1f6;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.home-seminar-message {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    margin: 0;
+    padding: 28px;
+    border: 1px dashed #b8cce3;
+    border-radius: 15px;
+    background: #fff;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* MODE GELAP */
+
+body.dark-mode .home-seminar-section {
+    background: #101d2c;
+}
+
+body.dark-mode .home-seminar-heading h2 {
+    color: #e6f0ff;
+}
+
+body.dark-mode .home-seminar-heading p,
+body.dark-mode .home-seminar-meta,
+body.dark-mode .home-seminar-student {
+    color: #b7c7d9;
+}
+
+body.dark-mode .home-seminar-card,
+body.dark-mode .home-seminar-message {
+    background: #17283b;
+    border-color: #29415c;
+    color: #c4d3e4;
+}
+
+body.dark-mode .home-seminar-card h3 {
+    color: #e6f0ff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+    .home-seminar-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-seminar-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-seminar-section {
+        padding: 60px 18px;
+    }
+
+    .home-seminar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-seminar-heading h2 {
+        font-size: 27px;
+    }
+
+    .home-seminar-all {
+        width: 100%;
+    }
+}
