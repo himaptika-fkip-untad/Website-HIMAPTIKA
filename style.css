@@ -12734,6 +12734,272 @@ body.dark-mode .lpj-back-button {
 }
 
 /* =========================================
+   FIX RESPONSIVE LPJ HIMAPTIKA
+   PERBAIKAN LEBAR HP DAN LAPTOP
+========================================= */
+
+/* Mencegah halaman melebar atau menyempit */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.lpj-page {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    overflow-x: clip;
+    box-sizing: border-box;
+}
+
+.lpj-page *,
+.lpj-page *::before,
+.lpj-page *::after {
+    box-sizing: border-box;
+}
+
+/* Semua section memenuhi lebar halaman */
+.lpj-page .lpj-hero,
+.lpj-page .lpj-summary,
+.lpj-page .lpj-main-section {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Container utama */
+.lpj-page .lpj-container {
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hero */
+.lpj-page .lpj-hero .lpj-container {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.lpj-page .lpj-hero-content {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Ringkasan */
+.lpj-page .lpj-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 20px;
+}
+
+.lpj-page .lpj-summary-card {
+    min-width: 0;
+    width: 100%;
+}
+
+/* Area isi laporan */
+.lpj-page .lpj-content-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    align-items: start;
+    gap: 25px;
+    width: 100%;
+    min-width: 0;
+}
+
+.lpj-page .lpj-sidebar,
+.lpj-page .lpj-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.lpj-page .lpj-document-section,
+.lpj-page .lpj-program-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* Tabel dapat digeser */
+.lpj-page .lpj-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lpj-page .lpj-table-wrapper table {
+    margin-bottom: 0;
+}
+
+/* Mencegah teks panjang merusak layout */
+.lpj-page p,
+.lpj-page h1,
+.lpj-page h2,
+.lpj-page h3,
+.lpj-page h4,
+.lpj-page strong {
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   RESPONSIVE TABLET DAN HP
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+    .lpj-page {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .lpj-page .lpj-container {
+        width: calc(100% - 30px);
+        max-width: none;
+    }
+
+    /* Hero memenuhi layar */
+    .lpj-page .lpj-hero {
+        width: 100%;
+        min-height: auto;
+        padding: 65px 0;
+    }
+
+    .lpj-page .lpj-hero-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .lpj-page .lpj-hero h1 {
+        font-size: clamp(30px, 7vw, 42px);
+    }
+
+    /* Statistik */
+    .lpj-page .lpj-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .lpj-page .lpj-summary-card {
+        padding: 15px;
+    }
+
+    /* Isi laporan menjadi satu kolom */
+    .lpj-page .lpj-content-layout {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .lpj-page .lpj-sidebar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .lpj-page .lpj-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .lpj-page .lpj-document-section {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+}
+
+/* =========================================
+   RESPONSIVE HP KECIL
+========================================= */
+
+@media screen and (max-width: 480px) {
+
+    .lpj-page .lpj-container {
+        width: calc(100% - 24px);
+    }
+
+    .lpj-page .lpj-hero {
+        padding: 55px 0;
+    }
+
+    .lpj-page .lpj-hero h1 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    .lpj-page .lpj-hero-content > p {
+        font-size: 13px;
+    }
+
+    .lpj-page .lpj-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lpj-page .lpj-summary-card {
+        width: 100%;
+    }
+
+    .lpj-page .lpj-document-heading {
+        gap: 12px;
+    }
+
+    .lpj-page .lpj-document-heading h2 {
+        font-size: 18px;
+    }
+
+    .lpj-page .lpj-coordinator-box {
+        grid-template-columns: 1fr;
+    }
+
+    .lpj-page .lpj-program-card {
+        padding: 18px;
+    }
+
+    .lpj-page .lpj-sidebar-link {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   CETAK LPJ
+========================================= */
+
+@media print {
+
+    html,
+    body,
+    .lpj-page {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+
+    .lpj-page .lpj-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .lpj-page .lpj-content-layout {
+        display: block !important;
+    }
+
+    .lpj-page .lpj-content {
+        width: 100% !important;
+    }
+}
+
+
+/* =========================================
    JADWAL SEMINAR - ELEGANT DESIGN
 ========================================= */
 
