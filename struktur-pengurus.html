@@ -1,561 +1,602 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Struktur Pengurus | HIMAPTIKA FKIP UNTAD</title>
-<link rel="stylesheet" href="style.css">
-
-<!-- Font Awesome untuk ikon Instagram -->
-<link rel="stylesheet"
- href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-:root {
-    --biru: #1e6091;
-    --gelap: #123b65;
-    --bg: #f4f8fc;
-    --card: #ffffff;
-    --teks: #26384a;
-    --abu: #718096;
-    --garis: #e5edf5;
-}
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--teks);
-}
-
-/* HERO */
-.struktur-hero {
-    position: relative;
-    overflow: hidden;
-    padding: 90px 20px;
-    text-align: center;
-    color: white;
-    background: linear-gradient(135deg,#123b65,#2878b9,#65a5d5);
-}
-
-.struktur-hero::before,
-.struktur-hero::after {
-    content: "";
-    position: absolute;
-    border: 1px solid rgba(255,255,255,.13);
-    border-radius: 50%;
-}
-
-.struktur-hero::before {
-    width: 300px;
-    height: 300px;
-    top: -180px;
-    left: -60px;
-}
-
-.struktur-hero::after {
-    width: 400px;
-    height: 400px;
-    right: -150px;
-    bottom: -280px;
-}
-
-.struktur-hero h2 {
-    position: relative;
-    z-index: 1;
-    margin: 0 0 12px;
-    font-size: clamp(30px,5vw,46px);
-    animation: masuk .8s ease both;
-}
-
-.struktur-hero p {
-    position: relative;
-    z-index: 1;
-    margin: 7px 0;
-    animation: masuk 1s ease both;
-}
-
-@keyframes masuk {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* CONTAINER */
-.struktur-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 50px auto;
-}
-
-.struktur-heading {
-    text-align: center;
-    margin: 65px 0 32px;
-}
-
-.struktur-heading h2 {
-    color: var(--gelap);
-    font-size: 29px;
-    margin: 0 0 10px;
-}
-
-.struktur-heading p {
-    color: var(--abu);
-    margin: 0;
-}
-
-/* FOTO */
-.foto-placeholder {
-    width: 125px;
-    height: 125px;
-    margin: 0 auto 18px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#dcecf9,#b8d8ef);
-    border: 4px solid white;
-    box-shadow: 0 5px 20px rgba(30,96,145,.14);
-    color: var(--biru);
-    font-size: 38px;
-    flex-shrink: 0;
-    transition: transform .35s;
-}
-
-.foto-placeholder:hover { transform: scale(1.06); }
-
-.foto-placeholder img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: center top;
-}
-
-/* PENGURUS INTI */
-.bagan-inti {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.bagan-card,
-.inti-card {
-    background: var(--card);
-    text-align: center;
-    border-radius: 19px;
-    box-shadow: 0 8px 28px rgba(20,65,105,.07);
-    transition: transform .35s, box-shadow .35s;
-}
-
-.bagan-card:hover,
-.inti-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 17px 35px rgba(30,96,145,.14);
-}
-
-.bagan-card {
-    width: 290px;
-    padding: 28px 20px;
-    border-top: 5px solid var(--biru);
-}
-
-.bagan-card h3 {
-    color: var(--gelap);
-    font-size: 19px;
-    line-height: 1.4;
-}
-
-.bagan-card p,
-.inti-card p {
-    color: var(--abu);
-    font-size: 14px;
-    margin: 7px 0;
-}
-
-.bagan-penghubung {
-    width: 3px;
-    height: 35px;
-    background: linear-gradient(#2878b9,#a6d2ef);
-}
-
-.inti-grid {
-    display: grid;
-    grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 22px;
-    width: 100%;
-    max-width: 920px;
-}
-
-.inti-card {
-    padding: 27px 15px;
-    border-bottom: 4px solid #70acd7;
-    min-width: 0;
-}
-
-.inti-card h3 {
-    color: var(--gelap);
-    font-size: 17px;
-    line-height: 1.4;
-}
-
-/* DIVISI */
-.divisi-grid {
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 25px;
-}
-
-.divisi-card {
-    min-width: 0;
-    background: var(--card);
-    padding: 26px;
-    border-radius: 19px;
-    border-top: 5px solid var(--biru);
-    box-shadow: 0 8px 28px rgba(20,65,105,.07);
-    transition: transform .35s,box-shadow .35s;
-}
-
-.divisi-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 32px rgba(30,96,145,.12);
-}
-
-.divisi-card > h3 {
-    text-align: center;
-    color: var(--gelap);
-    font-size: 20px;
-    margin: 0 0 23px;
-}
-
-/* KOORDINATOR */
-.profil-pengurus {
-    text-align: center;
-    padding: 22px 15px;
-    border-radius: 15px;
-    background: #f0f6fb;
-    transition: background .3s;
-}
-
-.profil-pengurus:hover { background: #e5f1fa; }
-
-.profil-pengurus h4 {
-    color: var(--gelap);
-    margin: 0 0 7px;
-    font-size: 17px;
-}
-
-.profil-pengurus p {
-    color: var(--abu);
-    font-size: 14px;
-    margin: 0;
-}
-
-/* ANGGOTA */
-.divisi-anggota {
-    margin-top: 23px;
-    padding-top: 19px;
-    border-top: 1px solid var(--garis);
-}
-
-.divisi-anggota h4 {
-    color: var(--biru);
-    margin: 0 0 17px;
-    font-size: 16px;
-}
-
-.anggota-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(125px,1fr));
-    gap: 12px;
-}
-
-.anggota-card {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 15px 8px;
-    border: 1px solid var(--garis);
-    border-radius: 13px;
-    background: #fff;
-    transition: .3s;
-}
-
-.anggota-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(30,96,145,.10);
-    border-color: #b9d8f0;
-}
-
-.anggota-card .foto-placeholder {
-    width: 85px;
-    height: 85px;
-    margin-bottom: 12px;
-}
-
-.nama-anggota {
-    color: #526477;
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-}
-
-/* INSTAGRAM */
-.instagram-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 12px;
-    padding: 7px 14px;
-    border-radius: 30px;
-    background: linear-gradient(110deg,#833ab4,#e1306c,#f77737);
-    color: white !important;
-    font-size: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: .3s;
-}
-
-.instagram-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 13px rgba(225,48,108,.25);
-}
-
-.instagram-link i { font-size: 14px; }
-
-.anggota-card .instagram-link {
-    padding: 6px 11px;
-    font-size: 11px;
-}
-
-/* FOOTER INSTAGRAM */
-.instagram-organisasi {
-    text-align: center;
-    padding: 28px 20px;
-    margin-top: 55px;
-    border-radius: 18px;
-    background: linear-gradient(135deg,#123b65,#2878b9);
-    color: white;
-}
-
-.instagram-organisasi h3 {
-    margin: 0 0 8px;
-}
-
-.instagram-organisasi p {
-    margin: 0;
-    color: #d9eaff;
-    font-size: 14px;
-}
-
-.instagram-organisasi a {
-    display: inline-flex;
-    gap: 9px;
-    align-items: center;
-    color: white;
-    font-weight: 700;
-    text-decoration: none;
-    margin-top: 17px;
-    padding: 10px 19px;
-    background: rgba(255,255,255,.16);
-    border: 1px solid rgba(255,255,255,.3);
-    border-radius: 30px;
-    transition: .3s;
-}
-
-.instagram-organisasi a:hover {
-    background: white;
-    color: var(--gelap);
-}
-
-/* KEMBALI */
-.struktur-back {
-    text-align: center;
-    margin: 55px 0;
-}
-
-.struktur-back a {
-    display: inline-block;
-    padding: 13px 25px;
-    background: var(--biru);
-    color: white;
-    text-decoration: none;
-    border-radius: 9px;
-    transition: .3s;
-}
-
-.struktur-back a:hover {
-    background: var(--gelap);
-    transform: translateY(-4px);
-}
-
-/* ANIMASI SCROLL */
-.reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity .7s ease,transform .7s ease;
-}
-
-.reveal.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* DARK MODE */
-body.dark-mode {
-    background: #111c29;
-    color: #e8eef5;
-}
-
-body.dark-mode .bagan-card,
-body.dark-mode .inti-card,
-body.dark-mode .divisi-card {
-    background: #202e3e;
-}
-
-body.dark-mode .bagan-card h3,
-body.dark-mode .inti-card h3,
-body.dark-mode .divisi-card > h3,
-body.dark-mode .profil-pengurus h4,
-body.dark-mode .struktur-heading h2 {
-    color: #a6d5ff;
-}
-
-body.dark-mode .bagan-card p,
-body.dark-mode .inti-card p,
-body.dark-mode .profil-pengurus p,
-body.dark-mode .struktur-heading p {
-    color: #c0d0df;
-}
-
-body.dark-mode .profil-pengurus {
-    background: #2b3d50;
-}
-
-body.dark-mode .profil-pengurus:hover {
-    background: #354b62;
-}
-
-body.dark-mode .anggota-card {
-    background: #26384a;
-    border-color: #43566b;
-}
-
-body.dark-mode .nama-anggota {
-    color: #e0eaf4;
-}
-
-body.dark-mode .divisi-anggota {
-    border-color: #43566b;
-}
-
-body.dark-mode .divisi-anggota h4 {
-    color: #a6d5ff;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px) {
-    .struktur-hero {
-        margin-top: 16px;
-        padding: 55px 15px;
-    }
-
-    .struktur-container {
-        width: 93%;
-        margin: 35px auto;
-    }
-
-    .struktur-heading {
-        margin: 48px 0 25px;
-    }
-
-    .struktur-heading h2 { font-size: 24px; }
-
-    .inti-grid {
-        grid-template-columns: repeat(3,minmax(0,1fr));
-        gap: 8px;
-    }
-
-    .inti-card { padding: 17px 7px; }
-
-    .inti-card .foto-placeholder {
-        width: 70px;
-        height: 70px;
-    }
-
-    .inti-card h3 {
-        font-size: 12px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Struktur Pengurus | HIMAPTIKA FKIP UNTAD</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Font Awesome untuk ikon Instagram -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --biru: #1e6091;
+        --gelap: #123b65;
+        --bg: #f4f8fc;
+        --card: #ffffff;
+        --teks: #26384a;
+        --abu: #718096;
+        --garis: #e5edf5;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--teks);
+      }
+
+      /* HERO */
+      .struktur-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 90px 20px;
+        text-align: center;
+        color: white;
+        background: linear-gradient(135deg, #123b65, #2878b9, #65a5d5);
+      }
+
+      .struktur-hero::before,
+      .struktur-hero::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 50%;
+      }
+
+      .struktur-hero::before {
+        width: 300px;
+        height: 300px;
+        top: -180px;
+        left: -60px;
+      }
+
+      .struktur-hero::after {
+        width: 400px;
+        height: 400px;
+        right: -150px;
+        bottom: -280px;
+      }
+
+      .struktur-hero h2 {
+        position: relative;
+        z-index: 1;
+        margin: 0 0 12px;
+        font-size: clamp(30px, 5vw, 46px);
+        animation: masuk 0.8s ease both;
+      }
+
+      .struktur-hero p {
+        position: relative;
+        z-index: 1;
+        margin: 7px 0;
+        animation: masuk 1s ease both;
+      }
+
+      @keyframes masuk {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* CONTAINER */
+      .struktur-container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 50px auto;
+      }
+
+      .struktur-heading {
+        text-align: center;
+        margin: 65px 0 32px;
+      }
+
+      .struktur-heading h2 {
+        color: var(--gelap);
+        font-size: 29px;
+        margin: 0 0 10px;
+      }
+
+      .struktur-heading p {
+        color: var(--abu);
+        margin: 0;
+      }
+
+      /* FOTO */
+      .foto-placeholder {
+        width: 125px;
+        height: 125px;
+        margin: 0 auto 18px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #dcecf9, #b8d8ef);
+        border: 4px solid white;
+        box-shadow: 0 5px 20px rgba(30, 96, 145, 0.14);
+        color: var(--biru);
+        font-size: 38px;
+        flex-shrink: 0;
+        transition: transform 0.35s;
+      }
+
+      .foto-placeholder:hover {
+        transform: scale(1.06);
+      }
+
+      .foto-placeholder img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      /* PENGURUS INTI */
+      .bagan-inti {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .bagan-card,
+      .inti-card {
+        background: var(--card);
+        text-align: center;
+        border-radius: 19px;
+        box-shadow: 0 8px 28px rgba(20, 65, 105, 0.07);
+        transition:
+          transform 0.35s,
+          box-shadow 0.35s;
+      }
+
+      .bagan-card:hover,
+      .inti-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 17px 35px rgba(30, 96, 145, 0.14);
+      }
+
+      .bagan-card {
+        width: 290px;
+        padding: 28px 20px;
+        border-top: 5px solid var(--biru);
+      }
+
+      .bagan-card h3 {
+        color: var(--gelap);
+        font-size: 19px;
+        line-height: 1.4;
+      }
+
+      .bagan-card p,
+      .inti-card p {
+        color: var(--abu);
+        font-size: 14px;
+        margin: 7px 0;
+      }
+
+      .bagan-penghubung {
+        width: 3px;
+        height: 35px;
+        background: linear-gradient(#2878b9, #a6d2ef);
+      }
+
+      .inti-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        width: 100%;
+        max-width: 920px;
+      }
+
+      .inti-card {
+        padding: 27px 15px;
+        border-bottom: 4px solid #70acd7;
+        min-width: 0;
+      }
+
+      .inti-card h3 {
+        color: var(--gelap);
+        font-size: 17px;
+        line-height: 1.4;
+      }
+
+      /* DIVISI */
+      .divisi-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+      }
+
+      .divisi-card {
+        min-width: 0;
+        background: var(--card);
+        padding: 26px;
+        border-radius: 19px;
+        border-top: 5px solid var(--biru);
+        box-shadow: 0 8px 28px rgba(20, 65, 105, 0.07);
+        transition:
+          transform 0.35s,
+          box-shadow 0.35s;
+      }
+
+      .divisi-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 32px rgba(30, 96, 145, 0.12);
+      }
+
+      .divisi-card > h3 {
+        text-align: center;
+        color: var(--gelap);
+        font-size: 20px;
+        margin: 0 0 23px;
+      }
+
+      /* KOORDINATOR */
+      .profil-pengurus {
+        text-align: center;
+        padding: 22px 15px;
+        border-radius: 15px;
+        background: #f0f6fb;
+        transition: background 0.3s;
+      }
+
+      .profil-pengurus:hover {
+        background: #e5f1fa;
+      }
+
+      .profil-pengurus h4 {
+        color: var(--gelap);
+        margin: 0 0 7px;
+        font-size: 17px;
+      }
+
+      .profil-pengurus p {
+        color: var(--abu);
+        font-size: 14px;
+        margin: 0;
+      }
+
+      /* ANGGOTA */
+      .divisi-anggota {
+        margin-top: 23px;
+        padding-top: 19px;
+        border-top: 1px solid var(--garis);
+      }
+
+      .divisi-anggota h4 {
+        color: var(--biru);
+        margin: 0 0 17px;
+        font-size: 16px;
+      }
+
+      .anggota-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+        gap: 12px;
+      }
+
+      .anggota-card {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px 8px;
+        border: 1px solid var(--garis);
+        border-radius: 13px;
+        background: #fff;
+        transition: 0.3s;
+      }
+
+      .anggota-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(30, 96, 145, 0.1);
+        border-color: #b9d8f0;
+      }
+
+      .anggota-card .foto-placeholder {
+        width: 85px;
+        height: 85px;
+        margin-bottom: 12px;
+      }
+
+      .nama-anggota {
+        color: #526477;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.5;
         overflow-wrap: anywhere;
-    }
+      }
 
-    .inti-card p { font-size: 11px; }
+      /* INSTAGRAM */
+      .instagram-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 12px;
+        padding: 7px 14px;
+        border-radius: 30px;
+        background: linear-gradient(110deg, #833ab4, #e1306c, #f77737);
+        color: white !important;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+      }
 
-    .bagan-card { width: min(100%,270px); }
+      .instagram-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 13px rgba(225, 48, 108, 0.25);
+      }
 
-    .divisi-grid { grid-template-columns: 1fr; }
+      .instagram-link i {
+        font-size: 14px;
+      }
 
-    .divisi-card { padding: 20px; }
-}
+      .anggota-card .instagram-link {
+        padding: 6px 11px;
+        font-size: 11px;
+      }
 
-@media(max-width:380px) {
-    .anggota-list {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-    }
+      /* FOOTER INSTAGRAM */
+      .instagram-organisasi {
+        text-align: center;
+        padding: 28px 20px;
+        margin-top: 55px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #123b65, #2878b9);
+        color: white;
+      }
 
-    .inti-card h3 { font-size: 11px; }
-}
+      .instagram-organisasi h3 {
+        margin: 0 0 8px;
+      }
 
-@media(prefers-reduced-motion:reduce) {
-    *,*::before,*::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-    }
+      .instagram-organisasi p {
+        margin: 0;
+        color: #d9eaff;
+        font-size: 14px;
+      }
 
-    .reveal {
+      .instagram-organisasi a {
+        display: inline-flex;
+        gap: 9px;
+        align-items: center;
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        margin-top: 17px;
+        padding: 10px 19px;
+        background: rgba(255, 255, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 30px;
+        transition: 0.3s;
+      }
+
+      .instagram-organisasi a:hover {
+        background: white;
+        color: var(--gelap);
+      }
+
+      /* KEMBALI */
+      .struktur-back {
+        text-align: center;
+        margin: 55px 0;
+      }
+
+      .struktur-back a {
+        display: inline-block;
+        padding: 13px 25px;
+        background: var(--biru);
+        color: white;
+        text-decoration: none;
+        border-radius: 9px;
+        transition: 0.3s;
+      }
+
+      .struktur-back a:hover {
+        background: var(--gelap);
+        transform: translateY(-4px);
+      }
+
+      /* ANIMASI SCROLL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(25px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.show {
         opacity: 1;
-        transform: none;
-    }
-}
-</style>
-</head>
+        transform: translateY(0);
+      }
 
-<body>
+      /* DARK MODE */
+      body.dark-mode {
+        background: #111c29;
+        color: #e8eef5;
+      }
 
-<header class="site-header">
+      body.dark-mode .bagan-card,
+      body.dark-mode .inti-card,
+      body.dark-mode .divisi-card {
+        background: #202e3e;
+      }
 
-    <button class="menu-toggle" id="menuToggle"
+      body.dark-mode .bagan-card h3,
+      body.dark-mode .inti-card h3,
+      body.dark-mode .divisi-card > h3,
+      body.dark-mode .profil-pengurus h4,
+      body.dark-mode .struktur-heading h2 {
+        color: #a6d5ff;
+      }
+
+      body.dark-mode .bagan-card p,
+      body.dark-mode .inti-card p,
+      body.dark-mode .profil-pengurus p,
+      body.dark-mode .struktur-heading p {
+        color: #c0d0df;
+      }
+
+      body.dark-mode .profil-pengurus {
+        background: #2b3d50;
+      }
+
+      body.dark-mode .profil-pengurus:hover {
+        background: #354b62;
+      }
+
+      body.dark-mode .anggota-card {
+        background: #26384a;
+        border-color: #43566b;
+      }
+
+      body.dark-mode .nama-anggota {
+        color: #e0eaf4;
+      }
+
+      body.dark-mode .divisi-anggota {
+        border-color: #43566b;
+      }
+
+      body.dark-mode .divisi-anggota h4 {
+        color: #a6d5ff;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .struktur-hero {
+          margin-top: 16px;
+          padding: 55px 15px;
+        }
+
+        .struktur-container {
+          width: 93%;
+          margin: 35px auto;
+        }
+
+        .struktur-heading {
+          margin: 48px 0 25px;
+        }
+
+        .struktur-heading h2 {
+          font-size: 24px;
+        }
+
+        .inti-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 8px;
+        }
+
+        .inti-card {
+          padding: 17px 7px;
+        }
+
+        .inti-card .foto-placeholder {
+          width: 70px;
+          height: 70px;
+        }
+
+        .inti-card h3 {
+          font-size: 12px;
+          overflow-wrap: anywhere;
+        }
+
+        .inti-card p {
+          font-size: 11px;
+        }
+
+        .bagan-card {
+          width: min(100%, 270px);
+        }
+
+        .divisi-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .divisi-card {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .anggota-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .inti-card h3 {
+          font-size: 11px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
         aria-label="Buka menu navigasi"
-        aria-expanded="false" type="button">
+        aria-expanded="false"
+        type="button"
+      >
         <span></span><span></span><span></span>
-    </button>
+      </button>
 
-    <div class="brand">
-        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+      <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
         <div class="brand-text">
-            <h1>HIMAPTIKA</h1>
-            <p>FKIP UNIVERSITAS TADULAKO</p>
+          <h1>HIMAPTIKA</h1>
+          <p>FKIP UNIVERSITAS TADULAKO</p>
         </div>
-    </div>
+      </div>
 
-    <nav id="mainNav">
+      <nav id="mainNav">
         <div class="drawer-brand">
-            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
-            <div>
-                <h2>HIMAPTIKA</h2>
-                <p>FKIP UNIVERSITAS TADULAKO</p>
-            </div>
+          <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+          <div>
+            <h2>HIMAPTIKA</h2>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+          </div>
         </div>
 
         <a href="index.html">Beranda</a>
@@ -567,559 +608,681 @@ body.dark-mode .divisi-anggota h4 {
         <a href="kontak.html">Kontak</a>
 
         <button id="darkModeToggle" class="dark-mode-toggle" type="button">
-            🌙
+          🌙
         </button>
         <button id="logoutButton" class="logout-button" type="button">
-                Logout
-            </button>
-    </nav>
-</header>
+          Logout
+        </button>
+      </nav>
+    </header>
 
-<section class="struktur-hero">
-    <h2>Struktur Kepengurusan</h2>
-    <p>HIMAPTIKA FKIP Universitas Tadulako</p>
-    <p>Periode 2026</p>
-</section>
+    <section class="struktur-hero">
+      <h2>Struktur Kepengurusan</h2>
+      <p>HIMAPTIKA FKIP Universitas Tadulako</p>
+      <p>Periode 2026</p>
+    </section>
 
-<main class="struktur-container">
-
-    <section>
+    <main class="struktur-container">
+      <section>
         <div class="struktur-heading reveal">
-            <h2>Pengurus Inti</h2>
-            <p>Susunan kepengurusan HIMAPTIKA</p>
+          <h2>Pengurus Inti</h2>
+          <p>Susunan kepengurusan HIMAPTIKA</p>
         </div>
 
         <div class="bagan-inti">
+          <div class="bagan-card reveal">
+            <div class="foto-placeholder">
+              <img src="images/PAK KETUA.jpeg" alt="Ketua Umum" />
+            </div>
+            <h3>I MADE AGUS SUFRIYANTO</h3>
+            <p>Ketua Umum</p>
+            <div class="instagram-slot" data-instagram="md_agus05"></div>
+          </div>
 
-            <div class="bagan-card reveal">
-                <div class="foto-placeholder">
-                    <img src="images/PAK KETUA.jpeg" alt="Ketua Umum">
-                </div>
-                <h3>I MADE AGUS SUFRIYANTO</h3>
-                <p>Ketua Umum</p>
-                <div class="instagram-slot" data-instagram="md_agus05"></div>
+          <div class="bagan-penghubung"></div>
+
+          <div class="inti-grid">
+            <div class="inti-card reveal">
+              <div class="foto-placeholder">
+                <img src="images/ibu sekum.jpg" alt="Sekretaris Umum" />
+              </div>
+              <h3>FAIZAH BUNAI</h3>
+              <p>Sekretaris Umum</p>
+              <div class="instagram-slot" data-instagram="faizahbunai"></div>
             </div>
 
-            <div class="bagan-penghubung"></div>
-
-            <div class="inti-grid">
-
-                <div class="inti-card reveal">
-                    <div class="foto-placeholder">
-                        <img src="images/ibu sekum.jpg" alt="Sekretaris Umum">
-                    </div>
-                    <h3>FAIZAH BUNAI</h3>
-                    <p>Sekretaris Umum</p>
-                    <div class="instagram-slot" data-instagram="faizahbunai"></div>
-                </div>
-
-                <div class="inti-card reveal">
-                    <div class="foto-placeholder">
-                        <img src="images/pak wakil.jpg" alt="Wakil Ketua Umum">
-                    </div>
-                    <h3>DEWA GONSALES</h3>
-                    <p>Wakil Ketua Umum</p>
-                    <div class="instagram-slot" data-instagram="dewagnzlss_"></div>
-                </div>
-
-                <div class="inti-card reveal">
-                    <div class="foto-placeholder">
-                        <img src="images/bu bend.jpg" alt="Bendahara Umum">
-                    </div>
-                    <h3>IMELDA BRIGITA</h3>
-                    <p>Bendahara Umum</p>
-                    <div class="instagram-slot" data-instagram="imeldabrigitaa"></div>
-                </div>
-
+            <div class="inti-card reveal">
+              <div class="foto-placeholder">
+                <img src="images/pak wakil.jpg" alt="Wakil Ketua Umum" />
+              </div>
+              <h3>DEWA GONSALES</h3>
+              <p>Wakil Ketua Umum</p>
+              <div class="instagram-slot" data-instagram="dewagnzlss_"></div>
             </div>
+
+            <div class="inti-card reveal">
+              <div class="foto-placeholder">
+                <img src="images/bu bend.jpg" alt="Bendahara Umum" />
+              </div>
+              <h3>IMELDA BRIGITA</h3>
+              <p>Bendahara Umum</p>
+              <div class="instagram-slot" data-instagram="imeldabrigitaa"></div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <section>
+      <section>
         <div class="struktur-heading reveal">
-            <h2>Struktur Divisi</h2>
-            <p>Bidang dan anggota kepengurusan HIMAPTIKA</p>
+          <h2>Struktur Divisi</h2>
+          <p>Bidang dan anggota kepengurusan HIMAPTIKA</p>
         </div>
 
         <div class="divisi-grid">
+          <!-- PEMIKAT -->
+          <div class="divisi-card reveal">
+            <h3>Divisi Pemikat</h3>
 
-            <!-- PEMIKAT -->
-            <div class="divisi-card reveal">
-                <h3>Divisi Pemikat</h3>
-
-                <div class="profil-pengurus">
-                    <div class="foto-placeholder">
-                        <img src="images/koor pemikat.jpg" alt="Koordinator Pemikat">
-                    </div>
-                    <h4>M. AGUS ARIEFFANDI</h4>
-                    <p>Koordinator Pemikat</p>
-                    <div class="instagram-slot" data-instagram="arieffandimuhammad"></div>
-                </div>
-
-                <div class="divisi-anggota">
-                    <h4>Anggota</h4>
-                    <ul class="anggota-list">
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/afandi (1).jpg" alt="Nurlan Afandi"></div>
-                            <span class="nama-anggota">NURLAN AFANDI</span>
-                            <div class="instagram-slot" data-instagram="n_afandyyy"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Naya.jpg" alt="Alifa Zahwa Inayah"></div>
-                            <span class="nama-anggota">ALIFA ZAHWA INAYAH</span>
-                            <div class="instagram-slot" data-instagram="zhwaanyhhh_"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Nurul (1).jpg" alt="Nurul"></div>
-                            <span class="nama-anggota">NURUL</span>
-                            <div class="instagram-slot" data-instagram="nrul_azliana"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Zulfahmi.jpg" alt="Zulfahmi"></div>
-                            <span class="nama-anggota">ZULFAHMI</span>
-                            <div class="instagram-slot" data-instagram="zulfahmilandjani"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Rasya.jpg" alt="M Rasya Wahyu"></div>
-                            <span class="nama-anggota">M. RASYA WAHYU</span>
-                            <div class="instagram-slot" data-instagram="rasyawhyu"></div>
-                        </li>
-
-                    </ul>
-                </div>
+            <div class="profil-pengurus">
+              <div class="foto-placeholder">
+                <img src="images/koor pemikat.jpg" alt="Koordinator Pemikat" />
+              </div>
+              <h4>M. AGUS ARIEFFANDI</h4>
+              <p>Koordinator Pemikat</p>
+              <div
+                class="instagram-slot"
+                data-instagram="arieffandimuhammad"
+              ></div>
             </div>
 
-            <!-- EVENT ORGANIZER -->
-            <div class="divisi-card reveal">
-                <h3>Divisi Event Organizer</h3>
+            <div class="divisi-anggota">
+              <h4>Anggota</h4>
+              <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/afandi (1).jpg" alt="Nurlan Afandi" />
+                  </div>
+                  <span class="nama-anggota">NURLAN AFANDI</span>
+                  <div class="instagram-slot" data-instagram="n_afandyyy"></div>
+                </li>
 
-                <div class="profil-pengurus">
-                    <div class="foto-placeholder">
-                        <img src="images/Koor eo.jpeg" alt="Koordinator Event Organizer">
-                    </div>
-                    <h4>RANGGA ZAKI</h4>
-                    <p>Koordinator Event Organizer</p>
-                    <div class="instagram-slot" data-instagram="rnggazki"></div>
-                </div>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Naya.jpg" alt="Alifa Zahwa Inayah" />
+                  </div>
+                  <span class="nama-anggota">ALIFA ZAHWA INAYAH</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="zhwaanyhhh_"
+                  ></div>
+                </li>
 
-                <div class="divisi-anggota">
-                    <h4>Anggota</h4>
-                    <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Nurul (1).jpg" alt="Nurul" />
+                  </div>
+                  <span class="nama-anggota">NURUL</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="nrul_azliana"
+                  ></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Giska (1).jpg" alt="Giska Desyana"></div>
-                            <span class="nama-anggota">GISKA DESYANA</span>
-                            <div class="instagram-slot" data-instagram="giskdsyn_"></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Zulfahmi.jpg" alt="Zulfahmi" />
+                  </div>
+                  <span class="nama-anggota">ZULFAHMI</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="zulfahmilandjani"
+                  ></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/syahrul.jpg" alt="Ahmad Syahrul Arifin"></div>
-                            <span class="nama-anggota">AHMAD SYAHRUL ARIFIN</span>
-                            <div class="instagram-slot" data-instagram="syarularif_"></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Rasya.jpg" alt="M Rasya Wahyu" />
+                  </div>
+                  <span class="nama-anggota">M. RASYA WAHYU</span>
+                  <div class="instagram-slot" data-instagram="rasyawhyu"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Sunarti.jpeg" alt="Sunarti"></div>
-                            <span class="nama-anggota">SUNARTI</span>
-                            <div class="instagram-slot" data-instagram="sunar_1301"></div>
-                        </li>
+          <!-- EVENT ORGANIZER -->
+          <div class="divisi-card reveal">
+            <h3>Divisi Event Organizer</h3>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/nova.jpg" alt="Dwi Nova Anggraeni"></div>
-                            <span class="nama-anggota">DWI NOVA ANGGRAENI</span>
-                            <div class="instagram-slot" data-instagram="_dwinova_"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Aysah.jpeg" alt="Aysah Dwi Safitri"></div>
-                            <span class="nama-anggota">AYSAH DWI SAFITRI</span>
-                            <div class="instagram-slot" data-instagram="aysahdwisafitri"></div>
-                        </li>
-
-                    </ul>
-                </div>
+            <div class="profil-pengurus">
+              <div class="foto-placeholder">
+                <img
+                  src="images/Koor eo.jpeg"
+                  alt="Koordinator Event Organizer"
+                />
+              </div>
+              <h4>RANGGA ZAKI</h4>
+              <p>Koordinator Event Organizer</p>
+              <div class="instagram-slot" data-instagram="rnggazki"></div>
             </div>
 
-            <!-- ADMEINFO -->
-            <div class="divisi-card reveal">
-                <h3>Divisi Admeinfo</h3>
+            <div class="divisi-anggota">
+              <h4>Anggota</h4>
+              <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Giska (1).jpg" alt="Giska Desyana" />
+                  </div>
+                  <span class="nama-anggota">GISKA DESYANA</span>
+                  <div class="instagram-slot" data-instagram="giskdsyn_"></div>
+                </li>
 
-                <div class="profil-pengurus">
-                    <div class="foto-placeholder">
-                        <img src="images/Koor admeinfo.jpeg" alt="Koordinator Admeinfo">
-                    </div>
-                    <h4>MUH IKSAN</h4>
-                    <p>Koordinator Admeinfo</p>
-                    <div class="instagram-slot" data-instagram="mhilksan_"></div>
-                </div>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/syahrul.jpg" alt="Ahmad Syahrul Arifin" />
+                  </div>
+                  <span class="nama-anggota">AHMAD SYAHRUL ARIFIN</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="syarularif_"
+                  ></div>
+                </li>
 
-                <div class="divisi-anggota">
-                    <h4>Anggota</h4>
-                    <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Sunarti.jpeg" alt="Sunarti" />
+                  </div>
+                  <span class="nama-anggota">SUNARTI</span>
+                  <div class="instagram-slot" data-instagram="sunar_1301"></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Desrin.jpeg" alt="Desrin Natalin Sumba"></div>
-                            <span class="nama-anggota">DESRIN NATALIN SUMBA</span>
-                            <div class="instagram-slot" data-instagram="desrinsumba_"></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/nova.jpg" alt="Dwi Nova Anggraeni" />
+                  </div>
+                  <span class="nama-anggota">DWI NOVA ANGGRAENI</span>
+                  <div class="instagram-slot" data-instagram="_dwinova_"></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Zaskyah.jpg" alt="Zaskyah Nur Balosi"></div>
-                            <span class="nama-anggota">ZASKYAH NUR BALOSI</span>
-                            <div class="instagram-slot" data-instagram="zski06_"></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Aysah.jpeg" alt="Aysah Dwi Safitri" />
+                  </div>
+                  <span class="nama-anggota">AYSAH DWI SAFITRI</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="aysahdwisafitri"
+                  ></div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Muhzin (1).jpg" alt="Muhzin Alatas"></div>
-                            <span class="nama-anggota">MUHZIN ALATAS</span>
-                            <div class="instagram-slot" data-instagram="muhzinalatas75"></div>
-                        </li>
+          <!-- ADMEINFO -->
+          <div class="divisi-card reveal">
+            <h3>Divisi Admeinfo</h3>
 
-                    </ul>
-                </div>
+            <div class="profil-pengurus">
+              <div class="foto-placeholder">
+                <img
+                  src="images/Koor admeinfo.jpeg"
+                  alt="Koordinator Admeinfo"
+                />
+              </div>
+              <h4>MUH IKSAN</h4>
+              <p>Koordinator Admeinfo</p>
+              <div class="instagram-slot" data-instagram="mhilksan_"></div>
             </div>
 
-            <!-- PELAYANAN AKADEMIK -->
-            <div class="divisi-card reveal">
-                <h3>Divisi Pelayanan Akademik</h3>
+            <div class="divisi-anggota">
+              <h4>Anggota</h4>
+              <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Desrin.jpeg" alt="Desrin Natalin Sumba" />
+                  </div>
+                  <span class="nama-anggota">DESRIN NATALIN SUMBA</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="desrinsumba_"
+                  ></div>
+                </li>
 
-                <div class="profil-pengurus">
-                    <div class="foto-placeholder">👤</div>
-                    <h4>ARIL THANDY ANGKA</h4>
-                    <p>Koordinator Pelayanan Akademik</p>
-                    <div class="instagram-slot" data-instagram="ziellile"></div>
-                </div>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Zaskyah.jpg" alt="Zaskyah Nur Balosi" />
+                  </div>
+                  <span class="nama-anggota">ZASKYAH NUR BALOSI</span>
+                  <div class="instagram-slot" data-instagram="zski06_"></div>
+                </li>
 
-                <div class="divisi-anggota">
-                    <h4>Anggota</h4>
-                    <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Muhzin (1).jpg" alt="Muhzin Alatas" />
+                  </div>
+                  <span class="nama-anggota">MUHZIN ALATAS</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="muhzinalatas75"
+                  ></div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/q.jpg" alt="Moh Risqi"></div>
-                            <span class="nama-anggota">MOH. RISQI</span>
-                            <div class="instagram-slot" data-instagram="es.kik0oo"></div>
-                        </li>
+          <!-- PELAYANAN AKADEMIK -->
+          <div class="divisi-card reveal">
+            <h3>Divisi Pelayanan Akademik</h3>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Dela.jpg" alt="Dela Safitri"></div>
-                            <span class="nama-anggota">DELA SAFITRI</span>
-                            <div class="instagram-slot" data-instagram="delasft.z"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/dila.jpg" alt="Nur Fadhilah"></div>
-                            <span class="nama-anggota">NUR FADHILAH</span>
-                            <div class="instagram-slot" data-instagram="fadilaaa_dilaa"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Putriana.jpg" alt="Putriana"></div>
-                            <span class="nama-anggota">PUTRIANA</span>
-                            <div class="instagram-slot" data-instagram="ptri_an4"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/nadya.jpg" alt="Nur Anadya Putri"></div>
-                            <span class="nama-anggota">NUR ANADYA PUTRI</span>
-                            <div class="instagram-slot" data-instagram="nurandyptr_"></div>
-                        </li>
-
-                    </ul>
-                </div>
+            <div class="profil-pengurus">
+              <div class="foto-placeholder">👤</div>
+              <h4>ARIL THANDY ANGKA</h4>
+              <p>Koordinator Pelayanan Akademik</p>
+              <div class="instagram-slot" data-instagram="ziellile"></div>
             </div>
 
-            <!-- KEROHANIAN -->
-            <div class="divisi-card reveal">
-                <h3>Divisi Kerohanian</h3>
+            <div class="divisi-anggota">
+              <h4>Anggota</h4>
+              <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/q.jpg" alt="Moh Risqi" />
+                  </div>
+                  <span class="nama-anggota">MOH. RISQI</span>
+                  <div class="instagram-slot" data-instagram="es.kik0oo"></div>
+                </li>
 
-                <div class="profil-pengurus">
-                    <div class="foto-placeholder">
-                        <img src="images/Koor kerohanian.jpeg" alt="Koordinator Kerohanian">
-                    </div>
-                    <h4>LIYANA FUAADAH</h4>
-                    <p>Koordinator Kerohanian</p>
-                    <div class="instagram-slot" data-instagram="liynaafdh"></div>
-                </div>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Dela.jpg" alt="Dela Safitri" />
+                  </div>
+                  <span class="nama-anggota">DELA SAFITRI</span>
+                  <div class="instagram-slot" data-instagram="delasft.z"></div>
+                </li>
 
-                <div class="divisi-anggota">
-                    <h4>Anggota</h4>
-                    <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/dila.jpg" alt="Nur Fadhilah" />
+                  </div>
+                  <span class="nama-anggota">NUR FADHILAH</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="fadilaaa_dilaa"
+                  ></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/heri (1).jpg" alt="Heriyanto Septian Saputra"></div>
-                            <span class="nama-anggota">HERIYANTO SEPTIAN SAPUTRA</span>
-                            <div class="instagram-slot" data-instagram="hynxajaaa__"></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Putriana.jpg" alt="Putriana" />
+                  </div>
+                  <span class="nama-anggota">PUTRIANA</span>
+                  <div class="instagram-slot" data-instagram="ptri_an4"></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/rafy (1).jpg" alt="Rafyal Khani Fikri"></div>
-                            <span class="nama-anggota">RAFYAL KHANI FIKRI</span>
-                            <div class="instagram-slot" data-instagram="rhfyj_"></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/nadya.jpg" alt="Nur Anadya Putri" />
+                  </div>
+                  <span class="nama-anggota">NUR ANADYA PUTRI</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="nurandyptr_"
+                  ></div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Gita.jpg" alt="Gita Afriani"></div>
-                            <span class="nama-anggota">GITA AFRIANI</span>
-                            <div class="instagram-slot" data-instagram="gitafrni_19"></div>
-                        </li>
+          <!-- KEROHANIAN -->
+          <div class="divisi-card reveal">
+            <h3>Divisi Kerohanian</h3>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/alya (2).jpg" alt="Alya Sulistya"></div>
-                            <span class="nama-anggota">ALYA SULISTYA</span>
-                            <div class="instagram-slot" data-instagram="alyaslstya_"></div>
-                        </li>
-
-                    </ul>
-                </div>
+            <div class="profil-pengurus">
+              <div class="foto-placeholder">
+                <img
+                  src="images/Koor kerohanian.jpeg"
+                  alt="Koordinator Kerohanian"
+                />
+              </div>
+              <h4>LIYANA FUAADAH</h4>
+              <p>Koordinator Kerohanian</p>
+              <div class="instagram-slot" data-instagram="liynaafdh"></div>
             </div>
 
-            <!-- KEWIRAUSAHAAN -->
-            <div class="divisi-card reveal">
-                <h3>Divisi Kewirausahaan</h3>
+            <div class="divisi-anggota">
+              <h4>Anggota</h4>
+              <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img
+                      src="images/heri (1).jpg"
+                      alt="Heriyanto Septian Saputra"
+                    />
+                  </div>
+                  <span class="nama-anggota">HERIYANTO SEPTIAN SAPUTRA</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="hynxajaaa__"
+                  ></div>
+                </li>
 
-                <div class="profil-pengurus">
-                    <div class="foto-placeholder">
-                        <img src="images/Koor KWU.jpg" alt="Koordinator Kewirausahaan">
-                    </div>
-                    <h4>ANJELITA MENGGAU</h4>
-                    <p>Koordinator Kewirausahaan</p>
-                    <div class="instagram-slot" data-instagram="vithago_"></div>
-                </div>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/rafy (1).jpg" alt="Rafyal Khani Fikri" />
+                  </div>
+                  <span class="nama-anggota">RAFYAL KHANI FIKRI</span>
+                  <div class="instagram-slot" data-instagram="rhfyj_"></div>
+                </li>
 
-                <div class="divisi-anggota">
-                    <h4>Anggota</h4>
-                    <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Gita.jpg" alt="Gita Afriani" />
+                  </div>
+                  <span class="nama-anggota">GITA AFRIANI</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="gitafrni_19"
+                  ></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/nabila.jpg" alt="Nabilla"></div>
-                            <span class="nama-anggota">NABILLA</span>
-                            <div class="instagram-slot" data-instagram="nabilla_badjeber"></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/alya (2).jpg" alt="Alya Sulistya" />
+                  </div>
+                  <span class="nama-anggota">ALYA SULISTYA</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="alyaslstya_"
+                  ></div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/wulan.jpg" alt="Sari Wulandari"></div>
-                            <span class="nama-anggota">SARI WULANDARI</span>
-                            <div class="instagram-slot" data-instagram="sarwulndri_ln"></div>
-                        </li>
+          <!-- KEWIRAUSAHAAN -->
+          <div class="divisi-card reveal">
+            <h3>Divisi Kewirausahaan</h3>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/hidaa.jpeg" alt="Hidayanti Rukmana"></div>
-                            <span class="nama-anggota">HIDAYANTI RUKMANA</span>
-                            <div class="instagram-slot" data-instagram="hidaaynti_"></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/agung (1).jpg" alt="Agung"></div>
-                            <span class="nama-anggota">AGUNG</span>
-                            <div class="instagram-slot" data-instagram="siiowei"></div>
-                        </li>
-
-                    </ul>
-                </div>
+            <div class="profil-pengurus">
+              <div class="foto-placeholder">
+                <img
+                  src="images/Koor KWU.jpg"
+                  alt="Koordinator Kewirausahaan"
+                />
+              </div>
+              <h4>ANJELITA MENGGAU</h4>
+              <p>Koordinator Kewirausahaan</p>
+              <div class="instagram-slot" data-instagram="vithago_"></div>
             </div>
 
-            <!-- HUBUNGAN MASYARAKAT -->
-            <div class="divisi-card reveal">
-                <h3>Divisi Hubungan Masyarakat</h3>
+            <div class="divisi-anggota">
+              <h4>Anggota</h4>
+              <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/nabila.jpg" alt="Nabilla" />
+                  </div>
+                  <span class="nama-anggota">NABILLA</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="nabilla_badjeber"
+                  ></div>
+                </li>
 
-                <div class="profil-pengurus">
-                    <div class="foto-placeholder">
-                        <img src="images/koor humas.jpeg" alt="Koordinator Hubungan Masyarakat">
-                    </div>
-                    <h4>MUTMAINNAH</h4>
-                    <p>Koordinator Hubungan Masyarakat</p>
-                    <div class="instagram-slot" data-instagram="innnnnaaaaaa_"></div>
-                </div>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/wulan.jpg" alt="Sari Wulandari" />
+                  </div>
+                  <span class="nama-anggota">SARI WULANDARI</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="sarwulndri_ln"
+                  ></div>
+                </li>
 
-                <div class="divisi-anggota">
-                    <h4>Anggota</h4>
-                    <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/hidaa.jpeg" alt="Hidayanti Rukmana" />
+                  </div>
+                  <span class="nama-anggota">HIDAYANTI RUKMANA</span>
+                  <div class="instagram-slot" data-instagram="hidaaynti_"></div>
+                </li>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/ananda ziat.jpeg" alt="Ananda Ziat"></div>
-                            <span class="nama-anggota">ANANDA ZIAT</span>
-                            <div class="instagram-slot" data-instagram=""></div>
-                        </li>
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/agung (1).jpg" alt="Agung" />
+                  </div>
+                  <span class="nama-anggota">AGUNG</span>
+                  <div class="instagram-slot" data-instagram="siiowei"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/Lina.jpg" alt="Nurlina"></div>
-                            <span class="nama-anggota">NURLINA</span>
-                            <div class="instagram-slot" data-instagram=""></div>
-                        </li>
+          <!-- HUBUNGAN MASYARAKAT -->
+          <div class="divisi-card reveal">
+            <h3>Divisi Hubungan Masyarakat</h3>
 
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/khusnul.jpg" alt="Khusnul Khatima"></div>
-                            <span class="nama-anggota">KHUSNUL KHATIMA</span>
-                            <div class="instagram-slot" data-instagram=""></div>
-                        </li>
-
-                        <li class="anggota-card">
-                            <div class="foto-placeholder"><img src="images/isra.jpg" alt="Isra Nurhidayah"></div>
-                            <span class="nama-anggota">ISRA NURHIDAYAH</span>
-                            <div class="instagram-slot" data-instagram=""></div>
-                        </li>
-
-                    </ul>
-                </div>
+            <div class="profil-pengurus">
+              <div class="foto-placeholder">
+                <img
+                  src="images/koor humas.jpeg"
+                  alt="Koordinator Hubungan Masyarakat"
+                />
+              </div>
+              <h4>MUTMAINNAH</h4>
+              <p>Koordinator Hubungan Masyarakat</p>
+              <div class="instagram-slot" data-instagram="innnnnaaaaaa_"></div>
             </div>
 
+            <div class="divisi-anggota">
+              <h4>Anggota</h4>
+              <ul class="anggota-list">
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/ananda ziat.jpeg" alt="Ananda Ziat" />
+                  </div>
+                  <span class="nama-anggota">ANANDA ZIAT</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="ziat_langganya21"
+                  ></div>
+                </li>
+
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/Lina.jpg" alt="Nurlina" />
+                  </div>
+                  <span class="nama-anggota">NURLINA</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="nurlinaaaa_02"
+                  ></div>
+                </li>
+
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/khusnul.jpg" alt="Khusnul Khatima" />
+                  </div>
+                  <span class="nama-anggota">KHUSNUL KHATIMA</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="_husnulkhatima010"
+                  ></div>
+                </li>
+
+                <li class="anggota-card">
+                  <div class="foto-placeholder">
+                    <img src="images/isra.jpg" alt="Isra Nurhidayah" />
+                  </div>
+                  <span class="nama-anggota">ISRA NURHIDAYAH</span>
+                  <div
+                    class="instagram-slot"
+                    data-instagram="isranurhidayah"
+                  ></div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- INSTAGRAM RESMI HIMAPTIKA -->
-    <section class="instagram-organisasi reveal">
+      <!-- INSTAGRAM RESMI HIMAPTIKA -->
+      <section class="instagram-organisasi reveal">
         <h3>Ikuti Aktivitas HIMAPTIKA</h3>
-        <p>Dapatkan informasi, kegiatan, dan dokumentasi terbaru HIMAPTIKA FKIP UNTAD.</p>
+        <p>
+          Dapatkan informasi, kegiatan, dan dokumentasi terbaru HIMAPTIKA FKIP
+          UNTAD.
+        </p>
 
         <!-- Ganti USERNAME dengan akun Instagram resmi HIMAPTIKA -->
-        <a href="https://www.instagram.com/himaptikafkipuntad/"
-           target="_blank"
-           rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-            Instagram HIMAPTIKA
+        <a
+          href="https://www.instagram.com/himaptikafkipuntad/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-instagram"></i>
+          Instagram HIMAPTIKA
         </a>
-    </section>
+      </section>
 
-    <div class="struktur-back">
+      <div class="struktur-back">
         <a href="index.html">← Kembali ke Beranda</a>
-    </div>
+      </div>
+    </main>
 
-</main>
+    <footer>
+      <p>© 2026 HIMAPTIKA FKIP Universitas Tadulako</p>
+      <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+    </footer>
 
-<footer>
-    <p>© 2026 HIMAPTIKA FKIP Universitas Tadulako</p>
-    <p>Himpunan Mahasiswa Pendidikan Matematika</p>
-</footer>
+    <script>
+      // ==================================
+      // INSTAGRAM PENGURUS
+      // ==================================
 
-<script>
-// ==================================
-// INSTAGRAM PENGURUS
-// ==================================
+      // Isi username tanpa tanda @.
+      // Contoh: data-instagram="arilthandy"
+      // Jika masih kosong, tombol tidak ditampilkan.
 
-// Isi username tanpa tanda @.
-// Contoh: data-instagram="arilthandy"
-// Jika masih kosong, tombol tidak ditampilkan.
+      document.querySelectorAll(".instagram-slot").forEach((slot) => {
+        const username = slot.dataset.instagram.trim().replace(/^@/, "");
 
-document.querySelectorAll(".instagram-slot").forEach(slot => {
-    const username = slot.dataset.instagram.trim().replace(/^@/, "");
+        if (!username) {
+          slot.remove();
+          return;
+        }
 
-    if (!username) {
-        slot.remove();
-        return;
-    }
+        const link = document.createElement("a");
+        link.className = "instagram-link";
+        link.href =
+          "https://www.instagram.com/" + encodeURIComponent(username) + "/";
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
 
-    const link = document.createElement("a");
-    link.className = "instagram-link";
-    link.href = "https://www.instagram.com/" +
-        encodeURIComponent(username) + "/";
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+        const icon = document.createElement("i");
+        icon.className = "fab fa-instagram";
 
-    const icon = document.createElement("i");
-    icon.className = "fab fa-instagram";
+        const text = document.createTextNode("Instagram");
 
-    const text = document.createTextNode("Instagram");
+        link.append(icon, text);
+        slot.appendChild(link);
+      });
 
-    link.append(icon, text);
-    slot.appendChild(link);
-});
+      // ==================================
+      // HAMBURGER MENU
+      // ==================================
 
-// ==================================
-// HAMBURGER MENU
-// ==================================
+      const menuToggle = document.getElementById("menuToggle");
+      const mainNav = document.getElementById("mainNav");
 
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener("click", function () {
+          const isOpen = mainNav.classList.toggle("active");
 
-if (menuToggle && mainNav) {
+          menuToggle.classList.toggle("active", isOpen);
+          document.body.classList.toggle("menu-open", isOpen);
 
-    menuToggle.addEventListener("click", function () {
-        const isOpen = mainNav.classList.toggle("active");
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
 
-        menuToggle.classList.toggle("active", isOpen);
-        document.body.classList.toggle("menu-open", isOpen);
-
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    mainNav.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", function () {
+        mainNav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", function () {
             mainNav.classList.remove("active");
             menuToggle.classList.remove("active");
             document.body.classList.remove("menu-open");
             menuToggle.setAttribute("aria-expanded", "false");
+          });
         });
-    });
 
-    document.addEventListener("click", function (event) {
-        if (
+        document.addEventListener("click", function (event) {
+          if (
             document.body.classList.contains("menu-open") &&
             !mainNav.contains(event.target) &&
             !menuToggle.contains(event.target)
-        ) {
+          ) {
             mainNav.classList.remove("active");
             menuToggle.classList.remove("active");
             document.body.classList.remove("menu-open");
             menuToggle.setAttribute("aria-expanded", "false");
-        }
-    });
+          }
+        });
 
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
             mainNav.classList.remove("active");
             menuToggle.classList.remove("active");
             document.body.classList.remove("menu-open");
             menuToggle.setAttribute("aria-expanded", "false");
-        }
-    });
-}
+          }
+        });
+      }
 
-// ==================================
-// MODE GELAP
-// ==================================
+      // ==================================
+      // MODE GELAP
+      // ==================================
 
-const darkModeToggle = document.getElementById("darkModeToggle");
+      const darkModeToggle = document.getElementById("darkModeToggle");
 
-if (darkModeToggle) {
-    darkModeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener("click", function () {
+          document.body.classList.toggle("dark-mode");
 
-        darkModeToggle.textContent =
-            document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-    });
-}
+          darkModeToggle.textContent = document.body.classList.contains(
+            "dark-mode",
+          )
+            ? "☀️"
+            : "🌙";
+        });
+      }
 
-// ==================================
-// ANIMASI SCROLL
-// ==================================
+      // ==================================
+      // ANIMASI SCROLL
+      // ==================================
 
-const revealElements = document.querySelectorAll(".reveal");
+      const revealElements = document.querySelectorAll(".reveal");
 
-if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
                 entry.target.classList.add("show");
                 observer.unobserve(entry.target);
-            }
+              }
+            });
+          },
+          { threshold: 0.08 },
+        );
+
+        revealElements.forEach((element, index) => {
+          element.style.transitionDelay = `${(index % 3) * 0.1}s`;
+
+          observer.observe(element);
         });
-    }, { threshold: 0.08 });
-
-    revealElements.forEach((element, index) => {
-        element.style.transitionDelay =
-            `${(index % 3) * 0.10}s`;
-
-        observer.observe(element);
-    });
-} else {
-    revealElements.forEach(element => element.classList.add("show"));
-}
-</script>
-
-</body>
+      } else {
+        revealElements.forEach((element) => element.classList.add("show"));
+      }
+    </script>
+  </body>
 </html>
