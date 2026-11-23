@@ -14136,3 +14136,828 @@ body.dark-mode .agenda-page .agenda-filter {
         line-height: 1.9;
     }
 }
+
+/* =================================
+   PREMIUM BUTTON ANIMATION
+   HIMAPTIKA FKIP UNTAD
+================================= */
+
+.tombol,
+button,
+.agenda-button,
+.home-seminar-all,
+.lihat-semua,
+.text-link {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background-color .3s ease,
+        color .3s ease;
+}
+
+/* Efek hover */
+.tombol:hover,
+.agenda-button:hover,
+.home-seminar-all:hover,
+.lihat-semua:hover,
+.text-link:hover {
+    transform: translateY(-4px);
+}
+
+/* Efek klik */
+.tombol:active,
+button:active,
+.agenda-button:active,
+.home-seminar-all:active,
+.lihat-semua:active {
+    transform: scale(.96);
+}
+
+/* Efek kilau */
+.tombol::before,
+.agenda-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left .6s ease;
+    pointer-events: none;
+}
+
+.tombol:hover::before,
+.agenda-button:hover::before {
+    left: 150%;
+}
+
+/* Fokus keyboard */
+.tombol:focus-visible,
+button:focus-visible,
+.agenda-button:focus-visible {
+    outline: 3px solid #77b8ff;
+    outline-offset: 4px;
+}
+
+/* Aksesibilitas */
+@media (prefers-reduced-motion: reduce) {
+    .tombol,
+    button,
+    .agenda-button,
+    .home-seminar-all,
+    .lihat-semua,
+    .text-link {
+        transition: none;
+    }
+
+    .tombol:hover,
+    button:hover {
+        transform: none;
+    }
+}
+
+/* =====================================================
+   HIMAPTIKA - PEMESANAN BUKU KONTROL
+   Modern Premium Blue Design
+   Khusus buku-kontrol.html
+   Navbar dan header tidak diubah
+===================================================== */
+
+/* HERO SECTION */
+.book-order-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 95px 20px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255,255,255,.15), transparent 24%),
+    radial-gradient(circle at 10% 100%, rgba(49,151,255,.25), transparent 30%),
+    linear-gradient(120deg, #062b59 0%, #0756a5 55%, #1689e8 100%);
+  color: #fff;
+}
+
+.book-order-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 400px;
+  height: 400px;
+  right: -120px;
+  top: -210px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 35px rgba(255,255,255,.035),
+    0 0 0 75px rgba(255,255,255,.025);
+}
+
+.book-order-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 160px;
+  height: 160px;
+  left: 5%;
+  bottom: -110px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+
+.book-order-hero .container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+}
+
+.book-order-hero .container > p:first-child {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 50px;
+  background: rgba(255,255,255,.10);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.book-order-hero h2 {
+  max-width: 750px;
+  margin: 22px 0 17px;
+  color: #fff;
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.13;
+}
+
+.book-order-hero .container > p:last-child {
+  max-width: 650px;
+  color: rgba(255,255,255,.82);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* AREA KONTEN */
+.book-order-section {
+  position: relative;
+  padding: 80px 20px;
+  background:
+    radial-gradient(ellipse at 10% 10%, rgba(219,237,255,.65), transparent 35%),
+    linear-gradient(180deg, #f6faff 0%, #fff 100%);
+  font-family: "Inter", sans-serif;
+}
+
+.book-order-container {
+  max-width: 1050px;
+}
+
+.book-order-grid {
+  gap: 30px;
+}
+
+/* KARTU PRODUK DAN FORMULIR */
+.book-info,
+.book-form {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  border: 1px solid #e5edf7;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(17,65,115,.07);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.book-info::before,
+.book-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #0756a5, #39a2ff);
+}
+
+.book-info:hover,
+.book-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px rgba(17,65,115,.12);
+}
+
+/* JUDUL */
+.book-info h3,
+.book-form h3 {
+  color: #12345a;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -.7px;
+  line-height: 1.4;
+}
+
+.book-info > p:not(.section-label) {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.book-info .section-label,
+.book-form .section-label {
+  color: #147bd1;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* HARGA PRODUK */
+.book-price {
+  margin: 25px 0 10px;
+  color: #0968b9;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.book-package {
+  padding: 9px 15px;
+  border: 1px solid #c8e4ff;
+  border-radius: 50px;
+  background: #edf6ff;
+  color: #075ca8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* DAFTAR INFORMASI PRODUK */
+.book-info ul {
+  margin-top: 27px;
+  padding: 0;
+  list-style: none;
+}
+
+.book-info li {
+  position: relative;
+  padding: 13px 8px 13px 36px;
+  border-bottom: 1px solid #edf2f7;
+  color: #526276;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.book-info li::before {
+  content: "✓";
+  position: absolute;
+  top: 12px;
+  left: 2px;
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e6f3ff;
+  color: #0874d1;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* FORMULIR */
+.book-form form {
+  margin-top: 22px;
+}
+
+.book-form label {
+  margin-top: 19px;
+  margin-bottom: 8px;
+  color: #34465d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.book-form input,
+.book-form select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 49px;
+  padding: 13px 15px;
+  border: 1px solid #dce5ef;
+  border-radius: 11px;
+  background: #f9fbfe;
+  color: #26384d;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  transition: all .25s ease;
+}
+
+.book-form input::placeholder {
+  color: #a4afbd;
+}
+
+.book-form input:hover,
+.book-form select:hover {
+  border-color: #9ac7f0;
+  background: #fff;
+}
+
+.book-form input:focus,
+.book-form select:focus {
+  outline: none;
+  border-color: #1689e8;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(22,137,232,.11);
+}
+
+.book-form input[readonly] {
+  border-color: #d8e9fa;
+  background: #eff6ff;
+  color: #0968b9;
+  font-weight: 700;
+}
+
+.book-form input[type="date"] {
+  cursor: pointer;
+}
+
+/* CATATAN FORMULIR */
+.book-note {
+  display: block;
+  margin-top: 10px;
+  color: #8492a5;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* TOTAL PEMBAYARAN */
+.book-total {
+  margin-top: 28px;
+  padding: 23px;
+  border: 1px solid #d8eaff;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #edf6ff, #f8fbff);
+}
+
+.book-total span {
+  color: #526b87;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.book-total strong {
+  margin-top: 9px;
+  color: #075ca8;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.book-total small {
+  display: block;
+  margin-top: 5px;
+  color: #8492a5;
+  font-size: 11px;
+}
+
+/* TOMBOL PEMESANAN */
+.book-submit {
+  min-height: 53px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #0756a5, #1689e8);
+  box-shadow: 0 8px 20px rgba(7,86,165,.22);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  transition: all .25s ease;
+}
+
+.book-submit:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(110deg, #06447f, #0874d1);
+  box-shadow: 0 12px 25px rgba(7,86,165,.3);
+}
+
+.book-submit:active {
+  transform: scale(.98);
+}
+
+.book-submit:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ANIMASI */
+@keyframes bookEnter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-info,
+.book-form {
+  animation: bookEnter .65s ease both;
+}
+
+.book-form {
+  animation-delay: .12s;
+}
+
+/* RESPONSIVE TABLET DAN HP */
+@media (max-width: 750px) {
+  .book-order-hero {
+    padding: 62px 20px;
+  }
+
+  .book-order-hero h2 {
+    font-size: clamp(31px, 8vw, 40px);
+    letter-spacing: -1.3px;
+  }
+
+  .book-order-section {
+    padding: 45px 15px 60px;
+  }
+
+  .book-order-grid {
+    gap: 20px;
+  }
+
+  .book-info,
+  .book-form {
+    padding: 24px 20px;
+    border-radius: 17px;
+  }
+
+  .book-info h3,
+  .book-form h3 {
+    font-size: 20px;
+  }
+
+  .book-price {
+    font-size: 36px;
+  }
+
+  .book-total {
+    padding: 19px;
+  }
+
+  .book-total strong {
+    font-size: 29px;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-info,
+  .book-form {
+    padding: 20px 16px;
+  }
+
+  .book-order-hero h2 {
+    font-size: 29px;
+  }
+}
+
+/* AKSESIBILITAS ANIMASI */
+@media (prefers-reduced-motion: reduce) {
+  .book-info,
+  .book-form,
+  .book-submit {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ==================================================
+   HIMAPTIKA 3D PREMIUM EXPERIENCE
+   Buku Kontrol | Navbar & Header tidak diubah
+================================================== */
+
+.book-order-hero,
+.book-order-section {
+  font-family: "Inter", sans-serif;
+}
+
+/* 1. HERO 3D */
+.book-order-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 25%, rgba(40,150,255,.32), transparent 35%),
+    radial-gradient(ellipse at 15% 90%, rgba(0,90,190,.35), transparent 40%),
+    linear-gradient(135deg, #041d3c, #0756a5 60%, #087fe0);
+}
+
+.book-order-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 300px;
+  height: 300px;
+  right: 8%;
+  top: -100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,.2), rgba(30,144,255,.04));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow:
+    inset -20px -25px 50px rgba(0,20,70,.2),
+    0 30px 80px rgba(0,0,0,.18);
+  animation: himaFloat 7s ease-in-out infinite;
+}
+
+.book-order-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100px;
+  height: 100px;
+  right: 28%;
+  bottom: 15px;
+  border-radius: 25px;
+  transform: rotate(35deg);
+  background: linear-gradient(145deg, rgba(255,255,255,.2), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,.15);
+  animation: himaFloat 5s ease-in-out infinite reverse;
+}
+
+.book-order-hero h2 {
+  text-shadow: 0 5px 25px rgba(0,0,0,.2);
+}
+
+.book-order-hero .container > p:first-child {
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+}
+
+/* 2. AREA KONTEN */
+.book-order-section {
+  perspective: 1200px;
+  background:
+    radial-gradient(circle at 90% 10%, #e0efff 0, transparent 25%),
+    linear-gradient(180deg, #f3f8ff, #fff 75%);
+}
+
+/* 3. KARTU 3D */
+.book-info,
+.book-form {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(180,210,240,.65);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #ffffff, #f8fbff);
+  box-shadow:
+    0 2px 4px rgba(10,50,100,.03),
+    0 12px 25px rgba(10,50,100,.07),
+    0 30px 55px rgba(10,50,100,.06),
+    inset 0 1px 0 rgba(255,255,255,.95);
+  transform-style: preserve-3d;
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1),
+    box-shadow .45s ease;
+}
+
+.book-info::before,
+.book-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #063d7a, #1689e8, #7ac5ff);
+}
+
+.book-info::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: -90px;
+  right: -90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(60,155,255,.13), transparent 70%);
+  pointer-events: none;
+}
+
+.book-info:hover,
+.book-form:hover {
+  transform: translateY(-8px) rotateX(1deg);
+  box-shadow:
+    0 5px 10px rgba(10,50,100,.04),
+    0 20px 35px rgba(10,50,100,.1),
+    0 40px 70px rgba(10,50,100,.09);
+}
+
+/* 4. KEDALAMAN ISI KARTU */
+.book-info > *,
+.book-form > * {
+  position: relative;
+  z-index: 1;
+  transform: translateZ(10px);
+}
+
+.book-info h3,
+.book-form h3 {
+  color: #092f59;
+  font-weight: 800;
+  letter-spacing: -.7px;
+}
+
+/* 5. HARGA 3D */
+.book-price {
+  color: #0874ce;
+  font-size: 42px;
+  font-weight: 800;
+  text-shadow: 0 3px 0 #d6eaff;
+  transform: translateZ(18px);
+}
+
+.book-package {
+  border: 1px solid #b8dcff;
+  background: linear-gradient(135deg, #eaf5ff, #dceeff);
+  box-shadow:
+    0 4px 0 #c8e2fb,
+    0 8px 15px rgba(20,110,190,.1);
+}
+
+/* 6. DAFTAR PRODUK */
+.book-info li {
+  border-bottom: 1px solid #eaf1f8;
+  transition: transform .25s ease, color .25s ease;
+}
+
+.book-info li:hover {
+  transform: translateX(5px);
+  color: #0874ce;
+}
+
+/* 7. INPUT FORMULIR */
+.book-form input,
+.book-form select {
+  border: 1px solid #d9e6f3;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #f4f8fd);
+  box-shadow:
+    inset 0 2px 4px rgba(20,60,100,.035),
+    0 2px 4px rgba(20,60,100,.025);
+  transition: all .3s ease;
+}
+
+.book-form input:hover,
+.book-form select:hover {
+  border-color: #91c7f5;
+  box-shadow: 0 4px 12px rgba(15,110,200,.07);
+}
+
+.book-form input:focus,
+.book-form select:focus {
+  border-color: #1689e8;
+  background: #fff;
+  box-shadow:
+    0 0 0 4px rgba(22,137,232,.12),
+    0 5px 15px rgba(22,137,232,.08);
+}
+
+.book-form input[readonly] {
+  background: linear-gradient(135deg, #eaf4ff, #f6faff);
+  color: #075ca8;
+}
+
+/* 8. TOTAL PEMBAYARAN 3D */
+.book-total {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #c7e2ff;
+  border-radius: 17px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(75,165,255,.17), transparent 45%),
+    linear-gradient(135deg, #e8f4ff, #f8fbff);
+  box-shadow:
+    0 5px 0 #d7eaff,
+    0 12px 22px rgba(20,100,180,.09),
+    inset 0 1px 0 #fff;
+  transform: translateZ(15px);
+}
+
+.book-total strong {
+  color: #075ca8;
+  text-shadow: 0 2px 0 #d4e9ff;
+}
+
+/* 9. TOMBOL TIMBUL */
+.book-submit {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #0756a5, #1689e8);
+  box-shadow:
+    0 5px 0 #06447f,
+    0 9px 18px rgba(7,86,165,.25);
+  transition: all .2s ease;
+}
+
+.book-submit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  transform: skewX(-25deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  transition: left .6s ease;
+}
+
+.book-submit:hover::before {
+  left: 150%;
+}
+
+.book-submit:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 7px 0 #06447f,
+    0 15px 25px rgba(7,86,165,.3);
+}
+
+.book-submit:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 2px 0 #06447f,
+    0 5px 10px rgba(7,86,165,.2);
+}
+
+.book-submit:disabled {
+  transform: none;
+  box-shadow: none;
+}
+
+/* 10. ANIMASI FLOATING */
+@keyframes himaFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(8deg);
+  }
+}
+
+/* 11. RESPONSIVE */
+@media (max-width: 750px) {
+  .book-order-hero::before {
+    width: 190px;
+    height: 190px;
+    right: -65px;
+    top: -70px;
+  }
+
+  .book-order-hero::after {
+    width: 60px;
+    height: 60px;
+    right: 15%;
+  }
+
+  .book-info,
+  .book-form {
+    border-radius: 19px;
+  }
+
+  .book-info:hover,
+  .book-form:hover {
+    transform: none;
+  }
+
+  .book-price {
+    font-size: 36px;
+  }
+}
+
+/* 12. PREFERENSI GERAKAN */
+@media (prefers-reduced-motion: reduce) {
+  .book-order-hero::before,
+  .book-order-hero::after {
+    animation: none;
+  }
+
+  .book-info,
+  .book-form,
+  .book-submit {
+    transition: none;
+  }
+}

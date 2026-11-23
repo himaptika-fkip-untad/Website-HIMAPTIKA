@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Pemesanan Buku Kontrol | HIMAPTIKA FKIP UNTAD</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .book-order-hero {
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #073b78, #147bd1);
+        color: white;
+      }
+
+      .book-order-hero .container {
+        max-width: 1100px;
+        margin: auto;
+      }
+
+      .book-order-hero h2 {
+        font-size: clamp(30px, 5vw, 48px);
+        margin: 15px 0;
+      }
+
+      .book-order-hero p {
+        max-width: 650px;
+        line-height: 1.8;
+      }
+
+      .book-order-section {
+        padding: 65px 20px;
+      }
+
+      .book-order-container {
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .book-order-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 30px;
+        align-items: start;
+      }
+
+      .book-info,
+      .book-form {
+        background: var(--card-bg, #fff);
+        padding: 28px;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+      }
+
+      .book-info h3,
+      .book-form h3 {
+        margin-bottom: 15px;
+      }
+
+      .book-price {
+        font-size: 34px;
+        font-weight: 800;
+        color: #1675cf;
+        margin: 18px 0 5px;
+      }
+
+      .book-package {
+        display: inline-block;
+        padding: 7px 13px;
+        background: #e8f3ff;
+        color: #1264ad;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .book-info ul {
+        padding-left: 20px;
+        line-height: 2;
+        margin-top: 20px;
+      }
+
+      .book-form label {
+        display: block;
+        margin: 16px 0 7px;
+        font-weight: 600;
+      }
+
+      .book-form input,
+      .book-form select {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #d5dce5;
+        border-radius: 9px;
+        font-size: 14px;
+        background: transparent;
+        color: inherit;
+      }
+
+      .book-form input:focus,
+      .book-form select:focus {
+        outline: 2px solid #2788df;
+        border-color: #2788df;
+      }
+
+      .book-total {
+        margin-top: 22px;
+        padding: 17px;
+        background: #edf6ff;
+        border-radius: 12px;
+      }
+
+      .book-total strong {
+        display: block;
+        font-size: 25px;
+        color: #1264ad;
+        margin-top: 5px;
+      }
+
+      .book-submit {
+        width: 100%;
+        margin-top: 20px;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: #147bd1;
+        color: white;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .book-submit:hover {
+        background: #075ca8;
+      }
+
+      .book-note {
+        font-size: 13px;
+        color: #777;
+        line-height: 1.7;
+        margin-top: 15px;
+      }
+
+      @media (max-width: 750px) {
+        .book-order-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .book-order-hero {
+          padding: 55px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+
+        <div class="brand-text">
+          <h1>HIMAPTIKA</h1>
+          <p>FKIP UNIVERSITAS TADULAKO</p>
+        </div>
+      </div>
+
+      <nav id="mainNav">
+        <div class="drawer-brand">
+          <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+
+          <div>
+            <h2>HIMAPTIKA</h2>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+          </div>
+        </div>
+
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="divisi.html" class="active">Divisi & Program Kerja</a>
+        <a href="informasi.html">Informasi</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="kontak.html">Kontak</a>
+
+        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
+          🌙
+        </button>
+      </nav>
+    </header>
+
+    <section class="book-order-hero">
+      <div class="container">
+        <p>PELAYANAN AKADEMIK HIMAPTIKA</p>
+
+        <h2>Pemesanan Buku Kontrol</h2>
+
+        <p>
+          Dapatkan Buku Kontrol HIMAPTIKA sebagai media pendukung pencatatan dan
+          pemantauan kegiatan akademik mahasiswa Pendidikan Matematika.
+        </p>
+      </div>
+    </section>
+
+    <section class="book-order-section">
+      <div class="book-order-container">
+        <div class="book-order-grid">
+          <div class="book-info">
+            <p class="section-label">PRODUK HIMAPTIKA</p>
+
+            <h3>Buku Kontrol HIMAPTIKA</h3>
+
+            <p>
+              Satu paket Buku Kontrol berisi tiga buku untuk mendukung kebutuhan
+              akademik mahasiswa.
+            </p>
+
+            <div class="book-price">Rp10.000</div>
+
+            <span class="book-package"> 1 PAKET = 3 BUKU </span>
+
+            <ul>
+              <li>Harga Rp10.000 per paket.</li>
+              <li>Isi setiap paket 3 buku.</li>
+              <li>Pembayaran transfer atau tunai.</li>
+            </ul>
+          </div>
+
+          <div class="book-form">
+            <p class="section-label">FORMULIR</p>
+
+            <h3>Formulir Pemesanan</h3>
+
+            <form id="bookOrderForm">
+              <label for="nama">Nama Lengkap</label>
+              <input
+                type="text"
+                id="nama"
+                required
+                placeholder="Masukkan nama lengkap"
+              />
+
+              <label for="nim">NIM</label>
+              <input type="text" id="nim" required placeholder="Masukkan NIM" />
+
+              <label for="angkatan">Angkatan</label>
+              <select id="angkatan" required>
+                <option value="">Pilih angkatan</option>
+                <option>2022</option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+              </select>
+
+              <label for="whatsapp">Nomor WhatsApp</label>
+              <input
+                type="tel"
+                id="whatsapp"
+                required
+                placeholder="Contoh: 628xxxxxxxxxx"
+              />
+
+              <label>Jumlah Paket</label>
+              <input type="text" value="1 Paket (3 Buku)" readonly />
+
+              <label for="pembayaran">Metode Pembayaran</label>
+              <select id="pembayaran" required>
+                <option value="">Pilih pembayaran</option>
+                <option value="Transfer">Transfer</option>
+                <option value="Tunai">Tunai</option>
+              </select>
+              <label for="tanggalPengambilan">
+                Tanggal Pengambilan yang Diinginkan
+              </label>
+
+              <input type="date" id="tanggalPengambilan" required />
+
+              <small class="book-note">
+                Tanggal pilihan akan dikonfirmasi oleh pengurus HIMAPTIKA.
+              </small>
+
+              <div class="book-total">
+                <span>Total Pembayaran</span>
+                <strong>Rp10.000</strong>
+                <small>1 paket berisi 3 buku</small>
+              </div>
+
+              <button type="submit" class="book-submit">Kirim Pemesanan</button>
+
+              <p class="book-note">
+                Jadwal pengambilan akan diinformasikan oleh pengurus Pelayanan
+                Akademik HIMAPTIKA.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <h3>HIMAPTIKA</h3>
+            <p>
+              Himpunan Mahasiswa Pendidikan Matematika FKIP Universitas
+              Tadulako.
+            </p>
+          </div>
+
+          <div>
+            <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+      const GOOGLE_FORM_URL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSeprkXCkKqpQneM1AuKXMQ99xI8nixmw6M571aAEdMmzcVKUA/formResponse";
+
+      const form = document.getElementById("bookOrderForm");
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const tombol = form.querySelector('button[type="submit"]');
+        const data = new URLSearchParams();
+
+        data.append(
+          "entry.65041722",
+          document.getElementById("nama").value.trim(),
+        );
+
+        data.append(
+          "entry.760836867",
+          document.getElementById("nim").value.trim(),
+        );
+
+        data.append(
+          "entry.1854510500",
+          document.getElementById("angkatan").value,
+        );
+
+        data.append(
+          "entry.1483806982",
+          document.getElementById("whatsapp").value.trim(),
+        );
+
+        data.append("entry.804371959", "1");
+
+        data.append(
+          "entry.1275582962",
+          document.getElementById("pembayaran").value,
+        );
+
+        tombol.disabled = true;
+        tombol.textContent = "Mengirim pemesanan...";
+
+        try {
+          await fetch(GOOGLE_FORM_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: data,
+          });
+
+          alert(
+            "Permintaan pemesanan telah dikirim. " +
+              "Silakan periksa Google Sheets.",
+          );
+
+          form.reset();
+        } catch (error) {
+          alert("Pengiriman gagal. Silakan coba kembali.");
+        } finally {
+          tombol.disabled = false;
+          tombol.textContent = "Kirim Pemesanan";
+        }
+      });
+    </script>
+  </body>
+</html>
