@@ -16131,3 +16131,11 @@ img, video, svg { max-width: 100%; height: auto; }
     .academic-hero-text h2 { font-size: 1.5rem !important; }
     .brand-text p { display: none; }
 }
+@media (max-width: 768px) {
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
