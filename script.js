@@ -682,30 +682,52 @@ console.log("HIMAPTIKA AI berhasil terhubung dengan frontend.");
         });
     }
 
-    // 2. Angka menghitung naik (data-count atau data-since)
-    const angka = document.querySelectorAll("main .about-stat strong");
-    if ("IntersectionObserver" in window && angka.length) {
-        const co = new IntersectionObserver((entries) => {
-            entries.forEach((e) => {
-                if (!e.isIntersecting) return;
-                const el = e.target;
-                co.unobserve(el);
+    /// 2. Angka menghitung naik (data-count atau data-since)
+const angka = document.querySelectorAll("main .about-stat strong");
 
-                const target = el.dataset.since
-                    ? new Date().getFullYear() - parseInt(el.dataset.since, 10)
-                    : parseInt(el.dataset.count, 10);
-                if (isNaN(target)) return;
+function nilaiAkhir(el) {
+    return el.dataset.since
+        ? new Date().getFullYear() - parseInt(el.dataset.since, 10)
+        : parseInt(el.dataset.count, 10);
+}
 
-                const mulai = performance.now();
-                (function step(now) {
-                    const p = Math.min((now - mulai) / 1200, 1);
-                    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-                    if (p < 1) requestAnimationFrame(step);
-                })(mulai);
-            });
-        }, { threshold: 0.5 });
-        angka.forEach((el) => co.observe(el));
+// Tampilkan angka final lebih dulu, supaya tidak pernah tersangkut di 0
+angka.forEach((el) => {
+    const t = nilaiAkhir(el);
+    if (!isNaN(t)) el.textContent = t;
+});
+
+function hitung(el) {
+    const target = nilaiAkhir(el);
+    if (isNaN(target)) return;
+
+    const mulai = performance.now();
+
+    function step(now) {
+        const p = Math.min((now - mulai) / 1200, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) {
+            requestAnimationFrame(step);
+        } else {
+            el.textContent = target;
+        }
     }
+
+    el.textContent = 0;
+    requestAnimationFrame(step);
+}
+
+if ("IntersectionObserver" in window && angka.length) {
+    const co = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            co.unobserve(e.target);
+            hitung(e.target);
+        });
+    }, { threshold: 0.2 });
+
+    angka.forEach((el) => co.observe(el));
+}
 
     // 3. Tilt mengikuti kursor (hanya perangkat dengan mouse)
     if (!window.matchMedia("(hover: hover)").matches) return;
