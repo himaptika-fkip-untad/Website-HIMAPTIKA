@@ -16139,3 +16139,698 @@ img, video, svg { max-width: 100%; height: auto; }
         padding-right: 20px !important;
     }
 }
+/* =====================================================
+   HALAMAN JADWAL SEMINAR
+   ===================================================== */
+
+/* ================= TOKEN (terang & gelap) ================= */
+.seminar-scope {
+  --sm-bg: #f4f8fc;
+  --sm-surface: #ffffff;
+  --sm-surface-2: #eef3f8;
+  --sm-border: #dfe8f1;
+  --sm-border-strong: #c3d2e1;
+  --sm-ink: #102c4b;
+  --sm-text: #3f566d;
+  --sm-muted: #5b6b7e;
+  --sm-accent: #1f6fb2;
+  --sm-accent-soft: #e6f2fd;
+  --sm-on-accent: #ffffff;
+  --sm-hasil: #0e7c66;
+  --sm-hasil-soft: #e0f4ee;
+  --sm-other: #6a4fb3;
+  --sm-other-soft: #eee8fa;
+  --sm-warn: #965300;
+  --sm-warn-soft: #fdefd3;
+  --sm-done: #5b6b7e;
+  --sm-done-soft: #e8eef4;
+  font-family: inherit;
+}
+
+body.dark-mode .seminar-scope {
+  color-scheme: dark;
+  --sm-bg: #0f1720;
+  --sm-surface: #182330;
+  --sm-surface-2: #1e2c3b;
+  --sm-border: #2a3d52;
+  --sm-border-strong: #3a4f66;
+  --sm-ink: #e6f0ff;
+  --sm-text: #c3d0dc;
+  --sm-muted: #9fb0c1;
+  --sm-accent: #6bb6f5;
+  --sm-accent-soft: #1f3a55;
+  --sm-on-accent: #0f1720;
+  --sm-hasil: #4fd1b0;
+  --sm-hasil-soft: #173a33;
+  --sm-other: #b79cf5;
+  --sm-other-soft: #2c2548;
+  --sm-warn: #f3b559;
+  --sm-warn-soft: #3d3015;
+  --sm-done: #9fb0c1;
+  --sm-done-soft: #243242;
+}
+
+.seminar-scope :is(a, button, input, select, summary):focus-visible {
+  outline: 3px solid var(--sm-accent);
+  outline-offset: 2px;
+}
+
+.seminar-scope ::selection {
+  background: var(--sm-accent);
+  color: var(--sm-on-accent);
+}
+
+/* ================= HERO ================= */
+.seminar-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 8% 64px;
+  color: #fff;
+  background: #102c4b;
+}
+
+.seminar-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 35%, #000);
+  mask-image: linear-gradient(90deg, transparent 35%, #000);
+  pointer-events: none;
+}
+
+.seminar-hero::after {
+  content: "∑";
+  position: absolute;
+  right: 8%;
+  bottom: -60px;
+  font-size: 280px;
+  line-height: 1;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.seminar-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.seminar-hero h1 {
+  max-width: 14ch;
+  margin: 0 0 18px;
+  font-size: clamp(36px, 6vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.seminar-hero p {
+  max-width: 56ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #cfe0f3;
+}
+
+/* ================= SECTION ================= */
+.seminar-section {
+  padding: 56px 20px 80px;
+  background: var(--sm-bg);
+}
+
+.seminar-container {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+/* ================= PENGAJUAN ================= */
+.seminar-form-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 24px;
+  margin-bottom: 40px;
+  background: var(--sm-surface);
+  border: 1px solid var(--sm-border);
+  border-radius: 12px;
+}
+
+.seminar-form-icon {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--sm-accent-soft);
+  color: var(--sm-accent);
+}
+
+.seminar-form-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.seminar-form-body h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: var(--sm-ink);
+}
+
+.seminar-form-body p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--sm-text);
+}
+
+.seminar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--sm-accent);
+  color: var(--sm-on-accent);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.seminar-btn:hover {
+  filter: brightness(1.1);
+}
+
+.seminar-btn--ghost {
+  background: transparent;
+  border-color: var(--sm-border-strong);
+  color: var(--sm-ink);
+}
+
+/* ================= TOOLBAR ================= */
+.seminar-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.seminar-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--sm-surface);
+  border: 1px solid var(--sm-border);
+  border-radius: 12px;
+}
+
+.seminar-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--sm-text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.seminar-tab:hover:not([aria-pressed="true"]) {
+  background: var(--sm-surface-2);
+  color: var(--sm-ink);
+}
+
+.seminar-tab[aria-pressed="true"] {
+  background: var(--sm-accent);
+  color: var(--sm-on-accent);
+}
+
+.seminar-tab-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: var(--sm-surface-2);
+  color: var(--sm-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.seminar-tab[aria-pressed="true"] .seminar-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: inherit;
+}
+
+body.dark-mode .seminar-tab[aria-pressed="true"] .seminar-tab-count {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.seminar-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.seminar-search {
+  position: relative;
+  display: block;
+}
+
+.seminar-search svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sm-muted);
+  pointer-events: none;
+}
+
+.seminar-input {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--sm-border-strong);
+  border-radius: 10px;
+  background: var(--sm-surface);
+  color: var(--sm-ink);
+  font: inherit;
+  font-size: 14px;
+}
+
+.seminar-input::placeholder {
+  color: var(--sm-muted);
+  opacity: 1;
+}
+
+.seminar-input:focus {
+  border-color: var(--sm-accent);
+}
+
+.seminar-search .seminar-input {
+  width: 280px;
+  padding-left: 38px;
+}
+
+select.seminar-input {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a9bad' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.seminar-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.seminar-count {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: var(--sm-muted);
+}
+
+.seminar-note {
+  margin: -8px 0 18px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--sm-warn-soft);
+  color: var(--sm-warn);
+  font-size: 13px;
+}
+
+.seminar-note[hidden] {
+  display: none;
+}
+
+/* ================= KARTU JADWAL ================= */
+.seminar-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.seminar-item {
+  --kind: var(--sm-accent);
+  --kind-soft: var(--sm-accent-soft);
+  --strip: var(--kind);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  background: var(--sm-surface);
+  border: 1px solid var(--sm-border);
+  border-left: 5px solid var(--strip);
+  border-radius: 12px;
+}
+
+.seminar-item[data-kind="hasil"] {
+  --kind: var(--sm-hasil);
+  --kind-soft: var(--sm-hasil-soft);
+}
+
+.seminar-item[data-kind="other"] {
+  --kind: var(--sm-other);
+  --kind-soft: var(--sm-other-soft);
+}
+
+.seminar-item[data-status="done"] {
+  --strip: var(--sm-border-strong);
+}
+
+.seminar-item[data-status="today"],
+.seminar-item[data-status="soon"] {
+  --strip: var(--sm-warn);
+}
+
+.seminar-item-head {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.seminar-date {
+  flex: 0 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 66px;
+  border-radius: 10px;
+  background: var(--kind-soft);
+  color: var(--kind);
+}
+
+.seminar-item[data-status="done"] .seminar-date {
+  background: var(--sm-done-soft);
+  color: var(--sm-done);
+}
+
+.seminar-item[data-status="today"] .seminar-date,
+.seminar-item[data-status="soon"] .seminar-date {
+  background: var(--sm-warn);
+  color: #fff;
+}
+
+body.dark-mode .seminar-item[data-status="today"] .seminar-date,
+body.dark-mode .seminar-item[data-status="soon"] .seminar-date {
+  color: #0f1720;
+}
+
+.seminar-date-day {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.seminar-date-month {
+  margin-top: 3px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.seminar-head-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.seminar-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.seminar-chip {
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--kind-soft);
+  color: var(--kind);
+}
+
+.seminar-chip--status {
+  background: var(--sm-surface-2);
+  color: var(--sm-muted);
+}
+
+.seminar-item[data-status="today"] .seminar-chip--status,
+.seminar-item[data-status="soon"] .seminar-chip--status {
+  background: var(--sm-warn-soft);
+  color: var(--sm-warn);
+}
+
+.seminar-item[data-status="today"] .seminar-chip--status::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.seminar-item h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--sm-ink);
+}
+
+.seminar-fulldate {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--sm-muted);
+}
+
+.seminar-title {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--sm-text);
+}
+
+.seminar-item[data-status="done"] h3,
+.seminar-item[data-status="done"] .seminar-title {
+  color: var(--sm-muted);
+}
+
+.seminar-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sm-ink);
+}
+
+.seminar-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--sm-surface-2);
+  border-radius: 8px;
+}
+
+.seminar-meta svg {
+  color: var(--kind);
+}
+
+.seminar-people {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 16px;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--sm-border);
+  font-size: 14px;
+}
+
+.seminar-people dt {
+  color: var(--sm-muted);
+  font-size: 13px;
+}
+
+.seminar-people dd {
+  margin: 0;
+  color: var(--sm-ink);
+  font-weight: 600;
+}
+
+/* ================= KOSONG / ERROR ================= */
+.seminar-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 48px 20px;
+  border: 1px dashed var(--sm-border-strong);
+  border-radius: 12px;
+  background: var(--sm-surface);
+  color: var(--sm-text);
+  text-align: center;
+  line-height: 1.7;
+}
+
+.seminar-empty::before {
+  content: "∑";
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--sm-border-strong);
+}
+
+.seminar-empty p {
+  margin: 0;
+  max-width: 48ch;
+}
+
+/* ================= TRANSISI ================= */
+@media (prefers-reduced-motion: no-preference) {
+  .seminar-item,
+  .seminar-btn,
+  .seminar-tab,
+  .seminar-input {
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      filter 0.2s ease;
+  }
+
+  .seminar-item:hover {
+    box-shadow: 0 8px 24px rgba(16, 44, 75, 0.09);
+  }
+
+  body.dark-mode .seminar-item:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (min-width: 1280px) {
+  .seminar-hero {
+    padding-top: 88px;
+    padding-bottom: 76px;
+  }
+
+  .seminar-list {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 860px) {
+  .seminar-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .seminar-form-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .seminar-form-card .seminar-btn,
+  .seminar-filters,
+  .seminar-search,
+  .seminar-search .seminar-input,
+  .seminar-filters select {
+    width: 100%;
+  }
+
+  .seminar-tabs {
+    width: 100%;
+  }
+
+  .seminar-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 9px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .seminar-hero {
+    padding: 56px 6% 48px;
+  }
+
+  .seminar-section {
+    padding: 40px 16px 64px;
+  }
+
+  .seminar-item {
+    padding: 18px;
+  }
+
+  .seminar-people {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .seminar-people dd {
+    margin-bottom: 8px;
+  }
+}
+
+/* ================= CETAK ================= */
+@media print {
+  .seminar-hero::before,
+  .seminar-hero::after,
+  .seminar-form-card,
+  .seminar-toolbar,
+  .seminar-note {
+    display: none !important;
+  }
+
+  .seminar-hero {
+    padding: 16px 0;
+    background: none;
+  }
+
+  .seminar-hero h1,
+  .seminar-hero p {
+    color: #000;
+  }
+
+  .seminar-section {
+    padding: 0;
+    background: #fff;
+  }
+
+  .seminar-list {
+    grid-template-columns: 1fr;
+  }
+
+  .seminar-item {
+    break-inside: avoid;
+  }
+}
