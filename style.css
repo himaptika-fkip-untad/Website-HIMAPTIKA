@@ -15798,3 +15798,261 @@ main .cta-box::after {
     main .sejarah-present-line,
     main .sejarah-premium-item.in .sejarah-marker span { animation: none; }
 }
+/* ==========================================================
+   academic-upgrade.css
+   Tempel di PALING BAWAH style.css (atau link setelah style.css)
+   supaya menimpa gaya lama. Ubah warna lewat variabel di :root.
+   ========================================================== */
+
+:root {
+    --ac-ink: #1b2430;
+    --ac-muted: #5a6574;
+    --ac-paper: #ffffff;
+    --ac-soft: #f3f6fa;
+    --ac-line: #d9e0ea;
+    --ac-accent: #1f4fa3;      /* ganti dengan warna utama HIMAPTIKA */
+    --ac-accent-soft: #e6eefb;
+    --ac-grid: rgba(31, 79, 163, .09);
+}
+
+/* ---------- Hero: kertas berpetak (grafik matematika) ---------- */
+.academic-hero {
+    position: relative;
+    background-color: var(--ac-soft);
+    background-image:
+        linear-gradient(var(--ac-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--ac-grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+    border-bottom: 1px solid var(--ac-line);
+    padding: clamp(56px, 9vw, 112px) 0;
+}
+
+.academic-hero-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.academic-hero-text { max-width: 640px; }
+
+.academic-hero-text h2 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.12;
+    letter-spacing: -.02em;
+    color: var(--ac-ink);
+    margin: 12px 0 16px;
+}
+
+.academic-hero-text p:last-child {
+    color: var(--ac-muted);
+    line-height: 1.7;
+    max-width: 56ch;
+}
+
+.academic-hero-number {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1;
+}
+
+.academic-hero-number span {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 800;
+    color: var(--ac-accent);
+    opacity: .9;
+}
+
+.academic-hero-number small {
+    margin-top: 6px;
+    color: var(--ac-muted);
+    letter-spacing: .08em;
+}
+
+/* ---------- Intro ---------- */
+.academic-intro { padding: clamp(48px, 7vw, 88px) 0; }
+
+.academic-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(24px, 5vw, 64px);
+    align-items: start;
+}
+
+.academic-intro h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.25rem);
+    line-height: 1.2;
+    color: var(--ac-ink);
+}
+
+.academic-intro p { color: var(--ac-muted); line-height: 1.75; max-width: 60ch; }
+.academic-intro p + p { margin-top: 14px; }
+
+/* ---------- Program kerja ---------- */
+.academic-program {
+    padding: clamp(48px, 7vw, 88px) 0;
+    background: var(--ac-soft);
+}
+
+.academic-heading { max-width: 560px; margin-bottom: 40px; }
+.academic-heading h2 { font-size: clamp(1.6rem, 3.4vw, 2.25rem); color: var(--ac-ink); }
+.academic-heading p:last-child { color: var(--ac-muted); line-height: 1.7; margin-top: 10px; }
+
+.academic-program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.academic-program-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px 24px 24px;
+    background: var(--ac-paper);
+    border: 1px solid var(--ac-line);
+    border-radius: 14px;
+    transition: border-color .2s ease, transform .2s ease;
+}
+
+.academic-program-card:hover {
+    border-color: var(--ac-accent);
+    transform: translateY(-3px);
+}
+
+.academic-program-number {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--ac-accent);
+    opacity: .35;
+}
+
+.academic-program-content { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.academic-program-content h3 { font-size: 1.2rem; color: var(--ac-ink); }
+.academic-program-content p { color: var(--ac-muted); line-height: 1.7; font-size: .96rem; }
+
+/* Kartu unggulan: selebar grid, dua kolom */
+.academic-featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 28px;
+    padding: clamp(24px, 4vw, 40px);
+    background: var(--ac-ink);
+    border-color: var(--ac-ink);
+}
+
+.academic-featured:hover { border-color: var(--ac-accent); }
+.academic-featured .academic-program-number { color: #fff; opacity: .25; font-size: 3rem; }
+.academic-featured h3 { color: #fff; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+.academic-featured p { color: #c3ccd9; max-width: 62ch; }
+
+.academic-featured-label {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--ac-accent);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+}
+
+/* ---------- Tautan / tombol di dalam kartu ---------- */
+.academic-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--ac-accent-soft);
+    color: var(--ac-accent);
+    font-weight: 600;
+    font-size: .92rem;
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease;
+}
+
+.academic-link span { transition: transform .2s ease; }
+.academic-link:hover { background: var(--ac-accent); color: #fff; }
+.academic-link:hover span { transform: translateX(4px); }
+
+/* Di kartu gelap: tombol utama terang, tombol kedua outline */
+.academic-featured .academic-link { margin-top: 6px; background: #fff; color: var(--ac-ink); }
+.academic-featured .academic-link:hover { background: var(--ac-accent); color: #fff; }
+.academic-featured .academic-link + .academic-link {
+    background: transparent;
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+
+/* ---------- CTA ---------- */
+.academic-cta { padding: clamp(40px, 6vw, 72px) 0; }
+
+.academic-cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: clamp(24px, 4vw, 44px);
+    border: 1px solid var(--ac-line);
+    border-radius: 16px;
+    background: var(--ac-paper);
+}
+
+.academic-cta-box h2 { font-size: clamp(1.3rem, 2.8vw, 1.8rem); color: var(--ac-ink); max-width: 28ch; }
+
+.academic-cta-button {
+    flex-shrink: 0;
+    padding: 12px 22px;
+    border-radius: 10px;
+    background: var(--ac-accent);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: filter .2s ease;
+}
+
+.academic-cta-button:hover { filter: brightness(1.12); }
+
+/* ---------- Aksesibilitas ---------- */
+.academic-link:focus-visible,
+.academic-cta-button:focus-visible {
+    outline: 3px solid var(--ac-accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .academic-program-card,
+    .academic-link,
+    .academic-link span { transition: none; }
+    .academic-program-card:hover { transform: none; }
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 900px) {
+    .academic-program-grid { grid-template-columns: 1fr 1fr; }
+    .academic-intro-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .academic-hero-content { flex-direction: column; align-items: flex-start; }
+    .academic-hero-number { align-items: flex-start; }
+    .academic-program-grid { grid-template-columns: 1fr; }
+    .academic-featured { flex-direction: column; gap: 14px; }
+    .academic-cta-box { flex-direction: column; align-items: flex-start; }
+    .academic-cta-button { width: 100%; text-align: center; }
+}
+body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
