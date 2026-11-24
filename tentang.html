@@ -570,5 +570,40 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
+    <script type="module">
+      import { auth } from "./js/firebase.js";
+
+      import {
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          document.documentElement.style.visibility = "visible";
+        } else {
+          window.location.replace("login.html");
+        }
+      });
+
+      const logoutButton = document.getElementById("logoutButton");
+
+      if (logoutButton) {
+        logoutButton.addEventListener("click", async () => {
+          if (!confirm("Apakah kamu yakin ingin keluar dari akun?")) {
+            return;
+          }
+
+          try {
+            await signOut(auth);
+            window.location.replace("login.html");
+          } catch (error) {
+            console.error("Logout error:", error);
+            alert("Gagal keluar. Silakan coba kembali.");
+          }
+        });
+      }
+    </script>
   </body>
 </html>
