@@ -1,1649 +1,1567 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HIMAPTIKA FKIP UNTAD</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
     <style>
-        /* ================= POLISH VISUAL BERANDA HIMAPTIKA ================= */
+      /* ================= POLISH VISUAL BERANDA HIMAPTIKA ================= */
 
-        :root {
-            --home-ink: #123456;
-            --home-muted: #64748b;
-            --home-blue: #1763b6;
-            --home-blue-dark: #0d3158;
-            --home-soft: #f3f7fc;
-            --home-line: #e2eaf3;
-        }
+      :root {
+        --home-ink: #123456;
+        --home-muted: #64748b;
+        --home-blue: #1763b6;
+        --home-blue-dark: #0d3158;
+        --home-soft: #f3f7fc;
+        --home-line: #e2eaf3;
+      }
 
-        main {
-            overflow: hidden;
-        }
+      main {
+        overflow: hidden;
+      }
 
-        .hero-modern {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            padding: clamp(76px, 10vw, 132px) 24px;
-            background:
-                radial-gradient(circle at 82% 22%, rgba(74, 144, 226, .18), transparent 28%),
-                radial-gradient(circle at 12% 88%, rgba(23, 99, 182, .10), transparent 30%),
-                linear-gradient(135deg, #f7faff 0%, #edf4fc 52%, #f8fbff 100%);
-        }
+      .hero-modern {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding: clamp(76px, 10vw, 132px) 24px;
+        background:
+          radial-gradient(
+            circle at 82% 22%,
+            rgba(74, 144, 226, 0.18),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 12% 88%,
+            rgba(23, 99, 182, 0.1),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #f7faff 0%, #edf4fc 52%, #f8fbff 100%);
+      }
 
-        .hero-modern::before {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            width: 520px;
-            height: 520px;
-            right: -190px;
-            top: -250px;
-            border: 1px solid rgba(23, 99, 182, .12);
-            border-radius: 50%;
-            box-shadow:
-                0 0 0 42px rgba(23, 99, 182, .025),
-                0 0 0 88px rgba(23, 99, 182, .02);
-        }
+      .hero-modern::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 520px;
+        height: 520px;
+        right: -190px;
+        top: -250px;
+        border: 1px solid rgba(23, 99, 182, 0.12);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 42px rgba(23, 99, 182, 0.025),
+          0 0 0 88px rgba(23, 99, 182, 0.02);
+      }
 
+      .hero-modern-container {
+        width: min(1160px, 100%);
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: clamp(36px, 7vw, 90px);
+      }
+
+      .hero-modern-content {
+        max-width: 660px;
+      }
+
+      .hero-label,
+      .section-label,
+      .section-title > span {
+        color: var(--home-blue);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+      }
+
+      .hero-modern-content h2 {
+        margin: 18px 0;
+        color: var(--home-blue-dark);
+        font-size: clamp(38px, 5.4vw, 64px);
+        line-height: 1.08;
+        letter-spacing: -2px;
+      }
+
+      .hero-modern-content h2 span {
+        display: block;
+        color: var(--home-blue);
+      }
+
+      .hero-university {
+        color: #36536f;
+        font-weight: 700;
+        line-height: 1.7;
+      }
+
+      .hero-description {
+        max-width: 570px;
+        color: var(--home-muted);
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .hero-buttons .tombol,
+      .home-cta .tombol {
+        border-radius: 10px;
+        padding: 13px 20px;
+        font-weight: 700;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .hero-buttons .tombol:hover,
+      .home-cta .tombol:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-modern-visual {
+        min-height: 390px;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+
+      .logo-circle {
+        width: clamp(220px, 27vw, 330px);
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow:
+          0 28px 75px rgba(21, 65, 112, 0.15),
+          inset 0 0 0 14px rgba(23, 99, 182, 0.035);
+        z-index: 2;
+      }
+
+      .logo-circle img {
+        width: 68%;
+        height: 68%;
+        object-fit: contain;
+      }
+
+      .logo-ring {
+        position: absolute;
+        border: 1px solid rgba(23, 99, 182, 0.18);
+        border-radius: 50%;
+      }
+
+      .ring-one {
+        width: 390px;
+        height: 390px;
+      }
+
+      .ring-two {
+        width: 460px;
+        height: 460px;
+        border-style: dashed;
+      }
+
+      .math-symbol {
+        position: absolute;
+        z-index: 3;
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        color: var(--home-blue);
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 12px 30px rgba(18, 52, 86, 0.12);
+        font-weight: 800;
+        font-size: 21px;
+      }
+
+      .symbol-one {
+        top: 12%;
+        left: 13%;
+      }
+      .symbol-two {
+        top: 20%;
+        right: 8%;
+      }
+      .symbol-three {
+        bottom: 17%;
+        left: 9%;
+      }
+      .symbol-four {
+        bottom: 12%;
+        right: 13%;
+      }
+      .symbol-five {
+        top: 50%;
+        right: 0;
+      }
+
+      .hero-shape,
+      .hero-line {
+        pointer-events: none;
+      }
+
+      .scroll-indicator {
+        margin-top: 36px;
+        color: #7890a8;
+      }
+
+      .intro-section,
+      .program-unggulan,
+      .statistik-section,
+      .informasi-section,
+      .agenda-section,
+      .program-section,
+      .survival-section,
+      .home-cta {
+        padding-top: clamp(64px, 8vw, 96px);
+        padding-bottom: clamp(64px, 8vw, 96px);
+      }
+
+      .intro-content,
+      .survival-content {
+        gap: clamp(30px, 6vw, 72px);
+        align-items: center;
+      }
+
+      .intro-text h2,
+      .survival-text h2,
+      .section-title h2,
+      .section-heading h2,
+      .statistik-heading h2,
+      .informasi-header h2,
+      .agenda-heading h2 {
+        color: var(--home-ink);
+        letter-spacing: -0.7px;
+        line-height: 1.2;
+      }
+
+      .intro-text > p:not(.section-label),
+      .survival-text > p:not(.section-label) {
+        color: var(--home-muted);
+        line-height: 1.85;
+      }
+
+      .intro-box {
+        border: 1px solid var(--home-line);
+        border-radius: 20px;
+        box-shadow: 0 18px 50px rgba(18, 52, 86, 0.07);
+        background: #fff;
+      }
+
+      .intro-box-item {
+        padding: 20px 24px;
+      }
+
+      .program-card,
+      .informasi-card,
+      .agenda-card,
+      .statistik-card {
+        border: 1px solid var(--home-line);
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(18, 52, 86, 0.055);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .program-card:hover,
+      .informasi-card:hover,
+      .agenda-card:hover,
+      .statistik-card:hover {
+        transform: translateY(-6px);
+        border-color: #c7dbf1;
+        box-shadow: 0 20px 42px rgba(18, 52, 86, 0.11);
+      }
+
+      .program-card {
+        padding: 26px;
+      }
+
+      .program-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: #eaf3ff;
+        color: var(--home-blue);
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+
+      .program-card h3,
+      .informasi-content h3,
+      .agenda-content h3 {
+        color: var(--home-ink);
+      }
+
+      .program-card p,
+      .informasi-content p {
+        color: var(--home-muted);
+        line-height: 1.75;
+      }
+
+      .statistik-section {
+        background: linear-gradient(135deg, #f2f7fd, #eaf2fb);
+      }
+
+      .statistik-card {
+        padding: 28px 22px;
+        text-align: center;
+      }
+
+      .statistik-card h3 {
+        color: var(--home-blue-dark);
+      }
+
+      .informasi-image {
+        min-height: 150px;
+      }
+
+      .informasi-content,
+      .agenda-content {
+        padding: 23px;
+      }
+
+      .agenda-poster {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .agenda-poster img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+
+      .agenda-status {
+        border-radius: 30px;
+      }
+
+      .survival-section {
+        background: #f4f8fd;
+      }
+
+      .survival-content {
+        padding: clamp(28px, 5vw, 58px);
+        border: 1px solid #e0eaf5;
+        border-radius: 24px;
+        background: linear-gradient(120deg, #fff, #f0f6fd);
+        box-shadow: 0 18px 50px rgba(18, 52, 86, 0.06);
+      }
+
+      .survival-symbol {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 22px;
+        display: grid;
+        place-items: center;
+        border-radius: 30px;
+        background: #e5f0fd;
+        color: var(--home-blue);
+        font-size: 48px;
+      }
+
+      .home-cta {
+        background: linear-gradient(120deg, #10385f, #1763b6);
+      }
+
+      .home-cta .section-label,
+      .home-cta h2 {
+        color: #fff;
+      }
+
+      .home-cta h2 {
+        line-height: 1.25;
+      }
+
+      .home-cta .tombol {
+        background: #fff;
+        color: #14518c;
+      }
+
+      .home-seminar-card {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .home-seminar-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 34px rgba(18, 52, 86, 0.11);
+      }
+
+      footer {
+        background: #0d2946;
+      }
+
+      .footer-content {
+        gap: 40px;
+      }
+
+      @media (max-width: 850px) {
         .hero-modern-container {
-            width: min(1160px, 100%);
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1.1fr .9fr;
-            align-items: center;
-            gap: clamp(36px, 7vw, 90px);
+          grid-template-columns: 1fr;
+          text-align: center;
         }
 
         .hero-modern-content {
-            max-width: 660px;
-        }
-
-        .hero-label,
-        .section-label,
-        .section-title > span {
-            color: var(--home-blue);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1.8px;
-        }
-
-        .hero-modern-content h2 {
-            margin: 18px 0;
-            color: var(--home-blue-dark);
-            font-size: clamp(38px, 5.4vw, 64px);
-            line-height: 1.08;
-            letter-spacing: -2px;
-        }
-
-        .hero-modern-content h2 span {
-            display: block;
-            color: var(--home-blue);
-        }
-
-        .hero-university {
-            color: #36536f;
-            font-weight: 700;
-            line-height: 1.7;
+          margin: auto;
         }
 
         .hero-description {
-            max-width: 570px;
-            color: var(--home-muted);
-            font-size: 16px;
-            line-height: 1.9;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 28px;
-        }
-
-        .hero-buttons .tombol,
-        .home-cta .tombol {
-            border-radius: 10px;
-            padding: 13px 20px;
-            font-weight: 700;
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-
-        .hero-buttons .tombol:hover,
-        .home-cta .tombol:hover {
-            transform: translateY(-3px);
+          justify-content: center;
         }
 
         .hero-modern-visual {
-            min-height: 390px;
-            display: grid;
-            place-items: center;
-            position: relative;
-        }
-
-        .logo-circle {
-            width: clamp(220px, 27vw, 330px);
-            aspect-ratio: 1;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .88);
-            border: 1px solid rgba(255, 255, 255, .95);
-            box-shadow:
-                0 28px 75px rgba(21, 65, 112, .15),
-                inset 0 0 0 14px rgba(23, 99, 182, .035);
-            z-index: 2;
-        }
-
-        .logo-circle img {
-            width: 68%;
-            height: 68%;
-            object-fit: contain;
-        }
-
-        .logo-ring {
-            position: absolute;
-            border: 1px solid rgba(23, 99, 182, .18);
-            border-radius: 50%;
+          min-height: 360px;
         }
 
         .ring-one {
-            width: 390px;
-            height: 390px;
+          width: 320px;
+          height: 320px;
         }
 
         .ring-two {
-            width: 460px;
-            height: 460px;
-            border-style: dashed;
+          width: 380px;
+          height: 380px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .hero-modern {
+          padding: 68px 20px 58px;
+        }
+
+        .hero-modern-content h2 {
+          font-size: clamp(34px, 10vw, 46px);
+          letter-spacing: -1.3px;
+        }
+
+        .hero-modern-visual {
+          min-height: 300px;
+        }
+
+        .logo-circle {
+          width: 205px;
+        }
+
+        .ring-one {
+          width: 270px;
+          height: 270px;
+        }
+
+        .ring-two {
+          width: 315px;
+          height: 315px;
         }
 
         .math-symbol {
-            position: absolute;
-            z-index: 3;
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            color: var(--home-blue);
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 12px 30px rgba(18, 52, 86, .12);
-            font-weight: 800;
-            font-size: 21px;
+          width: 39px;
+          height: 39px;
+          border-radius: 12px;
+          font-size: 17px;
         }
 
-        .symbol-one { top: 12%; left: 13%; }
-        .symbol-two { top: 20%; right: 8%; }
-        .symbol-three { bottom: 17%; left: 9%; }
-        .symbol-four { bottom: 12%; right: 13%; }
-        .symbol-five { top: 50%; right: 0; }
-
-        .hero-shape,
-        .hero-line {
-            pointer-events: none;
+        .symbol-one {
+          left: 4%;
         }
-
-        .scroll-indicator {
-            margin-top: 36px;
-            color: #7890a8;
+        .symbol-two {
+          right: 2%;
         }
-
-        .intro-section,
-        .program-unggulan,
-        .statistik-section,
-        .informasi-section,
-        .agenda-section,
-        .program-section,
-        .survival-section,
-        .home-cta {
-            padding-top: clamp(64px, 8vw, 96px);
-            padding-bottom: clamp(64px, 8vw, 96px);
+        .symbol-three {
+          left: 2%;
         }
-
-        .intro-content,
-        .survival-content {
-            gap: clamp(30px, 6vw, 72px);
-            align-items: center;
+        .symbol-four {
+          right: 4%;
         }
-
-        .intro-text h2,
-        .survival-text h2,
-        .section-title h2,
-        .section-heading h2,
-        .statistik-heading h2,
-        .informasi-header h2,
-        .agenda-heading h2 {
-            color: var(--home-ink);
-            letter-spacing: -.7px;
-            line-height: 1.2;
-        }
-
-        .intro-text > p:not(.section-label),
-        .survival-text > p:not(.section-label) {
-            color: var(--home-muted);
-            line-height: 1.85;
-        }
-
-        .intro-box {
-            border: 1px solid var(--home-line);
-            border-radius: 20px;
-            box-shadow: 0 18px 50px rgba(18, 52, 86, .07);
-            background: #fff;
-        }
-
-        .intro-box-item {
-            padding: 20px 24px;
-        }
-
-        .program-card,
-        .informasi-card,
-        .agenda-card,
-        .statistik-card {
-            border: 1px solid var(--home-line);
-            border-radius: 18px;
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(18, 52, 86, .055);
-            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-        }
-
-        .program-card:hover,
-        .informasi-card:hover,
-        .agenda-card:hover,
-        .statistik-card:hover {
-            transform: translateY(-6px);
-            border-color: #c7dbf1;
-            box-shadow: 0 20px 42px rgba(18, 52, 86, .11);
-        }
-
-        .program-card {
-            padding: 26px;
-        }
-
-        .program-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            background: #eaf3ff;
-            color: var(--home-blue);
-            font-weight: 800;
-            margin-bottom: 18px;
-        }
-
-        .program-card h3,
-        .informasi-content h3,
-        .agenda-content h3 {
-            color: var(--home-ink);
-        }
-
-        .program-card p,
-        .informasi-content p {
-            color: var(--home-muted);
-            line-height: 1.75;
-        }
-
-        .statistik-section {
-            background: linear-gradient(135deg, #f2f7fd, #eaf2fb);
-        }
-
-        .statistik-card {
-            padding: 28px 22px;
-            text-align: center;
-        }
-
-        .statistik-card h3 {
-            color: var(--home-blue-dark);
-        }
-
-        .informasi-image {
-            min-height: 150px;
-        }
-
-        .informasi-content,
-        .agenda-content {
-            padding: 23px;
-        }
-
-        .agenda-poster {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .agenda-poster img {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-        }
-
-        .agenda-status {
-            border-radius: 30px;
-        }
-
-        .survival-section {
-            background: #f4f8fd;
+        .symbol-five {
+          right: -2%;
         }
 
         .survival-content {
-            padding: clamp(28px, 5vw, 58px);
-            border: 1px solid #e0eaf5;
-            border-radius: 24px;
-            background: linear-gradient(120deg, #fff, #f0f6fd);
-            box-shadow: 0 18px 50px rgba(18, 52, 86, .06);
+          padding: 28px 22px;
         }
 
-        .survival-symbol {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 22px;
-            display: grid;
-            place-items: center;
-            border-radius: 30px;
-            background: #e5f0fd;
-            color: var(--home-blue);
-            font-size: 48px;
+        .home-cta-content {
+          gap: 24px;
         }
+      }
 
-        .home-cta {
-            background: linear-gradient(120deg, #10385f, #1763b6);
-        }
+      body.dark-mode .hero-modern {
+        background: linear-gradient(135deg, #101d2c, #142b43);
+      }
 
-        .home-cta .section-label,
-        .home-cta h2 {
-            color: #fff;
-        }
+      body.dark-mode .hero-modern-content h2,
+      body.dark-mode .intro-text h2,
+      body.dark-mode .survival-text h2,
+      body.dark-mode .section-title h2,
+      body.dark-mode .section-heading h2,
+      body.dark-mode .statistik-heading h2,
+      body.dark-mode .informasi-header h2,
+      body.dark-mode .agenda-heading h2 {
+        color: #e8f2ff;
+      }
 
-        .home-cta h2 {
-            line-height: 1.25;
-        }
+      body.dark-mode .hero-university,
+      body.dark-mode .hero-description,
+      body.dark-mode .intro-text > p:not(.section-label),
+      body.dark-mode .survival-text > p:not(.section-label) {
+        color: #bdcde0;
+      }
 
-        .home-cta .tombol {
-            background: #fff;
-            color: #14518c;
-        }
+      body.dark-mode .intro-box,
+      body.dark-mode .program-card,
+      body.dark-mode .informasi-card,
+      body.dark-mode .agenda-card,
+      body.dark-mode .statistik-card {
+        background: #17283b;
+        border-color: #29415c;
+      }
 
-        .home-seminar-card {
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
+      body.dark-mode .program-card h3,
+      body.dark-mode .informasi-content h3,
+      body.dark-mode .agenda-content h3,
+      body.dark-mode .statistik-card h3 {
+        color: #e8f2ff;
+      }
 
-        .home-seminar-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 34px rgba(18, 52, 86, .11);
-        }
+      body.dark-mode .program-card p,
+      body.dark-mode .informasi-content p {
+        color: #bdcde0;
+      }
 
-        footer {
-            background: #0d2946;
-        }
+      body.dark-mode .statistik-section,
+      body.dark-mode .survival-section {
+        background: #101d2c;
+      }
 
-        .footer-content {
-            gap: 40px;
-        }
+      body.dark-mode .survival-content {
+        background: #17283b;
+        border-color: #29415c;
+      }
 
-        @media (max-width: 850px) {
-            .hero-modern-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-modern-content {
-                margin: auto;
-            }
-
-            .hero-description {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-modern-visual {
-                min-height: 360px;
-            }
-
-            .ring-one {
-                width: 320px;
-                height: 320px;
-            }
-
-            .ring-two {
-                width: 380px;
-                height: 380px;
-            }
-        }
-
-        @media (max-width: 560px) {
-            .hero-modern {
-                padding: 68px 20px 58px;
-            }
-
-            .hero-modern-content h2 {
-                font-size: clamp(34px, 10vw, 46px);
-                letter-spacing: -1.3px;
-            }
-
-            .hero-modern-visual {
-                min-height: 300px;
-            }
-
-            .logo-circle {
-                width: 205px;
-            }
-
-            .ring-one {
-                width: 270px;
-                height: 270px;
-            }
-
-            .ring-two {
-                width: 315px;
-                height: 315px;
-            }
-
-            .math-symbol {
-                width: 39px;
-                height: 39px;
-                border-radius: 12px;
-                font-size: 17px;
-            }
-
-            .symbol-one { left: 4%; }
-            .symbol-two { right: 2%; }
-            .symbol-three { left: 2%; }
-            .symbol-four { right: 4%; }
-            .symbol-five { right: -2%; }
-
-            .survival-content {
-                padding: 28px 22px;
-            }
-
-            .home-cta-content {
-                gap: 24px;
-            }
-        }
-
-        body.dark-mode .hero-modern {
-            background: linear-gradient(135deg, #101d2c, #142b43);
-        }
-
-        body.dark-mode .hero-modern-content h2,
-        body.dark-mode .intro-text h2,
-        body.dark-mode .survival-text h2,
-        body.dark-mode .section-title h2,
-        body.dark-mode .section-heading h2,
-        body.dark-mode .statistik-heading h2,
-        body.dark-mode .informasi-header h2,
-        body.dark-mode .agenda-heading h2 {
-            color: #e8f2ff;
-        }
-
-        body.dark-mode .hero-university,
-        body.dark-mode .hero-description,
-        body.dark-mode .intro-text > p:not(.section-label),
-        body.dark-mode .survival-text > p:not(.section-label) {
-            color: #bdcde0;
-        }
-
-        body.dark-mode .intro-box,
-        body.dark-mode .program-card,
-        body.dark-mode .informasi-card,
-        body.dark-mode .agenda-card,
-        body.dark-mode .statistik-card {
-            background: #17283b;
-            border-color: #29415c;
-        }
-
-        body.dark-mode .program-card h3,
-        body.dark-mode .informasi-content h3,
-        body.dark-mode .agenda-content h3,
-        body.dark-mode .statistik-card h3 {
-            color: #e8f2ff;
-        }
-
-        body.dark-mode .program-card p,
-        body.dark-mode .informasi-content p {
-            color: #bdcde0;
-        }
-
-        body.dark-mode .statistik-section,
-        body.dark-mode .survival-section {
-            background: #101d2c;
-        }
-
-        body.dark-mode .survival-content {
-            background: #17283b;
-            border-color: #29415c;
-        }
-
-        body.dark-mode .logo-circle,
-        body.dark-mode .math-symbol {
-            background: #eaf3ff;
-        }
+      body.dark-mode .logo-circle,
+      body.dark-mode .math-symbol {
+        background: #eaf3ff;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- HEADER -->
     <header class="site-header">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Buka menu navigasi"
-            aria-expanded="false"
-            type="button">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+      <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+        <div class="brand-text">
+          <h1>HIMAPTIKA</h1>
+          <p>FKIP UNIVERSITAS TADULAKO</p>
+        </div>
+      </div>
 
-        <div class="brand">
-            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
-            <div class="brand-text">
-                <h1>HIMAPTIKA</h1>
-                <p>FKIP UNIVERSITAS TADULAKO</p>
-            </div>
+      <nav id="mainNav">
+        <div class="drawer-brand">
+          <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+          <div>
+            <h2>HIMAPTIKA</h2>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+          </div>
         </div>
 
-        <nav id="mainNav">
+        <a href="index.html" class="active">Beranda</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="struktur-pengurus.html">Struktur Pengurus</a>
+        <a href="divisi.html">Divisi & Program Kerja</a>
+        <a href="informasi.html">Informasi</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="kontak.html">Kontak</a>
 
-            <div class="drawer-brand">
-                <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
-                <div>
-                    <h2>HIMAPTIKA</h2>
-                    <p>FKIP UNIVERSITAS TADULAKO</p>
-                </div>
-            </div>
+        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
+          🌙
+        </button>
 
-            <a href="index.html" class="active">Beranda</a>
-            <a href="tentang.html">Tentang</a>
-            <a href="struktur-pengurus.html">Struktur Pengurus</a>
-            <a href="divisi.html">Divisi & Program Kerja</a>
-            <a href="informasi.html">Informasi</a>
-            <a href="agenda.html">Agenda</a>
-            <a href="kontak.html">Kontak</a>
-
-            <button id="darkModeToggle" class="dark-mode-toggle" type="button">
-                🌙
-            </button>
-
-            <button id="logoutButton" class="logout-button" type="button">
-                Logout
-            </button>
-
-        </nav>
+        <button id="logoutButton" class="logout-button" type="button">
+          Logout
+        </button>
+      </nav>
     </header>
 
     <main>
+      <!-- HERO -->
+      <section class="hero-modern">
+        <div class="hero-shape shape-one"></div>
+        <div class="hero-shape shape-two"></div>
+        <div class="hero-line line-one"></div>
+        <div class="hero-line line-two"></div>
 
-        <!-- HERO -->
-        <section class="hero-modern">
+        <div class="hero-modern-container">
+          <div class="hero-modern-content">
+            <p class="hero-label">HIMAPTIKA FKIP UNTAD</p>
 
-            <div class="hero-shape shape-one"></div>
-            <div class="hero-shape shape-two"></div>
-            <div class="hero-line line-one"></div>
-            <div class="hero-line line-two"></div>
+            <h2>
+              Himpunan Mahasiswa
+              <span>Pendidikan Matematika</span>
+            </h2>
 
-            <div class="hero-modern-container">
+            <p class="hero-university">
+              Fakultas Keguruan dan Ilmu Pendidikan
+              <br />
+              Universitas Tadulako
+            </p>
 
-                <div class="hero-modern-content">
+            <p class="hero-description">
+              Wadah mahasiswa Pendidikan Matematika untuk berkembang, berkarya,
+              berkolaborasi, dan memberikan kontribusi bagi lingkungan akademik
+              maupun masyarakat.
+            </p>
 
-                    <p class="hero-label">HIMAPTIKA FKIP UNTAD</p>
+            <div class="hero-buttons">
+              <a href="tentang.html" class="tombol"> Tentang HIMAPTIKA </a>
 
-                    <h2>
-                        Himpunan Mahasiswa
-                        <span>Pendidikan Matematika</span>
-                    </h2>
-
-                    <p class="hero-university">
-                        Fakultas Keguruan dan Ilmu Pendidikan
-                        <br>
-                        Universitas Tadulako
-                    </p>
-
-                    <p class="hero-description">
-                        Wadah mahasiswa Pendidikan Matematika
-                        untuk berkembang, berkarya, berkolaborasi,
-                        dan memberikan kontribusi bagi lingkungan
-                        akademik maupun masyarakat.
-                    </p>
-
-                    <div class="hero-buttons">
-                        <a href="tentang.html" class="tombol">
-                            Tentang HIMAPTIKA
-                        </a>
-
-                        <a href="divisi.html" class="tombol tombol-outline">
-                            Divisi & Program Kerja
-                        </a>
-                    </div>
-
-                    <div class="scroll-indicator">
-                        <span></span>
-                        <p>Jelajahi HIMAPTIKA</p>
-                    </div>
-
-                </div>
-
-                <div class="hero-modern-visual">
-
-                    <div class="logo-ring ring-one"></div>
-                    <div class="logo-ring ring-two"></div>
-
-                    <div class="logo-circle">
-                        <img
-                            src="images/logo himaptika.png"
-                            alt="Logo HIMAPTIKA FKIP UNTAD">
-                    </div>
-
-                    <div class="math-symbol symbol-one">∑</div>
-                    <div class="math-symbol symbol-two">π</div>
-                    <div class="math-symbol symbol-three">∞</div>
-                    <div class="math-symbol symbol-four">√</div>
-                    <div class="math-symbol symbol-five">x²</div>
-
-                </div>
-
+              <a href="divisi.html" class="tombol tombol-outline">
+                Divisi & Program Kerja
+              </a>
             </div>
-        </section>
 
-        <!-- INTRO -->
-        <section class="intro-section">
-            <div class="container">
-
-                <div class="intro-content">
-
-                    <div class="intro-text">
-
-                        <p class="section-label">TENTANG HIMAPTIKA</p>
-
-                        <h2>
-                            Ruang Tumbuh dan Berkarya
-                            Mahasiswa Pendidikan Matematika
-                        </h2>
-
-                        <p>
-                            HIMAPTIKA FKIP UNTAD merupakan wadah
-                            mahasiswa Pendidikan Matematika untuk
-                            mengembangkan kemampuan akademik,
-                            organisasi, kreativitas, dan kepedulian
-                            sosial.
-                        </p>
-
-                        <a href="tentang.html" class="text-link">
-                            Selengkapnya tentang HIMAPTIKA →
-                        </a>
-
-                    </div>
-
-                    <div class="intro-box">
-
-                        <div class="intro-box-item">
-                            <strong>HIMAPTIKA</strong>
-                            <span>
-                                Himpunan Mahasiswa
-                                Pendidikan Matematika
-                            </span>
-                        </div>
-
-                        <div class="intro-box-item">
-                            <strong>FKIP</strong>
-                            <span>
-                                Fakultas Keguruan dan
-                                Ilmu Pendidikan
-                            </span>
-                        </div>
-
-                        <div class="intro-box-item">
-                            <strong>UNTAD</strong>
-                            <span>Universitas Tadulako</span>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="scroll-indicator">
+              <span></span>
+              <p>Jelajahi HIMAPTIKA</p>
             </div>
-        </section>
+          </div>
 
-        <!-- PROGRAM KERJA UNGGULAN -->
-        <section class="program-unggulan">
-            <div class="container">
+          <div class="hero-modern-visual">
+            <div class="logo-ring ring-one"></div>
+            <div class="logo-ring ring-two"></div>
 
-                <div class="section-title">
-                    <span>KEGIATAN KAMI</span>
-                    <h2>Program Kerja Unggulan</h2>
-                    <p>
-                        Berbagai program dan kegiatan HIMAPTIKA
-                        untuk mendukung pengembangan mahasiswa.
-                    </p>
-                </div>
-
-                <div class="program-grid">
-
-                    <div class="program-card">
-                        <div class="program-icon">📚</div>
-                        <h3>Seminar Akademik</h3>
-                        <p>
-                            Kegiatan pengembangan wawasan dan kemampuan
-                            akademik mahasiswa.
-                        </p>
-                        <a href="informasi.html">Lihat Informasi →</a>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">🎓</div>
-                        <h3>Pelayanan Akademik</h3>
-                        <p>
-                            Pusat informasi dan panduan untuk membantu
-                            kebutuhan akademik mahasiswa.
-                        </p>
-                        <a href="pelayanan-akademik.html">Selengkapnya →</a>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">🤝</div>
-                        <h3>Pengembangan Mahasiswa</h3>
-                        <p>
-                            Ruang untuk mengembangkan potensi,
-                            kreativitas, dan kemampuan mahasiswa.
-                        </p>
-                        <a href="divisi.html">Lihat Program →</a>
-                    </div>
-
-                </div>
+            <div class="logo-circle">
+              <img
+                src="images/logo himaptika.png"
+                alt="Logo HIMAPTIKA FKIP UNTAD"
+              />
             </div>
-        </section>
 
-        <!-- STATISTIK HIMAPTIKA -->
-        <section class="statistik-section">
-            <div class="statistik-container">
+            <div class="math-symbol symbol-one">∑</div>
+            <div class="math-symbol symbol-two">π</div>
+            <div class="math-symbol symbol-three">∞</div>
+            <div class="math-symbol symbol-four">√</div>
+            <div class="math-symbol symbol-five">x²</div>
+          </div>
+        </div>
+      </section>
 
-                <div class="statistik-heading">
-                    <span>HIMAPTIKA DALAM ANGKA</span>
-                    <h2>Bersama Tumbuh dan Berkembang</h2>
-                    <p>
-                        Menjadi ruang kolaborasi dan pengembangan
-                        potensi mahasiswa Pendidikan Matematika.
-                    </p>
-                </div>
+      <!-- INTRO -->
+      <section class="intro-section">
+        <div class="container">
+          <div class="intro-content">
+            <div class="intro-text">
+              <p class="section-label">TENTANG HIMAPTIKA</p>
 
-                <div class="statistik-grid">
+              <h2>Ruang Tumbuh dan Berkarya Mahasiswa Pendidikan Matematika</h2>
 
-                    <div class="statistik-card">
-                        <div class="statistik-icon">🏛️</div>
-                        <h3>07</h3>
-                        <p>Divisi Organisasi</p>
-                    </div>
+              <p>
+                HIMAPTIKA FKIP UNTAD merupakan wadah mahasiswa Pendidikan
+                Matematika untuk mengembangkan kemampuan akademik, organisasi,
+                kreativitas, dan kepedulian sosial.
+              </p>
 
-                    <div class="statistik-card">
-                        <div class="statistik-icon">📚</div>
-                        <h3>04</h3>
-                        <p>Program Akademik</p>
-                    </div>
-
-                    <div class="statistik-card">
-                        <div class="statistik-icon">∞</div>
-                        <h3>Ruang Kolaborasi</h3>
-                        <p>Bersama Berkarya dan Berkontribusi</p>
-                    </div>
-
-                </div>
+              <a href="tentang.html" class="text-link">
+                Selengkapnya tentang HIMAPTIKA →
+              </a>
             </div>
-        </section>
 
-        <!-- INFORMASI TERBARU -->
-        <section class="informasi-section">
-            <div class="informasi-container">
+            <div class="intro-box">
+              <div class="intro-box-item">
+                <strong>HIMAPTIKA</strong>
+                <span> Himpunan Mahasiswa Pendidikan Matematika </span>
+              </div>
 
-                <div class="informasi-header">
-                    <div>
-                        <span class="informasi-label">UPDATE HIMAPTIKA</span>
-                        <h2>Informasi Terbaru</h2>
-                        <p>
-                            Temukan informasi dan kabar terbaru
-                            seputar kegiatan HIMAPTIKA.
-                        </p>
-                    </div>
+              <div class="intro-box-item">
+                <strong>FKIP</strong>
+                <span> Fakultas Keguruan dan Ilmu Pendidikan </span>
+              </div>
 
-                    <a href="informasi.html" class="lihat-semua">
-                        Lihat Semua →
-                    </a>
-                </div>
-
-                <div class="informasi-grid">
-
-                    <div class="informasi-card">
-                        <div class="informasi-image image-blue">
-                            <span>📢</span>
-                            <div class="image-overlay"></div>
-                            <span class="kategori">Pengumuman</span>
-                        </div>
-
-                        <div class="informasi-content">
-                            <div class="informasi-meta">
-                                <span>HIMAPTIKA</span>
-                                <span>Informasi</span>
-                            </div>
-
-                            <h3>Informasi Terbaru HIMAPTIKA</h3>
-                            <p>
-                                Dapatkan berbagai informasi dan
-                                pengumuman terbaru dari HIMAPTIKA.
-                            </p>
-
-                            <a href="informasi.html">
-                                Baca Selengkapnya →
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="informasi-card">
-                        <div class="informasi-image image-purple">
-                            <span>🎓</span>
-                            <div class="image-overlay"></div>
-                            <span class="kategori">Akademik</span>
-                        </div>
-
-                        <div class="informasi-content">
-                            <div class="informasi-meta">
-                                <span>Pelayanan Akademik</span>
-                                <span>Akademik</span>
-                            </div>
-
-                            <h3>Informasi Pelayanan Akademik</h3>
-                            <p>
-                                Akses berbagai panduan dan informasi
-                                untuk mendukung kebutuhan akademik.
-                            </p>
-
-                            <a href="pelayanan-akademik.html">
-                                Baca Selengkapnya →
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="informasi-card">
-                        <div class="informasi-image image-orange">
-                            <span>📅</span>
-                            <div class="image-overlay"></div>
-                            <span class="kategori">Kegiatan</span>
-                        </div>
-
-                        <div class="informasi-content">
-                            <div class="informasi-meta">
-                                <span>Agenda HIMAPTIKA</span>
-                                <span>Kegiatan</span>
-                            </div>
-
-                            <h3>Agenda Kegiatan HIMAPTIKA</h3>
-                            <p>
-                                Ikuti perkembangan agenda dan
-                                kegiatan mahasiswa Pendidikan Matematika.
-                            </p>
-
-                            <a href="agenda.html">
-                                Baca Selengkapnya →
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+              <div class="intro-box-item">
+                <strong>UNTAD</strong>
+                <span>Universitas Tadulako</span>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- AGENDA KEGIATAN -->
-        <section class="agenda-section">
-            <div class="agenda-container">
+      <!-- PROGRAM KERJA UNGGULAN -->
+      <section class="program-unggulan">
+        <div class="container">
+          <div class="section-title">
+            <span>KEGIATAN KAMI</span>
+            <h2>Program Kerja Unggulan</h2>
+            <p>
+              Berbagai program dan kegiatan HIMAPTIKA untuk mendukung
+              pengembangan mahasiswa.
+            </p>
+          </div>
 
-                <div class="agenda-heading">
-                    <div>
-                        <span class="agenda-label">JANGAN LEWATKAN</span>
-                        <h2>Agenda Mendatang</h2>
-                        <p>
-                            Ikuti berbagai kegiatan dan aktivitas
-                            HIMAPTIKA yang akan datang.
-                        </p>
-                    </div>
-
-                    <a href="agenda.html" class="agenda-all">
-                        Semua Agenda →
-                    </a>
-                </div>
-
-                <div class="agenda-grid">
-
-                    <div class="agenda-card">
-                        <div class="agenda-poster">
-                            <img
-                                src="images/seminar.jpg"
-                                alt="Pamflet kegiatan HIMAPTIKA">
-
-                            <span class="agenda-status">
-                                Akan Datang
-                            </span>
-                        </div>
-
-                        <div class="agenda-content">
-                            <span class="agenda-category">SEMINAR</span>
-                            <h3>Seminar Akademik HIMAPTIKA</h3>
-
-                            <div class="agenda-detail">
-                                <span>📅 </span>
-                                <span>📍 </span>
-                            </div>
-
-                            <a
-                                href=""
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="agenda-button">
-                                Lihat Informasi →
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="agenda-card">
-                        <div class="agenda-poster">
-                            <img
-                                src="images/dies natalis.jpg"
-                                alt="Pamflet kegiatan HIMAPTIKA">
-
-                            <span class="agenda-status">
-                                Akan Datang
-                            </span>
-                        </div>
-
-                        <div class="agenda-content">
-                            <span class="agenda-category">KEGIATAN</span>
-                            <h3>Dies Natalies HIMAPTIKA KE-XVIII</h3>
-
-                            <div class="agenda-detail">
-                                <span>📅 Tanggal kegiatan</span>
-                                <span>📍 Lokasi kegiatan</span>
-                            </div>
-
-                            <a
-                                href="https://www.instagram.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="agenda-button">
-                                Lihat Informasi →
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="agenda-card">
-                        <div class="agenda-poster">
-                            <img
-                                src="images/Sparta.jpeg"
-                                alt="Pamflet kegiatan HIMAPTIKA">
-
-                            <span class="agenda-status">
-                                Sedang berlangsung
-                            </span>
-                        </div>
-
-                        <div class="agenda-content">
-                            <span class="agenda-category">SPORT & ART</span>
-                            <h3>Sport and Art HIMAPTIKA</h3>
-
-                            <div class="agenda-detail">
-                                <span>📅 jum'at,02 oktober 2026</span>
-                                <span>📍 fkip 07</span>
-                            </div>
-
-                            <a
-                                href="https://www.instagram.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="agenda-button">
-                                Lihat Informasi →
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+          <div class="program-grid">
+            <div class="program-card">
+              <div class="program-icon">📚</div>
+              <h3>Seminar Akademik</h3>
+              <p>
+                Kegiatan pengembangan wawasan dan kemampuan akademik mahasiswa.
+              </p>
+              <a href="informasi.html">Lihat Informasi →</a>
             </div>
-        </section>
 
-        <!-- JADWAL SEMINAR TERDEKAT -->
-        <section class="home-seminar-section">
-            <div class="home-seminar-container">
-
-                <div class="home-seminar-heading">
-                    <div>
-                        <span class="home-seminar-label">INFORMASI AKADEMIK</span>
-                        <h2>Jadwal Seminar Terdekat</h2>
-                        <p>
-                            Informasi jadwal Seminar Proposal dan Seminar
-                            Hasil mahasiswa Pendidikan Matematika.
-                        </p>
-                    </div>
-
-                    <a href="jadwal-seminar.html" class="home-seminar-all">
-                        Lihat Semua Jadwal →
-                    </a>
-                </div>
-
-                <div
-                    id="homeSeminarList"
-                    class="home-seminar-grid"
-                    aria-live="polite">
-
-                    <p class="home-seminar-message">
-                        Memuat jadwal seminar...
-                    </p>
-
-                </div>
+            <div class="program-card">
+              <div class="program-icon">🎓</div>
+              <h3>Pelayanan Akademik</h3>
+              <p>
+                Pusat informasi dan panduan untuk membantu kebutuhan akademik
+                mahasiswa.
+              </p>
+              <a href="pelayanan-akademik.html">Selengkapnya →</a>
             </div>
-        </section>
 
-        <!-- ACADEMIC SURVIVAL -->
-        <section class="survival-section">
-            <div class="container">
-
-                <div class="survival-content">
-
-                    <div class="survival-text">
-                        <p class="section-label">ACADEMIC SURVIVAL WEB</p>
-
-                        <h2>
-                            Teman Perjalanan Akademik
-                            Mahasiswa Pendidikan Matematika.
-                        </h2>
-
-                        <p>
-                            Academic Survival Web merupakan ruang
-                            informasi yang dikembangkan untuk membantu
-                            mahasiswa dalam menemukan berbagai informasi
-                            dan kebutuhan yang berkaitan dengan kehidupan
-                            akademik.
-                        </p>
-                    </div>
-
-                    <div class="survival-action">
-                        <div class="survival-symbol">∑</div>
-
-                        <a href="pelayanan-akademik.html" class="tombol">
-                            Jelajahi Akademik →
-                        </a>
-                    </div>
-
-                </div>
+            <div class="program-card">
+              <div class="program-icon">🤝</div>
+              <h3>Pengembangan Mahasiswa</h3>
+              <p>
+                Ruang untuk mengembangkan potensi, kreativitas, dan kemampuan
+                mahasiswa.
+              </p>
+              <a href="divisi.html">Lihat Program →</a>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- DIVISI & PROGRAM KERJA -->
-        <section class="program-section">
-            <div class="container">
+      <!-- STATISTIK HIMAPTIKA -->
+      <section class="statistik-section">
+        <div class="statistik-container">
+          <div class="statistik-heading">
+            <span>HIMAPTIKA DALAM ANGKA</span>
+            <h2>Bersama Tumbuh dan Berkembang</h2>
+            <p>
+              Menjadi ruang kolaborasi dan pengembangan potensi mahasiswa
+              Pendidikan Matematika.
+            </p>
+          </div>
 
-                <div class="section-heading">
-                    <p class="section-label">DIVISI & PROGRAM KERJA</p>
-
-                    <h2>Bergerak Bersama dalam Tujuh Divisi</h2>
-
-                    <p>
-                        Setiap divisi memiliki peran dan program
-                        kerja dalam menjalankan kegiatan HIMAPTIKA.
-                    </p>
-                </div>
-
-                <div class="program-grid">
-
-                    <div class="program-card">
-                        <div class="program-icon">01</div>
-                        <h3>Pemikat</h3>
-                        <p>
-                            Mendukung kegiatan dan pengembangan
-                            mahasiswa melalui bidang olahraga.
-                        </p>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">02</div>
-                        <h3>Event Organizer</h3>
-                        <p>
-                            Mengelola dan mendukung pelaksanaan
-                            berbagai kegiatan HIMAPTIKA.
-                        </p>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">03</div>
-                        <h3>Admeinfo</h3>
-                        <p>
-                            Mendukung pengelolaan administrasi
-                            dan informasi organisasi.
-                        </p>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">04</div>
-                        <h3>Pelayanan Akademik</h3>
-                        <p>
-                            Mendukung kebutuhan dan perjalanan
-                            akademik mahasiswa.
-                        </p>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">05</div>
-                        <h3>Kerohanian</h3>
-                        <p>
-                            Menjadi ruang kegiatan dan
-                            pengembangan kerohanian mahasiswa.
-                        </p>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">06</div>
-                        <h3>Kewirausahaan</h3>
-                        <p>
-                            Mengembangkan kegiatan kewirausahaan
-                            dan kreativitas mahasiswa.
-                        </p>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">07</div>
-                        <h3>Hubungan Masyarakat</h3>
-                        <p>
-                            Membangun komunikasi dan hubungan
-                            HIMAPTIKA dengan lingkungan sekitar.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="center-button">
-                    <a href="divisi.html" class="tombol tombol-outline">
-                        Lihat Semua Divisi →
-                    </a>
-                </div>
-
+          <div class="statistik-grid">
+            <div class="statistik-card">
+              <div class="statistik-icon">🏛️</div>
+              <h3>07</h3>
+              <p>Divisi Organisasi</p>
             </div>
-        </section>
 
-        <!-- CTA -->
-        <section class="home-cta">
-            <div class="container">
-
-                <div class="home-cta-content">
-
-                    <div>
-                        <p class="section-label">HIMAPTIKA FKIP UNTAD</p>
-
-                        <h2>
-                            Mari tumbuh, berkarya,
-                            dan berkontribusi bersama.
-                        </h2>
-                    </div>
-
-                    <a href="kontak.html" class="tombol">
-                        Terhubung dengan HIMAPTIKA →
-                    </a>
-
-                </div>
+            <div class="statistik-card">
+              <div class="statistik-icon">📚</div>
+              <h3>04</h3>
+              <p>Program Akademik</p>
             </div>
-        </section>
 
+            <div class="statistik-card">
+              <div class="statistik-icon">∞</div>
+              <h3>Ruang Kolaborasi</h3>
+              <p>Bersama Berkarya dan Berkontribusi</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INFORMASI TERBARU -->
+      <section class="informasi-section">
+        <div class="informasi-container">
+          <div class="informasi-header">
+            <div>
+              <span class="informasi-label">UPDATE HIMAPTIKA</span>
+              <h2>Informasi Terbaru</h2>
+              <p>
+                Temukan informasi dan kabar terbaru seputar kegiatan HIMAPTIKA.
+              </p>
+            </div>
+
+            <a href="informasi.html" class="lihat-semua"> Lihat Semua → </a>
+          </div>
+
+          <div class="informasi-grid">
+            <div class="informasi-card">
+              <div class="informasi-image image-blue">
+                <span>📢</span>
+                <div class="image-overlay"></div>
+                <span class="kategori">Pengumuman</span>
+              </div>
+
+              <div class="informasi-content">
+                <div class="informasi-meta">
+                  <span>HIMAPTIKA</span>
+                  <span>Informasi</span>
+                </div>
+
+                <h3>Informasi Terbaru HIMAPTIKA</h3>
+                <p>
+                  Dapatkan berbagai informasi dan pengumuman terbaru dari
+                  HIMAPTIKA.
+                </p>
+
+                <a href="informasi.html"> Baca Selengkapnya → </a>
+              </div>
+            </div>
+
+            <div class="informasi-card">
+              <div class="informasi-image image-purple">
+                <span>🎓</span>
+                <div class="image-overlay"></div>
+                <span class="kategori">Akademik</span>
+              </div>
+
+              <div class="informasi-content">
+                <div class="informasi-meta">
+                  <span>Pelayanan Akademik</span>
+                  <span>Akademik</span>
+                </div>
+
+                <h3>Informasi Pelayanan Akademik</h3>
+                <p>
+                  Akses berbagai panduan dan informasi untuk mendukung kebutuhan
+                  akademik.
+                </p>
+
+                <a href="pelayanan-akademik.html"> Baca Selengkapnya → </a>
+              </div>
+            </div>
+
+            <div class="informasi-card">
+              <div class="informasi-image image-orange">
+                <span>📅</span>
+                <div class="image-overlay"></div>
+                <span class="kategori">Kegiatan</span>
+              </div>
+
+              <div class="informasi-content">
+                <div class="informasi-meta">
+                  <span>Agenda HIMAPTIKA</span>
+                  <span>Kegiatan</span>
+                </div>
+
+                <h3>Agenda Kegiatan HIMAPTIKA</h3>
+                <p>
+                  Ikuti perkembangan agenda dan kegiatan mahasiswa Pendidikan
+                  Matematika.
+                </p>
+
+                <a href="agenda.html"> Baca Selengkapnya → </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AGENDA KEGIATAN -->
+      <section class="agenda-section">
+        <div class="agenda-container">
+          <div class="agenda-heading">
+            <div>
+              <span class="agenda-label">JANGAN LEWATKAN</span>
+              <h2>Agenda Mendatang</h2>
+              <p>
+                Ikuti berbagai kegiatan dan aktivitas HIMAPTIKA yang akan
+                datang.
+              </p>
+            </div>
+
+            <a href="agenda.html" class="agenda-all"> Semua Agenda → </a>
+          </div>
+
+          <div class="agenda-grid">
+            <div class="agenda-card">
+              <div class="agenda-poster">
+                <img
+                  src="images/mubes.jpg"
+                  alt="Pamflet kegiatan HIMAPTIKA"
+                  loading="lazy"
+                  decoding="async"
+                />
+
+                <span class="agenda-status status-upcoming">Akan Datang</span>
+                <!-- Mubes -->
+              </div>
+
+              <div class="agenda-content">
+                <span class="agenda-category">MUBES HIMAPTIKA ke-XXIII</span>
+                <h3>MUSYAWARAH BESAR</h3>
+
+                <div class="agenda-detail">
+                  <span>📅 COMING SOON</span>
+                  <span>📍SOON </span>
+                </div>
+
+                <a
+                  href="https://www.instagram.com/p/DgAQMzLkiKS/?utm_source=ig_web_copy_link&dmpr=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="agenda-button"
+                >
+                  Lihat Informasi →
+                </a>
+              </div>
+            </div>
+
+            <div class="agenda-card">
+              <div class="agenda-poster">
+                <img
+                  src="images/dies natalis.jpg"
+                  alt="Pamflet kegiatan HIMAPTIKA"
+                  loading="lazy"
+                  decoding="async"
+                />
+
+                <span class="agenda-status"> selesai </span>
+              </div>
+
+              <div class="agenda-content">
+                <span class="agenda-category">KEGIATAN</span>
+                <h3>Dies Natalies HIMAPTIKA KE-XXXIII</h3>
+
+                <div class="agenda-detail">
+                  <span>📅 Tanggal kegiatan</span>
+                  <span>📍 Lokasi kegiatan</span>
+                </div>
+
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="agenda-button"
+                >
+                  Lihat Informasi →
+                </a>
+              </div>
+            </div>
+
+            <div class="agenda-card">
+              <div class="agenda-poster">
+                <img
+                  src="images/Sparta.jpeg"
+                  alt="Pamflet kegiatan HIMAPTIKA"
+                  loading="lazy"
+                  decoding="async"
+                />
+
+                <span class="agenda-status"> selesai </span>
+              </div>
+
+              <div class="agenda-content">
+                <span class="agenda-category">SPORT & ART</span>
+                <h3>Sport and Art HIMAPTIKA</h3>
+
+                <div class="agenda-detail">
+                  <span>📅 jum'at,02 oktober 2026</span>
+                  <span>📍 fkip 07</span>
+                </div>
+
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="agenda-button"
+                >
+                  Lihat Informasi →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JADWAL SEMINAR TERDEKAT -->
+      <section class="home-seminar-section">
+        <div class="home-seminar-container">
+          <div class="home-seminar-heading">
+            <div>
+              <span class="home-seminar-label">INFORMASI AKADEMIK</span>
+              <h2>Jadwal Seminar Terdekat</h2>
+              <p>
+                Informasi jadwal Seminar Proposal dan Seminar Hasil mahasiswa
+                Pendidikan Matematika.
+              </p>
+            </div>
+
+            <a href="jadwal-seminar.html" class="home-seminar-all">
+              Lihat Semua Jadwal →
+            </a>
+          </div>
+
+          <div
+            id="homeSeminarList"
+            class="home-seminar-grid"
+            aria-live="polite"
+          >
+            <p class="home-seminar-message">Memuat jadwal seminar...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACADEMIC SURVIVAL -->
+      <section class="survival-section">
+        <div class="container">
+          <div class="survival-content">
+            <div class="survival-text">
+              <p class="section-label">ACADEMIC SURVIVAL WEB</p>
+
+              <h2>
+                Teman Perjalanan Akademik Mahasiswa Pendidikan Matematika.
+              </h2>
+
+              <p>
+                Academic Survival Web merupakan ruang informasi yang
+                dikembangkan untuk membantu mahasiswa dalam menemukan berbagai
+                informasi dan kebutuhan yang berkaitan dengan kehidupan
+                akademik.
+              </p>
+            </div>
+
+            <div class="survival-action">
+              <div class="survival-symbol">∑</div>
+
+              <a href="pelayanan-akademik.html" class="tombol">
+                Jelajahi Akademik →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIVISI & PROGRAM KERJA -->
+      <section class="program-section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">DIVISI & PROGRAM KERJA</p>
+
+            <h2>Bergerak Bersama dalam Tujuh Divisi</h2>
+
+            <p>
+              Setiap divisi memiliki peran dan program kerja dalam menjalankan
+              kegiatan HIMAPTIKA.
+            </p>
+          </div>
+
+          <div class="program-grid">
+            <div class="program-card">
+              <div class="program-icon">01</div>
+              <h3>Pemikat</h3>
+              <p>
+                Mendukung kegiatan dan pengembangan mahasiswa melalui bidang
+                olahraga.
+              </p>
+            </div>
+
+            <div class="program-card">
+              <div class="program-icon">02</div>
+              <h3>Event Organizer</h3>
+              <p>
+                Mengelola dan mendukung pelaksanaan berbagai kegiatan HIMAPTIKA.
+              </p>
+            </div>
+
+            <div class="program-card">
+              <div class="program-icon">03</div>
+              <h3>Admeinfo</h3>
+              <p>
+                Mendukung pengelolaan administrasi dan informasi organisasi.
+              </p>
+            </div>
+
+            <div class="program-card">
+              <div class="program-icon">04</div>
+              <h3>Pelayanan Akademik</h3>
+              <p>Mendukung kebutuhan dan perjalanan akademik mahasiswa.</p>
+            </div>
+
+            <div class="program-card">
+              <div class="program-icon">05</div>
+              <h3>Kerohanian</h3>
+              <p>
+                Menjadi ruang kegiatan dan pengembangan kerohanian mahasiswa.
+              </p>
+            </div>
+
+            <div class="program-card">
+              <div class="program-icon">06</div>
+              <h3>Kewirausahaan</h3>
+              <p>
+                Mengembangkan kegiatan kewirausahaan dan kreativitas mahasiswa.
+              </p>
+            </div>
+
+            <div class="program-card">
+              <div class="program-icon">07</div>
+              <h3>Hubungan Masyarakat</h3>
+              <p>
+                Membangun komunikasi dan hubungan HIMAPTIKA dengan lingkungan
+                sekitar.
+              </p>
+            </div>
+          </div>
+
+          <div class="center-button">
+            <a href="divisi.html" class="tombol tombol-outline">
+              Lihat Semua Divisi →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="home-cta">
+        <div class="container">
+          <div class="home-cta-content">
+            <div>
+              <p class="section-label">HIMAPTIKA FKIP UNTAD</p>
+
+              <h2>Mari tumbuh, berkarya, dan berkontribusi bersama.</h2>
+            </div>
+
+            <a href="kontak.html" class="tombol">
+              Terhubung dengan HIMAPTIKA →
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- FOOTER -->
     <footer>
-
-        <div class="footer-content">
-
-            <div>
-                <h3>HIMAPTIKA</h3>
-                <p>
-                    Himpunan Mahasiswa
-                    Pendidikan Matematika
-                </p>
-            </div>
-
-            <div>
-                <h3>FKIP UNTAD</h3>
-                <p>
-                    Fakultas Keguruan dan
-                    Ilmu Pendidikan
-                </p>
-                <p>Universitas Tadulako</p>
-            </div>
-
+      <div class="footer-content">
+        <div>
+          <h3>HIMAPTIKA</h3>
+          <p>Himpunan Mahasiswa Pendidikan Matematika</p>
         </div>
 
-        <div class="footer-bottom">
-            <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
+        <div>
+          <h3>FKIP UNTAD</h3>
+          <p>Fakultas Keguruan dan Ilmu Pendidikan</p>
+          <p>Universitas Tadulako</p>
         </div>
+      </div>
 
+      <div class="footer-bottom">
+        <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
 
     <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
     <script type="module">
-        import { auth } from "./js/firebase.js";
+      import { auth } from "./js/firebase.js";
 
-        import {
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+      import {
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-        document.documentElement.style.visibility = "hidden";
+      document.documentElement.style.visibility = "hidden";
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.documentElement.style.visibility = "visible";
-            } else {
-                window.location.replace("login.html");
-            }
-        });
-
-        const logoutButton = document.getElementById("logoutButton");
-
-        if (logoutButton) {
-            logoutButton.addEventListener("click", async () => {
-
-                if (!confirm("Apakah kamu yakin ingin keluar dari akun?")) {
-                    return;
-                }
-
-                try {
-                    await signOut(auth);
-                    window.location.replace("login.html");
-
-                } catch (error) {
-                    console.error("Logout error:", error);
-                    alert("Gagal keluar. Silakan coba kembali.");
-                }
-            });
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          document.documentElement.style.visibility = "visible";
+        } else {
+          window.location.replace("login.html");
         }
+      });
+
+      const logoutButton = document.getElementById("logoutButton");
+
+      if (logoutButton) {
+        logoutButton.addEventListener("click", async () => {
+          if (!confirm("Apakah kamu yakin ingin keluar dari akun?")) {
+            return;
+          }
+
+          try {
+            await signOut(auth);
+            window.location.replace("login.html");
+          } catch (error) {
+            console.error("Logout error:", error);
+            alert("Gagal keluar. Silakan coba kembali.");
+          }
+        });
+      }
     </script>
 
     <!-- JADWAL SEMINAR DARI GOOGLE SHEETS -->
     <script>
-        const SEMINAR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq3a1AyVPkuMx-KqObYcwH2g_QscvZACuB-fe2M6ywQTzJbDyChw5rUt5qd7Ts6WZ3d1m3YUwdFL21/pub?gid=1444305561&single=true&output=csv";
+      const SEMINAR_CSV_URL =
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq3a1AyVPkuMx-KqObYcwH2g_QscvZACuB-fe2M6ywQTzJbDyChw5rUt5qd7Ts6WZ3d1m3YUwdFL21/pub?gid=1444305561&single=true&output=csv";
 
-        function parseCSV(text) {
-            const rows = [];
-            let row = [];
-            let cell = "";
-            let quoted = false;
+      function parseCSV(text) {
+        const rows = [];
+        let row = [];
+        let cell = "";
+        let quoted = false;
 
-            for (let i = 0; i < text.length; i++) {
-                const char = text[i];
-                const next = text[i + 1];
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i];
+          const next = text[i + 1];
 
-                if (char === '"' && quoted && next === '"') {
-                    cell += '"';
-                    i++;
-
-                } else if (char === '"') {
-                    quoted = !quoted;
-
-                } else if (char === "," && !quoted) {
-                    row.push(cell.trim());
-                    cell = "";
-
-                } else if ((char === "\n" || char === "\r") && !quoted) {
-
-                    if (char === "\r" && next === "\n") {
-                        i++;
-                    }
-
-                    row.push(cell.trim());
-
-                    if (row.some(value => value !== "")) {
-                        rows.push(row);
-                    }
-
-                    row = [];
-                    cell = "";
-
-                } else {
-                    cell += char;
-                }
+          if (char === '"' && quoted && next === '"') {
+            cell += '"';
+            i++;
+          } else if (char === '"') {
+            quoted = !quoted;
+          } else if (char === "," && !quoted) {
+            row.push(cell.trim());
+            cell = "";
+          } else if ((char === "\n" || char === "\r") && !quoted) {
+            if (char === "\r" && next === "\n") {
+              i++;
             }
 
             row.push(cell.trim());
 
-            if (row.some(value => value !== "")) {
-                rows.push(row);
+            if (row.some((value) => value !== "")) {
+              rows.push(row);
             }
 
-            return rows;
+            row = [];
+            cell = "";
+          } else {
+            cell += char;
+          }
         }
 
-        function normalizeHeader(value) {
-            return String(value || "")
-                .toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-z0-9]/g, "");
+        row.push(cell.trim());
+
+        if (row.some((value) => value !== "")) {
+          rows.push(row);
         }
 
-        function getColumnIndex(headers, aliases) {
-            const normalized = headers.map(normalizeHeader);
+        return rows;
+      }
 
-            for (const alias of aliases) {
-                const index = normalized.indexOf(normalizeHeader(alias));
+      function normalizeHeader(value) {
+        return String(value || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]/g, "");
+      }
 
-                if (index !== -1) {
-                    return index;
-                }
-            }
+      function getColumnIndex(headers, aliases) {
+        const normalized = headers.map(normalizeHeader);
 
-            return -1;
+        for (const alias of aliases) {
+          const index = normalized.indexOf(normalizeHeader(alias));
+
+          if (index !== -1) {
+            return index;
+          }
         }
 
-        function parseSeminarDate(value) {
-            const raw = String(value || "").trim();
+        return -1;
+      }
 
-            if (!raw) {
-                return null;
-            }
+      function parseSeminarDate(value) {
+        const raw = String(value || "").trim();
 
-            let match = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
-
-            if (match) {
-                return new Date(
-                    Number(match[1]),
-                    Number(match[2]) - 1,
-                    Number(match[3])
-                );
-            }
-
-            match = raw.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
-
-            if (match) {
-                const first = Number(match[1]);
-                const second = Number(match[2]);
-                const year = Number(match[3]);
-
-                let day = first;
-                let month = second;
-
-                if (first <= 12 && second > 12) {
-                    month = first;
-                    day = second;
-                }
-
-                const date = new Date(year, month - 1, day);
-
-                if (
-                    date.getFullYear() === year &&
-                    date.getMonth() === month - 1 &&
-                    date.getDate() === day
-                ) {
-                    return date;
-                }
-
-                return null;
-            }
-
-            const date = new Date(raw);
-
-            return Number.isNaN(date.getTime())
-                ? null
-                : new Date(
-                    date.getFullYear(),
-                    date.getMonth(),
-                    date.getDate()
-                );
+        if (!raw) {
+          return null;
         }
 
-        function formatSeminarDate(value) {
-            const date = value instanceof Date
-                ? value
-                : parseSeminarDate(value);
+        let match = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
 
-            return date
-                ? new Intl.DateTimeFormat("id-ID", {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                }).format(date)
-                : String(value || "Tanggal belum ditentukan");
+        if (match) {
+          return new Date(
+            Number(match[1]),
+            Number(match[2]) - 1,
+            Number(match[3]),
+          );
         }
 
-        function rowsToSeminars(csvText) {
-            const rows = parseCSV(csvText);
+        match = raw.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
 
-            if (rows.length < 2) {
-                return [];
-            }
+        if (match) {
+          const first = Number(match[1]);
+          const second = Number(match[2]);
+          const year = Number(match[3]);
 
-            const headers = rows[0];
+          let day = first;
+          let month = second;
 
-            const columns = {
-                nama: getColumnIndex(headers, [
-                    "Nama Lengkap",
-                    "Nama Mahasiswa",
-                    "Nama"
-                ]),
+          if (first <= 12 && second > 12) {
+            month = first;
+            day = second;
+          }
 
-                jenis: getColumnIndex(headers, [
-                    "Jenis Seminar",
-                    "Jenis"
-                ]),
+          const date = new Date(year, month - 1, day);
 
-                judul: getColumnIndex(headers, [
-                    "Judul Penelitian",
-                    "Judul Skripsi",
-                    "Judul"
-                ]),
+          if (
+            date.getFullYear() === year &&
+            date.getMonth() === month - 1 &&
+            date.getDate() === day
+          ) {
+            return date;
+          }
 
-                tanggal: getColumnIndex(headers, [
-                    "Tanggal Seminar",
-                    "Tanggal"
-                ]),
+          return null;
+        }
 
-                waktu: getColumnIndex(headers, [
-                    "Waktu Seminar",
-                    "Waktu"
-                ]),
+        const date = new Date(raw);
 
-                ruangan: getColumnIndex(headers, [
-                    "Ruangan",
-                    "Ruang",
-                    "Lokasi"
-                ]),
+        return Number.isNaN(date.getTime())
+          ? null
+          : new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      }
 
-                pembimbing: getColumnIndex(headers, [
-                    "Dosen Pembimbing",
-                    "Pembimbing"
-                ]),
+      function formatSeminarDate(value) {
+        const date = value instanceof Date ? value : parseSeminarDate(value);
 
-                penguji1: getColumnIndex(headers, [
-                    "Dosen Penguji I",
-                    "Penguji I",
-                    "Penguji 1"
-                ]),
+        return date
+          ? new Intl.DateTimeFormat("id-ID", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }).format(date)
+          : String(value || "Tanggal belum ditentukan");
+      }
 
-                penguji2: getColumnIndex(headers, [
-                    "Dosen Penguji II",
-                    "Penguji II",
-                    "Penguji 2"
-                ]),
+      function rowsToSeminars(csvText) {
+        const rows = parseCSV(csvText);
 
-                penguji3: getColumnIndex(headers, [
-                    "Dosen Penguji III",
-                    "Penguji III",
-                    "Penguji 3"
-                ])
+        if (rows.length < 2) {
+          return [];
+        }
+
+        const headers = rows[0];
+
+        const columns = {
+          nama: getColumnIndex(headers, [
+            "Nama Lengkap",
+            "Nama Mahasiswa",
+            "Nama",
+          ]),
+
+          jenis: getColumnIndex(headers, ["Jenis Seminar", "Jenis"]),
+
+          judul: getColumnIndex(headers, [
+            "Judul Penelitian",
+            "Judul Skripsi",
+            "Judul",
+          ]),
+
+          tanggal: getColumnIndex(headers, ["Tanggal Seminar", "Tanggal"]),
+
+          waktu: getColumnIndex(headers, ["Waktu Seminar", "Waktu"]),
+
+          ruangan: getColumnIndex(headers, ["Ruangan", "Ruang", "Lokasi"]),
+
+          pembimbing: getColumnIndex(headers, [
+            "Dosen Pembimbing",
+            "Pembimbing",
+          ]),
+
+          penguji1: getColumnIndex(headers, [
+            "Dosen Penguji I",
+            "Penguji I",
+            "Penguji 1",
+          ]),
+
+          penguji2: getColumnIndex(headers, [
+            "Dosen Penguji II",
+            "Penguji II",
+            "Penguji 2",
+          ]),
+
+          penguji3: getColumnIndex(headers, [
+            "Dosen Penguji III",
+            "Penguji III",
+            "Penguji 3",
+          ]),
+        };
+
+        return rows
+          .slice(1)
+          .map((row) => {
+            const value = (key) => {
+              return columns[key] >= 0 ? (row[columns[key]] || "").trim() : "";
             };
 
-            return rows.slice(1).map(row => {
+            return {
+              nama: value("nama"),
+              jenis: value("jenis"),
+              judul: value("judul"),
+              tanggal: value("tanggal"),
+              tanggalObj: parseSeminarDate(value("tanggal")),
+              waktu: value("waktu"),
+              ruangan: value("ruangan"),
+              pembimbing: value("pembimbing"),
+              penguji1: value("penguji1"),
+              penguji2: value("penguji2"),
+              penguji3: value("penguji3"),
+            };
+          })
+          .filter((item) => {
+            return item.nama || item.judul || item.tanggal;
+          });
+      }
 
-                const value = key => {
-                    return columns[key] >= 0
-                        ? (row[columns[key]] || "").trim()
-                        : "";
-                };
+      async function loadSeminarData() {
+        const response = await fetch(SEMINAR_CSV_URL + "&cache=" + Date.now(), {
+          cache: "no-store",
+        });
 
-                return {
-                    nama: value("nama"),
-                    jenis: value("jenis"),
-                    judul: value("judul"),
-                    tanggal: value("tanggal"),
-                    tanggalObj: parseSeminarDate(value("tanggal")),
-                    waktu: value("waktu"),
-                    ruangan: value("ruangan"),
-                    pembimbing: value("pembimbing"),
-                    penguji1: value("penguji1"),
-                    penguji2: value("penguji2"),
-                    penguji3: value("penguji3")
-                };
-
-            }).filter(item => {
-                return item.nama || item.judul || item.tanggal;
-            });
+        if (!response.ok) {
+          throw new Error(
+            "Google Sheets tidak dapat diakses (HTTP " + response.status + ").",
+          );
         }
 
-        async function loadSeminarData() {
-            const response = await fetch(
-                SEMINAR_CSV_URL + "&cache=" + Date.now(),
-                { cache: "no-store" }
-            );
+        const csv = await response.text();
 
-            if (!response.ok) {
-                throw new Error(
-                    "Google Sheets tidak dapat diakses (HTTP " +
-                    response.status + ")."
-                );
-            }
-
-            const csv = await response.text();
-
-            if (
-                !csv ||
-                csv.trim().startsWith("<!DOCTYPE html")
-            ) {
-                throw new Error(
-                    "Data CSV tidak terbaca. Periksa pengaturan Publikasikan ke web."
-                );
-            }
-
-            return rowsToSeminars(csv);
+        if (!csv || csv.trim().startsWith("<!DOCTYPE html")) {
+          throw new Error(
+            "Data CSV tidak terbaca. Periksa pengaturan Publikasikan ke web.",
+          );
         }
 
-        function createHomeSeminarCard(item) {
-            const card = document.createElement("article");
-            card.className = "home-seminar-card";
+        return rowsToSeminars(csv);
+      }
 
-            const type = document.createElement("span");
-            type.className = "home-seminar-type";
-            type.textContent = item.jenis || "Seminar Akademik";
+      function createHomeSeminarCard(item) {
+        const card = document.createElement("article");
+        card.className = "home-seminar-card";
 
-            const title = document.createElement("h3");
-            title.textContent = item.judul ||
-                "Judul penelitian belum dicantumkan";
+        const type = document.createElement("span");
+        type.className = "home-seminar-type";
+        type.textContent = item.jenis || "Seminar Akademik";
 
-            const meta = document.createElement("div");
-            meta.className = "home-seminar-meta";
+        const title = document.createElement("h3");
+        title.textContent = item.judul || "Judul penelitian belum dicantumkan";
 
-            const details = [
-                "📅 " + formatSeminarDate(item.tanggalObj || item.tanggal),
-                "🕒 " + (item.waktu || "Waktu belum ditentukan"),
-                "📍 " + (item.ruangan || "Ruangan belum ditentukan")
-            ];
+        const meta = document.createElement("div");
+        meta.className = "home-seminar-meta";
 
-            details.forEach(value => {
-                const span = document.createElement("span");
-                span.textContent = value;
-                meta.appendChild(span);
-            });
+        const details = [
+          "📅 " + formatSeminarDate(item.tanggalObj || item.tanggal),
+          "🕒 " + (item.waktu || "Waktu belum ditentukan"),
+          "📍 " + (item.ruangan || "Ruangan belum ditentukan"),
+        ];
 
-            const student = document.createElement("div");
-            student.className = "home-seminar-student";
-            student.textContent = "Mahasiswa: " +
-                (item.nama || "Tidak dicantumkan");
+        details.forEach((value) => {
+          const span = document.createElement("span");
+          span.textContent = value;
+          meta.appendChild(span);
+        });
 
-            card.append(type, title, meta, student);
+        const student = document.createElement("div");
+        student.className = "home-seminar-student";
+        student.textContent =
+          "Mahasiswa: " + (item.nama || "Tidak dicantumkan");
 
-            return card;
+        card.append(type, title, meta, student);
+
+        return card;
+      }
+
+      async function renderHomeSeminars() {
+        const seminarList = document.getElementById("homeSeminarList");
+
+        if (!seminarList) {
+          return;
         }
 
-        async function renderHomeSeminars() {
-            const seminarList = document.getElementById("homeSeminarList");
+        try {
+          const allSeminars = await loadSeminarData();
 
-            if (!seminarList) {
-                return;
-            }
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
 
-            try {
-                const allSeminars = await loadSeminarData();
+          const upcoming = allSeminars
+            .filter((item) => {
+              return item.tanggalObj && item.tanggalObj >= today;
+            })
+            .sort((a, b) => {
+              return (
+                a.tanggalObj - b.tanggalObj ||
+                (a.waktu || "").localeCompare(b.waktu || "")
+              );
+            })
+            .slice(0, 3);
 
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
+          seminarList.replaceChildren();
 
-                const upcoming = allSeminars
-                    .filter(item => {
-                        return item.tanggalObj &&
-                            item.tanggalObj >= today;
-                    })
-                    .sort((a, b) => {
-                        return (
-                            a.tanggalObj - b.tanggalObj
-                        ) || (
-                            a.waktu || ""
-                        ).localeCompare(b.waktu || "");
-                    })
-                    .slice(0, 3);
+          if (!upcoming.length) {
+            const message = document.createElement("p");
+            message.className = "home-seminar-message";
+            message.textContent =
+              "Belum ada jadwal seminar mendatang yang tersedia.";
 
-                seminarList.replaceChildren();
+            seminarList.appendChild(message);
+            return;
+          }
 
-                if (!upcoming.length) {
-                    const message = document.createElement("p");
-                    message.className = "home-seminar-message";
-                    message.textContent =
-                        "Belum ada jadwal seminar mendatang yang tersedia.";
+          upcoming.forEach((item) => {
+            seminarList.appendChild(createHomeSeminarCard(item));
+          });
+        } catch (error) {
+          console.error("Gagal memuat jadwal dari Google Sheets:", error);
 
-                    seminarList.appendChild(message);
-                    return;
-                }
+          seminarList.replaceChildren();
 
-                upcoming.forEach(item => {
-                    seminarList.appendChild(
-                        createHomeSeminarCard(item)
-                    );
-                });
+          const message = document.createElement("p");
+          message.className = "home-seminar-message";
+          message.textContent =
+            "Jadwal seminar belum dapat dimuat. Silakan coba kembali nanti.";
 
-            } catch (error) {
-                console.error(
-                    "Gagal memuat jadwal dari Google Sheets:",
-                    error
-                );
-
-                seminarList.replaceChildren();
-
-                const message = document.createElement("p");
-                message.className = "home-seminar-message";
-                message.textContent =
-                    "Jadwal seminar belum dapat dimuat. Silakan coba kembali nanti.";
-
-                seminarList.appendChild(message);
-            }
+          seminarList.appendChild(message);
         }
+      }
 
-        renderHomeSeminars();
+      renderHomeSeminars();
 
-        // Perbarui data secara berkala selama halaman terbuka.
-        setInterval(renderHomeSeminars, 60000);
+      // Perbarui data secara berkala selama halaman terbuka.
+      setInterval(renderHomeSeminars, 60000);
     </script>
-
-</body>
+  </body>
 </html>
