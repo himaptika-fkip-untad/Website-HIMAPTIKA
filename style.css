@@ -14961,3 +14961,595 @@ button:focus-visible,
     transition: none;
   }
 }
+/* ============ EFEK 3D (hanya area main) ============ */
+
+/* Perspektif */
+main .hero-modern-visual,
+main .program-grid,
+main .informasi-grid,
+main .agenda-grid,
+main .statistik-grid {
+    perspective: 1200px;
+}
+
+/* HERO: logo melayang */
+main .logo-circle {
+    transform-style: preserve-3d;
+    box-shadow:
+        0 45px 70px rgba(21, 65, 112, .20),
+        0 14px 26px rgba(21, 65, 112, .12),
+        inset 0 12px 22px rgba(255, 255, 255, .95),
+        inset 0 -12px 24px rgba(23, 99, 182, .10);
+    animation: logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+    50%      { transform: translateY(-14px) rotateX(5deg) rotateY(-5deg); }
+}
+
+/* HERO: simbol matematika timbul + mengambang */
+main .math-symbol {
+    box-shadow:
+        0 6px 0 #d3e2f4,
+        0 18px 28px rgba(18, 52, 86, .18);
+    animation: symbolFloat 5s ease-in-out infinite;
+}
+
+main .symbol-two   { animation-delay: -1s; }
+main .symbol-three { animation-delay: -2s; }
+main .symbol-four  { animation-delay: -3s; }
+main .symbol-five  { animation-delay: -4s; }
+
+@keyframes symbolFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-10px) rotate(6deg); }
+}
+
+/* KARTU: tilt 3D saat hover */
+main .program-card,
+main .informasi-card,
+main .agenda-card,
+main .statistik-card {
+    transform-style: preserve-3d;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, .9) inset,
+        0 14px 30px rgba(18, 52, 86, .08),
+        0 3px 6px rgba(18, 52, 86, .05);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+main .program-card:hover,
+main .informasi-card:hover,
+main .agenda-card:hover,
+main .statistik-card:hover {
+    transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
+    box-shadow:
+        0 30px 50px rgba(18, 52, 86, .16),
+        0 8px 14px rgba(18, 52, 86, .08);
+}
+
+/* Isi kartu "mengapung" di atas permukaan kartu */
+main .program-icon,
+main .statistik-icon {
+    transform: translateZ(35px);
+    box-shadow:
+        0 5px 0 #c6dbf2,
+        0 14px 22px rgba(23, 99, 182, .18);
+}
+
+main .program-card h3,
+main .agenda-content h3 {
+    transform: translateZ(20px);
+}
+
+/* Panel intro & survival: terangkat */
+main .intro-box,
+main .survival-content {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, .95) inset,
+        0 30px 60px rgba(18, 52, 86, .10),
+        0 8px 16px rgba(18, 52, 86, .06);
+}
+
+/* Tombol timbul (tekan saat diklik) */
+main .hero-buttons .tombol,
+main .survival-action .tombol,
+main .home-cta .tombol {
+    box-shadow: 0 5px 0 rgba(13, 49, 88, .30),
+                0 14px 22px rgba(13, 49, 88, .15);
+}
+
+main .hero-buttons .tombol:active,
+main .survival-action .tombol:active,
+main .home-cta .tombol:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 rgba(13, 49, 88, .30);
+}
+
+/* Dark mode: bayangan lebih pekat */
+body.dark-mode main .program-card,
+body.dark-mode main .informasi-card,
+body.dark-mode main .agenda-card,
+body.dark-mode main .statistik-card {
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, .05) inset,
+        0 18px 36px rgba(0, 0, 0, .35);
+}
+
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+    main .logo-circle,
+    main .math-symbol { animation: none; }
+    main .program-card:hover,
+    main .informasi-card:hover,
+    main .agenda-card:hover,
+    main .statistik-card:hover { transform: translateY(-4px); }
+}
+
+/* Di layar sentuh, tilt dimatikan agar tidak patah-patah */
+@media (hover: none) {
+    main .program-card:hover,
+    main .informasi-card:hover,
+    main .agenda-card:hover,
+    main .statistik-card:hover { transform: none; }
+}
+/* ============ ALUR & KELUWESAN ============ */
+
+/* 1. Muncul saat scroll (pakai `translate` agar tidak bentrok dengan transform hover) */
+main .reveal {
+    opacity: 0;
+    translate: 0 36px;
+    transition: opacity .8s ease, translate .8s cubic-bezier(.2, .7, .2, 1);
+    transition-delay: var(--delay, 0s);
+}
+
+main .reveal.show {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* 2. Section jadi panel melengkung */
+main .statistik-section,
+main .survival-section,
+main .home-cta {
+    margin-left: clamp(8px, 2vw, 28px);
+    margin-right: clamp(8px, 2vw, 28px);
+    border-radius: clamp(28px, 4vw, 56px);
+}
+
+main .home-cta {
+    margin-bottom: 28px;
+    background: linear-gradient(120deg, #0d3158, #1763b6, #2f86d6, #1763b6);
+    background-size: 300% 300%;
+    animation: ctaFlow 12s ease infinite;
+}
+
+@keyframes ctaFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+/* 3. Blob latar yang bergerak pelan */
+main .intro-section,
+main .program-unggulan,
+main .informasi-section {
+    position: relative;
+    overflow: hidden;
+}
+
+main .intro-section::before,
+main .program-unggulan::before,
+main .informasi-section::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 420px;
+    height: 420px;
+    right: -120px;
+    top: 40px;
+    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+    background: radial-gradient(circle at 30% 30%, rgba(74, 144, 226, .16), transparent 70%);
+    animation: blobMorph 14s ease-in-out infinite;
+    pointer-events: none;
+}
+
+main .program-unggulan::before { left: -140px; right: auto; top: auto; bottom: 20px; }
+
+@keyframes blobMorph {
+    0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; transform: translate(0, 0) rotate(0); }
+    50%      { border-radius: 58% 42% 40% 60% / 55% 60% 40% 45%; transform: translate(-30px, 24px) rotate(25deg); }
+}
+
+main .intro-section > *,
+main .program-unggulan > *,
+main .informasi-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* 4. Grid tidak rata (desktop saja) */
+@media (min-width: 900px) {
+    main .program-unggulan .program-card:nth-child(2),
+    main .informasi-card:nth-child(2),
+    main .agenda-card:nth-child(2),
+    main .statistik-card:nth-child(2) {
+        margin-top: 28px;
+    }
+}
+
+/* 5. Kilau diagonal saat hover */
+main .program-card,
+main .informasi-card,
+main .agenda-card {
+    position: relative;
+}
+
+main .program-card::after,
+main .informasi-card::after,
+main .agenda-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .55) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform .8s ease;
+    pointer-events: none;
+}
+
+main .program-card:hover::after,
+main .informasi-card:hover::after,
+main .agenda-card:hover::after {
+    transform: translateX(120%);
+}
+
+/* Ikon & simbol lebih hidup */
+main .program-card:hover .program-icon {
+    background: var(--home-blue);
+    color: #fff;
+    transition: background .3s ease, color .3s ease;
+}
+
+main .survival-symbol {
+    animation: logoFloat 7s ease-in-out infinite;
+}
+
+/* Link panah bergeser saat hover */
+main .text-link,
+main .program-card a,
+main .informasi-content a,
+main .agenda-button {
+    display: inline-block;
+    transition: transform .25s ease;
+}
+
+main .text-link:hover,
+main .program-card a:hover,
+main .informasi-content a:hover,
+main .agenda-button:hover {
+    transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main .reveal { opacity: 1; translate: none; transition: none; }
+    main .home-cta,
+    main .survival-symbol,
+    main .intro-section::before,
+    main .program-unggulan::before,
+    main .informasi-section::before { animation: none; }
+}
+/* Tombol kembali ke atas */
+.back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    width: 46px;
+    height: 46px;
+    border: 0;
+    border-radius: 14px;
+    background: #1763b6;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #0d3158, 0 14px 24px rgba(13, 49, 88, .25);
+    opacity: 0;
+    translate: 0 20px;
+    pointer-events: none;
+    transition: opacity .3s ease, translate .3s ease;
+    z-index: 50;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    translate: 0 0;
+    pointer-events: auto;
+}
+
+.back-to-top:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #0d3158;
+}
+
+/* Titik berkedip pada status agenda */
+main .agenda-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+main .agenda-status.live::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: livePulse 1.4s ease-out infinite;
+}
+
+@keyframes livePulse {
+    0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, .6); }
+    100% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+}
+
+/* Kerangka saat jadwal seminar dimuat */
+.home-seminar-message:only-child {
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    border-radius: 16px;
+    background: #eef3f9;
+}
+
+.home-seminar-message:only-child::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .7) 50%, transparent 70%);
+    animation: shimmer 1.6s infinite;
+}
+
+@keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(100%); }
+}
+
+body.dark-mode .home-seminar-message:only-child { background: #17283b; }
+/* ============ PENYESUAIAN HP ============ */
+@media (max-width: 768px) {
+
+    /* Matikan animasi berat */
+    main .home-cta {
+        animation: none;
+        background-size: 100% 100%;
+    }
+
+    main .intro-section::before,
+    main .program-unggulan::before,
+    main .informasi-section::before {
+        animation: none;
+        width: 240px;
+        height: 240px;
+        right: -90px;
+    }
+
+    main .program-unggulan::before {
+        left: -90px;
+        right: auto;
+    }
+
+    /* Panel melengkung lebih kecil */
+    main .statistik-section,
+    main .survival-section,
+    main .home-cta {
+        margin-left: 8px;
+        margin-right: 8px;
+        border-radius: 28px;
+    }
+
+    /* Jarak muncul-saat-scroll lebih pendek */
+    main .reveal {
+        translate: 0 22px;
+    }
+
+    /* Bayangan tombol lebih tipis */
+    main .hero-buttons .tombol,
+    main .survival-action .tombol,
+    main .home-cta .tombol {
+        box-shadow: 0 3px 0 rgba(13, 49, 88, .30),
+                    0 8px 14px rgba(13, 49, 88, .12);
+    }
+
+    /* Tombol kembali ke atas aman dari bar bawah */
+    .back-to-top {
+        right: 14px;
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* Layar sentuh: matikan kilau hover agar tidak tertinggal */
+@media (hover: none) {
+    main .program-card::after,
+    main .informasi-card::after,
+    main .agenda-card::after {
+        display: none;
+    }
+}
+/* ============ ANIMASI HP (ringan, GPU-friendly) ============ */
+@media (max-width: 768px) {
+
+    /* Panel melengkung lebih kecil */
+    main .statistik-section,
+    main .survival-section,
+    main .home-cta {
+        margin-left: 8px;
+        margin-right: 8px;
+        border-radius: 28px;
+    }
+
+    /* 1. Hero muncul berurutan saat halaman dibuka */
+    main .hero-label,
+    main .hero-modern-content h2,
+    main .hero-university,
+    main .hero-description,
+    main .hero-buttons {
+        opacity: 0;
+        animation: heroIn .7s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+    main .hero-label               { animation-delay: .05s; }
+    main .hero-modern-content h2   { animation-delay: .15s; }
+    main .hero-university          { animation-delay: .25s; }
+    main .hero-description         { animation-delay: .35s; }
+    main .hero-buttons             { animation-delay: .45s; }
+
+    @keyframes heroIn {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo hero berdenyut + cincin berputar pelan */
+    main .logo-circle { animation: logoFloat 5s ease-in-out infinite; }
+    main .ring-two    { animation: ringSpin 40s linear infinite; }
+
+    @keyframes ringSpin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* 2. Muncul saat scroll: variasi arah */
+    main .reveal { translate: 0 28px; }
+
+    main .program-card.reveal:nth-child(odd),
+    main .informasi-card.reveal:nth-child(odd) {
+        translate: -28px 0;
+    }
+    main .program-card.reveal:nth-child(even),
+    main .informasi-card.reveal:nth-child(even) {
+        translate: 28px 0;
+    }
+    main .statistik-card.reveal {
+        translate: 0 0;
+        scale: .85;
+        transition: opacity .7s ease, scale .7s cubic-bezier(.2, .7, .2, 1);
+        transition-delay: var(--delay, 0s);
+    }
+
+    main .program-card.reveal.show,
+    main .informasi-card.reveal.show { translate: 0 0; }
+    main .statistik-card.reveal.show { scale: 1; }
+
+    /* 3. Efek tekan saat disentuh (pengganti hover) */
+    main .program-card,
+    main .informasi-card,
+    main .agenda-card,
+    main .statistik-card {
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+    main .program-card:active,
+    main .informasi-card:active,
+    main .agenda-card:active,
+    main .statistik-card:active {
+        transform: scale(.97);
+        box-shadow: 0 4px 10px rgba(18, 52, 86, .10);
+    }
+
+    /* 4. Blob latar: bergerak lewat transform saja (ringan) */
+    main .intro-section::before,
+    main .program-unggulan::before,
+    main .informasi-section::before {
+        width: 240px;
+        height: 240px;
+        right: -90px;
+        animation: blobDrift 12s ease-in-out infinite;
+    }
+    main .program-unggulan::before { left: -90px; right: auto; }
+
+    @keyframes blobDrift {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50%      { transform: translate(-24px, 20px) scale(1.15); }
+    }
+
+    /* 5. CTA: kilau menyapu, bukan gradien bergerak */
+    main .home-cta {
+        animation: none;
+        background-size: 100% 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    main .home-cta::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, .22) 50%, transparent 60%);
+        transform: translateX(-100%);
+        animation: sweep 4s ease-in-out infinite;
+        pointer-events: none;
+    }
+    @keyframes sweep {
+        0%, 20% { transform: translateX(-100%); }
+        70%, 100% { transform: translateX(100%); }
+    }
+
+    /* 6. Kartu agenda & seminar: geser horizontal dengan snap */
+    main .agenda-grid,
+    main .home-seminar-grid {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 4px 20px 18px;
+        margin: 0 -20px;
+        scrollbar-width: none;
+    }
+    main .agenda-grid::-webkit-scrollbar,
+    main .home-seminar-grid::-webkit-scrollbar { display: none; }
+
+    main .agenda-card,
+    main .home-seminar-card {
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+        margin-top: 0;
+    }
+    main .home-seminar-message { flex: 1 0 100%; }
+
+    /* 7. Simbol matematika hero lebih hidup */
+    main .math-symbol { animation-duration: 3.8s; }
+
+    /* Bayangan tombol lebih tipis */
+    main .hero-buttons .tombol,
+    main .survival-action .tombol,
+    main .home-cta .tombol {
+        box-shadow: 0 3px 0 rgba(13, 49, 88, .30),
+                    0 8px 14px rgba(13, 49, 88, .12);
+    }
+
+    /* Tombol kembali ke atas aman dari bar bawah */
+    .back-to-top {
+        right: 14px;
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* Layar sentuh: matikan kilau hover agar tidak tertinggal */
+@media (hover: none) {
+    main .program-card::after,
+    main .informasi-card::after,
+    main .agenda-card::after {
+        display: none;
+    }
+}
+
+/* Hormati "kurangi gerakan" */
+@media (prefers-reduced-motion: reduce) {
+    main .hero-label,
+    main .hero-modern-content h2,
+    main .hero-university,
+    main .hero-description,
+    main .hero-buttons { opacity: 1; animation: none; }
+    main .ring-two,
+    main .home-cta::after,
+    main .logo-circle { animation: none; }
+}
