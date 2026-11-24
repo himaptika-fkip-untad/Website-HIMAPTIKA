@@ -519,20 +519,20 @@ async function sendMessage() {
         addMessage(data.answer, "assistant");
 
     } catch (error) {
-        console.error("HIMAPTIKA AI Error:", error);
+    console.error("HIMAPTIKA AI Error:", error);
 
-        removeTypingIndicator();
+    removeTypingIndicator();
 
-        addMessage(
-            "Maaf, HIMAPTIKA AI belum dapat terhubung. Silakan coba beberapa saat lagi.",
-            "assistant"
-        );
+    addMessage(
+        "Koneksi HIMAPTIKA AI gagal: " + error.message,
+        "assistant"
+    );
 
-    } finally {
-        isSending = false;
-        sendButton.disabled = false;
-        messageInput.focus();
-    }
+} finally {
+    isSending = false;
+    sendButton.disabled = false;
+    messageInput.focus();
+}
 }
 
 
@@ -620,3 +620,110 @@ newChatButton.addEventListener("click", function () {
 
 
 console.log("HIMAPTIKA AI berhasil terhubung dengan frontend.");
+// Efek muncul saat scroll
+(function () {
+    const targets = document.querySelectorAll(
+        "main .intro-text, main .intro-box, main .section-title, main .section-heading, " +
+        "main .statistik-heading, main .informasi-header, main .agenda-heading, " +
+        "main .home-seminar-heading, main .program-card, main .statistik-card, " +
+        "main .informasi-card, main .agenda-card, main .survival-content, main .home-cta-content"
+    );
+
+    if (!("IntersectionObserver" in window)) {
+        return; // browser lama: biarkan tampil normal
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    targets.forEach((el) => {
+        el.classList.add("reveal");
+
+        // jeda bertahap untuk kartu bersaudara
+        const index = Array.from(el.parentElement.children).indexOf(el);
+        el.style.setProperty("--delay", (index % 4) * 0.1 + "s");
+
+        observer.observe(el);
+    });
+})();
+// ===== TENTANG: reveal, angka, tilt =====
+(function () {
+    if (!document.querySelector("main .about-hero")) return;
+
+    // 1. Muncul saat scroll
+    const targets = document.querySelectorAll(
+        "main .identity-logo, main .identity-content, main .section-heading, " +
+        "main .story-card, main .sejarah-premium-header, main .sejarah-premium-item, " +
+        "main .sejarah-present-content, main .vm-header, main .vm-main, " +
+        "main .misi-header, main .misi-item, main .value-item, main .cta-box"
+    );
+
+    if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+                if (e.isIntersecting) {
+                    e.target.classList.add("in");
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        targets.forEach((el) => {
+            el.classList.add("rv");
+            const i = Array.from(el.parentElement.children).indexOf(el);
+            el.style.setProperty("--d", (i % 4) * 0.1 + "s");
+            io.observe(el);
+        });
+    }
+
+    // 2. Angka menghitung naik (data-count atau data-since)
+    const angka = document.querySelectorAll("main .about-stat strong");
+    if ("IntersectionObserver" in window && angka.length) {
+        const co = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+                if (!e.isIntersecting) return;
+                const el = e.target;
+                co.unobserve(el);
+
+                const target = el.dataset.since
+                    ? new Date().getFullYear() - parseInt(el.dataset.since, 10)
+                    : parseInt(el.dataset.count, 10);
+                if (isNaN(target)) return;
+
+                const mulai = performance.now();
+                (function step(now) {
+                    const p = Math.min((now - mulai) / 1200, 1);
+                    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+                    if (p < 1) requestAnimationFrame(step);
+                })(mulai);
+            });
+        }, { threshold: 0.5 });
+        angka.forEach((el) => co.observe(el));
+    }
+
+    // 3. Tilt mengikuti kursor (hanya perangkat dengan mouse)
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    document.querySelectorAll("main .story-card, main .value-item, main .identity-logo")
+        .forEach((el) => {
+            el.addEventListener("mousemove", (e) => {
+                const r = el.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                el.style.transition = "transform .1s ease-out";
+                el.style.transform =
+                    "translateY(-6px) rotateX(" + (-y * 8) + "deg) rotateY(" + (x * 8) + "deg)";
+            });
+            el.addEventListener("mouseleave", () => {
+                el.style.transition = "transform .5s ease";
+                el.style.transform = "";
+            });
+        });
+})();
