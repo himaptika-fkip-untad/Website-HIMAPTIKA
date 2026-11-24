@@ -18329,3 +18329,14 @@ body.dark-mode .agenda-page .ag-run {
     .agenda-page .ag-group,
     .agenda-page .ag-item { opacity: 1; animation: none; }
 }
+/* Agenda di HP: beri ruang untuk navbar yang fixed */
+@media (max-width: 768px) {
+    .agenda-page .ag-intro {
+        padding-top: 100px;
+    }
+
+    /* Biar saat lompat ke bagian lain tidak tertutup navbar */
+    .agenda-page {
+        scroll-padding-top: 80px;
+    }
+}
