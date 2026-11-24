@@ -993,6 +993,233 @@
           opacity: 1;
         }
       }
+      /* ================= STRUKTUR: TAHAP 3 ================= */
+
+      /* TOMBOL TAMPILAN & BAGIKAN */
+      .aksi-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+      .aksi-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 1px solid var(--garis);
+        background: var(--card);
+        color: var(--gelap);
+        padding: 8px 16px;
+        border-radius: 30px;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background 0.2s,
+          color 0.2s,
+          box-shadow 0.2s;
+      }
+      .aksi-btn:hover {
+        transform: translateY(-2px);
+      }
+      .aksi-btn.on {
+        background: var(--biru);
+        border-color: var(--biru);
+        color: #fff;
+        box-shadow: 0 4px 0 var(--gelap);
+      }
+
+      /* TAMPILAN DAFTAR */
+      .mode-daftar .anggota-list {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .mode-daftar .anggota-card {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      .mode-daftar .anggota-card .foto-placeholder {
+        width: 42px;
+        height: 42px;
+        margin: 0;
+        border-width: 2px;
+        font-size: 18px;
+      }
+      .mode-daftar .anggota-card .nama-anggota {
+        flex: 1;
+      }
+      .mode-daftar .anggota-card .instagram-slot {
+        margin-left: auto;
+      }
+      .mode-daftar .anggota-card .instagram-link {
+        margin-top: 0;
+        padding: 7px 9px;
+        font-size: 0; /* sembunyikan teks, sisakan ikon */
+        gap: 0;
+      }
+      .mode-daftar .anggota-card .instagram-link i {
+        font-size: 14px;
+      }
+
+      .mode-daftar .profil-pengurus {
+        display: grid;
+        grid-template-columns: 58px 1fr auto;
+        grid-template-rows: auto auto;
+        column-gap: 14px;
+        align-items: center;
+        text-align: left;
+        padding: 12px 14px;
+      }
+      .mode-daftar .profil-pengurus .foto-placeholder {
+        grid-row: 1 / 3;
+        width: 58px;
+        height: 58px;
+        margin: 0;
+        font-size: 22px;
+      }
+      .mode-daftar .profil-pengurus h4 {
+        grid-column: 2;
+        margin: 0 0 4px;
+        align-self: end;
+      }
+      .mode-daftar .profil-pengurus p {
+        grid-column: 2;
+        justify-self: start;
+        align-self: start;
+      }
+      .mode-daftar .profil-pengurus .instagram-slot {
+        grid-column: 3;
+        grid-row: 1 / 3;
+      }
+      .mode-daftar .profil-pengurus .instagram-link {
+        margin-top: 0;
+        padding: 8px 10px;
+        font-size: 0;
+        gap: 0;
+      }
+      .mode-daftar .profil-pengurus .instagram-link i {
+        font-size: 15px;
+      }
+
+      .mode-daftar .divisi-anggota {
+        margin-top: 16px;
+        padding-top: 14px;
+      }
+      .mode-daftar .divisi-card {
+        padding: 22px;
+      }
+
+      /* NOTIFIKASI KECIL */
+      .toast-struktur {
+        position: fixed;
+        left: 50%;
+        bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+        z-index: 3500;
+        padding: 11px 20px;
+        border-radius: 30px;
+        background: #123b65;
+        color: #fff;
+        font-size: 13px;
+        box-shadow: 0 12px 30px rgba(10, 30, 55, 0.35);
+        translate: -50% 20px;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.3s,
+          translate 0.3s;
+      }
+      .toast-struktur.tampil {
+        opacity: 1;
+        translate: -50% 0;
+      }
+
+      /* KEMBALI KE ATAS */
+      .ke-atas {
+        position: fixed;
+        right: 18px;
+        bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+        z-index: 900;
+        width: 44px;
+        height: 44px;
+        border: 0;
+        border-radius: 14px;
+        background: #1e6091;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow:
+          0 5px 0 #123b65,
+          0 14px 24px rgba(18, 59, 101, 0.25);
+        opacity: 0;
+        translate: 0 20px;
+        pointer-events: none;
+        transition:
+          opacity 0.3s,
+          translate 0.3s;
+      }
+      .ke-atas.tampil {
+        opacity: 1;
+        translate: 0 0;
+        pointer-events: auto;
+      }
+      .ke-atas:active {
+        transform: translateY(4px);
+        box-shadow: 0 1px 0 #123b65;
+      }
+
+      /* BILAH PROGRES */
+      .progres-baca {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 950;
+        width: 100%;
+        height: 4px;
+        background: transparent;
+        pointer-events: none;
+      }
+      .progres-baca span {
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, #1e6091, #70acd7, #f59e0b);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      /* DARK MODE */
+      body.dark-mode .aksi-btn {
+        background: #202e3e;
+        border-color: #43566b;
+        color: #a6d5ff;
+      }
+      body.dark-mode .aksi-btn.on {
+        background: #2878b9;
+        border-color: #2878b9;
+        color: #fff;
+      }
+
+      /* HP */
+      @media (max-width: 768px) {
+        .ke-atas {
+          right: 14px;
+          width: 42px;
+          height: 42px;
+        }
+        .mode-daftar .profil-pengurus {
+          grid-template-columns: 50px 1fr auto;
+          column-gap: 12px;
+        }
+        .mode-daftar .profil-pengurus .foto-placeholder {
+          width: 50px;
+          height: 50px;
+        }
+      }
 
       /* DARK MODE */
       body.dark-mode .struktur-stats .s-item,
@@ -2385,6 +2612,151 @@
           el.setAttribute("aria-hidden", "true");
           card.prepend(el);
         });
+      })();
+      // ==================================
+      // STRUKTUR: TAHAP 3
+      // ==================================
+      (function () {
+        const $ = (s, r = document) => r.querySelector(s);
+
+        // ---------- Notifikasi kecil ----------
+        const toast = document.createElement("div");
+        toast.className = "toast-struktur";
+        toast.setAttribute("role", "status");
+        document.body.appendChild(toast);
+
+        let toastTimer;
+        function tampilToast(teks) {
+          toast.textContent = teks;
+          toast.classList.add("tampil");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove("tampil"), 2200);
+        }
+
+        // ---------- Tombol tampilan & bagikan ----------
+        const bar = document.createElement("div");
+        bar.className = "aksi-bar";
+
+        const btnKartu = document.createElement("button");
+        btnKartu.type = "button";
+        btnKartu.className = "aksi-btn";
+        btnKartu.textContent = "▦ Kartu";
+
+        const btnDaftar = document.createElement("button");
+        btnDaftar.type = "button";
+        btnDaftar.className = "aksi-btn";
+        btnDaftar.textContent = "☰ Daftar";
+
+        const btnBagikan = document.createElement("button");
+        btnBagikan.type = "button";
+        btnBagikan.className = "aksi-btn";
+        btnBagikan.textContent = "↗ Bagikan";
+
+        bar.append(btnKartu, btnDaftar, btnBagikan);
+
+        // Taruh di bawah kolom cari (kalau ada), kalau tidak di atas grid divisi
+        const wrap = $(".filter-wrap");
+        const grid = $(".divisi-grid");
+        if (wrap) {
+          wrap.appendChild(bar);
+        } else if (grid) {
+          grid.before(bar);
+          bar.style.marginBottom = "24px";
+        }
+
+        function aturMode(daftar, simpan) {
+          document.body.classList.toggle("mode-daftar", daftar);
+          btnDaftar.classList.toggle("on", daftar);
+          btnKartu.classList.toggle("on", !daftar);
+          btnDaftar.setAttribute("aria-pressed", String(daftar));
+          btnKartu.setAttribute("aria-pressed", String(!daftar));
+
+          if (simpan) {
+            try {
+              localStorage.setItem(
+                "struktur-mode",
+                daftar ? "daftar" : "kartu",
+              );
+            } catch (e) {}
+          }
+        }
+
+        let awal = false;
+        try {
+          awal = localStorage.getItem("struktur-mode") === "daftar";
+        } catch (e) {}
+        aturMode(awal, false);
+
+        btnKartu.addEventListener("click", () => aturMode(false, true));
+        btnDaftar.addEventListener("click", () => aturMode(true, true));
+
+        btnBagikan.addEventListener("click", async () => {
+          const data = {
+            title: "Struktur Pengurus HIMAPTIKA FKIP UNTAD",
+            text: "Struktur kepengurusan HIMAPTIKA FKIP Universitas Tadulako",
+            url: location.href.split("#")[0],
+          };
+
+          if (navigator.share) {
+            try {
+              await navigator.share(data);
+            } catch (e) {
+              /* pengguna membatalkan */
+            }
+            return;
+          }
+
+          try {
+            await navigator.clipboard.writeText(data.url);
+            tampilToast("Tautan disalin");
+          } catch (e) {
+            tampilToast("Salin tautan dari kolom alamat browser");
+          }
+        });
+
+        // ---------- Tombol kembali ke atas ----------
+        const keAtas = document.createElement("button");
+        keAtas.type = "button";
+        keAtas.className = "ke-atas";
+        keAtas.setAttribute("aria-label", "Kembali ke atas");
+        keAtas.textContent = "↑";
+        document.body.appendChild(keAtas);
+
+        keAtas.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // ---------- Bilah progres ----------
+        const progres = document.createElement("div");
+        progres.className = "progres-baca";
+        progres.setAttribute("aria-hidden", "true");
+        const isiProgres = document.createElement("span");
+        progres.appendChild(isiProgres);
+        document.body.appendChild(progres);
+
+        let menunggu = false;
+
+        function perbarui() {
+          menunggu = false;
+          const tinggi =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const rasio = tinggi > 0 ? Math.min(window.scrollY / tinggi, 1) : 0;
+          isiProgres.style.transform = "scaleX(" + rasio + ")";
+          keAtas.classList.toggle("tampil", window.scrollY > 600);
+        }
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (!menunggu) {
+              menunggu = true;
+              requestAnimationFrame(perbarui);
+            }
+          },
+          { passive: true },
+        );
+        window.addEventListener("resize", perbarui);
+        perbarui();
       })();
     </script>
     <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
