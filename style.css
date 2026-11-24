@@ -16056,3 +16056,78 @@ body {
 button, input, select, textarea {
     font-family: inherit;
 }
+/* ==========================================================
+   mobile-fix.css
+   Tempel di PALING BAWAH style.css (setelah academic-upgrade.css).
+   !important dipakai hanya pada properti yang kemungkinan
+   bentrok dengan gaya lama; hapus jika sudah tidak perlu.
+   ========================================================== */
+
+/* Dasar: cegah geser ke samping & gambar meluber */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, svg { max-width: 100%; height: auto; }
+*, *::before, *::after { box-sizing: border-box; }
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Header: logo + teks mengecil, tombol menu tetap terlihat */
+    .site-header { padding: 10px 16px; gap: 12px; }
+    .brand img { width: 36px; height: auto; }
+    .brand-text h1 { font-size: 1.05rem; line-height: 1.1; }
+    .brand-text p { font-size: .62rem; letter-spacing: .02em; }
+
+    /* Hero: jangan setinggi layar, rapatkan jarak */
+    .academic-hero {
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 40px 0 36px !important;
+    }
+
+    .academic-hero-text h2 {
+        font-size: 1.7rem !important;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+
+    .academic-hero-text p:last-child { font-size: .95rem; }
+
+    .academic-hero-number span { font-size: 4rem !important; }
+
+    /* Seksi lain: jarak vertikal lebih kecil */
+    .academic-intro,
+    .academic-program,
+    .academic-cta { padding: 36px 0 !important; }
+
+    .academic-heading { margin-bottom: 24px; }
+    .academic-heading h2,
+    .academic-intro h2 { font-size: 1.45rem; }
+
+    /* Kartu: satu kolom, nyaman disentuh */
+    .academic-program-grid { grid-template-columns: 1fr !important; gap: 14px; }
+    .academic-program-card { padding: 20px 18px; }
+    .academic-featured { padding: 22px 18px; }
+
+    .academic-link,
+    .academic-cta-button {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+    }
+
+    .academic-cta-box { padding: 22px 18px; }
+
+    /* Footer menumpuk */
+    .footer-content { flex-direction: column; gap: 14px; }
+}
+
+/* HP sangat kecil (≤ 360px) */
+@media (max-width: 360px) {
+    .academic-hero-text h2 { font-size: 1.5rem !important; }
+    .brand-text p { display: none; }
+}
