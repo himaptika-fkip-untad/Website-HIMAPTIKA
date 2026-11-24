@@ -421,18 +421,660 @@
         transform: translateY(-4px);
       }
 
-      /* ANIMASI SCROLL */
+      /* ================= STRUKTUR: DESAIN TAMBAHAN ================= */
+
+      /* Reveal baru (pakai translate agar hover tidak tertimpa) */
       .reveal {
         opacity: 0;
-        transform: translateY(25px);
+        translate: 0 28px;
         transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
+          opacity 0.7s ease var(--d, 0s),
+          translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s),
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
       }
-
       .reveal.show {
         opacity: 1;
-        transform: translateY(0);
+        translate: 0 0;
+      }
+
+      /* HERO */
+      .struktur-hero::before {
+        animation: heroDrift 12s ease-in-out infinite;
+      }
+      .struktur-hero::after {
+        animation: heroDrift 15s ease-in-out infinite reverse;
+      }
+      @keyframes heroDrift {
+        0%,
+        100% {
+          translate: 0 0;
+          scale: 1;
+        }
+        50% {
+          translate: -26px 20px;
+          scale: 1.08;
+        }
+      }
+      .hero-sym {
+        position: absolute;
+        z-index: 0;
+        font-weight: 800;
+        font-size: clamp(34px, 6vw, 64px);
+        color: rgba(255, 255, 255, 0.16);
+        animation: symFloat 7s ease-in-out infinite;
+        pointer-events: none;
+        user-select: none;
+      }
+      @keyframes symFloat {
+        0%,
+        100% {
+          translate: 0 0;
+          rotate: 0deg;
+        }
+        50% {
+          translate: 0 -14px;
+          rotate: 8deg;
+        }
+      }
+
+      /* RINGKASAN ANGKA */
+      .struktur-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin: 0 0 10px;
+        perspective: 1000px;
+      }
+      .struktur-stats .s-item {
+        padding: 22px 12px;
+        text-align: center;
+        background: var(--card);
+        border: 1px solid var(--garis);
+        border-radius: 18px;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.9) inset,
+          0 14px 30px rgba(20, 65, 105, 0.09);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .struktur-stats .s-item:hover {
+        transform: translateY(-6px) rotateX(5deg);
+        box-shadow: 0 24px 42px rgba(20, 65, 105, 0.15);
+      }
+      .s-item strong {
+        display: block;
+        font-size: clamp(28px, 4vw, 40px);
+        color: var(--biru);
+        line-height: 1.1;
+      }
+      .s-item span {
+        display: block;
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--abu);
+      }
+
+      /* BAGAN INTI: garis bercabang */
+      .bagan-penghubung {
+        height: 24px;
+        background: linear-gradient(#2878b9, #a6d2ef, #2878b9);
+        background-size: 100% 300%;
+        animation: alir 3s linear infinite;
+      }
+      @keyframes alir {
+        to {
+          background-position: 0 -300%;
+        }
+      }
+      .inti-grid {
+        position: relative;
+        padding-top: 24px;
+      }
+      .inti-grid::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: calc((100% - 44px) / 6);
+        right: calc((100% - 44px) / 6);
+        height: 3px;
+        border-radius: 3px;
+        background: #70acd7;
+      }
+      .inti-card {
+        position: relative;
+      }
+      .inti-card::before {
+        content: "";
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        width: 3px;
+        height: 24px;
+        margin-left: -1.5px;
+        background: #70acd7;
+      }
+
+      /* FOTO */
+      .foto-placeholder {
+        transition:
+          transform 0.35s,
+          box-shadow 0.35s;
+      }
+      .foto-placeholder:hover {
+        box-shadow:
+          0 0 0 4px #70acd7,
+          0 14px 28px rgba(30, 96, 145, 0.25);
+      }
+
+      /* DIVISI: warna aksen + nomor */
+      .divisi-grid {
+        counter-reset: divisi;
+      }
+      .divisi-card {
+        --acc: #1e6091;
+        border-top-color: var(--acc);
+      }
+      .divisi-card:nth-child(1) {
+        --acc: #e4572e;
+      }
+      .divisi-card:nth-child(2) {
+        --acc: #7c4dff;
+      }
+      .divisi-card:nth-child(3) {
+        --acc: #0ea5e9;
+      }
+      .divisi-card:nth-child(4) {
+        --acc: #1e6091;
+      }
+      .divisi-card:nth-child(5) {
+        --acc: #10b981;
+      }
+      .divisi-card:nth-child(6) {
+        --acc: #f59e0b;
+      }
+      .divisi-card:nth-child(7) {
+        --acc: #ec4899;
+      }
+
+      .divisi-card > h3 {
+        counter-increment: divisi;
+      }
+      .divisi-card > h3::before {
+        content: counter(divisi, decimal-leading-zero);
+        display: block;
+        margin-bottom: 8px;
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: var(--acc);
+      }
+      .divisi-card > h3::after {
+        content: "";
+        display: block;
+        width: 44px;
+        height: 4px;
+        margin: 12px auto 0;
+        border-radius: 4px;
+        background: var(--acc);
+      }
+      .divisi-anggota h4 {
+        color: var(--acc);
+      }
+      .anggota-card:hover {
+        border-color: var(--acc);
+      }
+      .divisi-card .foto-placeholder:hover {
+        box-shadow:
+          0 0 0 4px var(--acc),
+          0 14px 28px rgba(30, 96, 145, 0.2);
+      }
+
+      /* CARI & FILTER */
+      .filter-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        margin: 0 0 30px;
+      }
+      .cari-pengurus {
+        width: min(100%, 420px);
+        padding: 13px 18px;
+        border: 1px solid var(--garis);
+        border-radius: 30px;
+        background: var(--card);
+        color: var(--teks);
+        font: inherit;
+        font-size: 14px;
+        box-shadow: 0 8px 22px rgba(20, 65, 105, 0.07);
+        outline: none;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .cari-pengurus:focus {
+        border-color: var(--biru);
+        box-shadow: 0 0 0 4px rgba(30, 96, 145, 0.15);
+      }
+      .filter-chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+      .chip {
+        border: 1px solid var(--garis);
+        background: var(--card);
+        color: var(--gelap);
+        padding: 8px 16px;
+        border-radius: 30px;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background 0.2s,
+          color 0.2s,
+          box-shadow 0.2s;
+      }
+      .chip:hover {
+        transform: translateY(-2px);
+      }
+      .chip.on {
+        background: var(--biru);
+        border-color: var(--biru);
+        color: #fff;
+        box-shadow: 0 4px 0 var(--gelap);
+      }
+      .tersembunyi {
+        display: none !important;
+      }
+      .kosong {
+        text-align: center;
+        color: var(--abu);
+        padding: 30px;
+      }
+      .divisi-grid.single {
+        grid-template-columns: minmax(0, 680px);
+        justify-content: center;
+      }
+
+      /* KARTU BISA DIKLIK */
+      .bisa-klik {
+        cursor: pointer;
+      }
+      .bisa-klik:focus-visible {
+        outline: 3px solid #70acd7;
+        outline-offset: 3px;
+      }
+      .bisa-klik:active {
+        transform: scale(0.97);
+      }
+
+      /* POPUP PROFIL */
+      .profil-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background: rgba(10, 30, 55, 0.55);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .profil-modal.buka {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .profil-box {
+        position: relative;
+        width: min(100%, 360px);
+        padding: 34px 24px 28px;
+        text-align: center;
+        background: var(--card);
+        border-radius: 24px;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+        translate: 0 30px;
+        scale: 0.94;
+        transition:
+          translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+          scale 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .profil-modal.buka .profil-box {
+        translate: 0 0;
+        scale: 1;
+      }
+      .profil-foto {
+        width: 170px;
+        height: 170px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #dcecf9, #b8d8ef);
+        border: 5px solid #fff;
+        box-shadow: 0 12px 30px rgba(30, 96, 145, 0.25);
+        font-size: 60px;
+      }
+      .profil-foto img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .profil-nama {
+        margin: 0 0 6px;
+        color: var(--gelap);
+        font-size: 20px;
+        line-height: 1.35;
+      }
+      .profil-jabatan {
+        margin: 0;
+        color: var(--abu);
+        font-size: 14px;
+      }
+      .profil-ig {
+        margin-top: 6px;
+      }
+      .profil-tutup {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        border: 0;
+        border-radius: 50%;
+        background: #eef4fa;
+        color: var(--gelap);
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+      .profil-tutup:hover {
+        transform: rotate(90deg);
+        background: #dcecf9;
+      }
+      /* ================= STRUKTUR: TAHAP 2 ================= */
+
+      /* HERO: tepi bawah melengkung */
+      .struktur-hero {
+        padding-bottom: clamp(90px, 12vw, 130px);
+        clip-path: ellipse(80% 100% at 50% 0%);
+        margin-bottom: -20px;
+      }
+
+      /* JUDUL SECTION: garis bawah memanjang */
+      .struktur-heading h2::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 4px;
+        margin: 12px auto 0;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #1e6091, #70acd7);
+        transition: width 0.8s ease 0.3s;
+      }
+      .struktur-heading.show h2::after {
+        width: 70px;
+      }
+
+      /* KARTU KETUA UMUM: bingkai gradien bergerak */
+      .bagan-card {
+        position: relative;
+        isolation: isolate;
+      }
+      .bagan-card::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        z-index: -1;
+        border-radius: 22px;
+        background: linear-gradient(120deg, #1e6091, #70acd7, #f59e0b, #1e6091);
+        background-size: 300% 300%;
+        animation: bingkaiGeser 8s ease infinite;
+        opacity: 0.9;
+      }
+      @keyframes bingkaiGeser {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* JABATAN: label berwarna */
+      .bagan-card p,
+      .inti-card p,
+      .profil-pengurus p {
+        display: inline-block;
+        padding: 4px 13px;
+        border-radius: 30px;
+        background: #eaf3ff;
+        color: #1e6091;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .profil-pengurus p {
+        background: #eaf3ff; /* cadangan untuk browser lama */
+        background: color-mix(in srgb, var(--acc, #1e6091) 14%, white);
+        color: var(--acc, #1e6091);
+      }
+
+      /* FOTO KOORDINATOR: cincin warna divisi */
+      .profil-pengurus .foto-placeholder {
+        border: 4px solid transparent;
+        background:
+          linear-gradient(#dcecf9, #dcecf9) padding-box,
+          linear-gradient(135deg, var(--acc, #1e6091), #a6d2ef) border-box;
+      }
+
+      /* IKON DIVISI */
+      .divisi-ikon {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 14px;
+        display: grid;
+        place-items: center;
+        font-size: 27px;
+        border-radius: 18px;
+        background: #eaf3ff;
+        background: color-mix(in srgb, var(--acc) 14%, white);
+        box-shadow: 0 5px 0 color-mix(in srgb, var(--acc) 30%, white);
+        animation: ikonMelayang 5s ease-in-out infinite;
+      }
+      @keyframes ikonMelayang {
+        0%,
+        100% {
+          translate: 0 0;
+        }
+        50% {
+          translate: 0 -6px;
+        }
+      }
+
+      /* ANGGOTA: muncul satu per satu */
+      .divisi-card:not(.show) .anggota-card {
+        opacity: 0;
+      }
+      .divisi-card.show .anggota-card {
+        animation: anggotaPop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        animation-delay: calc(var(--i, 0) * 0.07s + 0.25s);
+      }
+      .anggota-card:nth-child(2) {
+        --i: 1;
+      }
+      .anggota-card:nth-child(3) {
+        --i: 2;
+      }
+      .anggota-card:nth-child(4) {
+        --i: 3;
+      }
+      .anggota-card:nth-child(5) {
+        --i: 4;
+      }
+      .anggota-card:nth-child(6) {
+        --i: 5;
+      }
+      @keyframes anggotaPop {
+        from {
+          opacity: 0;
+          scale: 0.88;
+        }
+        to {
+          opacity: 1;
+          scale: 1;
+        }
+      }
+
+      /* FOTO ANGGOTA: sedikit pucat, berwarna saat hover */
+      .anggota-card .foto-placeholder img {
+        filter: saturate(0.75);
+        transition: filter 0.35s;
+      }
+      .anggota-card:hover .foto-placeholder img {
+        filter: saturate(1.1);
+      }
+
+      /* KOTAK INSTAGRAM: gradien bergerak */
+      .instagram-organisasi {
+        background: linear-gradient(120deg, #123b65, #2878b9, #3f8fd0, #123b65);
+        background-size: 300% 300%;
+        animation: bingkaiGeser 14s ease infinite;
+      }
+
+      /* DARK MODE */
+      body.dark-mode .bagan-card p,
+      body.dark-mode .inti-card p {
+        background: #2b3d50;
+        color: #a6d5ff;
+      }
+      body.dark-mode .profil-pengurus p {
+        background: #2b3d50;
+        background: color-mix(in srgb, var(--acc, #1e6091) 30%, #1b2a3a);
+        color: #e8f2ff;
+      }
+      body.dark-mode .divisi-ikon {
+        background: color-mix(in srgb, var(--acc) 28%, #1b2a3a);
+        box-shadow: 0 5px 0 color-mix(in srgb, var(--acc) 45%, #1b2a3a);
+      }
+
+      /* HP */
+      @media (max-width: 768px) {
+        .struktur-hero {
+          clip-path: ellipse(110% 100% at 50% 0%);
+        }
+        .bagan-card::before {
+          animation: none; /* lebih ringan di HP */
+        }
+        .instagram-organisasi {
+          animation: none;
+        }
+        .divisi-ikon {
+          width: 50px;
+          height: 50px;
+          font-size: 23px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .divisi-card:not(.show) .anggota-card {
+          opacity: 1;
+        }
+      }
+
+      /* DARK MODE */
+      body.dark-mode .struktur-stats .s-item,
+      body.dark-mode .cari-pengurus,
+      body.dark-mode .chip,
+      body.dark-mode .profil-box {
+        background: #202e3e;
+        border-color: #43566b;
+      }
+      body.dark-mode .s-item span,
+      body.dark-mode .profil-jabatan {
+        color: #c0d0df;
+      }
+      body.dark-mode .s-item strong,
+      body.dark-mode .profil-nama,
+      body.dark-mode .chip {
+        color: #a6d5ff;
+      }
+      body.dark-mode .cari-pengurus {
+        color: #e8eef5;
+      }
+      body.dark-mode .chip.on {
+        background: #2878b9;
+        border-color: #2878b9;
+        color: #fff;
+      }
+      body.dark-mode .profil-tutup {
+        background: #2b3d50;
+        color: #e8eef5;
+      }
+      body.dark-mode .divisi-card .divisi-anggota h4 {
+        color: color-mix(in srgb, var(--acc) 60%, white);
+      }
+
+      /* HP */
+      @media (max-width: 768px) {
+        .struktur-stats {
+          gap: 8px;
+        }
+        .struktur-stats .s-item {
+          padding: 16px 6px;
+        }
+        .s-item span {
+          font-size: 11px;
+        }
+
+        .inti-grid::before {
+          left: calc((100% - 16px) / 6);
+          right: calc((100% - 16px) / 6);
+        }
+
+        .filter-chips {
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          overflow-x: auto;
+          width: 100%;
+          padding: 4px 2px 10px;
+          scrollbar-width: none;
+        }
+        .filter-chips::-webkit-scrollbar {
+          display: none;
+        }
+        .chip {
+          flex: 0 0 auto;
+        }
+      }
+
+      /* Layar sentuh */
+      @media (hover: none) {
+        .struktur-stats .s-item:hover {
+          transform: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          translate: none;
+        }
+        .profil-box {
+          translate: none;
+          scale: 1;
+        }
       }
 
       /* DARK MODE */
@@ -565,6 +1207,74 @@
         .reveal {
           opacity: 1;
           transform: none;
+        }
+      }
+      /* ================= PERBAIKAN HP ================= */
+      @media (max-width: 768px) {
+        /* Label jabatan pengurus inti lebih kecil */
+        .inti-card p {
+          padding: 3px 7px;
+          font-size: 10px;
+          line-height: 1.3;
+          letter-spacing: 0;
+          border-radius: 10px;
+        }
+
+        .bagan-card p,
+        .profil-pengurus p {
+          font-size: 11px;
+          padding: 4px 11px;
+        }
+
+        /* Jarak foto dan nama di kartu inti lebih rapat */
+        .inti-card h3 {
+          margin: 8px 0 6px;
+        }
+
+        /* Ikon divisi tidak bergerak terus-menerus (hemat baterai) */
+        .divisi-ikon {
+          animation: none;
+        }
+
+        /* Popup lebih aman di layar pendek */
+        .profil-box {
+          max-height: 92vh;
+          overflow-y: auto;
+          padding: 30px 20px 24px;
+        }
+        .profil-foto {
+          width: 140px;
+          height: 140px;
+        }
+      }
+
+      /* Layar sentuh: hapus efek hover yang tertinggal */
+      @media (hover: none) {
+        .bagan-card:hover,
+        .inti-card:hover,
+        .divisi-card:hover,
+        .anggota-card:hover,
+        .profil-pengurus:hover {
+          transform: none;
+          box-shadow: 0 8px 28px rgba(20, 65, 105, 0.07);
+        }
+
+        .foto-placeholder:hover {
+          transform: none;
+        }
+      }
+
+      /* HP sangat kecil */
+      @media (max-width: 360px) {
+        .inti-card {
+          padding: 14px 5px;
+        }
+        .inti-card .foto-placeholder {
+          width: 60px;
+          height: 60px;
+        }
+        .inti-card h3 {
+          font-size: 10.5px;
         }
       }
     </style>
@@ -1260,29 +1970,372 @@
       // ANIMASI SCROLL
       // ==================================
 
-      const revealElements = document.querySelectorAll(".reveal");
+      // ==================================
+      // STRUKTUR: FITUR TAMBAHAN
+      // ==================================
+      (function () {
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-                observer.unobserve(entry.target);
-              }
+        // ---------- Animasi scroll (pengganti blok lama) ----------
+        function aktifkanReveal() {
+          const items = $$(".reveal");
+          if ("IntersectionObserver" in window) {
+            const io = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((e) => {
+                  if (e.isIntersecting) {
+                    e.target.classList.add("show");
+                    io.unobserve(e.target);
+                  }
+                });
+              },
+              { threshold: 0.08 },
+            );
+            items.forEach((el, i) => {
+              el.style.setProperty("--d", (i % 3) * 0.1 + "s");
+              io.observe(el);
             });
-          },
-          { threshold: 0.08 },
-        );
+          } else {
+            items.forEach((el) => el.classList.add("show"));
+          }
+        }
 
-        revealElements.forEach((element, index) => {
-          element.style.transitionDelay = `${(index % 3) * 0.1}s`;
-
-          observer.observe(element);
+        // ---------- Lazy loading foto divisi ----------
+        $$(".divisi-grid img").forEach((img) => {
+          img.loading = "lazy";
+          img.decoding = "async";
         });
-      } else {
-        revealElements.forEach((element) => element.classList.add("show"));
-      }
+
+        // ---------- Simbol matematika di hero ----------
+        const hero = $(".struktur-hero");
+        if (hero) {
+          [
+            ["∑", "8%", "22%"],
+            ["π", "86%", "16%"],
+            ["∞", "14%", "70%"],
+            ["√", "80%", "66%"],
+          ].forEach(([t, l, tp], i) => {
+            const s = document.createElement("span");
+            s.className = "hero-sym";
+            s.textContent = t;
+            s.style.left = l;
+            s.style.top = tp;
+            s.style.animationDelay = -i * 1.7 + "s";
+            s.setAttribute("aria-hidden", "true");
+            hero.appendChild(s);
+          });
+        }
+
+        // ---------- Ringkasan angka (dihitung otomatis) ----------
+        const wadah = $(".struktur-container");
+        if (wadah) {
+          const totalAnggota = $$(".anggota-card").length;
+          const totalPengurus = $$(
+            ".bagan-card, .inti-card, .profil-pengurus, .anggota-card",
+          ).length;
+          const totalDivisi = $$(".divisi-card").length;
+
+          const strip = document.createElement("section");
+          strip.className = "struktur-stats reveal";
+
+          [
+            [totalPengurus, "Total Pengurus"],
+            [totalDivisi, "Divisi"],
+            [totalAnggota, "Anggota Divisi"],
+          ].forEach(([n, label]) => {
+            const box = document.createElement("div");
+            box.className = "s-item";
+            const num = document.createElement("strong");
+            num.textContent = n; // angka final sudah tampil sejak awal
+            num.dataset.n = n;
+            const txt = document.createElement("span");
+            txt.textContent = label;
+            box.append(num, txt);
+            strip.appendChild(box);
+          });
+
+          wadah.prepend(strip);
+
+          if ("IntersectionObserver" in window) {
+            const co = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((e) => {
+                  if (!e.isIntersecting) return;
+                  co.unobserve(e.target);
+                  const el = e.target;
+                  const target = parseInt(el.dataset.n, 10);
+                  const mulai = performance.now();
+                  el.textContent = 0;
+                  (function step(now) {
+                    const p = Math.min((now - mulai) / 1200, 1);
+                    el.textContent = Math.round(
+                      target * (1 - Math.pow(1 - p, 3)),
+                    );
+                    if (p < 1) requestAnimationFrame(step);
+                    else el.textContent = target;
+                  })(mulai);
+                });
+              },
+              { threshold: 0.2 },
+            );
+            $$(".s-item strong", strip).forEach((el) => co.observe(el));
+          }
+        }
+
+        // ---------- Cari & filter divisi ----------
+        const grid = $(".divisi-grid");
+        const kartuDivisi = grid ? $$(".divisi-card", grid) : [];
+
+        if (grid && kartuDivisi.length) {
+          const bar = document.createElement("div");
+          bar.className = "filter-wrap reveal";
+
+          const cari = document.createElement("input");
+          cari.type = "search";
+          cari.className = "cari-pengurus";
+          cari.placeholder = "Cari nama pengurus...";
+          cari.setAttribute("aria-label", "Cari nama pengurus");
+
+          const chips = document.createElement("div");
+          chips.className = "filter-chips";
+
+          const buatChip = (label, key) => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "chip" + (key === "all" ? " on" : "");
+            b.textContent = label;
+            b.dataset.key = key;
+            chips.appendChild(b);
+          };
+
+          buatChip("Semua", "all");
+          kartuDivisi.forEach((c, i) => {
+            c.dataset.idx = i;
+            buatChip(
+              $("h3", c).textContent.replace(/^Divisi\s+/i, ""),
+              String(i),
+            );
+          });
+
+          bar.append(cari, chips);
+
+          const kosong = document.createElement("p");
+          kosong.className = "kosong tersembunyi";
+          kosong.textContent =
+            "Tidak ada pengurus yang cocok dengan pencarian.";
+
+          grid.before(bar);
+          grid.after(kosong);
+
+          let aktif = "all";
+
+          function terapkan() {
+            const q = cari.value.trim().toLowerCase();
+            let tampil = 0;
+
+            kartuDivisi.forEach((c) => {
+              const cocokDivisi = aktif === "all" || c.dataset.idx === aktif;
+              let ada = !q;
+
+              $$(".profil-pengurus h4", c).forEach((n) => {
+                if (n.textContent.toLowerCase().includes(q)) ada = true;
+              });
+
+              let anggotaTampil = 0;
+              $$(".anggota-card", c).forEach((li) => {
+                const nama = $(".nama-anggota", li).textContent.toLowerCase();
+                const cocok = !q || nama.includes(q);
+                li.classList.toggle("tersembunyi", !cocok);
+                if (cocok) {
+                  ada = true;
+                  anggotaTampil++;
+                }
+              });
+
+              const blokAnggota = $(".divisi-anggota", c);
+              if (blokAnggota)
+                blokAnggota.classList.toggle(
+                  "tersembunyi",
+                  !!q && anggotaTampil === 0,
+                );
+
+              const lihat = cocokDivisi && ada;
+              c.classList.toggle("tersembunyi", !lihat);
+              if (lihat) tampil++;
+            });
+
+            grid.classList.toggle("single", tampil === 1);
+            kosong.classList.toggle("tersembunyi", tampil !== 0);
+          }
+
+          chips.addEventListener("click", (e) => {
+            const b = e.target.closest(".chip");
+            if (!b) return;
+            aktif = b.dataset.key;
+            $$(".chip", chips).forEach((x) =>
+              x.classList.toggle("on", x === b),
+            );
+            terapkan();
+          });
+
+          cari.addEventListener("input", terapkan);
+        }
+
+        // ---------- Popup profil ----------
+        const modal = document.createElement("div");
+        modal.className = "profil-modal";
+        modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-modal", "true");
+        modal.setAttribute("aria-label", "Profil pengurus");
+
+        const box = document.createElement("div");
+        box.className = "profil-box";
+
+        const tutup = document.createElement("button");
+        tutup.type = "button";
+        tutup.className = "profil-tutup";
+        tutup.setAttribute("aria-label", "Tutup");
+        tutup.textContent = "×";
+
+        const foto = document.createElement("div");
+        foto.className = "profil-foto";
+        const namaEl = document.createElement("h3");
+        namaEl.className = "profil-nama";
+        const jabatanEl = document.createElement("p");
+        jabatanEl.className = "profil-jabatan";
+        const igEl = document.createElement("div");
+        igEl.className = "profil-ig";
+
+        box.append(tutup, foto, namaEl, jabatanEl, igEl);
+        modal.appendChild(box);
+        document.body.appendChild(modal);
+
+        let terakhir = null;
+
+        function buka(card) {
+          terakhir = card;
+          const img = $("img", card);
+          const adalahAnggota = card.matches(".anggota-card");
+          const namaNode = adalahAnggota
+            ? $(".nama-anggota", card)
+            : $("h3, h4", card);
+
+          namaEl.textContent = namaNode.textContent.trim();
+
+          if (adalahAnggota) {
+            const div = card.closest(".divisi-card");
+            jabatanEl.textContent =
+              "Anggota " + (div ? $("h3", div).textContent.trim() : "");
+          } else {
+            const p = $("p", card);
+            jabatanEl.textContent = p ? p.textContent.trim() : "";
+          }
+
+          foto.replaceChildren();
+          if (img) {
+            const c = document.createElement("img");
+            c.src = img.currentSrc || img.src;
+            c.alt = namaEl.textContent;
+            foto.appendChild(c);
+          } else {
+            foto.textContent = "👤";
+          }
+
+          igEl.replaceChildren();
+          const ig = $(".instagram-link", card);
+          if (ig) igEl.appendChild(ig.cloneNode(true));
+
+          modal.classList.add("buka");
+          document.body.style.overflow = "hidden";
+          tutup.focus();
+        }
+
+        function tutupModal() {
+          if (!modal.classList.contains("buka")) return;
+          modal.classList.remove("buka");
+          document.body.style.overflow = "";
+          if (terakhir) terakhir.focus();
+        }
+
+        tutup.addEventListener("click", tutupModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) tutupModal();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") tutupModal();
+        });
+
+        const kartuPengurus =
+          ".bagan-card, .inti-card, .profil-pengurus, .anggota-card";
+
+        $$(kartuPengurus).forEach((c) => {
+          c.classList.add("bisa-klik");
+          c.tabIndex = 0;
+          c.setAttribute("role", "button");
+          c.addEventListener("click", (e) => {
+            if (e.target.closest("a")) return; // biarkan link Instagram berfungsi
+            buka(c);
+          });
+          c.addEventListener("keydown", (e) => {
+            if ((e.key === "Enter" || e.key === " ") && e.target === c) {
+              e.preventDefault();
+              buka(c);
+            }
+          });
+        });
+
+        // ---------- Tilt 3D mengikuti kursor (hanya perangkat dengan mouse) ----------
+        if (
+          window.matchMedia("(hover: hover)").matches &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          $$(kartuPengurus).forEach((el) => {
+            el.addEventListener("mousemove", (e) => {
+              const r = el.getBoundingClientRect();
+              const x = (e.clientX - r.left) / r.width - 0.5;
+              const y = (e.clientY - r.top) / r.height - 0.5;
+              el.style.transition = "transform .1s ease-out, box-shadow .35s";
+              el.style.transform =
+                "perspective(800px) translateY(-6px) rotateX(" +
+                -y * 9 +
+                "deg) rotateY(" +
+                x * 9 +
+                "deg)";
+            });
+            el.addEventListener("mouseleave", () => {
+              el.style.transition = "transform .5s ease, box-shadow .35s";
+              el.style.transform = "";
+            });
+          });
+        }
+
+        aktifkanReveal();
+      })();
+      // ===== Ikon divisi (otomatis dari judul) =====
+      (function () {
+        const ikon = [
+          ["pemikat", "⚽"],
+          ["event", "🎪"],
+          ["admeinfo", "🗂️"],
+          ["akademik", "🎓"],
+          ["kerohanian", "🕊️"],
+          ["kewirausahaan", "💡"],
+          ["masyarakat", "🤝"],
+        ];
+
+        document.querySelectorAll(".divisi-card").forEach((card) => {
+          const judul = card.querySelector("h3").textContent.toLowerCase();
+          const cocok = ikon.find(([kunci]) => judul.includes(kunci));
+          if (!cocok) return;
+
+          const el = document.createElement("div");
+          el.className = "divisi-ikon";
+          el.textContent = cocok[1];
+          el.setAttribute("aria-hidden", "true");
+          card.prepend(el);
+        });
+      })();
     </script>
   </body>
 </html>
