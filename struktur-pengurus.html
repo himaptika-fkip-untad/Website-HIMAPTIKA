@@ -10,8 +10,12 @@
     <title>Struktur Pengurus | HIMAPTIKA FKIP UNTAD</title>
 
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Font Awesome untuk ikon Instagram -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -19,1323 +23,562 @@
 
     <style>
       :root {
-        --biru: #1e6091;
-        --gelap: #123b65;
-        --bg: #f4f8fc;
-        --card: #ffffff;
-        --teks: #26384a;
-        --abu: #718096;
-        --garis: #e5edf5;
+        --ink: #17232e;
+        --muted: #5b6770;
+        --paper: #f1f4ef;
+        --surface: #e3e9e4;
+        --line: #cbd5ce;
+        --glass: rgba(255, 255, 255, 0.45);
+        --glass-line: rgba(255, 255, 255, 0.75);
+        --glass-shadow: 0 10px 34px rgba(30, 96, 145, 0.14);
+        --brand: #1e6091;
+        --accent: #f2b134;
+        --display: "Bricolage Grotesque", "Segoe UI", sans-serif;
+        --text: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      }
+      body.dark-mode {
+        --ink: #e8eee9;
+        --muted: #9fb0b8;
+        --paper: #121a21;
+        --surface: #1c2832;
+        --line: #2b3a46;
+        --glass: rgba(30, 44, 56, 0.5);
+        --glass-line: rgba(255, 255, 255, 0.14);
+        --glass-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
+        --brand: #7fb6de;
       }
 
       * {
         box-sizing: border-box;
       }
-      html {
-        scroll-behavior: smooth;
-      }
       body {
         margin: 0;
-        background: var(--bg);
-        color: var(--teks);
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--text);
+        line-height: 1.6;
       }
 
-      /* ---------- Animasi scroll ---------- */
-      .muncul {
-        opacity: 0;
-        translate: 0 28px;
-        transition:
-          opacity 0.7s ease var(--d, 0s),
-          translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s),
-          transform 0.35s ease,
-          box-shadow 0.35s ease;
-      }
-      .muncul.show {
-        opacity: 1;
-        translate: 0 0;
-      }
-
-      /* ---------- Hero ---------- */
-      .struktur-hero {
-        position: relative;
-        overflow: hidden;
-        padding: 90px 20px clamp(90px, 12vw, 130px);
-        margin-bottom: -20px;
-        text-align: center;
-        color: #fff;
-        background: linear-gradient(135deg, #123b65, #2878b9, #65a5d5);
-        clip-path: ellipse(80% 100% at 50% 0%);
-      }
-      .struktur-hero::before,
-      .struktur-hero::after {
+      /* warna lembut statis di belakang panel kaca */
+      body::before {
         content: "";
-        position: absolute;
-        border: 1px solid rgba(255, 255, 255, 0.13);
-        border-radius: 50%;
-      }
-      .struktur-hero::before {
-        width: 300px;
-        height: 300px;
-        top: -180px;
-        left: -60px;
-        animation: heroDrift 12s ease-in-out infinite;
-      }
-      .struktur-hero::after {
-        width: 400px;
-        height: 400px;
-        right: -150px;
-        bottom: -280px;
-        animation: heroDrift 15s ease-in-out infinite reverse;
-      }
-      .struktur-hero h2 {
-        position: relative;
-        z-index: 1;
-        margin: 0 0 12px;
-        font-size: clamp(30px, 5vw, 46px);
-        animation: masuk 0.8s ease both;
-      }
-      .struktur-hero p {
-        position: relative;
-        z-index: 1;
-        margin: 7px 0;
-        animation: masuk 1s ease both;
-      }
-
-      .hero-sym {
-        position: absolute;
-        z-index: 0;
-        font-weight: 800;
-        font-size: clamp(34px, 6vw, 64px);
-        color: rgba(255, 255, 255, 0.16);
-        animation: symFloat 7s ease-in-out infinite;
-        pointer-events: none;
-        user-select: none;
-      }
-
-      @keyframes masuk {
-        from {
-          opacity: 0;
-          transform: translateY(25px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes heroDrift {
-        0%,
-        100% {
-          translate: 0 0;
-          scale: 1;
-        }
-        50% {
-          translate: -26px 20px;
-          scale: 1.08;
-        }
-      }
-      @keyframes symFloat {
-        0%,
-        100% {
-          translate: 0 0;
-          rotate: 0deg;
-        }
-        50% {
-          translate: 0 -14px;
-          rotate: 8deg;
-        }
-      }
-      @keyframes alir {
-        to {
-          background-position: 0 -300%;
-        }
-      }
-      @keyframes bingkaiGeser {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-      @keyframes ikonMelayang {
-        0%,
-        100% {
-          translate: 0 0;
-        }
-        50% {
-          translate: 0 -6px;
-        }
-      }
-      @keyframes anggotaPop {
-        from {
-          opacity: 0;
-          scale: 0.88;
-        }
-        to {
-          opacity: 1;
-          scale: 1;
-        }
-      }
-
-      /* ---------- Container & judul section ---------- */
-      .struktur-container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 50px auto;
-      }
-      .struktur-heading {
-        text-align: center;
-        margin: 65px 0 32px;
-      }
-      .struktur-heading h2 {
-        color: var(--gelap);
-        font-size: 29px;
-        margin: 0 0 10px;
-      }
-      .struktur-heading h2::after {
-        content: "";
-        display: block;
-        width: 0;
-        height: 4px;
-        margin: 12px auto 0;
-        border-radius: 4px;
-        background: linear-gradient(90deg, #1e6091, #70acd7);
-        transition: width 0.8s ease 0.3s;
-      }
-      .struktur-heading.show h2::after {
-        width: 70px;
-      }
-      .struktur-heading p {
-        color: var(--abu);
-        margin: 0;
-      }
-
-      /* ---------- Ringkasan angka ---------- */
-      .struktur-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        margin: 0 0 10px;
-        perspective: 1000px;
-      }
-      .s-item {
-        padding: 22px 12px;
-        text-align: center;
-        background: var(--card);
-        border: 1px solid var(--garis);
-        border-radius: 18px;
-        box-shadow:
-          0 1px 0 rgba(255, 255, 255, 0.9) inset,
-          0 14px 30px rgba(20, 65, 105, 0.09);
-        transition:
-          transform 0.3s,
-          box-shadow 0.3s;
-      }
-      .s-item:hover {
-        transform: translateY(-6px) rotateX(5deg);
-        box-shadow: 0 24px 42px rgba(20, 65, 105, 0.15);
-      }
-      .s-item strong {
-        display: block;
-        font-size: clamp(28px, 4vw, 40px);
-        color: var(--biru);
-        line-height: 1.1;
-      }
-      .s-item span {
-        display: block;
-        margin-top: 6px;
-        font-size: 13px;
-        color: var(--abu);
-      }
-
-      /* ---------- Foto ---------- */
-      .foto-placeholder {
-        width: 125px;
-        height: 125px;
-        margin: 0 auto 18px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #dcecf9, #b8d8ef);
-        border: 4px solid #fff;
-        box-shadow: 0 5px 20px rgba(30, 96, 145, 0.14);
-        color: var(--biru);
-        font-size: 38px;
-        transition:
-          transform 0.35s,
-          box-shadow 0.35s;
-      }
-      .foto-placeholder:hover {
-        transform: scale(1.06);
-        box-shadow:
-          0 0 0 4px #70acd7,
-          0 14px 28px rgba(30, 96, 145, 0.25);
-      }
-      .foto-placeholder img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-        object-position: center top;
-      }
-
-      /* ---------- Kartu pengurus inti ---------- */
-      .bagan-inti {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .bagan-card,
-      .inti-card {
-        background: var(--card);
-        text-align: center;
-        border-radius: 19px;
-        box-shadow: 0 8px 28px rgba(20, 65, 105, 0.07);
-        transition:
-          transform 0.35s,
-          box-shadow 0.35s;
-      }
-      .bagan-card:hover,
-      .inti-card:hover {
-        transform: translateY(-7px);
-        box-shadow: 0 17px 35px rgba(30, 96, 145, 0.14);
-      }
-
-      .bagan-card {
-        position: relative;
-        isolation: isolate;
-        width: 260px;
-        padding: 22px 18px;
-        border-top: 5px solid var(--biru);
-      }
-      .bagan-card::before {
-        content: "";
-        position: absolute;
-        inset: -3px;
+        position: fixed;
+        inset: 0;
         z-index: -1;
-        border-radius: 22px;
-        background: linear-gradient(120deg, #1e6091, #70acd7, #f59e0b, #1e6091);
-        background-size: 300% 300%;
-        animation: bingkaiGeser 8s ease infinite;
-        opacity: 0.9;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            42vmax 42vmax at 8% 12%,
+            rgba(30, 96, 145, 0.34),
+            transparent 70%
+          ),
+          radial-gradient(
+            36vmax 36vmax at 92% 28%,
+            rgba(242, 177, 52, 0.4),
+            transparent 70%
+          ),
+          radial-gradient(
+            46vmax 46vmax at 38% 96%,
+            rgba(60, 170, 160, 0.28),
+            transparent 70%
+          );
       }
-      .bagan-card .foto-placeholder {
-        width: 108px;
-        height: 108px;
-        margin-bottom: 14px;
+      body.dark-mode::before {
+        opacity: 0.55;
       }
-      .bagan-card h3 {
-        margin: 0 0 8px;
-        color: var(--gelap);
-        font-size: 18px;
-        line-height: 1.4;
+      .glass,
+      .inti .orang,
+      .divisi,
+      .cari,
+      .ig-resmi,
+      .kotak,
+      .hero p {
+        background: var(--glass);
+        border: 1px solid var(--glass-line);
+        box-shadow: var(--glass-shadow);
+        -webkit-backdrop-filter: blur(16px) saturate(1.4);
+        backdrop-filter: blur(16px) saturate(1.4);
       }
-
-      .bagan-penghubung {
-        width: 3px;
-        height: 24px;
-        background: linear-gradient(#2878b9, #a6d2ef, #2878b9);
-        background-size: 100% 300%;
-        animation: alir 3s linear infinite;
-      }
-
-      .inti-grid {
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-        width: 100%;
-        max-width: 920px;
-        padding-top: 24px;
-      }
-      .inti-grid::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: calc((100% - 44px) / 6);
-        right: calc((100% - 44px) / 6);
-        height: 3px;
-        border-radius: 3px;
-        background: #70acd7;
-      }
-      .inti-card {
-        position: relative;
-        min-width: 0;
-        padding: 27px 15px;
-        border-bottom: 4px solid #70acd7;
-      }
-      .inti-card::before {
-        content: "";
-        position: absolute;
-        top: -24px;
-        left: 50%;
-        width: 3px;
-        height: 24px;
-        margin-left: -1.5px;
-        background: #70acd7;
-      }
-      .inti-card h3 {
-        color: var(--gelap);
-        font-size: 17px;
-        line-height: 1.4;
+      @supports not (backdrop-filter: blur(1px)) {
+        .inti .orang,
+        .divisi,
+        .cari,
+        .ig-resmi,
+        .kotak,
+        .hero p {
+          background: var(--paper);
+        }
       }
 
-      /* label jabatan */
-      .bagan-card p,
-      .inti-card p,
-      .profil-pengurus p {
-        display: inline-block;
-        padding: 4px 13px;
-        border-radius: 30px;
-        background: #eaf3ff;
-        color: #1e6091;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.3px;
+      button {
+        font: inherit;
+        color: inherit;
       }
-      .bagan-card p,
-      .inti-card p {
-        margin: 7px 0;
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
       }
-      .profil-pengurus p {
+
+      /* ---------- Hero: kertas grafik ---------- */
+      .hero {
+        padding: clamp(64px, 10vw, 120px) 6vw clamp(48px, 7vw, 80px);
+        background:
+          linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
+          linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 32px
+            32px,
+          transparent;
+        border-bottom: 1px solid var(--glass-line);
+      }
+      .hero h2 {
+        max-width: 14ch;
+        margin: 0 0 18px;
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: clamp(40px, 8vw, 88px);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      .hero p {
+        max-width: 46ch;
         margin: 0;
-        background: color-mix(in srgb, var(--acc, #1e6091) 14%, white);
-        color: var(--acc, #1e6091);
+        color: var(--muted);
+        font-size: 17px;
+        display: inline-block;
+        padding: 10px 16px;
+        border-radius: 12px;
       }
 
-      /* ---------- Divisi ---------- */
-      .divisi-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 25px;
-        counter-reset: divisi;
+      .wrap {
+        width: min(1200px, 92%);
+        margin: 0 auto;
       }
-      .divisi-grid.single {
-        grid-template-columns: minmax(0, 680px);
-        justify-content: center;
+      section {
+        padding: clamp(40px, 6vw, 72px) 0;
+      }
+      h3.judul {
+        margin: 0 0 28px;
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(26px, 4vw, 36px);
+        letter-spacing: -0.02em;
       }
 
-      .divisi-card {
-        --acc: #1e6091;
+      /* ---------- Orang (kartu foto) ---------- */
+      .orang {
+        position: relative;
         min-width: 0;
-        padding: 26px;
-        background: var(--card);
-        border-radius: 19px;
-        border-top: 5px solid var(--acc);
-        box-shadow: 0 8px 28px rgba(20, 65, 105, 0.07);
-        transition:
-          transform 0.35s,
-          box-shadow 0.35s;
       }
-      .divisi-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 16px 32px rgba(30, 96, 145, 0.12);
-      }
-      .divisi-card:nth-child(1) {
-        --acc: #e4572e;
-      }
-      .divisi-card:nth-child(2) {
-        --acc: #7c4dff;
-      }
-      .divisi-card:nth-child(3) {
-        --acc: #0ea5e9;
-      }
-      .divisi-card:nth-child(4) {
-        --acc: #1e6091;
-      }
-      .divisi-card:nth-child(5) {
-        --acc: #10b981;
-      }
-      .divisi-card:nth-child(6) {
-        --acc: #f59e0b;
-      }
-      .divisi-card:nth-child(7) {
-        --acc: #ec4899;
-      }
-
-      .divisi-card > h3 {
-        counter-increment: divisi;
-        text-align: center;
-        color: var(--gelap);
-        font-size: 20px;
-        margin: 0 0 23px;
-      }
-      .divisi-card > h3::before {
-        content: counter(divisi, decimal-leading-zero);
+      .orang > button {
         display: block;
-        margin-bottom: 8px;
-        font-size: 12px;
-        letter-spacing: 3px;
-        color: var(--acc);
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: none;
+        text-align: left;
+        cursor: pointer;
       }
-      .divisi-card > h3::after {
-        content: "";
-        display: block;
-        width: 44px;
-        height: 4px;
-        margin: 12px auto 0;
-        border-radius: 4px;
-        background: var(--acc);
-      }
-      .divisi-card .foto-placeholder:hover {
-        box-shadow:
-          0 0 0 4px var(--acc),
-          0 14px 28px rgba(30, 96, 145, 0.2);
-      }
-
-      .divisi-ikon {
-        width: 58px;
-        height: 58px;
-        margin: 0 auto 14px;
+      .foto {
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        border-radius: 6px;
+        background: var(--surface);
         display: grid;
         place-items: center;
-        font-size: 27px;
-        border-radius: 18px;
-        background: color-mix(in srgb, var(--acc) 14%, white);
-        box-shadow: 0 5px 0 color-mix(in srgb, var(--acc) 30%, white);
-        animation: ikonMelayang 5s ease-in-out infinite;
+      }
+      .foto img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+      }
+      .foto b {
+        font-family: var(--display);
+        font-size: 34px;
+        font-weight: 700;
+        color: var(--brand);
+      }
+      .nama {
+        display: block;
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+      .jabatan {
+        display: block;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .orang .ig {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--glass);
+        border: 1px solid var(--glass-line);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        color: var(--ink);
+        text-decoration: none;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .orang:hover .ig,
+      .orang:focus-within .ig {
+        opacity: 1;
+      }
+      @media (hover: none) {
+        .orang .ig {
+          display: none;
+        }
       }
 
-      /* koordinator */
-      .profil-pengurus {
-        text-align: center;
-        padding: 22px 15px;
-        border-radius: 15px;
-        background: #f0f6fb;
-        transition: background 0.3s;
+      /* ---------- Pengurus inti ---------- */
+      .inti {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 24px;
+        align-items: end;
       }
-      .profil-pengurus:hover {
-        background: #e5f1fa;
+      .inti .orang {
+        padding: 10px 10px 14px;
+        border-radius: 16px;
       }
-      .profil-pengurus h4 {
-        color: var(--gelap);
-        margin: 0 0 7px;
+      .inti .foto {
+        border-radius: 10px;
+      }
+      .inti .nama,
+      .inti .jabatan {
+        padding: 0 4px;
+      }
+      .inti .nama {
+        font-family: var(--display);
         font-size: 17px;
       }
-      .profil-pengurus .foto-placeholder {
-        border: 4px solid transparent;
-        background:
-          linear-gradient(#dcecf9, #dcecf9) padding-box,
-          linear-gradient(135deg, var(--acc, #1e6091), #a6d2ef) border-box;
+      .inti .orang:first-child .nama {
+        font-size: clamp(22px, 3vw, 30px);
+        letter-spacing: -0.01em;
+      }
+      .inti .orang:first-child .foto {
+        border-bottom: 6px solid var(--accent);
       }
 
-      /* anggota */
-      .divisi-anggota {
-        margin-top: 23px;
-        padding-top: 19px;
-        border-top: 1px solid var(--garis);
-      }
-      .divisi-anggota h4 {
-        color: var(--acc);
-        margin: 0 0 17px;
-        font-size: 16px;
-      }
-      .anggota-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      /* ---------- Divisi: satu baris per divisi ---------- */
+      .divisi {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-        gap: 12px;
+        grid-template-columns: 260px 1fr;
+        gap: clamp(24px, 5vw, 64px);
+        padding: clamp(20px, 3vw, 32px);
+        margin-bottom: 20px;
+        border-radius: 20px;
       }
-      .anggota-card {
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 15px 8px;
-        border: 1px solid var(--garis);
-        border-radius: 13px;
-        background: #fff;
-        transition: 0.3s;
-      }
-      .anggota-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(30, 96, 145, 0.1);
-        border-color: var(--acc);
-      }
-      .anggota-card .foto-placeholder {
-        width: 85px;
-        height: 85px;
-        margin-bottom: 12px;
-      }
-      .anggota-card .foto-placeholder img {
-        filter: saturate(0.75);
-        transition: filter 0.35s;
-      }
-      .anggota-card:hover .foto-placeholder img {
-        filter: saturate(1.1);
-      }
-      .nama-anggota {
-        color: #526477;
-        font-size: 13px;
+      .divisi h4 {
+        margin: 0 0 20px;
+        font-family: var(--display);
         font-weight: 700;
-        line-height: 1.5;
-        overflow-wrap: anywhere;
+        font-size: clamp(24px, 3vw, 30px);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+      .divisi .koor {
+        max-width: 150px;
+      }
+      .anggota {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+        gap: 22px 16px;
+        align-content: start;
       }
 
-      /* anggota muncul satu per satu */
-      .divisi-card:not(.show) .anggota-card {
-        opacity: 0;
-      }
-      .divisi-card.show .anggota-card {
-        animation: anggotaPop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        animation-delay: calc(var(--i, 0) * 0.07s + 0.25s);
-      }
-      .anggota-card:nth-child(2) {
-        --i: 1;
-      }
-      .anggota-card:nth-child(3) {
-        --i: 2;
-      }
-      .anggota-card:nth-child(4) {
-        --i: 3;
-      }
-      .anggota-card:nth-child(5) {
-        --i: 4;
-      }
-      .anggota-card:nth-child(6) {
-        --i: 5;
-      }
-
-      /* ---------- Instagram ---------- */
-      .instagram-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 7px;
-        margin-top: 12px;
-        padding: 7px 14px;
-        border-radius: 30px;
-        background: linear-gradient(110deg, #833ab4, #e1306c, #f77737);
-        color: #fff !important;
-        font-size: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: 0.3s;
-      }
-      .instagram-link:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 13px rgba(225, 48, 108, 0.25);
-      }
-      .instagram-link i {
-        font-size: 14px;
-      }
-      .anggota-card .instagram-link {
-        padding: 6px 11px;
-        font-size: 11px;
-      }
-
-      .instagram-organisasi {
-        text-align: center;
-        padding: 28px 20px;
-        margin-top: 55px;
-        border-radius: 18px;
-        background: linear-gradient(120deg, #123b65, #2878b9, #3f8fd0, #123b65);
-        background-size: 300% 300%;
-        animation: bingkaiGeser 14s ease infinite;
-        color: #fff;
-      }
-      .instagram-organisasi h3 {
-        margin: 0 0 8px;
-      }
-      .instagram-organisasi p {
-        margin: 0;
-        color: #d9eaff;
-        font-size: 14px;
-      }
-      .instagram-organisasi a {
-        display: inline-flex;
-        gap: 9px;
-        align-items: center;
-        margin-top: 17px;
-        padding: 10px 19px;
-        color: #fff;
-        font-weight: 700;
-        text-decoration: none;
-        background: rgba(255, 255, 255, 0.16);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 30px;
-        transition: 0.3s;
-      }
-      .instagram-organisasi a:hover {
-        background: #fff;
-        color: var(--gelap);
-      }
-
-      /* ---------- Tombol kembali ---------- */
-      .struktur-back {
-        text-align: center;
-        margin: 55px 0;
-      }
-      .struktur-back a {
-        display: inline-block;
-        padding: 13px 25px;
-        background: var(--biru);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 9px;
-        transition: 0.3s;
-      }
-      .struktur-back a:hover {
-        background: var(--gelap);
-        transform: translateY(-4px);
-      }
-
-      /* ---------- Cari, filter, tampilan ---------- */
-      .filter-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        margin: 0 0 30px;
-      }
-      .cari-pengurus {
-        width: min(100%, 420px);
-        padding: 13px 18px;
-        border: 1px solid var(--garis);
-        border-radius: 30px;
-        background: var(--card);
-        color: var(--teks);
+      /* ---------- Cari ---------- */
+      .cari {
+        width: min(100%, 360px);
+        padding: 11px 14px;
+        margin: 0 0 24px;
+        border-radius: 999px;
+        padding-inline: 20px;
+        color: var(--ink);
         font: inherit;
-        font-size: 14px;
-        box-shadow: 0 8px 22px rgba(20, 65, 105, 0.07);
-        outline: none;
-        transition:
-          border-color 0.25s,
-          box-shadow 0.25s;
+        font-size: 15px;
       }
-      .cari-pengurus:focus {
-        border-color: var(--biru);
-        box-shadow: 0 0 0 4px rgba(30, 96, 145, 0.15);
-      }
-      .filter-chips {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-      }
-
-      .chip,
-      .aksi-btn {
-        border: 1px solid var(--garis);
-        background: var(--card);
-        color: var(--gelap);
-        padding: 8px 16px;
-        border-radius: 30px;
-        font: inherit;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition:
-          transform 0.2s,
-          background 0.2s,
-          color 0.2s,
-          box-shadow 0.2s;
-      }
-      .chip:hover,
-      .aksi-btn:hover {
-        transform: translateY(-2px);
-      }
-      .chip.on,
-      .aksi-btn.on {
-        background: var(--biru);
-        border-color: var(--biru);
-        color: #fff;
-        box-shadow: 0 4px 0 var(--gelap);
-      }
-
-      .aksi-bar {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-      }
-      .aksi-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-      }
-
       .tersembunyi {
         display: none !important;
       }
-      .kosong {
-        text-align: center;
-        color: var(--abu);
-        padding: 30px;
+      #kosong {
+        color: var(--muted);
+        padding: 24px 0;
       }
 
-      /* tampilan daftar */
-      .mode-daftar .anggota-list {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .mode-daftar .anggota-card {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 12px;
-        padding: 8px 12px;
-        text-align: left;
-      }
-      .mode-daftar .anggota-card .foto-placeholder {
-        width: 42px;
-        height: 42px;
-        margin: 0;
-        border-width: 2px;
-        font-size: 18px;
-      }
-      .mode-daftar .anggota-card .nama-anggota {
-        flex: 1;
-      }
-      .mode-daftar .anggota-card .instagram-slot {
-        margin-left: auto;
-      }
-      .mode-daftar .anggota-card .instagram-link,
-      .mode-daftar .profil-pengurus .instagram-link {
-        margin-top: 0;
-        font-size: 0;
-        gap: 0;
-      }
-      .mode-daftar .anggota-card .instagram-link {
-        padding: 7px 9px;
-      }
-      .mode-daftar .profil-pengurus .instagram-link {
-        padding: 8px 10px;
-      }
-      .mode-daftar .anggota-card .instagram-link i {
-        font-size: 14px;
-      }
-      .mode-daftar .profil-pengurus .instagram-link i {
-        font-size: 15px;
-      }
-
-      .mode-daftar .profil-pengurus {
-        display: grid;
-        grid-template-columns: 58px 1fr auto;
-        grid-template-rows: auto auto;
-        column-gap: 14px;
-        align-items: center;
-        text-align: left;
-        padding: 12px 14px;
-      }
-      .mode-daftar .profil-pengurus .foto-placeholder {
-        grid-row: 1 / 3;
-        width: 58px;
-        height: 58px;
-        margin: 0;
-        font-size: 22px;
-      }
-      .mode-daftar .profil-pengurus h4 {
-        grid-column: 2;
-        margin: 0 0 4px;
-        align-self: end;
-      }
-      .mode-daftar .profil-pengurus p {
-        grid-column: 2;
-        justify-self: start;
-        align-self: start;
-      }
-      .mode-daftar .profil-pengurus .instagram-slot {
-        grid-column: 3;
-        grid-row: 1 / 3;
-      }
-      .mode-daftar .divisi-anggota {
-        margin-top: 16px;
-        padding-top: 14px;
-      }
-      .mode-daftar .divisi-card {
-        padding: 22px;
-      }
-
-      /* ---------- Kartu bisa diklik & popup profil ---------- */
-      .bisa-klik {
-        cursor: pointer;
-      }
-      .bisa-klik:focus-visible {
-        outline: 3px solid #70acd7;
-        outline-offset: 3px;
-      }
-      .bisa-klik:active {
-        transform: scale(0.97);
-      }
-
-      .profil-modal {
+      /* ---------- Profil (popup) ---------- */
+      .modal {
         position: fixed;
         inset: 0;
         z-index: 3000;
         display: grid;
         place-items: center;
         padding: 20px;
-        background: rgba(10, 30, 55, 0.55);
-        backdrop-filter: blur(4px);
+        background: rgba(10, 20, 30, 0.4);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.3s;
+        transition: opacity 0.2s;
       }
-      .profil-modal.buka {
+      .modal.buka {
         opacity: 1;
         pointer-events: auto;
       }
-      .profil-box {
+      .kotak {
         position: relative;
-        width: min(100%, 360px);
-        padding: 34px 24px 28px;
-        text-align: center;
-        background: var(--card);
-        border-radius: 24px;
-        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
-        translate: 0 30px;
-        scale: 0.94;
-        transition:
-          translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
-          scale 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+        width: min(100%, 340px);
+        padding: 16px 16px 22px;
+        border-radius: 22px;
+        translate: 0 14px;
+        transition: translate 0.25s ease;
       }
-      .profil-modal.buka .profil-box {
+      .modal.buka .kotak {
         translate: 0 0;
-        scale: 1;
       }
-      .profil-foto {
-        width: 170px;
-        height: 170px;
-        margin: 0 auto 18px;
-        border-radius: 50%;
-        overflow: hidden;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, #dcecf9, #b8d8ef);
-        border: 5px solid #fff;
-        box-shadow: 0 12px 30px rgba(30, 96, 145, 0.25);
-        font-size: 60px;
+      .kotak .foto {
+        margin-bottom: 14px;
       }
-      .profil-foto img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
-      }
-      .profil-nama {
-        margin: 0 0 6px;
-        color: var(--gelap);
-        font-size: 20px;
-        line-height: 1.35;
-      }
-      .profil-jabatan {
+      .kotak h5 {
         margin: 0;
-        color: var(--abu);
+        font-family: var(--display);
+        font-size: 21px;
+        line-height: 1.2;
+      }
+      .kotak p {
+        margin: 2px 0 12px;
+        color: var(--muted);
         font-size: 14px;
       }
-      .profil-ig {
-        margin-top: 6px;
+      .kotak a {
+        color: var(--brand);
+        font-weight: 600;
+        font-size: 14px;
       }
-      .profil-tutup {
+      .tutup {
         position: absolute;
-        top: 12px;
-        right: 12px;
-        width: 36px;
-        height: 36px;
+        top: 24px;
+        right: 24px;
+        width: 34px;
+        height: 34px;
         border: 0;
         border-radius: 50%;
-        background: #eef4fa;
-        color: var(--gelap);
+        background: var(--paper);
         font-size: 22px;
         line-height: 1;
         cursor: pointer;
-        transition:
-          transform 0.2s,
-          background 0.2s;
-      }
-      .profil-tutup:hover {
-        transform: rotate(90deg);
-        background: #dcecf9;
       }
 
-      /* ---------- Toast, kembali ke atas, progres ---------- */
-      .toast-struktur {
-        position: fixed;
-        left: 50%;
-        bottom: calc(26px + env(safe-area-inset-bottom, 0px));
-        z-index: 3500;
+      .ig-resmi {
+        padding: 28px clamp(20px, 3vw, 32px);
+        margin-bottom: 56px;
+        border-radius: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .ig-resmi h3 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: 24px;
+      }
+      .ig-resmi p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .ig-resmi a {
         padding: 11px 20px;
-        border-radius: 30px;
-        background: #123b65;
-        color: #fff;
-        font-size: 13px;
-        box-shadow: 0 12px 30px rgba(10, 30, 55, 0.35);
-        translate: -50% 20px;
-        opacity: 0;
-        pointer-events: none;
-        transition:
-          opacity 0.3s,
-          translate 0.3s;
+        border-radius: 6px;
+        background: var(--ink);
+        color: var(--paper);
+        font-weight: 600;
+        text-decoration: none;
       }
-      .toast-struktur.tampil {
-        opacity: 1;
-        translate: -50% 0;
+      .ig-resmi a:hover {
+        background: var(--brand);
       }
 
-      .ke-atas {
-        position: fixed;
-        right: 18px;
-        bottom: calc(22px + env(safe-area-inset-bottom, 0px));
-        z-index: 900;
-        width: 44px;
-        height: 44px;
-        border: 0;
-        border-radius: 14px;
-        background: #1e6091;
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        box-shadow:
-          0 5px 0 #123b65,
-          0 14px 24px rgba(18, 59, 101, 0.25);
+      /* satu animasi masuk */
+      .fade {
         opacity: 0;
-        translate: 0 20px;
-        pointer-events: none;
+        translate: 0 16px;
         transition:
-          opacity 0.3s,
-          translate 0.3s;
+          opacity 0.6s ease,
+          translate 0.6s ease;
       }
-      .ke-atas.tampil {
+      .fade.show {
         opacity: 1;
         translate: 0 0;
-        pointer-events: auto;
       }
-      .ke-atas:active {
-        transform: translateY(4px);
-        box-shadow: 0 1px 0 #123b65;
-      }
-
-      .progres-baca {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        z-index: 950;
-        width: 100%;
-        height: 4px;
-        pointer-events: none;
-      }
-      .progres-baca span {
-        display: block;
-        height: 100%;
-        width: 100%;
-        background: linear-gradient(90deg, #1e6091, #70acd7, #f59e0b);
-        transform: scaleX(0);
-        transform-origin: left;
-      }
-
-      /* =========================================================
-         DARK MODE
-         ========================================================= */
-      body.dark-mode {
-        background: #111c29;
-        color: #e8eef5;
-      }
-
-      body.dark-mode .bagan-card,
-      body.dark-mode .inti-card,
-      body.dark-mode .divisi-card {
-        background: #202e3e;
-      }
-
-      body.dark-mode .bagan-card h3,
-      body.dark-mode .inti-card h3,
-      body.dark-mode .divisi-card > h3,
-      body.dark-mode .profil-pengurus h4,
-      body.dark-mode .struktur-heading h2,
-      body.dark-mode .s-item strong,
-      body.dark-mode .profil-nama,
-      body.dark-mode .chip {
-        color: #a6d5ff;
-      }
-
-      body.dark-mode .bagan-card p,
-      body.dark-mode .inti-card p,
-      body.dark-mode .profil-pengurus p,
-      body.dark-mode .struktur-heading p,
-      body.dark-mode .s-item span,
-      body.dark-mode .profil-jabatan {
-        color: #c0d0df;
-      }
-
-      body.dark-mode .bagan-card p,
-      body.dark-mode .inti-card p {
-        background: #2b3d50;
-      }
-      body.dark-mode .profil-pengurus p {
-        background: color-mix(in srgb, var(--acc, #1e6091) 30%, #1b2a3a);
-      }
-
-      body.dark-mode .profil-pengurus {
-        background: #2b3d50;
-      }
-      body.dark-mode .profil-pengurus:hover {
-        background: #354b62;
-      }
-      body.dark-mode .anggota-card {
-        background: #26384a;
-        border-color: #43566b;
-      }
-      body.dark-mode .nama-anggota {
-        color: #e0eaf4;
-      }
-      body.dark-mode .divisi-anggota {
-        border-color: #43566b;
-      }
-      body.dark-mode .divisi-card .divisi-anggota h4 {
-        color: color-mix(in srgb, var(--acc) 60%, white);
-      }
-      body.dark-mode .divisi-ikon {
-        background: color-mix(in srgb, var(--acc) 28%, #1b2a3a);
-        box-shadow: 0 5px 0 color-mix(in srgb, var(--acc) 45%, #1b2a3a);
-      }
-
-      body.dark-mode .s-item,
-      body.dark-mode .cari-pengurus,
-      body.dark-mode .chip,
-      body.dark-mode .aksi-btn,
-      body.dark-mode .profil-box {
-        background: #202e3e;
-        border-color: #43566b;
-      }
-      body.dark-mode .aksi-btn {
-        color: #a6d5ff;
-      }
-      body.dark-mode .cari-pengurus {
-        color: #e8eef5;
-      }
-      body.dark-mode .chip.on,
-      body.dark-mode .aksi-btn.on {
-        background: #2878b9;
-        border-color: #2878b9;
-        color: #fff;
-      }
-      body.dark-mode .profil-tutup {
-        background: #2b3d50;
-        color: #e8eef5;
-      }
-
-      /* =========================================================
-         LAYAR SENTUH
-         ========================================================= */
-      @media (hover: none) {
-        .s-item:hover {
-          transform: none;
-        }
-        .bagan-card:hover,
-        .inti-card:hover,
-        .divisi-card:hover,
-        .anggota-card:hover,
-        .profil-pengurus:hover {
-          transform: none;
-          box-shadow: 0 8px 28px rgba(20, 65, 105, 0.07);
-        }
-        .foto-placeholder:hover {
-          transform: none;
-        }
-      }
-
-      /* =========================================================
-         HP
-         ========================================================= */
-      @media (max-width: 768px) {
-        .struktur-hero {
-          margin-top: 16px;
-          padding: 55px 15px;
-          clip-path: ellipse(110% 100% at 50% 0%);
-        }
-        .struktur-container {
-          width: 93%;
-          margin: 35px auto;
-        }
-        .struktur-heading {
-          margin: 48px 0 25px;
-        }
-        .struktur-heading h2 {
-          font-size: 24px;
-        }
-
-        .struktur-stats {
-          gap: 8px;
-        }
-        .s-item {
-          padding: 16px 6px;
-        }
-        .s-item span {
-          font-size: 11px;
-        }
-
-        .bagan-card {
-          width: min(100%, 210px);
-          padding: 16px 12px;
-          border-top-width: 4px;
-        }
-        .bagan-card::before {
-          animation: none;
-        }
-        .bagan-card .foto-placeholder {
-          width: 88px;
-          height: 88px;
-          margin-bottom: 10px;
-          border-width: 3px;
-        }
-        .bagan-card h3 {
-          margin: 0 0 6px;
-          font-size: 15px;
-          line-height: 1.35;
-        }
-        .bagan-card p {
-          font-size: 10.5px;
-          padding: 3px 10px;
-        }
-        .bagan-penghubung {
-          height: 18px;
-        }
-
-        .inti-grid {
-          gap: 8px;
-          padding-top: 18px;
-        }
-        .inti-grid::before {
-          left: calc((100% - 16px) / 6);
-          right: calc((100% - 16px) / 6);
-        }
-        .inti-card {
-          padding: 17px 7px;
-        }
-        .inti-card::before {
-          top: -18px;
-          height: 18px;
-        }
-        .inti-card .foto-placeholder {
-          width: 70px;
-          height: 70px;
-        }
-        .inti-card h3 {
-          margin: 8px 0 6px;
-          font-size: 12px;
-          overflow-wrap: anywhere;
-        }
-        .inti-card p {
-          padding: 3px 7px;
-          font-size: 10px;
-          line-height: 1.3;
-          letter-spacing: 0;
-          border-radius: 10px;
-        }
-        .profil-pengurus p {
-          font-size: 11px;
-          padding: 4px 11px;
-        }
-
-        .divisi-grid {
-          grid-template-columns: 1fr;
-        }
-        .divisi-card {
-          padding: 20px;
-        }
-        .divisi-ikon {
-          width: 50px;
-          height: 50px;
-          font-size: 23px;
-          animation: none;
-        }
-        .instagram-organisasi {
-          animation: none;
-        }
-
-        .filter-chips {
-          flex-wrap: nowrap;
-          justify-content: flex-start;
-          overflow-x: auto;
-          width: 100%;
-          padding: 4px 2px 10px;
-          scrollbar-width: none;
-        }
-        .filter-chips::-webkit-scrollbar {
-          display: none;
-        }
-        .chip {
-          flex: 0 0 auto;
-        }
-
-        .mode-daftar .profil-pengurus {
-          grid-template-columns: 50px 1fr auto;
-          column-gap: 12px;
-        }
-        .mode-daftar .profil-pengurus .foto-placeholder {
-          width: 50px;
-          height: 50px;
-        }
-
-        .ke-atas {
-          right: 14px;
-          width: 42px;
-          height: 42px;
-        }
-
-        .profil-box {
-          max-height: 92vh;
-          overflow-y: auto;
-          padding: 30px 20px 24px;
-        }
-        .profil-foto {
-          width: 140px;
-          height: 140px;
-        }
-      }
-
-      @media (max-width: 380px) {
-        .anggota-list {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-        .inti-card h3 {
-          font-size: 11px;
-        }
-      }
-
-      @media (max-width: 360px) {
-        .inti-card {
-          padding: 14px 5px;
-        }
-        .inti-card .foto-placeholder {
-          width: 60px;
-          height: 60px;
-        }
-        .inti-card h3 {
-          font-size: 10.5px;
-        }
-      }
-
-      /* =========================================================
-         GERAK DIKURANGI
-         ========================================================= */
       @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation: none !important;
-          transition: none !important;
-          scroll-behavior: auto !important;
-        }
-        .muncul {
+        .fade,
+        .kotak {
           opacity: 1;
           translate: none;
+          transition: none;
         }
-        .divisi-card:not(.show) .anggota-card {
-          opacity: 1;
+      }
+
+      @media (max-width: 800px) {
+        .inti {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px;
         }
-        .profil-box {
-          translate: none;
-          scale: 1;
+        .inti .orang:first-child {
+          grid-column: 1 / -1;
+          max-width: 260px;
         }
+        .divisi {
+          grid-template-columns: 1fr;
+          gap: 22px;
+          border-radius: 16px;
+        }
+        .divisi .koor {
+          max-width: 120px;
+        }
+        .anggota {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 18px 12px;
+        }
+      }
+      @media (max-width: 420px) {
+        .anggota {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      /* perbaikan tampilan HP */
+      .cari {
+        font-size: 16px; /* cegah zoom otomatis di iPhone */
+      }
+      .nama {
+        overflow-wrap: anywhere;
+      }
+      .kotak {
+        max-height: 90vh;
+        max-height: 90dvh;
+        overflow-y: auto;
+      }
+      .tutup {
+        width: 40px;
+        height: 40px;
+      }
+
+      @media (max-width: 800px) {
+        .inti .orang:first-child {
+          width: 100%;
+          margin-inline: auto; /* Ketua Umum di tengah */
+        }
+        /* blur lebih ringan supaya scroll tetap mulus */
+        .divisi,
+        .inti .orang,
+        .cari,
+        .ig-resmi,
+        .hero p {
+          -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+        }
+      }
+      /* perbaikan hero di HP */
+      main .hero h2,
+      main .hero p {
+        position: static;
+        float: none;
+        transform: none;
+      }
+      main .hero h2 {
+        display: block;
+        max-width: none;
+        line-height: 1.08;
+        overflow-wrap: break-word;
+      }
+      main .hero p {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        line-height: 1.55;
+      }
+
+      @media (max-width: 800px) {
+        .hero {
+          padding: 96px 5vw 40px; /* ruang untuk header di atas */
+        }
+        main .hero h2 {
+          font-size: clamp(30px, 9.5vw, 44px);
+          letter-spacing: -0.02em;
+          margin: 0 0 20px;
+        }
+        main .hero p {
+          font-size: 15px;
+          padding: 12px 14px;
+        }
+      }
+      .hero,
+      .sp-hero,
+      #sp-hero {
+        padding-top: 28px !important;
+        padding-bottom: 28px !important;
+        min-height: 0 !important;
+        height: auto !important;
+      }
+      .hero h2,
+      .sp-hero h2,
+      #sp-hero h2 {
+        margin-bottom: 14px !important;
+      }
+      /* FIX HERO MOBILE HIMAPTIKA */
+      @media (max-width: 800px) {
+        main .hero {
+          padding: 140px 5vw 45px !important;
+          min-height: auto !important;
+          height: auto !important;
+        }
+
+        main .hero h2 {
+          font-size: clamp(32px, 9vw, 44px);
+          line-height: 1.08;
+          margin-bottom: 18px;
+        }
+
+        main .hero p {
+          font-size: 15px;
+          max-width: 100%;
+        }
+      }
+      /* IG langsung terlihat di bawah nama */
+      .orang .ig-link {
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--brand);
+        text-decoration: none;
+        overflow-wrap: anywhere;
+        line-height: 1.3;
+      }
+      .orang .ig-link i {
+        margin-right: 4px;
+      }
+      .orang .ig-link:hover,
+      .orang .ig-link:focus-visible {
+        text-decoration: underline;
+      }
+      .inti .orang .ig-link {
+        padding: 0 4px;
+      }
+
+      /* tombol bulat lama tidak diperlukan lagi */
+      .orang .ig {
+        display: none !important;
       }
     </style>
   </head>
@@ -1395,733 +638,47 @@
     </header>
 
     <main>
-      <section class="struktur-hero">
-        <h2>Struktur Kepengurusan</h2>
-        <p>HIMAPTIKA FKIP Universitas Tadulako</p>
-        <p>Periode 2026</p>
+      <section class="hero" style="padding-bottom: clamp(48px, 7vw, 80px)">
+        <h2>Orang-orang di balik HIMAPTIKA</h2>
+        <p id="ringkas">
+          Pengurus HIMAPTIKA FKIP Universitas Tadulako periode 2026.
+        </p>
       </section>
 
-      <div class="struktur-container">
-        <!-- PENGURUS INTI -->
+      <div class="wrap">
         <section aria-labelledby="judul-inti">
-          <div class="struktur-heading muncul">
-            <h2 id="judul-inti">Pengurus Inti</h2>
-            <p>Susunan kepengurusan HIMAPTIKA</p>
-          </div>
-
-          <div class="bagan-inti">
-            <div class="bagan-card muncul">
-              <div class="foto-placeholder">
-                <img
-                  src="images/PAK KETUA.jpeg"
-                  alt="Foto I Made Agus Sufriyanto"
-                />
-              </div>
-              <h3>I MADE AGUS SUFRIYANTO</h3>
-              <p>Ketua Umum</p>
-              <div class="instagram-slot" data-instagram="md_agus05"></div>
-            </div>
-
-            <div class="bagan-penghubung" aria-hidden="true"></div>
-
-            <div class="inti-grid">
-              <div class="inti-card muncul">
-                <div class="foto-placeholder">
-                  <img src="images/ibu sekum.jpg" alt="Foto Faizah Bunai" />
-                </div>
-                <h3>FAIZAH BUNAI</h3>
-                <p>Sekretaris Umum</p>
-                <div class="instagram-slot" data-instagram="faizahbunai"></div>
-              </div>
-
-              <div class="inti-card muncul">
-                <div class="foto-placeholder">
-                  <img src="images/pak wakil.jpg" alt="Foto Dewa Gonsales" />
-                </div>
-                <h3>DEWA GONSALES</h3>
-                <p>Wakil Ketua Umum</p>
-                <div class="instagram-slot" data-instagram="dewagnzlss_"></div>
-              </div>
-
-              <div class="inti-card muncul">
-                <div class="foto-placeholder">
-                  <img src="images/bu bend.jpg" alt="Foto Imelda Brigita" />
-                </div>
-                <h3>IMELDA BRIGITA</h3>
-                <p>Bendahara Umum</p>
-                <div
-                  class="instagram-slot"
-                  data-instagram="imeldabrigitaa"
-                ></div>
-              </div>
-            </div>
-          </div>
+          <h3 class="judul fade" id="judul-inti">Pengurus inti</h3>
+          <div class="inti fade" id="inti"></div>
         </section>
 
-        <!-- STRUKTUR DIVISI -->
-        <section aria-labelledby="judul-divisi">
-          <div class="struktur-heading muncul">
-            <h2 id="judul-divisi">Struktur Divisi</h2>
-            <p>Bidang dan anggota kepengurusan HIMAPTIKA</p>
-          </div>
-
-          <div class="divisi-grid">
-            <!-- PEMIKAT -->
-            <article
-              class="divisi-card muncul"
-              aria-labelledby="divisi-pemikat"
-            >
-              <h3 id="divisi-pemikat">Divisi Pemikat</h3>
-
-              <div class="profil-pengurus">
-                <div class="foto-placeholder">
-                  <img
-                    src="images/koor pemikat.jpg"
-                    alt="Foto M. Agus Arieffandi"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <h4>M. AGUS ARIEFFANDI</h4>
-                <p>Koordinator Pemikat</p>
-                <div
-                  class="instagram-slot"
-                  data-instagram="arieffandimuhammad"
-                ></div>
-              </div>
-
-              <div class="divisi-anggota">
-                <h4>Anggota</h4>
-                <ul class="anggota-list">
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/afandi (1).jpg"
-                        alt="Foto Nurlan Afandi"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">NURLAN AFANDI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="n_afandyyy"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Naya.jpg"
-                        alt="Foto Alifa Zahwa Inayah"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">ALIFA ZAHWA INAYAH</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="zhwaanyhhh_"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Nurul (1).jpg"
-                        alt="Foto Nurul"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">NURUL</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="nrul_azliana"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Zulfahmi.jpg"
-                        alt="Foto Zulfahmi"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">ZULFAHMI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="zulfahmilandjani"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Rasya.jpg"
-                        alt="Foto M. Rasya Wahyu"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">M. RASYA WAHYU</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="rasyawhyu"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- EVENT ORGANIZER -->
-            <article
-              class="divisi-card muncul"
-              aria-labelledby="divisi-event-organizer"
-            >
-              <h3 id="divisi-event-organizer">Divisi Event Organizer</h3>
-
-              <div class="profil-pengurus">
-                <div class="foto-placeholder">
-                  <img
-                    src="images/Koor eo.jpeg"
-                    alt="Foto Rangga Zaki"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <h4>RANGGA ZAKI</h4>
-                <p>Koordinator Event Organizer</p>
-                <div class="instagram-slot" data-instagram="rnggazki"></div>
-              </div>
-
-              <div class="divisi-anggota">
-                <h4>Anggota</h4>
-                <ul class="anggota-list">
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Giska (1).jpg"
-                        alt="Foto Giska Desyana"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">GISKA DESYANA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="giskdsyn_"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/syahrul.jpg"
-                        alt="Foto Ahmad Syahrul Arifin"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">AHMAD SYAHRUL ARIFIN</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="syarularif_"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Sunarti.jpeg"
-                        alt="Foto Sunarti"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">SUNARTI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="sunar_1301"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/nova.jpg"
-                        alt="Foto Dwi Nova Anggraeni"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">DWI NOVA ANGGRAENI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="_dwinova_"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Aysah.jpeg"
-                        alt="Foto Aysah Dwi Safitri"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">AYSAH DWI SAFITRI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="aysahdwisafitri"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- ADMEINFO -->
-            <article
-              class="divisi-card muncul"
-              aria-labelledby="divisi-admeinfo"
-            >
-              <h3 id="divisi-admeinfo">Divisi Admeinfo</h3>
-
-              <div class="profil-pengurus">
-                <div class="foto-placeholder">
-                  <img
-                    src="images/Koor admeinfo.jpeg"
-                    alt="Foto Muh Iksan"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <h4>MUH IKSAN</h4>
-                <p>Koordinator Admeinfo</p>
-                <div class="instagram-slot" data-instagram="mhilksan_"></div>
-              </div>
-
-              <div class="divisi-anggota">
-                <h4>Anggota</h4>
-                <ul class="anggota-list">
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Desrin.jpeg"
-                        alt="Foto Desrin Natalin Sumba"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">DESRIN NATALIN SUMBA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="desrinsumba_"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Zaskyah.jpg"
-                        alt="Foto Zaskyah Nur Balosi"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">ZASKYAH NUR BALOSI</span>
-                    <div class="instagram-slot" data-instagram="zski06_"></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Muhzin (1).jpg"
-                        alt="Foto Muhzin Alatas"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">MUHZIN ALATAS</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="muhzinalatas75"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- PELAYANAN AKADEMIK -->
-            <article
-              class="divisi-card muncul"
-              aria-labelledby="divisi-pelayanan-akademik"
-            >
-              <h3 id="divisi-pelayanan-akademik">Divisi Pelayanan Akademik</h3>
-
-              <div class="profil-pengurus">
-                <div class="foto-placeholder" aria-hidden="true">👤</div>
-                <h4>ARIL THANDY ANGKA</h4>
-                <p>Koordinator Pelayanan Akademik</p>
-                <div class="instagram-slot" data-instagram="ziellile"></div>
-              </div>
-
-              <div class="divisi-anggota">
-                <h4>Anggota</h4>
-                <ul class="anggota-list">
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/q.jpg"
-                        alt="Foto Moh. Risqi"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">MOH. RISQI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="es.kik0oo"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Dela.jpg"
-                        alt="Foto Dela Safitri"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">DELA SAFITRI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="delasft.z"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/dila.jpg"
-                        alt="Foto Nur Fadhilah"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">NUR FADHILAH</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="fadilaaa_dilaa"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Putriana.jpg"
-                        alt="Foto Putriana"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">PUTRIANA</span>
-                    <div class="instagram-slot" data-instagram="ptri_an4"></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/nadya.jpg"
-                        alt="Foto Nur Anadya Putri"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">NUR ANADYA PUTRI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="nurandyptr_"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- KEROHANIAN -->
-            <article
-              class="divisi-card muncul"
-              aria-labelledby="divisi-kerohanian"
-            >
-              <h3 id="divisi-kerohanian">Divisi Kerohanian</h3>
-
-              <div class="profil-pengurus">
-                <div class="foto-placeholder">
-                  <img
-                    src="images/Koor kerohanian.jpeg"
-                    alt="Foto Liyana Fuaadah"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <h4>LIYANA FUAADAH</h4>
-                <p>Koordinator Kerohanian</p>
-                <div class="instagram-slot" data-instagram="liynaafdh"></div>
-              </div>
-
-              <div class="divisi-anggota">
-                <h4>Anggota</h4>
-                <ul class="anggota-list">
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/heri (1).jpg"
-                        alt="Foto Heriyanto Septian Saputra"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">HERIYANTO SEPTIAN SAPUTRA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="hynxajaaa__"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/rafy (1).jpg"
-                        alt="Foto Rafyal Khani Fikri"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">RAFYAL KHANI FIKRI</span>
-                    <div class="instagram-slot" data-instagram="rhfyj_"></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Gita.jpg"
-                        alt="Foto Gita Afriani"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">GITA AFRIANI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="gitafrni_19"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/alya (2).jpg"
-                        alt="Foto Alya Sulistya"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">ALYA SULISTYA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="alyaslstya_"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- KEWIRAUSAHAAN -->
-            <article
-              class="divisi-card muncul"
-              aria-labelledby="divisi-kewirausahaan"
-            >
-              <h3 id="divisi-kewirausahaan">Divisi Kewirausahaan</h3>
-
-              <div class="profil-pengurus">
-                <div class="foto-placeholder">
-                  <img
-                    src="images/Koor KWU.jpg"
-                    alt="Foto Anjelita Menggau"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <h4>ANJELITA MENGGAU</h4>
-                <p>Koordinator Kewirausahaan</p>
-                <div class="instagram-slot" data-instagram="vithago_"></div>
-              </div>
-
-              <div class="divisi-anggota">
-                <h4>Anggota</h4>
-                <ul class="anggota-list">
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/nabila.jpg"
-                        alt="Foto Nabilla"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">NABILLA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="nabilla_badjeber"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/wulan.jpg"
-                        alt="Foto Sari Wulandari"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">SARI WULANDARI</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="sarwulndri_ln"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/hidaa.jpeg"
-                        alt="Foto Hidayanti Rukmana"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">HIDAYANTI RUKMANA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="hidaaynti_"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/agung (1).jpg"
-                        alt="Foto Agung"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">AGUNG</span>
-                    <div class="instagram-slot" data-instagram="siiowei"></div>
-                  </li>
-                </ul>
-              </div>
-            </article>
-
-            <!-- HUBUNGAN MASYARAKAT -->
-            <article
-              class="divisi-card muncul"
-              aria-labelledby="divisi-hubungan-masyarakat"
-            >
-              <h3 id="divisi-hubungan-masyarakat">
-                Divisi Hubungan Masyarakat
-              </h3>
-
-              <div class="profil-pengurus">
-                <div class="foto-placeholder">
-                  <img
-                    src="images/koor humas.jpeg"
-                    alt="Foto Mutmainnah"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <h4>MUTMAINNAH</h4>
-                <p>Koordinator Hubungan Masyarakat</p>
-                <div
-                  class="instagram-slot"
-                  data-instagram="innnnnaaaaaa_"
-                ></div>
-              </div>
-
-              <div class="divisi-anggota">
-                <h4>Anggota</h4>
-                <ul class="anggota-list">
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/ananda ziat.jpeg"
-                        alt="Foto Ananda Ziat"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">ANANDA ZIAT</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="ziat_langganya21"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/Lina.jpg"
-                        alt="Foto Nurlina"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">NURLINA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="nurlinaaaa_02"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/khusnul.jpg"
-                        alt="Foto Khusnul Khatima"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">KHUSNUL KHATIMA</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="_husnulkhatima010"
-                    ></div>
-                  </li>
-                  <li class="anggota-card">
-                    <div class="foto-placeholder">
-                      <img
-                        src="images/isra.jpg"
-                        alt="Foto Isra Nurhidayah"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <span class="nama-anggota">ISRA NURHIDAYAH</span>
-                    <div
-                      class="instagram-slot"
-                      data-instagram="isranurhidayah"
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- INSTAGRAM RESMI HIMAPTIKA -->
-        <section class="instagram-organisasi muncul" aria-labelledby="judul-ig">
-          <h3 id="judul-ig">Ikuti Aktivitas HIMAPTIKA</h3>
-          <p>
-            Dapatkan informasi, kegiatan, dan dokumentasi terbaru HIMAPTIKA FKIP
-            UNTAD.
+        <section aria-labelledby="judul-divisi" style="padding-top: 0">
+          <h3 class="judul fade" id="judul-divisi">Divisi</h3>
+          <input
+            class="cari"
+            id="cari"
+            type="search"
+            placeholder="Cari nama pengurus"
+            aria-label="Cari nama pengurus"
+          />
+          <div id="divisi"></div>
+          <p id="kosong" class="tersembunyi">
+            Tidak ada nama yang cocok. Coba ketik sebagian nama saja.
           </p>
+        </section>
+
+        <div class="ig-resmi fade">
+          <div>
+            <h3>Ikuti kegiatan HIMAPTIKA</h3>
+            <p>
+              Informasi dan dokumentasi terbaru ada di Instagram resmi kami.
+            </p>
+          </div>
           <a
             href="https://www.instagram.com/himaptikafkipuntad/"
             target="_blank"
             rel="noopener noreferrer"
+            >Buka Instagram</a
           >
-            <i class="fab fa-instagram" aria-hidden="true"></i>
-            Instagram HIMAPTIKA
-          </a>
-        </section>
-
-        <div class="struktur-back">
-          <a href="index.html">← Kembali ke Beranda</a>
         </div>
       </div>
     </main>
@@ -2131,569 +688,355 @@
       <p>Himpunan Mahasiswa Pendidikan Matematika</p>
     </footer>
 
-    <!-- JAVASCRIPT HALAMAN -->
+    <div
+      class="modal"
+      id="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Profil pengurus"
+    >
+      <div class="kotak">
+        <button class="tutup" id="tutup" type="button" aria-label="Tutup">
+          ×
+        </button>
+        <div class="foto" id="mFoto"></div>
+        <h5 id="mNama"></h5>
+        <p id="mJabatan"></p>
+        <div id="mIg"></div>
+      </div>
+    </div>
+
     <script>
       (function () {
         "use strict";
-
         const $ = (s, r = document) => r.querySelector(s);
         const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
         const body = document.body;
 
-        // ---------- Tombol Instagram ----------
-        // Username diisi lewat data-instagram (tanpa @). Jika kosong, tombol dihapus.
-        $$(".instagram-slot").forEach((slot) => {
-          const username = (slot.dataset.instagram || "")
-            .trim()
-            .replace(/^@/, "");
-          if (!username) return slot.remove();
-
-          const link = document.createElement("a");
-          link.className = "instagram-link";
-          link.href =
-            "https://www.instagram.com/" + encodeURIComponent(username) + "/";
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-
-          const icon = document.createElement("i");
-          icon.className = "fab fa-instagram";
-          icon.setAttribute("aria-hidden", "true");
-
-          link.append(icon, document.createTextNode("Instagram"));
-          slot.appendChild(link);
-        });
-
-        // ---------- Menu hamburger ----------
-        const menuToggle = $("#menuToggle");
-        const mainNav = $("#mainNav");
-
-        function tutupMenu() {
-          mainNav.classList.remove("active");
-          menuToggle.classList.remove("active");
-          body.classList.remove("menu-open");
-          menuToggle.setAttribute("aria-expanded", "false");
-        }
-
-        if (menuToggle && mainNav) {
-          menuToggle.addEventListener("click", () => {
-            const terbuka = mainNav.classList.toggle("active");
-            menuToggle.classList.toggle("active", terbuka);
-            body.classList.toggle("menu-open", terbuka);
-            menuToggle.setAttribute("aria-expanded", String(terbuka));
-          });
-
-          $$("a", mainNav).forEach((a) =>
-            a.addEventListener("click", tutupMenu),
-          );
-
-          document.addEventListener("click", (e) => {
-            if (
-              body.classList.contains("menu-open") &&
-              !mainNav.contains(e.target) &&
-              !menuToggle.contains(e.target)
-            ) {
-              tutupMenu();
-            }
-          });
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") tutupMenu();
-          });
-        }
-
-        // ---------- Mode gelap ----------
-        const darkModeToggle = $("#darkModeToggle");
-        if (darkModeToggle) {
-          darkModeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-            darkModeToggle.textContent = body.classList.contains("dark-mode")
-              ? "☀️"
-              : "🌙";
-          });
-        }
-
-        // ---------- Ikon divisi (otomatis dari judul) ----------
-        const ikonDivisi = [
-          ["pemikat", "fa-futbol"],
-          ["event", "fa-calendar-check"],
-          ["admeinfo", "fa-folder-open"],
-          ["akademik", "fa-graduation-cap"],
-          ["kerohanian", "fa-hands-praying"],
-          ["kewirausahaan", "fa-store"],
-          ["masyarakat", "fa-handshake"],
+        // [nama, file foto (kosong = inisial), username instagram]
+        const inti = [
+          [
+            "I Made Agus Sufriyanto",
+            "PAK KETUA.jpeg",
+            "md_agus05",
+            "Ketua Umum",
+          ],
+          ["Faizah Bunai", "ibu sekum.jpg", "faizahbunai", "Sekretaris Umum"],
+          ["Dewa Gonsales", "pak wakil.jpg", "dewagnzlss_", "Wakil Ketua Umum"],
+          ["Imelda Brigita", "bu bend.jpg", "imeldabrigitaa", "Bendahara Umum"],
         ];
 
-        $$(".divisi-card").forEach((card) => {
-          const judul = $("h3", card).textContent.toLowerCase();
-          const cocok = ikonDivisi.find(([kunci]) => judul.includes(kunci));
-          if (!cocok) return;
-
-          const el = document.createElement("div");
-          el.className = "divisi-ikon";
-          el.setAttribute("aria-hidden", "true");
-
-          const i = document.createElement("i");
-          i.className = "fas " + cocok[1];
-          el.appendChild(i);
-
-          card.prepend(el);
-        });
-
-        // ---------- Simbol matematika di hero ----------
-        const hero = $(".struktur-hero");
-        if (hero) {
-          [
-            ["∑", "8%", "22%"],
-            ["π", "86%", "16%"],
-            ["∞", "14%", "70%"],
-            ["√", "80%", "66%"],
-          ].forEach(([t, l, tp], i) => {
-            const s = document.createElement("span");
-            s.className = "hero-sym";
-            s.textContent = t;
-            s.style.left = l;
-            s.style.top = tp;
-            s.style.animationDelay = -i * 1.7 + "s";
-            s.setAttribute("aria-hidden", "true");
-            hero.appendChild(s);
-          });
-        }
-
-        // ---------- Ringkasan angka (dihitung otomatis) ----------
-        const wadah = $(".struktur-container");
-        if (wadah) {
-          const hitung = [
-            [
-              $$(".bagan-card, .inti-card, .profil-pengurus, .anggota-card")
-                .length,
-              "Total Pengurus",
+        const divisi = [
+          {
+            nama: "Pemikat",
+            koor: [
+              "M. Agus Arieffandi",
+              "koor pemikat.jpg",
+              "arieffandimuhammad",
             ],
-            [$$(".divisi-card").length, "Divisi"],
-            [$$(".anggota-card").length, "Anggota Divisi"],
-          ];
+            anggota: [
+              ["Nurlan Afandi", "afandi (1).jpg", "n_afandyyy"],
+              ["Alifa Zahwa Inayah", "Naya.jpg", "zhwaanyhhh_"],
+              ["Nurul", "Nurul (1).jpg", "nrul_azliana"],
+              ["Zulfahmi", "Zulfahmi.jpg", "zulfahmilandjani"],
+              ["M. Rasya Wahyu", "Rasya.jpg", "rasyawhyu"],
+            ],
+          },
+          {
+            nama: "Event Organizer",
+            koor: ["Rangga Zaki", "Koor eo.jpeg", "rnggazki"],
+            anggota: [
+              ["Giska Desyana", "Giska (1).jpg", "giskdsyn_"],
+              ["Ahmad Syahrul Arifin", "syahrul.jpg", "syarularif_"],
+              ["Sunarti", "Sunarti.jpeg", "sunar_1301"],
+              ["Dwi Nova Anggraeni", "nova.jpg", "_dwinova_"],
+              ["Aysah Dwi Safitri", "Aysah.jpeg", "aysahdwisafitri"],
+            ],
+          },
+          {
+            nama: "Admeinfo",
+            koor: ["Muh Iksan", "Koor admeinfo.jpeg", "mhilksan_"],
+            anggota: [
+              ["Desrin Natalin Sumba", "Desrin.jpeg", "desrinsumba_"],
+              ["Zaskyah Nur Balosi", "Zaskyah.jpg", "zski06_"],
+              ["Muhzin Alatas", "Muhzin (1).jpg", "muhzinalatas75"],
+            ],
+          },
+          {
+            nama: "Pelayanan Akademik",
+            koor: ["Aril Thandy Angka", "", "ziellile"],
+            anggota: [
+              ["Moh. Risqi", "q.jpg", "es.kik0oo"],
+              ["Dela Safitri", "Dela.jpg", "delasft.z"],
+              ["Nur Fadhilah", "dila.jpg", "fadilaaa_dilaa"],
+              ["Putriana", "Putriana.jpg", "ptri_an4"],
+              ["Nur Anadya Putri", "nadya.jpg", "nurandyptr_"],
+            ],
+          },
+          {
+            nama: "Kerohanian",
+            koor: ["Liyana Fuaadah", "Koor kerohanian.jpeg", "liynaafdh"],
+            anggota: [
+              ["Heriyanto Septian Saputra", "heri (1).jpg", "hynxajaaa__"],
+              ["Rafyal Khani Fikri", "rafy (1).jpg", "rhfyj_"],
+              ["Gita Afriani", "Gita.jpg", "gitafrni_19"],
+              ["Alya Sulistya", "alya (2).jpg", "alyaslstya_"],
+            ],
+          },
+          {
+            nama: "Kewirausahaan",
+            koor: ["Anjelita Menggau", "Koor KWU.jpg", "vithago_"],
+            anggota: [
+              ["Nabilla", "nabila.jpg", "nabilla_badjeber"],
+              ["Sari Wulandari", "wulan.jpg", "sarwulndri_ln"],
+              ["Hidayanti Rukmana", "hidaa.jpeg", "hidaaynti_"],
+              ["Agung", "agung (1).jpg", "siiowei"],
+            ],
+          },
+          {
+            nama: "Hubungan Masyarakat",
+            koor: ["Mutmainnah", "koor humas.jpeg", "innnnnaaaaaa_"],
+            anggota: [
+              ["Ananda Ziat", "ananda ziat.jpeg", "ziat_langganya21"],
+              ["Nurlina", "Lina.jpg", "nurlinaaaa_02"],
+              ["Khusnul Khatima", "khusnul.jpg", "_husnulkhatima010"],
+              ["Isra Nurhidayah", "isra.jpg", "isranurhidayah"],
+            ],
+          },
+        ];
 
-          const strip = document.createElement("section");
-          strip.className = "struktur-stats muncul";
-          strip.setAttribute("aria-label", "Ringkasan jumlah pengurus");
+        const inisial = (n) =>
+          n
+            .replace(/[^A-Za-z. ]/g, "")
+            .split(/\s+/)
+            .filter((w) => w && w !== "M.")
+            .slice(0, 2)
+            .map((w) => w[0].toUpperCase())
+            .join("");
 
-          hitung.forEach(([n, label]) => {
-            const box = document.createElement("div");
-            box.className = "s-item";
-            const num = document.createElement("strong");
-            num.textContent = n;
-            num.dataset.n = n;
-            const txt = document.createElement("span");
-            txt.textContent = label;
-            box.append(num, txt);
-            strip.appendChild(box);
-          });
-          wadah.prepend(strip);
-
-          if ("IntersectionObserver" in window) {
-            const co = new IntersectionObserver(
-              (entries) => {
-                entries.forEach((e) => {
-                  if (!e.isIntersecting) return;
-                  co.unobserve(e.target);
-                  const el = e.target;
-                  const target = parseInt(el.dataset.n, 10);
-                  const mulai = performance.now();
-                  el.textContent = 0;
-                  (function step(now) {
-                    const p = Math.min((now - mulai) / 1200, 1);
-                    el.textContent = Math.round(
-                      target * (1 - Math.pow(1 - p, 3)),
-                    );
-                    if (p < 1) requestAnimationFrame(step);
-                    else el.textContent = target;
-                  })(mulai);
-                });
-              },
-              { threshold: 0.2 },
-            );
-            $$(".s-item strong", strip).forEach((el) => co.observe(el));
-          }
-        }
-
-        // ---------- Cari & filter divisi ----------
-        const grid = $(".divisi-grid");
-        const kartuDivisi = grid ? $$(".divisi-card", grid) : [];
-        let filterWrap = null;
-
-        if (grid && kartuDivisi.length) {
-          filterWrap = document.createElement("div");
-          filterWrap.className = "filter-wrap muncul";
-
-          const cari = document.createElement("input");
-          cari.type = "search";
-          cari.className = "cari-pengurus";
-          cari.placeholder = "Cari nama pengurus...";
-          cari.setAttribute("aria-label", "Cari nama pengurus");
-
-          const chips = document.createElement("div");
-          chips.className = "filter-chips";
-
-          const buatChip = (label, key) => {
-            const b = document.createElement("button");
-            b.type = "button";
-            b.className = "chip" + (key === "all" ? " on" : "");
-            b.textContent = label;
-            b.dataset.key = key;
-            chips.appendChild(b);
+        function fotoEl(nama, file) {
+          const f = document.createElement("div");
+          f.className = "foto";
+          const pakaiInisial = () => {
+            f.replaceChildren();
+            const b = document.createElement("b");
+            b.textContent = inisial(nama);
+            b.setAttribute("aria-hidden", "true");
+            f.appendChild(b);
           };
-
-          buatChip("Semua", "all");
-          kartuDivisi.forEach((c, i) => {
-            c.dataset.idx = i;
-            buatChip(
-              $("h3", c).textContent.replace(/^Divisi\s+/i, ""),
-              String(i),
-            );
-          });
-
-          filterWrap.append(cari, chips);
-
-          const kosong = document.createElement("p");
-          kosong.className = "kosong tersembunyi";
-          kosong.textContent =
-            "Tidak ada pengurus yang cocok dengan pencarian.";
-
-          grid.before(filterWrap);
-          grid.after(kosong);
-
-          let aktif = "all";
-
-          function terapkan() {
-            const q = cari.value.trim().toLowerCase();
-            let tampil = 0;
-
-            kartuDivisi.forEach((c) => {
-              const cocokDivisi = aktif === "all" || c.dataset.idx === aktif;
-              let ada = !q;
-
-              $$(".profil-pengurus h4", c).forEach((n) => {
-                if (n.textContent.toLowerCase().includes(q)) ada = true;
-              });
-
-              let anggotaTampil = 0;
-              $$(".anggota-card", c).forEach((li) => {
-                const cocok =
-                  !q ||
-                  $(".nama-anggota", li).textContent.toLowerCase().includes(q);
-                li.classList.toggle("tersembunyi", !cocok);
-                if (cocok) {
-                  ada = true;
-                  anggotaTampil++;
-                }
-              });
-
-              const blok = $(".divisi-anggota", c);
-              if (blok)
-                blok.classList.toggle(
-                  "tersembunyi",
-                  !!q && anggotaTampil === 0,
-                );
-
-              const lihat = cocokDivisi && ada;
-              c.classList.toggle("tersembunyi", !lihat);
-              if (lihat) tampil++;
-            });
-
-            grid.classList.toggle("single", tampil === 1);
-            kosong.classList.toggle("tersembunyi", tampil !== 0);
+          if (!file) {
+            pakaiInisial();
+          } else {
+            const img = document.createElement("img");
+            img.src = "images/" + file;
+            img.alt = "Foto " + nama;
+            img.loading = "lazy";
+            img.decoding = "async";
+            img.addEventListener("error", pakaiInisial);
+            f.appendChild(img);
           }
-
-          chips.addEventListener("click", (e) => {
-            const b = e.target.closest(".chip");
-            if (!b) return;
-            aktif = b.dataset.key;
-            $$(".chip", chips).forEach((x) =>
-              x.classList.toggle("on", x === b),
-            );
-            terapkan();
-          });
-          cari.addEventListener("input", terapkan);
+          return f;
         }
 
-        // ---------- Notifikasi kecil ----------
-        const toast = document.createElement("div");
-        toast.className = "toast-struktur";
-        toast.setAttribute("role", "status");
-        body.appendChild(toast);
+        function orang([nama, file, ig, jabatan], opsi = {}) {
+          const w = document.createElement("div");
+          w.className = "orang" + (opsi.kelas ? " " + opsi.kelas : "");
+          w.dataset.nama = nama.toLowerCase();
+          w.dataset.jabatan = jabatan || opsi.sub || "";
+          w.dataset.ig = ig || "";
 
-        let toastTimer;
-        function tampilToast(teks) {
-          toast.textContent = teks;
-          toast.classList.add("tampil");
-          clearTimeout(toastTimer);
-          toastTimer = setTimeout(() => toast.classList.remove("tampil"), 2200);
-        }
-
-        // ---------- Tombol tampilan (kartu / daftar) & bagikan ----------
-        const bar = document.createElement("div");
-        bar.className = "aksi-bar";
-
-        const buatAksi = (teks) => {
           const b = document.createElement("button");
           b.type = "button";
-          b.className = "aksi-btn";
-          b.textContent = teks;
-          bar.appendChild(b);
-          return b;
-        };
+          b.setAttribute("aria-haspopup", "dialog");
+          b.append(fotoEl(nama, file));
 
-        const btnKartu = buatAksi("▦ Kartu");
-        const btnDaftar = buatAksi("☰ Daftar");
-        const btnBagikan = buatAksi("↗ Bagikan");
+          const n = document.createElement("span");
+          n.className = "nama";
+          n.textContent = nama;
+          b.appendChild(n);
 
-        if (filterWrap) {
-          filterWrap.appendChild(bar);
-        } else if (grid) {
-          grid.before(bar);
-          bar.style.marginBottom = "24px";
+          if (jabatan) {
+            const j = document.createElement("span");
+            j.className = "jabatan";
+            j.textContent = jabatan;
+            b.appendChild(j);
+          }
+          w.appendChild(b);
+
+          if (ig) {
+            const a = document.createElement("a");
+            a.className = "ig-link";
+            a.href =
+              "https://www.instagram.com/" + encodeURIComponent(ig) + "/";
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.setAttribute("aria-label", "Instagram " + nama);
+            a.innerHTML =
+              '<i class="fab fa-instagram" aria-hidden="true"></i>@' +
+              ig.replace(/[<>&"]/g, "");
+            w.appendChild(a);
+          }
+          b.addEventListener("click", () => buka(w, file));
+          return w;
         }
 
-        function aturMode(daftar, simpan) {
-          body.classList.toggle("mode-daftar", daftar);
-          btnDaftar.classList.toggle("on", daftar);
-          btnKartu.classList.toggle("on", !daftar);
-          btnDaftar.setAttribute("aria-pressed", String(daftar));
-          btnKartu.setAttribute("aria-pressed", String(!daftar));
-          if (simpan) {
-            try {
-              localStorage.setItem(
-                "struktur-mode",
-                daftar ? "daftar" : "kartu",
-              );
-            } catch (e) {}
-          }
-        }
+        // ---------- Render ----------
+        $("#inti").append(...inti.map((d) => orang(d)));
 
-        let modeAwal = false;
-        try {
-          modeAwal = localStorage.getItem("struktur-mode") === "daftar";
-        } catch (e) {}
-        aturMode(modeAwal, false);
+        const wadah = $("#divisi");
+        divisi.forEach((d) => {
+          const row = document.createElement("article");
+          row.className = "divisi";
 
-        btnKartu.addEventListener("click", () => aturMode(false, true));
-        btnDaftar.addEventListener("click", () => aturMode(true, true));
+          const kiri = document.createElement("div");
+          const h = document.createElement("h4");
+          h.textContent = "Divisi " + d.nama;
+          kiri.appendChild(h);
+          kiri.appendChild(
+            orang([d.koor[0], d.koor[1], d.koor[2], "Koordinator"], {
+              kelas: "koor",
+            }),
+          );
 
-        btnBagikan.addEventListener("click", async () => {
-          const data = {
-            title: "Struktur Pengurus HIMAPTIKA FKIP UNTAD",
-            text: "Struktur kepengurusan HIMAPTIKA FKIP Universitas Tadulako",
-            url: location.href.split("#")[0],
-          };
+          const kanan = document.createElement("div");
+          kanan.className = "anggota";
+          d.anggota.forEach((a) =>
+            kanan.appendChild(orang(a, { sub: "Anggota divisi " + d.nama })),
+          );
 
-          if (navigator.share) {
-            try {
-              await navigator.share(data);
-            } catch (e) {
-              /* pengguna membatalkan */
-            }
-            return;
-          }
+          row.append(kiri, kanan);
+          wadah.appendChild(row);
+        });
 
-          try {
-            await navigator.clipboard.writeText(data.url);
-            tampilToast("Tautan disalin");
-          } catch (e) {
-            tampilToast("Salin tautan dari kolom alamat browser");
-          }
+        const total = $$(".orang").length;
+        $("#ringkas").textContent =
+          total +
+          " pengurus dalam " +
+          divisi.length +
+          " divisi menjalankan HIMAPTIKA FKIP Universitas Tadulako periode 2026.";
+
+        // ---------- Cari ----------
+        const kosong = $("#kosong");
+        $("#cari").addEventListener("input", (e) => {
+          const q = e.target.value.trim().toLowerCase();
+          let ada = 0;
+          $$(".divisi").forEach((row) => {
+            let cocokBaris = 0;
+            $$(".orang", row).forEach((o) => {
+              const cocok = !q || o.dataset.nama.includes(q);
+              o.classList.toggle("tersembunyi", !cocok);
+              if (cocok) cocokBaris++;
+            });
+            row.classList.toggle("tersembunyi", cocokBaris === 0);
+            if (cocokBaris) ada++;
+          });
+          kosong.classList.toggle("tersembunyi", ada !== 0);
         });
 
         // ---------- Popup profil ----------
-        const modal = document.createElement("div");
-        modal.className = "profil-modal";
-        modal.setAttribute("role", "dialog");
-        modal.setAttribute("aria-modal", "true");
-        modal.setAttribute("aria-label", "Profil pengurus");
-
-        const box = document.createElement("div");
-        box.className = "profil-box";
-
-        const tutup = document.createElement("button");
-        tutup.type = "button";
-        tutup.className = "profil-tutup";
-        tutup.setAttribute("aria-label", "Tutup");
-        tutup.textContent = "×";
-
-        const foto = document.createElement("div");
-        foto.className = "profil-foto";
-        const namaEl = document.createElement("h3");
-        namaEl.className = "profil-nama";
-        const jabatanEl = document.createElement("p");
-        jabatanEl.className = "profil-jabatan";
-        const igEl = document.createElement("div");
-        igEl.className = "profil-ig";
-
-        box.append(tutup, foto, namaEl, jabatanEl, igEl);
-        modal.appendChild(box);
-        body.appendChild(modal);
-
+        const modal = $("#modal");
         let terakhir = null;
 
-        function buka(card) {
-          terakhir = card;
-          const img = $("img", card);
-          const anggota = card.matches(".anggota-card");
-          const namaNode = anggota
-            ? $(".nama-anggota", card)
-            : $("h3, h4", card);
-
-          namaEl.textContent = namaNode.textContent.trim();
-
-          if (anggota) {
-            const div = card.closest(".divisi-card");
-            jabatanEl.textContent =
-              "Anggota " + (div ? $("h3", div).textContent.trim() : "");
-          } else {
-            const p = $("p", card);
-            jabatanEl.textContent = p ? p.textContent.trim() : "";
+        function buka(w, file) {
+          terakhir = w.querySelector("button");
+          const nama = $(".nama", w).textContent;
+          $("#mNama").textContent = nama;
+          $("#mJabatan").textContent = w.dataset.jabatan;
+          $("#mFoto").replaceWith(
+            Object.assign(fotoEl(nama, file), { id: "mFoto" }),
+          );
+          const ig = $("#mIg");
+          ig.replaceChildren();
+          if (w.dataset.ig) {
+            const a = document.createElement("a");
+            a.href =
+              "https://www.instagram.com/" +
+              encodeURIComponent(w.dataset.ig) +
+              "/";
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.textContent = "Instagram @" + w.dataset.ig;
+            ig.appendChild(a);
           }
-
-          foto.replaceChildren();
-          if (img) {
-            const c = document.createElement("img");
-            c.src = img.currentSrc || img.src;
-            c.alt = namaEl.textContent;
-            foto.appendChild(c);
-          } else {
-            foto.textContent = "👤";
-          }
-
-          igEl.replaceChildren();
-          const ig = $(".instagram-link", card);
-          if (ig) igEl.appendChild(ig.cloneNode(true));
-
           modal.classList.add("buka");
           body.style.overflow = "hidden";
-          tutup.focus();
+          $("#tutup").focus();
         }
-
         function tutupModal() {
           if (!modal.classList.contains("buka")) return;
           modal.classList.remove("buka");
           body.style.overflow = "";
           if (terakhir) terakhir.focus();
         }
-
-        tutup.addEventListener("click", tutupModal);
+        $("#tutup").addEventListener("click", tutupModal);
         modal.addEventListener("click", (e) => {
           if (e.target === modal) tutupModal();
         });
+
+        // ---------- Menu & mode gelap ----------
+        const menuToggle = $("#menuToggle");
+        const mainNav = $("#mainNav");
+        function tutupMenu() {
+          mainNav.classList.remove("active");
+          menuToggle.classList.remove("active");
+          body.classList.remove("menu-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+        if (menuToggle && mainNav) {
+          menuToggle.addEventListener("click", () => {
+            const t = mainNav.classList.toggle("active");
+            menuToggle.classList.toggle("active", t);
+            body.classList.toggle("menu-open", t);
+            menuToggle.setAttribute("aria-expanded", String(t));
+          });
+          $$("a", mainNav).forEach((a) =>
+            a.addEventListener("click", tutupMenu),
+          );
+          document.addEventListener("click", (e) => {
+            if (
+              body.classList.contains("menu-open") &&
+              !mainNav.contains(e.target) &&
+              !menuToggle.contains(e.target)
+            )
+              tutupMenu();
+          });
+        }
         document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") tutupModal();
+          if (e.key === "Escape") {
+            tutupMenu();
+            tutupModal();
+          }
         });
 
-        const kartuPengurus =
-          ".bagan-card, .inti-card, .profil-pengurus, .anggota-card";
-
-        $$(kartuPengurus).forEach((c) => {
-          c.classList.add("bisa-klik");
-          c.tabIndex = 0;
-          c.setAttribute("aria-haspopup", "dialog");
-          c.addEventListener("click", (e) => {
-            if (e.target.closest("a")) return; // biarkan link Instagram berfungsi
-            buka(c);
-          });
-          c.addEventListener("keydown", (e) => {
-            if ((e.key === "Enter" || e.key === " ") && e.target === c) {
-              e.preventDefault();
-              buka(c);
-            }
-          });
-        });
-
-        // ---------- Tilt 3D (hanya perangkat dengan mouse) ----------
-        if (
-          window.matchMedia("(hover: hover)").matches &&
-          !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ) {
-          $$(kartuPengurus).forEach((el) => {
-            el.addEventListener("mousemove", (e) => {
-              const r = el.getBoundingClientRect();
-              const x = (e.clientX - r.left) / r.width - 0.5;
-              const y = (e.clientY - r.top) / r.height - 0.5;
-              el.style.transition = "transform .1s ease-out, box-shadow .35s";
-              el.style.transform =
-                "perspective(800px) translateY(-6px) rotateX(" +
-                -y * 9 +
-                "deg) rotateY(" +
-                x * 9 +
-                "deg)";
-            });
-            el.addEventListener("mouseleave", () => {
-              el.style.transition = "transform .5s ease, box-shadow .35s";
-              el.style.transform = "";
-            });
+        const dm = $("#darkModeToggle");
+        if (dm) {
+          dm.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            dm.textContent = body.classList.contains("dark-mode") ? "☀️" : "🌙";
           });
         }
 
-        // ---------- Tombol kembali ke atas & bilah progres ----------
-        const keAtas = document.createElement("button");
-        keAtas.type = "button";
-        keAtas.className = "ke-atas";
-        keAtas.setAttribute("aria-label", "Kembali ke atas");
-        keAtas.textContent = "↑";
-        body.appendChild(keAtas);
-        keAtas.addEventListener("click", () =>
-          window.scrollTo({ top: 0, behavior: "smooth" }),
-        );
-
-        const progres = document.createElement("div");
-        progres.className = "progres-baca";
-        progres.setAttribute("aria-hidden", "true");
-        const isiProgres = document.createElement("span");
-        progres.appendChild(isiProgres);
-        body.appendChild(progres);
-
-        let menunggu = false;
-        function perbarui() {
-          menunggu = false;
-          const tinggi =
-            document.documentElement.scrollHeight - window.innerHeight;
-          const rasio = tinggi > 0 ? Math.min(window.scrollY / tinggi, 1) : 0;
-          isiProgres.style.transform = "scaleX(" + rasio + ")";
-          keAtas.classList.toggle("tampil", window.scrollY > 600);
-        }
-        window.addEventListener(
-          "scroll",
-          () => {
-            if (!menunggu) {
-              menunggu = true;
-              requestAnimationFrame(perbarui);
-            }
-          },
-          { passive: true },
-        );
-        window.addEventListener("resize", perbarui);
-        perbarui();
-
-        // ---------- Animasi scroll (dijalankan terakhir, setelah semua .muncul dibuat) ----------
-        const items = $$(".muncul");
+        // ---------- Satu animasi: fade-in saat scroll ----------
+        const items = $$(".fade");
         if ("IntersectionObserver" in window) {
           const io = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((e) => {
+            (es) =>
+              es.forEach((e) => {
                 if (e.isIntersecting) {
                   e.target.classList.add("show");
                   io.unobserve(e.target);
                 }
-              });
-            },
-            { threshold: 0.08 },
+              }),
+            { threshold: 0.1 },
           );
-          items.forEach((el, i) => {
-            el.style.setProperty("--d", (i % 3) * 0.1 + "s");
-            io.observe(el);
-          });
+          items.forEach((el) => io.observe(el));
         } else {
           items.forEach((el) => el.classList.add("show"));
         }
       })();
     </script>
 
-    <!-- AUTENTIKASI DAN LOGOUT FIREBASE (hanya satu blok) -->
+    <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
     <script type="module">
       import { auth } from "./js/firebase.js";
       import {
