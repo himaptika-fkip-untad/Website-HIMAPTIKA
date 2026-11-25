@@ -574,6 +574,561 @@
         background: #eaf3ff;
       }
     </style>
+    <style id="glass-himaptika">
+      /* ============ GLASS GELAP + KUNING · SAMA DENGAN LOGIN ============ */
+      :root {
+        --accent: #fff112;
+        --on-accent: #14120a;
+        --deep: 13, 13, 10;
+        --bg: #0d0d0a;
+        --glow-1: #3a3704;
+        --glow-2: #26240a;
+        --ph-1: #6a6508;
+        --ph-2: #2e2c04;
+        --text: #fffdf0;
+        --muted: rgba(255, 253, 240, 0.72);
+        --glass-edge: rgba(255, 255, 255, 0.28);
+        --glass: rgba(30, 28, 6, 0.45);
+
+        --card-edge: rgba(255, 255, 255, 0.14);
+        --blur: blur(18px) saturate(170%);
+
+        /* arahkan variabel lama ke warna baru */
+        --home-ink: var(--text);
+        --home-muted: var(--muted);
+        --home-blue: var(--accent);
+        --home-blue-dark: var(--text);
+        --home-soft: transparent;
+        --home-line: var(--card-edge);
+      }
+
+      /* ---------- Latar ---------- */
+      body,
+      body.dark-mode {
+        position: relative;
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+      }
+      body::before {
+        width: 600px;
+        height: 600px;
+        top: -180px;
+        left: -160px;
+        background: var(--glow-1);
+        opacity: 0.9;
+      }
+      body::after {
+        width: 560px;
+        height: 560px;
+        bottom: -200px;
+        right: -160px;
+        background: var(--glow-2);
+        opacity: 0.9;
+      }
+
+      /* :is(...) supaya menang atas aturan body.dark-mode lama */
+      :is(body, body.dark-mode) {
+        /* ---------- Section transparan ---------- */
+        .hero-modern,
+        .statistik-section,
+        .survival-section,
+        .intro-section,
+        .program-unggulan,
+        .informasi-section,
+        .agenda-section,
+        .program-section,
+        .home-seminar-section {
+          background: transparent;
+        }
+
+        .hero-modern::before {
+          border-color: rgba(255, 241, 18, 0.16);
+          box-shadow:
+            0 0 0 42px rgba(255, 241, 18, 0.025),
+            0 0 0 88px rgba(255, 241, 18, 0.015);
+        }
+
+        /* ---------- Teks ---------- */
+        .hero-modern-content h2,
+        .intro-text h2,
+        .survival-text h2,
+        .section-title h2,
+        .section-heading h2,
+        .statistik-heading h2,
+        .informasi-header h2,
+        .agenda-heading h2,
+        .home-seminar-heading h2 {
+          color: var(--text);
+        }
+        .hero-modern-content h2 span {
+          color: var(--accent);
+        }
+
+        .hero-university,
+        .hero-description,
+        .intro-text > p:not(.section-label),
+        .survival-text > p:not(.section-label),
+        .section-title p,
+        .section-heading p,
+        .statistik-heading p,
+        .informasi-header p,
+        .agenda-heading p,
+        .home-seminar-heading p,
+        .program-card p,
+        .informasi-content p,
+        .statistik-card p,
+        .intro-box-item span,
+        .informasi-meta,
+        .agenda-detail,
+        .home-seminar-meta,
+        .home-seminar-student,
+        .home-seminar-message,
+        .scroll-indicator {
+          color: var(--muted);
+        }
+
+        .program-card h3,
+        .informasi-content h3,
+        .agenda-content h3,
+        .home-seminar-card h3,
+        .intro-box-item strong {
+          color: var(--text);
+        }
+
+        .statistik-card h3 {
+          color: var(--accent);
+        }
+
+        /* label kecil & link → kuning */
+        .hero-label,
+        .section-label,
+        .section-title > span,
+        .statistik-heading > span,
+        .informasi-label,
+        .agenda-label,
+        .agenda-category,
+        .home-seminar-label,
+        .home-seminar-type,
+        .text-link,
+        .lihat-semua,
+        .agenda-all,
+        .home-seminar-all,
+        .program-card a,
+        .informasi-content a {
+          color: var(--accent);
+        }
+
+        /* ---------- Kartu kaca gelap ---------- */
+        .intro-box,
+        .program-card,
+        .informasi-card,
+        .agenda-card,
+        .statistik-card,
+        .survival-content,
+        .home-seminar-card {
+          background:
+            linear-gradient(
+              145deg,
+              rgba(255, 241, 18, 0.07),
+              rgba(255, 255, 255, 0.025)
+            ),
+            var(--glass);
+          -webkit-backdrop-filter: var(--blur);
+          backdrop-filter: var(--blur);
+          border: 1px solid var(--card-edge);
+          box-shadow:
+            0 14px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        }
+
+        .program-card:hover,
+        .informasi-card:hover,
+        .agenda-card:hover,
+        .statistik-card:hover,
+        .home-seminar-card:hover {
+          transform: translateY(-8px);
+          border-color: rgba(255, 241, 18, 0.45);
+          box-shadow:
+            0 24px 55px rgba(255, 241, 18, 0.13),
+            0 14px 40px rgba(0, 0, 0, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        }
+
+        .intro-box-item + .intro-box-item {
+          border-top: 1px solid var(--card-edge);
+        }
+
+        /* ---------- Hero ---------- */
+        .logo-circle {
+          background:
+            radial-gradient(
+              circle at 30% 25%,
+              rgba(255, 241, 18, 0.14),
+              transparent 60%
+            ),
+            var(--glass);
+          -webkit-backdrop-filter: blur(22px) saturate(180%);
+          backdrop-filter: blur(22px) saturate(180%);
+          border: 1px solid var(--glass-edge);
+          box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.5),
+            0 0 70px rgba(255, 241, 18, 0.1),
+            inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .logo-ring {
+          border-color: rgba(255, 241, 18, 0.22);
+        }
+
+        .math-symbol {
+          color: var(--accent);
+          background: var(--glass);
+          -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+          border: 1px solid var(--glass-edge);
+          box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .program-icon,
+        .survival-symbol {
+          color: var(--accent);
+          background: rgba(255, 241, 18, 0.1);
+          border: 1px solid rgba(255, 241, 18, 0.3);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* ---------- Gambar kartu informasi ---------- */
+        .image-blue,
+        .image-purple,
+        .image-orange {
+          background: linear-gradient(135deg, var(--ph-1), var(--ph-2));
+        }
+
+        /* ---------- Tombol ---------- */
+        .tombol {
+          background: var(--accent);
+          color: var(--on-accent);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 14px;
+          font-weight: 700;
+          box-shadow:
+            0 12px 30px rgba(255, 241, 18, 0.28),
+            inset 0 1px 0 rgba(255, 255, 255, 0.55);
+        }
+        .tombol:hover {
+          box-shadow:
+            0 16px 38px rgba(255, 241, 18, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .tombol-outline {
+          background: var(--glass);
+          -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+          color: var(--accent);
+          border: 1px solid rgba(255, 241, 18, 0.5);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .agenda-button {
+          background: var(--accent);
+          color: var(--on-accent);
+          border-radius: 12px;
+          font-weight: 700;
+        }
+
+        /* ---------- Status agenda ---------- */
+        .agenda-status {
+          color: var(--text);
+          background: rgba(var(--deep), 0.6);
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+          border: 1px solid var(--glass-edge);
+        }
+        .agenda-status.status-upcoming {
+          background: var(--accent);
+          color: var(--on-accent);
+          border-color: transparent;
+        }
+
+        /* ---------- CTA ---------- */
+        .home-cta {
+          background:
+            radial-gradient(
+              circle at 15% 20%,
+              rgba(255, 255, 255, 0.35),
+              transparent 45%
+            ),
+            linear-gradient(120deg, #fff112, #e3d500);
+        }
+        .home-cta .section-label,
+        .home-cta h2 {
+          color: var(--on-accent);
+        }
+        .home-cta .tombol {
+          background: var(--on-accent);
+          color: var(--accent);
+          border-color: rgba(0, 0, 0, 0.2);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+          background: linear-gradient(180deg, rgba(var(--deep), 0.85), #070705);
+          border-top: 1px solid var(--card-edge);
+          color: var(--muted);
+        }
+        footer h3 {
+          color: var(--accent);
+        }
+
+        /* ---------- Header & navbar ---------- */
+        .site-header {
+          background: rgba(var(--deep), 0.55);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          backdrop-filter: blur(20px) saturate(180%);
+          border-bottom: 1px solid var(--glass-edge);
+          box-shadow:
+            0 10px 35px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+
+        .brand-text h1,
+        .drawer-brand h2,
+        nav a {
+          color: var(--text);
+        }
+        .brand-text p,
+        .drawer-brand p {
+          color: var(--muted);
+        }
+
+        nav a {
+          border-radius: 10px;
+          transition:
+            background 0.2s ease,
+            color 0.2s ease;
+        }
+        nav a:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        nav a.active {
+          color: var(--accent);
+          background: rgba(255, 241, 18, 0.12);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        .menu-toggle span {
+          background: var(--text);
+        }
+
+        .dark-mode-toggle {
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid var(--glass-edge);
+          color: var(--text);
+          border-radius: 12px;
+        }
+
+        .logout-button {
+          background: var(--accent);
+          color: var(--on-accent);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 12px;
+          font-weight: 700;
+        }
+      }
+
+      /* Menu samping di HP (sesuaikan breakpoint dengan style.css kamu) */
+      @media (max-width: 960px) {
+        #mainNav {
+          background: rgba(var(--deep), 0.88);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          backdrop-filter: blur(24px) saturate(180%);
+          border-right: 1px solid var(--glass-edge);
+        }
+      }
+
+      /* Fallback tanpa backdrop-filter */
+      @supports not (
+        (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+      ) {
+        :is(body, body.dark-mode)
+          :is(
+            .site-header,
+            .intro-box,
+            .program-card,
+            .informasi-card,
+            .agenda-card,
+            .statistik-card,
+            .survival-content,
+            .home-seminar-card
+          ) {
+          background: #1b1907;
+        }
+      }
+    </style>
+    <style id="logo-3d">
+      /* ============ LOGO HIMAPTIKA 3D ============ */
+      .hero-modern-visual {
+        perspective: 1100px;
+      }
+
+      /* kartu kaca pindah ke ::before supaya anak-anaknya bisa 3D
+     (backdrop-filter di elemen induk akan meratakan efek 3D) */
+      :is(body, body.dark-mode) .logo-circle {
+        position: relative;
+        background: none;
+        border: 0;
+        box-shadow: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        transform-style: preserve-3d;
+        transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+        transition: transform 0.18s ease-out;
+        animation: logoFloat 6s ease-in-out infinite;
+        will-change: transform;
+      }
+
+      /* lapis 1 · cakram kaca (paling belakang) */
+      .logo-circle::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background:
+          radial-gradient(
+            circle at var(--mx, 30%) var(--my, 25%),
+            rgba(255, 255, 255, 0.28),
+            transparent 48%
+          ),
+          radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 241, 18, 0.14),
+            transparent 60%
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        backdrop-filter: blur(22px) saturate(180%);
+        border: 1px solid var(--glass-edge);
+        box-shadow:
+          0 40px 90px rgba(0, 0, 0, 0.55),
+          0 0 80px rgba(255, 241, 18, 0.12),
+          inset 0 2px 0 rgba(255, 255, 255, 0.3);
+      }
+
+      /* lapis 2 · cincin kuning mengambang di tengah */
+      .logo-circle::after {
+        content: "";
+        position: absolute;
+        inset: -7%;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 241, 18, 0.4);
+        box-shadow:
+          0 0 40px rgba(255, 241, 18, 0.18),
+          inset 0 0 40px rgba(255, 241, 18, 0.08);
+        transform: translateZ(30px);
+        pointer-events: none;
+      }
+
+      /* lapis 3 · logo menonjol + ketebalan (extrusion) */
+      .logo-circle img {
+        position: relative;
+        transform: translateZ(85px);
+        filter: drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #d4c800)
+          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #b9ae00)
+          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #9d9400)
+          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #827a00)
+          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #686200)
+          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #504b00)
+          drop-shadow(0 0 26px rgba(255, 241, 18, 0.35))
+          drop-shadow(0 26px 24px rgba(0, 0, 0, 0.55));
+      }
+
+      /* bayangan di bawah logo */
+      .hero-modern-visual::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        bottom: 2%;
+        width: 46%;
+        height: 26px;
+        translate: -50% 0;
+        border-radius: 50%;
+        background: radial-gradient(
+          closest-side,
+          rgba(255, 241, 18, 0.3),
+          transparent
+        );
+        filter: blur(10px);
+        animation: shadowPulse 6s ease-in-out infinite;
+      }
+
+      /* simbol matematika melayang di kedalaman berbeda */
+      .math-symbol {
+        transform: translateZ(55px);
+        animation: symFloat 5s ease-in-out infinite;
+      }
+      .symbol-two {
+        animation-delay: -1s;
+      }
+      .symbol-three {
+        animation-delay: -2s;
+      }
+      .symbol-four {
+        animation-delay: -3s;
+      }
+      .symbol-five {
+        animation-delay: -4s;
+      }
+
+      .ring-two {
+        animation: ringSpin 40s linear infinite;
+      }
+
+      @keyframes logoFloat {
+        50% {
+          translate: 0 -12px;
+        }
+      }
+      @keyframes symFloat {
+        50% {
+          translate: 0 -10px;
+        }
+      }
+      @keyframes shadowPulse {
+        50% {
+          scale: 0.82;
+          opacity: 0.6;
+        }
+      }
+      @keyframes ringSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .logo-circle,
+        .math-symbol,
+        .ring-two,
+        .hero-modern-visual::after {
+          animation: none !important;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -656,10 +1211,10 @@
             </p>
 
             <div class="hero-buttons">
-              <a href="tentang.html" class="tombol"> Tentang HIMAPTIKA </a>
+              <a href="jadwal-seminar.html" class="tombol"> Jadwal Seminar </a>
 
-              <a href="divisi.html" class="tombol tombol-outline">
-                Divisi & Program Kerja
+              <a href="pelayanan-akademik.html" class="tombol tombol-outline">
+                Pelayanan akademik
               </a>
             </div>
 

@@ -1,663 +1,658 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#102b46">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masuk | HIMAPTIKA</title>
 
-  <title>Login Mahasiswa | HIMAPTIKA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Arial, sans-serif;
-    }
+    <style>
+      /* Ganti warna ini dengan warna logo HIMAPTIKA */
+      :root {
+        --accent: #fff112; /* kuning logo HIMAPTIKA */
+        --on-accent: #14120a; /* teks gelap di atas kuning */
+        --deep: 13, 13, 10; /* hitam dasar (format R, G, B) */
+        --bg: #0d0d0a;
+        --glow-1: #3a3704; /* cahaya latar kiri atas */
+        --glow-2: #26240a; /* cahaya latar kanan bawah */
+        --ph-1: #6a6508; /* warna kartu foto sebelum foto dimuat */
+        --ph-2: #2e2c04;
+        --text: #fffdf0;
+        --muted: rgba(255, 253, 240, 0.72);
+        --glass-edge: rgba(255, 255, 255, 0.28);
+        --error-text: #ffc4bf;
+        --error-bg: rgba(200, 50, 40, 0.28);
+        --glass: rgba(30, 28, 6, 0.45); /* warna panel kaca */
+      }
 
-    :root {
-      --primary: #102b46;
-      --secondary: #1c496d;
-      --accent: #d9a441;
-      --text: #263445;
-      --muted: #788797;
-      --white: #ffffff;
-    }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      background: #f2f5f9;
-      color: var(--text);
-    }
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        font-family:
+          "Schibsted Grotesk",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            ellipse at 25% 15%,
+            var(--glow-1) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse at 80% 90%,
+            var(--glow-2) 0%,
+            transparent 50%
+          ),
+          var(--bg);
+      }
 
-    .login-wrapper {
-      display: flex;
-      width: 100%;
-      min-height: 100vh;
-    }
-
-    /* BAGIAN KIRI */
-
-    .login-banner {
-      width: 48%;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(10, 34, 57, 0.96),
-          rgba(24, 70, 105, 0.92)
-        );
-      color: white;
-      padding: 55px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .login-banner::before {
-      content: "";
-      position: absolute;
-      width: 450px;
-      height: 450px;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 50%;
-      right: -150px;
-      bottom: -120px;
-    }
-
-    .login-banner::after {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 50%;
-      right: -60px;
-      bottom: -35px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .brand img {
-      width: 65px;
-      height: 65px;
-      object-fit: contain;
-      background: white;
-      border-radius: 12px;
-      padding: 5px;
-    }
-
-    .brand h2 {
-      font-size: 23px;
-      letter-spacing: 2px;
-    }
-
-    .brand p {
-      font-size: 11px;
-      color: #c7d6e4;
-      margin-top: 4px;
-    }
-
-    .banner-content {
-      position: relative;
-      z-index: 1;
-      max-width: 480px;
-    }
-
-    .banner-content .tagline {
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-    }
-
-    .banner-content h1 {
-      font-size: clamp(35px, 4vw, 55px);
-      line-height: 1.2;
-      margin-bottom: 22px;
-    }
-
-    .banner-content p {
-      color: #d3deea;
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    .banner-footer {
-      position: relative;
-      z-index: 1;
-      color: #b6c8d9;
-      font-size: 12px;
-    }
-
-    /* BAGIAN KANAN */
-
-    .login-content {
-      width: 52%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 420px;
-      background: white;
-      padding: 42px;
-      border-radius: 20px;
-      box-shadow: 0 15px 50px rgba(20, 45, 70, 0.07);
-      animation: fadeIn 0.7s ease;
-    }
-
-    @keyframes fadeIn {
-      from {
+      /* Dinding foto yang mengalir turun */
+      #stage {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        perspective: 1200px;
+        pointer-events: none;
         opacity: 0;
-        transform: translateY(20px);
+        transition: opacity 1.4s ease;
+        -webkit-mask-image: linear-gradient(
+          transparent 0,
+          #000 14%,
+          #000 86%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          transparent 0,
+          #000 14%,
+          #000 86%,
+          transparent 100%
+        );
       }
-      to {
+      #stage.on {
         opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .login-heading {
-      margin-bottom: 32px;
-    }
-
-    .login-heading .small-title {
-      color: var(--secondary);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .login-heading h2 {
-      font-size: 30px;
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-
-    .login-heading p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .form-group {
-      margin-bottom: 21px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 9px;
-      color: #344558;
-    }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    .input-wrapper input {
-      width: 100%;
-      height: 52px;
-      padding: 0 15px;
-      border: 1px solid #dce3eb;
-      border-radius: 10px;
-      outline: none;
-      font-size: 14px;
-      transition: 0.3s;
-      background: #fbfcfe;
-    }
-
-    .input-wrapper input:focus {
-      border-color: var(--secondary);
-      background: white;
-      box-shadow: 0 0 0 3px rgba(28,73,109,0.08);
-    }
-
-    .password-input {
-      padding-right: 65px !important;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 13px;
-      top: 50%;
-      transform: translateY(-50%);
-      border: none;
-      background: none;
-      color: var(--secondary);
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .form-options {
-      display: flex;
-      justify-content: flex-end;
-      margin: -3px 0 25px;
-    }
-
-    .form-options a {
-      color: var(--secondary);
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .login-button {
-      width: 100%;
-      height: 52px;
-      border: none;
-      border-radius: 10px;
-      background: var(--primary);
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .login-button:hover {
-      background: var(--secondary);
-      transform: translateY(-2px);
-      box-shadow: 0 7px 18px rgba(16,43,70,0.18);
-    }
-
-    .login-button:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .message {
-      display: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      line-height: 1.5;
-      margin-bottom: 18px;
-    }
-
-    .message.error {
-      display: block;
-      color: #a52a2a;
-      background: #fff0f0;
-      border: 1px solid #ffd3d3;
-    }
-
-    .message.success {
-      display: block;
-      color: #17643b;
-      background: #eaf8ef;
-      border: 1px solid #c5ecd2;
-    }
-
-    .login-note {
-      text-align: center;
-      margin-top: 28px;
-      padding-top: 22px;
-      border-top: 1px solid #edf0f4;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .login-note strong {
-      color: var(--primary);
-    }
-
-    .back-home {
-      display: block;
-      text-align: center;
-      margin-top: 23px;
-      color: var(--secondary);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .back-home:hover {
-      color: var(--accent);
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 850px) {
-      .login-banner {
-        width: 40%;
-        padding: 30px;
       }
 
-      .login-content {
-        width: 60%;
-        padding: 25px;
+      #wall {
+        position: absolute;
+        left: -20%;
+        top: -20%;
+        width: 140%;
+        height: 140%;
+        display: flex;
+        gap: 16px;
+        transform-style: preserve-3d;
+        transform: rotateX(10deg) rotateY(-20deg) rotateZ(5deg);
       }
 
-      .login-card {
-        padding: 30px;
+      .col {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        overflow: hidden;
+        transform: translateZ(var(--z, 0px));
       }
 
-      .banner-content h1 {
-        font-size: 36px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      .login-wrapper {
+      .track {
+        display: flex;
         flex-direction: column;
+        animation: flow var(--dur, 60s) linear infinite;
+        will-change: transform;
       }
 
-      .login-banner {
+      /* Satu set foto diulang dua kali, jadi -50% sampai 0 menyambung mulus */
+      @keyframes flow {
+        from {
+          transform: translateY(-50%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      .pic {
+        position: relative;
+        flex: none;
         width: 100%;
-        min-height: 220px;
-        padding: 25px;
+        aspect-ratio: var(--ar);
+        margin: 0 0 16px;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        .pic {
+          background: linear-gradient(135deg, var(--ph-1), var(--ph-2));
+        } /* tampil kalau foto belum ada */
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
       }
 
-      .brand img {
-        width: 48px;
-        height: 48px;
+      .pic img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
-      .brand h2 {
-        font-size: 19px;
-      }
-
-      .banner-content {
-        margin-top: 30px;
-      }
-
-      .banner-content .tagline {
-        font-size: 10px;
-        margin-bottom: 10px;
-      }
-
-      .banner-content h1 {
-        font-size: 27px;
-        margin-bottom: 10px;
-      }
-
-      .banner-content p {
+      .pic figcaption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px 10px 8px;
         font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+        .pic figcaption {
+          background: linear-gradient(transparent, rgba(var(--deep), 0.85));
+        }
       }
 
-      .banner-footer {
-        display: none;
+      @media (prefers-reduced-motion: reduce) {
+        .track {
+          animation: none;
+        }
       }
 
-      .login-content {
+      /* Menggelapkan bagian tengah supaya teks di panel mudah dibaca */
+      #shade {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 36% 52% at 50% 50%,
+          rgba(8, 32, 28, 0.6),
+          transparent 100%
+        );
+      }
+
+      /* Panel kaca */
+      .panel {
+        position: relative;
+        z-index: 1;
         width: 100%;
-        padding: 25px 18px;
+        max-width: 400px;
+        padding: 32px;
+        border-radius: 20px;
+        background: var(--glass);
+        border: 1px solid var(--glass-edge);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        backdrop-filter: blur(20px) saturate(140%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.35),
+          0 24px 60px rgba(0, 0, 0, 0.35);
       }
 
-      .login-card {
-        max-width: 450px;
-        padding: 28px 23px;
+      @supports not (
+        (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+      ) {
+        .panel {
+          background: rgba(20, 19, 8, 0.94);
+        }
       }
 
-      .login-heading h2 {
-        font-size: 26px;
+      .org {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
       }
-    }
-  </style>
-</head>
 
-<body>
+      .org img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
 
-  <div class="login-wrapper">
+      .org strong {
+        display: block;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+      .org span {
+        font-size: 13px;
+        color: var(--muted);
+      }
 
-    <!-- BAGIAN IDENTITAS HIMAPTIKA -->
+      h1 {
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 24px;
+      }
 
-    <section class="login-banner">
+      .field {
+        margin-bottom: 18px;
+      }
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .hint-text {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .control {
+        position: relative;
+      }
 
-      <div class="brand">
-        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+      input {
+        width: 100%;
+        height: 48px;
+        padding: 0 14px;
+        font: inherit;
+        font-size: 16px;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 10px;
+      }
+      input::placeholder {
+        color: rgba(255, 255, 255, 0.42);
+      }
+      #password {
+        padding-right: 104px;
+      }
 
+      input:-webkit-autofill {
+        -webkit-text-fill-color: var(--text);
+        box-shadow: 0 0 0 100px rgba(20, 70, 62, 0.95) inset;
+      }
+
+      input:focus-visible,
+      button:focus-visible,
+      a:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 48px;
+        padding: 0 14px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--accent);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .message {
+        display: none;
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 10px 12px;
+        margin-bottom: 18px;
+        border-radius: 10px;
+        border-left: 4px solid #ff8a80;
+        background: var(--error-bg);
+        color: var(--error-text);
+      }
+      .message.show {
+        display: block;
+      }
+
+      .submit {
+        width: 100%;
+        height: 48px;
+        margin-top: 6px;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--on-accent);
+        background: var(--accent);
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .submit:hover {
+        background: #ffe94d;
+      }
+      .submit:disabled {
+        opacity: 0.6;
+        cursor: wait;
+      }
+
+      .help {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-top: 24px;
+      }
+      .help a {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* HP: foto di atas, form di bawah */
+      @media (max-width: 600px), (max-height: 720px) {
+        body {
+          padding: 12px;
+        }
+        #wall {
+          transform: rotateX(8deg) rotateY(-12deg) rotateZ(4deg);
+          gap: 10px;
+        }
+        .pic {
+          margin-bottom: 10px;
+        }
+        #shade {
+          background: radial-gradient(
+            ellipse 36% 52% at 50% 50%,
+            rgba(var(--deep), 0.6),
+            transparent 100%
+          );
+        }
+        .panel {
+          padding: 20px 18px;
+        }
+        .org {
+          margin-bottom: 18px;
+        }
+        .org img {
+          width: 48px;
+          height: 48px;
+        }
+        h1 {
+          font-size: 28px;
+          margin-bottom: 16px;
+        }
+        .field {
+          margin-bottom: 14px;
+        }
+        .help {
+          margin-top: 16px;
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="stage" aria-hidden="true">
+      <div id="wall"></div>
+    </div>
+    <div id="shade"></div>
+
+    <main class="panel">
+      <div class="org">
+        <img src="images/logo himaptika.png" alt="" />
         <div>
-          <h2>HIMAPTIKA</h2>
-          <p>FKIP UNIVERSITAS TADULAKO</p>
+          <strong>HIMAPTIKA</strong>
+          <span>Pendidikan Matematika FKIP Untad</span>
         </div>
       </div>
 
-      <div class="banner-content">
-        <div class="tagline">STUDENT PORTAL</div>
+      <h1>Masuk</h1>
 
-        <h1>Selamat Datang di Portal Mahasiswa</h1>
+      <div id="message" class="message" role="alert"></div>
 
-        <p>
-          Ruang digital mahasiswa Pendidikan Matematika
-          untuk memperoleh informasi, layanan akademik,
-          dan berbagai kegiatan HIMAPTIKA.
-        </p>
-      </div>
-
-      <div class="banner-footer">
-        © 2026 HIMAPTIKA FKIP UNTAD
-      </div>
-
-    </section>
-
-
-    <!-- BAGIAN FORM LOGIN -->
-
-    <main class="login-content">
-
-      <div class="login-card">
-
-        <div class="login-heading">
-          <div class="small-title">PORTAL MAHASISWA</div>
-
-          <h2>Login Akun</h2>
-
-          <p>
-            Silakan masuk menggunakan NIM dan password
-            akun mahasiswa yang telah terdaftar.
-          </p>
-        </div>
-
-
-        <!-- PESAN STATUS -->
-
-        <div id="message" class="message" role="alert"></div>
-
-
-        <!-- FORM LOGIN -->
-
-        <form id="loginForm">
-
-          <div class="form-group">
-            <label for="nim">NIM Mahasiswa</label>
-
-            <div class="input-wrapper">
-            <input
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="nim">NIM</label>
+          <input
             type="text"
             id="nim"
-            placeholder="Contoh: A23124080"
+            placeholder="A23124080"
             autocomplete="username"
+            autocapitalize="characters"
             required
-           >
-           </div>
-          </div>
-
-
-          <div class="form-group">
-            <label for="password">Password</label>
-
-            <div class="input-wrapper">
-              <input
-                type="password"
-                id="password"
-                class="password-input"
-                placeholder="Masukkan password"
-                autocomplete="current-password"
-                required
-              >
-
-              <button
-                type="button"
-                class="toggle-password"
-                id="togglePassword"
-              >
-                
-              </button>
-            </div>
-          </div>
-
-
-          <button
-            type="submit"
-            class="login-button"
-            id="loginButton"
-          >
-            MASUK
-          </button>
-
-        </form>
-
-
-        <div class="login-note">
-          Akses ini diperuntukkan bagi mahasiswa
-          <strong>Pendidikan Matematika FKIP UNTAD.</strong>
-          <br>
-          Pastikan menggunakan akun yang telah terdaftar.
+          />
+          <p class="hint-text">Gunakan NIM yang tertulis di KTM.</p>
         </div>
 
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="control">
+            <input
+              type="password"
+              id="password"
+              autocomplete="current-password"
+              required
+            />
+            <button
+              type="button"
+              class="toggle"
+              id="togglePassword"
+              aria-controls="password"
+            >
+              Lihat
+            </button>
+          </div>
+        </div>
 
-        <a href="index.html" class="back-home">
-          ← Kembali ke Beranda
-        </a>
+        <button type="submit" class="submit" id="loginButton">Masuk</button>
+      </form>
 
-      </div>
-
+      <p class="help">
+        Lupa password atau belum punya akun?
+        <a
+          href="https://wa.me/6289529633835?text=Halo%2C%20saya%20butuh%20bantuan%20akun%20portal%20HIMAPTIKA."
+          target="_blank"
+          rel="noopener"
+          >Chat pengurus lewat WhatsApp</a
+        >.
+      </p>
     </main>
 
-  </div>
+    <!-- Foto mengalir turun -->
+    <script>
+      (function () {
+        // Daftar foto. Ganti dengan foto kegiatan dan kepengurusan kalian.
+        // Makin banyak makin bagus (idealnya 12 atau lebih). "label" boleh dikosongkan.
+        // Kalau file foto belum ada, kartu tampil sebagai blok warna.
+        const FOTO = [
+          { src: "images/INTI.JPEG", label: "Pengurus inti" },
+          { src: "images/galeri/rapat-kerja.jpg", label: "Rapat kerja" },
+          {
+            src: "images/galeri/pengabdian.jpg",
+            label: "Pengabdian masyarakat",
+          },
+          { src: "images/galeri/olimpiade.jpg", label: "Olimpiade matematika" },
+          { src: "images/galeri/seminar.jpg", label: "Seminar pendidikan" },
+          {
+            src: "images/galeri/anggota-baru.jpg",
+            label: "Penerimaan anggota baru",
+          },
+          { src: "images/galeri/kunjungan.jpg", label: "Kunjungan sekolah" },
+          { src: "images/galeri/pengurus.jpg", label: "Foto bersama pengurus" },
+        ];
 
+        if (!FOTO.length) return;
 
-  <!-- JAVASCRIPT TAMPILAN -->
+        // Variasi bentuk foto supaya susunannya tidak kaku seperti kotak-kotak
+        const RATIOS = ["3 / 4", "1 / 1", "4 / 3", "4 / 5", "1 / 1", "3 / 4"];
 
-  <script>
-    const passwordInput = document.getElementById("password");
-    const togglePassword = document.getElementById("togglePassword");
+        const stage = document.getElementById("stage");
+        const wall = document.getElementById("wall");
+        let lastCols = 0;
 
-    togglePassword.addEventListener("click", function () {
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePassword.textContent = "Sembunyi";
-      } else {
-        passwordInput.type = "password";
-        togglePassword.textContent = "Lihat";
+        const columnCount = () => {
+          const vw = window.innerWidth;
+          return vw < 600 ? 3 : vw < 1100 ? 5 : 7;
+        };
+
+        function makePic(f, ratio) {
+          const fig = document.createElement("figure");
+          fig.className = "pic";
+          fig.style.setProperty("--ar", ratio);
+
+          const img = new Image();
+          img.src = f.src;
+          img.alt = "";
+          img.decoding = "async";
+          img.draggable = false;
+          img.onerror = () => img.remove();
+          fig.appendChild(img);
+
+          if (f.label) {
+            const cap = document.createElement("figcaption");
+            cap.textContent = f.label;
+            fig.appendChild(cap);
+          }
+          return fig;
+        }
+
+        function build() {
+          const n = columnCount();
+          lastCols = n;
+          wall.textContent = "";
+
+          // Perkiraan jumlah foto per set supaya satu set lebih tinggi dari dinding
+          const colW = (stage.clientWidth * 1.4) / n - 16;
+          const tall = Math.max(
+            window.innerHeight,
+            window.screen.height,
+            stage.clientHeight,
+          );
+          const need = Math.min(
+            14,
+            Math.ceil((tall * 1.5) / (colW * 0.75 + 16)) + 1,
+          );
+
+          for (let c = 0; c < n; c++) {
+            const col = document.createElement("div");
+            col.className = "col";
+            col.style.setProperty("--z", ((c % 3) - 1) * 50 + "px");
+
+            const track = document.createElement("div");
+            track.className = "track";
+            track.style.setProperty("--dur", 45 + ((c * 7) % 30) + "s");
+
+            // Set yang sama dibuat dua kali supaya putarannya menyambung tanpa lompatan
+            for (let rep = 0; rep < 2; rep++) {
+              for (let i = 0; i < need; i++) {
+                const f = FOTO[(c * 3 + i) % FOTO.length];
+                track.appendChild(
+                  makePic(f, RATIOS[(c * 2 + i) % RATIOS.length]),
+                );
+              }
+            }
+
+            col.appendChild(track);
+            wall.appendChild(col);
+          }
+        }
+
+        build();
+        requestAnimationFrame(() => stage.classList.add("on"));
+
+        let timer;
+        window.addEventListener("resize", () => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            if (columnCount() !== lastCols) build();
+          }, 250);
+        });
+      })();
+    </script>
+
+    <!-- Login Firebase -->
+    <script type="module">
+      import { auth } from "./js/firebase.js";
+      import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+      // Akun yang sudah ada dibuat dengan @gmail.com, jadi nilai ini dibiarkan sama.
+      // Kalau akun dibuat ulang, pakai domain yang jelas bukan email asli (mis. "himaptika.local").
+      const EMAIL_DOMAIN = "gmail.com";
+
+      const form = document.getElementById("loginForm");
+      const nimInput = document.getElementById("nim");
+      const passwordInput = document.getElementById("password");
+      const toggle = document.getElementById("togglePassword");
+      const button = document.getElementById("loginButton");
+      const message = document.getElementById("message");
+
+      const wrong = "NIM atau password salah. Periksa lagi, lalu coba masuk.";
+      const errors = {
+        "auth/invalid-credential": wrong,
+        "auth/wrong-password": wrong,
+        "auth/user-not-found": wrong,
+        "auth/invalid-email": "Format NIM tidak valid. Periksa lagi NIM kamu.",
+        "auth/user-disabled":
+          "Akun ini dinonaktifkan. Hubungi pengurus HIMAPTIKA.",
+        "auth/too-many-requests":
+          "Terlalu banyak percobaan. Tunggu beberapa menit, lalu coba lagi.",
+        "auth/network-request-failed":
+          "Tidak ada koneksi internet. Periksa koneksi, lalu coba lagi.",
+        "auth/operation-not-allowed":
+          "Login email/password belum diaktifkan di Firebase.",
+      };
+
+      function showError(text) {
+        message.textContent = text;
+        message.classList.add("show");
       }
-    });
-  </script>
 
+      toggle.addEventListener("click", () => {
+        const hidden = passwordInput.type === "password";
+        passwordInput.type = hidden ? "text" : "password";
+        toggle.textContent = hidden ? "Sembunyikan" : "Lihat";
+      });
 
-  
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        message.classList.remove("show");
 
-<script type="module">
-  import { auth } from "./js/firebase.js";
+        const nim = nimInput.value.trim();
+        const password = passwordInput.value;
 
-  import {
-    signInWithEmailAndPassword
-  } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+        if (!nim) {
+          showError("Isi NIM kamu.");
+          nimInput.focus();
+          return;
+        }
+        if (!password) {
+          showError("Isi password kamu.");
+          passwordInput.focus();
+          return;
+        }
 
-  const loginForm = document.getElementById("loginForm");
-  const nimInput = document.getElementById("nim");
-  const passwordInput = document.getElementById("password");
-  const loginButton = document.getElementById("loginButton");
-  const message = document.getElementById("message");
+        button.disabled = true;
+        button.textContent = "Memproses…";
 
-  function showMessage(text, type) {
-    message.textContent = text;
-    message.className = "message " + type;
-  }
-
-  loginForm.addEventListener("submit", async function(event) {
-    event.preventDefault();
-
-    const nim = nimInput.value.trim();
-    const password = passwordInput.value;
-
-    if (!nim || !password) {
-      showMessage("NIM dan password wajib diisi.", "error");
-      return;
-    }
-
-    // Mengubah NIM menjadi email internal
-    const email = nim.toLowerCase() + "@gmail.com";
-
-    loginButton.disabled = true;
-    loginButton.textContent = "MEMPROSES...";
-    message.className = "message";
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-
-      showMessage(
-        "Login berhasil! Mengarahkan ke portal...",
-        "success"
-      );
-
-      window.location.href = "index.html";
-
-    } catch (error) {
-      console.error("Login error:", error.code, error.message);
-
-      let errorText = "Login gagal. Periksa NIM dan password kamu.";
-
-      switch (error.code) {
-        case "auth/invalid-credential":
-        case "auth/wrong-password":
-        case "auth/user-not-found":
-          errorText = "NIM atau password yang kamu masukkan salah.";
-          break;
-
-        case "auth/invalid-email":
-          errorText = "Format NIM tidak valid.";
-          break;
-
-        case "auth/user-disabled":
-          errorText = "Akun mahasiswa telah dinonaktifkan.";
-          break;
-
-        case "auth/too-many-requests":
-          errorText = "Terlalu banyak percobaan. Silakan coba lagi nanti.";
-          break;
-
-        case "auth/network-request-failed":
-          errorText = "Koneksi internet bermasalah.";
-          break;
-
-        case "auth/operation-not-allowed":
-          errorText = "Login Email/Password belum diaktifkan di Firebase.";
-          break;
-      }
-
-      showMessage(errorText, "error");
-
-    } finally {
-      loginButton.disabled = false;
-      loginButton.textContent = "MASUK";
-    }
-  });
-</script>
-</body>
-</html>
-
-</body>
+        try {
+          await signInWithEmailAndPassword(
+            auth,
+            `${nim.toLowerCase()}@${EMAIL_DOMAIN}`,
+            password,
+          );
+          window.location.href = "index.html";
+        } catch (error) {
+          console.error("Login error:", error.code, error.message);
+          showError(
+            errors[error.code] || "Gagal masuk. Coba lagi sebentar lagi.",
+          );
+          button.disabled = false;
+          button.textContent = "Masuk";
+        }
+      });
+    </script>
+  </body>
 </html>
