@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -29,6 +29,8 @@
         --error-text: #ffc4bf;
         --error-bg: rgba(200, 50, 40, 0.28);
         --glass: rgba(30, 28, 6, 0.45); /* warna panel kaca */
+        --font-head:
+          "Bricolage Grotesque", "Schibsted Grotesk", system-ui, sans-serif;
       }
 
       * {
@@ -137,9 +139,11 @@
         overflow: hidden;
         border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.25);
-        .pic {
-          background: linear-gradient(135deg, var(--ph-1), var(--ph-2));
-        } /* tampil kalau foto belum ada */
+        background: linear-gradient(
+          135deg,
+          var(--ph-1),
+          var(--ph-2)
+        ); /* tampil kalau foto belum ada */
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
       }
 
@@ -159,9 +163,7 @@
         font-size: 12px;
         font-weight: 600;
         color: #fff;
-        .pic figcaption {
-          background: linear-gradient(transparent, rgba(var(--deep), 0.85));
-        }
+        background: linear-gradient(transparent, rgba(var(--deep), 0.85));
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -178,7 +180,7 @@
         pointer-events: none;
         background: radial-gradient(
           ellipse 36% 52% at 50% 50%,
-          rgba(8, 32, 28, 0.6),
+          rgba(var(--deep), 0.6),
           transparent 100%
         );
       }
@@ -224,8 +226,9 @@
 
       .org strong {
         display: block;
+        font-family: var(--font-head);
         font-size: 18px;
-        font-weight: 800;
+        font-weight: 700;
         line-height: 1.2;
       }
       .org span {
@@ -234,8 +237,10 @@
       }
 
       h1 {
+        font-family: var(--font-head);
         font-size: 32px;
-        font-weight: 800;
+        font-weight: 700;
+        letter-spacing: -0.02em;
         line-height: 1.1;
         margin-bottom: 24px;
       }
@@ -278,7 +283,7 @@
 
       input:-webkit-autofill {
         -webkit-text-fill-color: var(--text);
-        box-shadow: 0 0 0 100px rgba(20, 70, 62, 0.95) inset;
+        box-shadow: 0 0 0 100px rgba(38, 36, 10, 0.95) inset;
       }
 
       input:focus-visible,

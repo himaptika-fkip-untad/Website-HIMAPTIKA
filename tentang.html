@@ -2,19 +2,583 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Tentang HIMAPTIKA | FKIP UNTAD</title>
-
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --y: #fff112;
+        --bg: #0f0f0c;
+        --paper: #19180f;
+        --line: rgba(255, 253, 240, 0.14);
+        --text: #fffdf0;
+        --muted: rgba(255, 253, 240, 0.68);
+        --serif: "Fraunces", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+      }
+      body,
+      body.dark-mode {
+        position: relative;
+        background: #0d0d0a;
+        color: var(--text);
+        font-family: var(--sans);
+      }
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+      }
+      body::before {
+        width: 600px;
+        height: 600px;
+        top: -180px;
+        left: -160px;
+        background: #3a3704;
+        opacity: 0.9;
+      }
+      body::after {
+        width: 560px;
+        height: 560px;
+        bottom: -200px;
+        right: -160px;
+        background: #26240a;
+        opacity: 0.9;
+      }
+      .site-header {
+        background: rgba(13, 13, 10, 0.55);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow:
+          0 10px 35px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      }
+      @media (max-width: 960px) {
+        #mainNav {
+          background: rgba(13, 13, 10, 0.88);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          backdrop-filter: blur(24px) saturate(180%);
+          border-right: 1px solid rgba(255, 255, 255, 0.28);
+        }
+        body::before,
+        body::after {
+          filter: blur(70px);
+        }
+      }
+      .brand-text h1,
+      .drawer-brand h2,
+      nav a {
+        color: var(--text);
+      }
+      .brand-text p,
+      .drawer-brand p {
+        color: var(--muted);
+      }
+      nav a.active {
+        color: var(--y);
+      }
+      .menu-toggle span {
+        background: var(--text);
+      }
+      footer {
+        background: linear-gradient(180deg, rgba(13, 13, 10, 0.85), #070705);
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+      footer h3 {
+        color: var(--y);
+      }
+
+      /* PENTING: position: sticky mati kalau ada overflow: hidden di induknya.
+         "clip" memotong konten yang meluber, tapi tidak merusak sticky. */
+      html,
+      body,
+      main {
+        overflow-x: clip;
+      }
+
+      .t-wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .t-eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--y);
+        margin: 0 0 14px;
+        font-weight: 700;
+      }
+      h2.t-h,
+      .t-hero h2 {
+        font-family: var(--serif);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 0;
+        color: var(--text);
+      }
+
+      /* ---------- Hero 3D ---------- */
+      .t-hero {
+        padding: 72px 0 56px;
+      }
+      .t-hero .t-wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .t-hero h2 {
+        font-size: clamp(2.4rem, 6vw, 4.4rem);
+      }
+      .t-hero h2 em {
+        font-style: normal;
+        color: var(--y);
+      }
+      .t-hero p.lead {
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.7;
+        max-width: 46ch;
+        margin: 22px 0 0;
+      }
+      .t-facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .t-facts b {
+        color: var(--text);
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        margin-right: 6px;
+      }
+      .scene {
+        perspective: 900px;
+        touch-action: pan-y;
+        display: grid;
+        place-items: center;
+        min-height: 380px;
+      }
+      .stack {
+        position: relative;
+        width: min(300px, 70vw);
+        aspect-ratio: 1;
+        transform-style: preserve-3d;
+        will-change: transform;
+        transform: rotateX(12deg) rotateY(-18deg);
+      }
+      .layer {
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        display: grid;
+        place-items: center;
+      }
+      .layer.l1 {
+        transform: translateZ(-70px);
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.07),
+            rgba(255, 255, 255, 0.025)
+          ),
+          rgba(30, 28, 6, 0.45);
+        -webkit-backdrop-filter: blur(18px) saturate(170%);
+        backdrop-filter: blur(18px) saturate(170%);
+        box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .layer.l2 {
+        transform: translateZ(-20px) scale(0.9);
+        border: 2px dashed rgba(255, 241, 18, 0.5);
+      }
+      .layer.l3 {
+        transform: translateZ(40px) scale(0.78);
+        background: #f4f0d4;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+      .layer.l3 img {
+        width: 72%;
+        height: 72%;
+        object-fit: contain;
+      }
+      .layer.l4 {
+        transform: translateZ(95px);
+        inset: auto 8% 6% auto;
+        width: auto;
+        height: auto;
+        padding: 8px 16px;
+        background: var(--y);
+        color: #14120a;
+        font-weight: 800;
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+        border-radius: 999px;
+      }
+      .layer.l0 {
+        transform: translateZ(-70px) translate(-4%, -4%);
+        inset: auto auto 8% 6%;
+        width: auto;
+        height: auto;
+        font-family: var(--serif);
+        font-size: 4rem;
+        font-weight: 800;
+        color: rgba(255, 253, 240, 0.12);
+      }
+
+      /* ---------- Cerita ---------- */
+      .t-story {
+        padding: 56px 0;
+      }
+      .t-story .t-wrap {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 48px;
+      }
+      .t-story h2 {
+        font-family: var(--serif);
+        font-weight: 800;
+        line-height: 1.05;
+        margin: 0;
+        font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      }
+      .t-story p {
+        color: var(--muted);
+        line-height: 1.8;
+        margin: 0 0 16px;
+      }
+      .photo {
+        margin-top: 28px;
+        aspect-ratio: 16 / 9;
+        border: 1px dashed var(--line);
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-align: center;
+        padding: 16px;
+      }
+
+      /* ---------- Perjalanan 3D ---------- */
+      .journey {
+        height: 420vh; /* makin tinggi = scroll makin panjang */
+        position: relative;
+      }
+      .journey-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100svh; /* tinggi layar HP yang benar (tanpa bar browser) */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding-top: 88px; /* ruang untuk header */
+      }
+      .journey-head {
+        text-align: center;
+        padding: 0 24px;
+      }
+      .journey-head h2 {
+        font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+      }
+      .jscene {
+        position: relative;
+        flex: 1;
+        perspective: 900px;
+        perspective-origin: 50% 40%;
+      }
+
+      /* Jalan: bidang miring dengan garis putus-putus yang mengalir */
+      .road {
+        position: absolute;
+        left: 50%;
+        bottom: -10%;
+        width: 360px;
+        height: 140%;
+        margin-left: -180px;
+        transform-origin: 50% 100%;
+        transform: rotateX(78deg);
+        border-left: 2px solid rgba(255, 255, 255, 0.12);
+        border-right: 2px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(
+          to top,
+          rgba(255, 241, 18, 0.08),
+          transparent
+        );
+        overflow: hidden;
+      }
+      /* garis putus-putus: elemen terpisah yang digeser pakai transform (murah) */
+      .road::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -96px;
+        bottom: 0;
+        width: 6px;
+        margin-left: -3px;
+        background: linear-gradient(
+            to bottom,
+            var(--y) 0 36px,
+            transparent 36px
+          )
+          0 0 / 6px 96px repeat-y;
+        transform: translate3d(0, var(--ry, 0px), 0);
+        will-change: transform;
+      }
+      /* pengganti mask-image: lapisan yang memudarkan jalan di kejauhan */
+      .road::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, #0d0d0a, transparent 60%);
+      }
+
+      .world {
+        position: absolute;
+        inset: 0;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+      .stop {
+        --x: 0px;
+        --r: 0deg;
+        position: absolute;
+        left: 50%;
+        top: 42%;
+        width: min(440px, 84vw);
+        padding: 26px 28px;
+        border-radius: 18px;
+        opacity: 0;
+        /* TANPA backdrop-filter, dibuat hampir solid sebagai gantinya */
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.08),
+            rgba(255, 255, 255, 0.02)
+          ),
+          rgba(26, 24, 8, 0.94);
+        border: 1px solid var(--line);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        transform: translate(-50%, -50%) translate3d(var(--x), 0, var(--d))
+          rotateY(var(--r));
+      }
+
+      .stop:nth-child(odd) {
+        --x: -190px;
+        --r: 12deg;
+      }
+      .stop:nth-child(even) {
+        --x: 190px;
+        --r: -12deg;
+      }
+      .stop .yr {
+        font-family: var(--serif);
+        font-weight: 800;
+        font-size: 3.4rem;
+        line-height: 1;
+        color: var(--y);
+      }
+      .stop .d {
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin: 10px 0 6px;
+      }
+      .stop h3 {
+        margin: 0 0 6px;
+        font-size: 1.2rem;
+      }
+      .stop p:last-child {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .stop.last {
+        border-color: rgba(255, 241, 18, 0.55);
+      }
+
+      .jprog {
+        height: 3px;
+        margin: 0 24px 18px;
+        background: var(--line);
+        border-radius: 3px;
+      }
+      .jprog i {
+        display: block;
+        height: 100%;
+        background: var(--y);
+        border-radius: 3px;
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      .jhint {
+        text-align: center;
+        margin: 0 0 18px;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      /* ---------- Visi misi ---------- */
+      .t-vm {
+        padding: 56px 0;
+      }
+      .visi {
+        font-family: var(--serif);
+        font-size: clamp(1.4rem, 3vw, 2.1rem);
+        line-height: 1.35;
+        font-weight: 600;
+        max-width: 28em;
+        margin: 0 0 48px;
+      }
+      .misi {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        counter-reset: m;
+      }
+      .misi li {
+        counter-increment: m;
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 16px;
+        padding: 20px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .misi li::before {
+        content: counter(m);
+        font-family: var(--serif);
+        font-size: 1.6rem;
+        color: var(--y);
+      }
+
+      /* ---------- CTA ---------- */
+      .t-cta {
+        padding: 40px 0 88px;
+      }
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 36px 40px;
+        border-radius: 20px;
+        background: var(--y);
+        color: #14120a;
+      }
+      .cta h2 {
+        font-family: var(--serif);
+        font-size: 1.7rem;
+        color: #14120a;
+        margin: 0;
+      }
+      .cta a {
+        background: #14120a;
+        color: var(--y);
+        padding: 14px 24px;
+        border-radius: 12px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      /* ---------- Layar kecil ---------- */
+      @media (max-width: 860px) {
+        .t-hero .t-wrap,
+        .t-story .t-wrap {
+          grid-template-columns: 1fr;
+        }
+        .scene {
+          min-height: 320px;
+        }
+        .stack {
+          width: min(280px, 72vw);
+        }
+        .layer.l1 {
+          transform: translateZ(-120px);
+        }
+        .layer.l0 {
+          transform: translateZ(-120px);
+        }
+        .layer.l2 {
+          transform: translateZ(-40px) scale(0.9);
+        }
+        .layer.l3 {
+          transform: translateZ(60px) scale(0.78);
+        }
+        .layer.l4 {
+          transform: translateZ(140px);
+        }
+
+        .stop:nth-child(odd),
+        .stop:nth-child(even) {
+          --x: 0px;
+          --r: 0deg;
+        }
+        .road {
+          width: 240px;
+          margin-left: -120px;
+        }
+      }
+
+      /* ---------- Tanpa gerak: perjalanan jadi daftar biasa ---------- */
+      @media (prefers-reduced-motion: reduce) {
+        .stack {
+          transition: none;
+        }
+        .journey {
+          height: auto;
+        }
+        .journey-sticky {
+          position: static;
+          height: auto;
+        }
+        .road,
+        .jprog,
+        .jhint {
+          display: none;
+        }
+        .world {
+          position: static;
+        }
+        .stop {
+          position: relative;
+          left: auto;
+          top: auto;
+          margin: 16px auto;
+          opacity: 1 !important;
+          transform: none;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <!-- ================= HEADER ================= -->
-
     <header class="site-header">
-      <!-- Tombol hamburger -->
       <button
         class="menu-toggle"
         id="menuToggle"
@@ -22,12 +586,9 @@
         aria-expanded="false"
         type="button"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
 
-      <!-- Identitas di header atas -->
       <div class="brand">
         <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
         <div class="brand-text">
@@ -36,7 +597,6 @@
         </div>
       </div>
 
-      <!-- Sidebar -->
       <nav id="mainNav">
         <div class="drawer-brand">
           <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
@@ -64,512 +624,319 @@
     </header>
 
     <main>
-      <!-- ================= HERO TENTANG ================= -->
-
-      <section class="about-hero">
-        <div class="about-hero-shape shape-about-one"></div>
-
-        <div class="about-hero-shape shape-about-two"></div>
-
-        <div class="about-hero-content">
-          <p class="section-label">TENTANG HIMAPTIKA</p>
-
-          <h2>Mengenal HIMAPTIKA</h2>
-
-          <p>
-            Himpunan Mahasiswa Pendidikan Matematika FKIP Universitas Tadulako.
-          </p>
-
-          <div class="about-line"></div>
-        </div>
-      </section>
-      <section class="about-stats">
-        <div class="container">
-          <section class="about-stats">
-            <div class="container">
-              <div class="about-stats-grid">
-                <div class="about-stat">
-                  <strong data-since="1993">33</strong>
-                  <span>Tahun Perjalanan</span>
-                </div>
-
-                <div class="about-stat">
-                  <strong data-since="2000">26</strong>
-                  <span>Tahun sebagai HIMAPTIKA</span>
-                </div>
-
-                <div class="about-stat">
-                  <strong data-count="4">4</strong>
-                  <span>Nama Organisasi</span>
-                </div>
-
-                <div class="about-stat">
-                  <strong data-count="7">7</strong>
-                  <span>Divisi</span>
-                </div>
-              </div>
+      <!-- HERO -->
+      <section class="t-hero">
+        <div class="t-wrap">
+          <div>
+            <p class="t-eyebrow">Tentang HIMAPTIKA</p>
+            <h2>
+              Berawal dari kelompok belajar, kini <em>rumah</em> mahasiswa
+              Pendidikan Matematika.
+            </h2>
+            <p class="lead">
+              Himpunan Mahasiswa Pendidikan Matematika FKIP Universitas
+              Tadulako. Sudah berganti nama empat kali sejak 1993, dan tetap
+              berdiri di tempat yang sama: kita belajar dan berorganisasi
+              bersama.
+            </p>
+            <div class="t-facts">
+              <span><b data-since="1993">33</b>tahun berjalan</span>
+              <span><b>4</b>kali berganti nama</span>
+              <span><b>7</b>divisi</span>
             </div>
-          </section>
-        </div>
-      </section>
+          </div>
 
-      <!-- ================= IDENTITAS ================= -->
-
-      <section class="about-identity">
-        <div class="container">
-          <div class="identity-grid">
-            <div class="identity-logo">
-              <div class="identity-ring">
+          <div class="scene">
+            <div class="stack" id="stack">
+              <div class="layer l0">1993</div>
+              <div class="layer l1"></div>
+              <div class="layer l2"></div>
+              <div class="layer l3">
                 <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
               </div>
-            </div>
-
-            <div class="identity-content">
-              <p class="section-label">IDENTITAS</p>
-
-              <h2>Himpunan Mahasiswa Pendidikan Matematika</h2>
-
-              <p>
-                HIMAPTIKA merupakan wadah mahasiswa Pendidikan Matematika dalam
-                membangun kebersamaan, mengembangkan potensi, serta mendorong
-                mahasiswa untuk berkontribusi dalam lingkungan akademik maupun
-                masyarakat.
-              </p>
-
-              <div class="identity-tags">
-                <span> AKADEMIK </span>
-
-                <span> ORGANISASI </span>
-
-                <span> KREATIVITAS </span>
-
-                <span> KONTRIBUSI </span>
-              </div>
+              <div class="layer l4">SEJAK 2000</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= TENTANG ORGANISASI ================= -->
-
-      <section class="about-story">
-        <div class="container">
-          <div class="section-heading">
-            <p class="section-label">TENTANG ORGANISASI</p>
-
-            <h2>Ruang untuk Tumbuh, Berkarya, dan Berkontribusi</h2>
-
+      <!-- CERITA -->
+      <section class="t-story">
+        <div class="t-wrap">
+          <h2>Wadah, bukan sekadar nama.</h2>
+          <div>
             <p>
-              HIMAPTIKA menjadi ruang bagi mahasiswa Pendidikan Matematika untuk
-              belajar dan berkembang bersama.
+              HIMAPTIKA adalah wadah mahasiswa Pendidikan Matematika untuk
+              membangun kebersamaan, mengembangkan potensi, dan berkontribusi,
+              baik di lingkungan akademik maupun di masyarakat.
             </p>
-          </div>
-
-          <div class="story-grid">
-            <div class="story-card">
-              <div class="story-number">01</div>
-
-              <h3>Pengembangan Akademik</h3>
-
-              <p>
-                Mendorong mahasiswa untuk mengembangkan wawasan, pengetahuan,
-                dan kemampuan akademik melalui berbagai kegiatan.
-              </p>
-            </div>
-
-            <div class="story-card">
-              <div class="story-number">02</div>
-
-              <h3>Pengembangan Organisasi</h3>
-
-              <p>
-                Menjadi ruang bagi mahasiswa untuk belajar berorganisasi,
-                bekerja sama, dan mengembangkan kemampuan kepemimpinan.
-              </p>
-            </div>
-
-            <div class="story-card">
-              <div class="story-number">03</div>
-
-              <h3>Kebersamaan</h3>
-
-              <p>
-                Membangun hubungan yang harmonis dan kekeluargaan antar
-                mahasiswa Pendidikan Matematika.
-              </p>
-            </div>
-
-            <div class="story-card">
-              <div class="story-number">04</div>
-
-              <h3>Kontribusi</h3>
-
-              <p>
-                Mendorong mahasiswa untuk memberikan kontribusi positif bagi
-                lingkungan kampus maupun masyarakat.
-              </p>
+            <p>
+              Di sini mahasiswa belajar menambah wawasan, belajar memimpin dan
+              bekerja sama, dan saling mengenal sebagai keluarga satu program
+              studi.
+            </p>
+            <div class="photo">
+              [ Ganti dengan foto kegiatan HIMAPTIKA, misalnya pelantikan atau
+              kumpul pengurus ]
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= SEJARAH HIMAPTIKA ================= -->
-
-      <section class="sejarah-premium">
-        <div class="container">
-          <!-- HEADER SEJARAH -->
-
-          <div class="sejarah-premium-header">
-            <div class="sejarah-heading-left">
-              <p class="section-label">PERJALANAN ORGANISASI</p>
-
-              <h2>
-                Dari Sebuah Gagasan,
-                <span>Menjadi Sebuah Perjalanan</span>
-              </h2>
-            </div>
-
-            <div class="sejarah-heading-right">
-              <p>
-                HIMAPTIKA lahir melalui perjalanan panjang, perubahan nama, dan
-                proses organisasi yang membentuk identitasnya hingga saat ini.
-              </p>
-            </div>
+      <!-- PERJALANAN 3D -->
+      <section class="journey" id="journey">
+        <div class="journey-sticky">
+          <div class="journey-head">
+            <p class="t-eyebrow">Perjalanan organisasi</p>
+            <h2 class="t-h">Empat nama, satu perjalanan.</h2>
           </div>
 
-          <!-- GARIS TIMELINE -->
+          <div class="jscene">
+            <div class="road"></div>
 
-          <div class="sejarah-premium-timeline">
-            <!-- ================= 1993 ================= -->
+            <div class="world" id="world">
+              <article class="stop">
+                <div class="yr">1993</div>
+                <p class="d">16 OKTOBER 1993</p>
+                <h3>Mathematic Study Club (MSC)</h3>
+                <p>Awal organisasi mahasiswa Pendidikan Matematika.</p>
+              </article>
 
-            <article class="sejarah-premium-item">
-              <div class="sejarah-year">
-                <span>01</span>
-                <strong>1993</strong>
-              </div>
-
-              <div class="sejarah-marker">
-                <span></span>
-              </div>
-
-              <div class="sejarah-content">
-                <p class="sejarah-date">16 OKTOBER 1993</p>
-
-                <h3>Mathematic Study Club</h3>
-
-                <p>
-                  Perjalanan organisasi mahasiswa Pendidikan Matematika bermula
-                  dengan berdirinya
-                  <strong>Mathematic Study Club (MSC)</strong>.
-                </p>
-
-                <div class="sejarah-tag">AWAL PERJALANAN</div>
-              </div>
-            </article>
-
-            <!-- ================= 1996 ================= -->
-
-            <article class="sejarah-premium-item">
-              <div class="sejarah-year">
-                <span>02</span>
-                <strong>1996</strong>
-              </div>
-
-              <div class="sejarah-marker">
-                <span></span>
-              </div>
-
-              <div class="sejarah-content">
-                <p class="sejarah-date">28 SEPTEMBER 1996</p>
-
-                <h3>Kelompok Studi Matematika</h3>
-
+              <article class="stop">
+                <div class="yr">1996</div>
+                <p class="d">28 SEPTEMBER 1996</p>
+                <h3>Kelompok Studi Matematika (KESMATIKA)</h3>
                 <p>
                   Dalam Musyawarah Besar, MSC diterjemahkan ke dalam bahasa
-                  Indonesia menjadi
-                  <strong>Kelompok Studi Matematika (KESMATIKA)</strong>.
+                  Indonesia.
                 </p>
+              </article>
 
-                <div class="sejarah-tag">PERUBAHAN IDENTITAS</div>
-              </div>
-            </article>
-
-            <!-- ================= 1998 ================= -->
-
-            <article class="sejarah-premium-item">
-              <div class="sejarah-year">
-                <span>03</span>
-                <strong>1998</strong>
-              </div>
-
-              <div class="sejarah-marker">
-                <span></span>
-              </div>
-
-              <div class="sejarah-content">
-                <p class="sejarah-date">25 OKTOBER 1998</p>
-
-                <h3>Himpunan Mahasiswa Matematika</h3>
-
+              <article class="stop">
+                <div class="yr">1998</div>
+                <p class="d">25 OKTOBER 1998</p>
+                <h3>Himpunan Mahasiswa Matematika (HIMATIKA)</h3>
                 <p>
-                  KESMATIKA kemudian berubah menjadi
-                  <strong>Himpunan Mahasiswa Matematika (HIMATIKA)</strong>,
-                  bersamaan dengan terpilihnya Moh. Sidik sebagai ketua.
+                  KESMATIKA berubah menjadi himpunan, bersamaan dengan
+                  terpilihnya Moh. Sidik sebagai ketua.
                 </p>
+              </article>
 
-                <div class="sejarah-tag">BABAK BARU</div>
-              </div>
-            </article>
-
-            <!-- ================= 2000 ================= -->
-
-            <article class="sejarah-premium-item sejarah-final">
-              <div class="sejarah-year">
-                <span>04</span>
-                <strong>2000</strong>
-              </div>
-
-              <div class="sejarah-marker">
-                <span></span>
-              </div>
-
-              <div class="sejarah-content">
-                <p class="sejarah-date">29 OKTOBER 2000</p>
-
-                <h3>Lahirnya HIMAPTIKA</h3>
-
+              <article class="stop last">
+                <div class="yr">2000</div>
+                <p class="d">29 OKTOBER 2000 · DESA PANEKI, SIGI BIROMARU</p>
+                <h3>Himpunan Mahasiswa Pendidikan Matematika (HIMAPTIKA)</h3>
                 <p>
-                  Di Desa Paneki, Kecamatan Sigi Biromaru, nama organisasi
-                  ditetapkan menjadi
-                  <strong
-                    >Himpunan Mahasiswa Pendidikan Matematika
-                    (HIMAPTIKA)</strong
-                  >.
+                  Nama yang kita pakai sampai sekarang ditetapkan di Desa
+                  Paneki, Kecamatan Sigi Biromaru.
                 </p>
-
-                <div class="sejarah-tag">IDENTITAS HIMAPTIKA</div>
-              </div>
-            </article>
-          </div>
-
-          <!-- ================= TODAY ================= -->
-
-          <div class="sejarah-present">
-            <div class="sejarah-present-line"></div>
-
-            <div class="sejarah-present-content">
-              <p class="section-label">HARI INI</p>
-
-              <div class="sejarah-present-title">
-                <span>2000 — SEKARANG</span>
-
-                <h3>HIMAPTIKA FKIP UNTAD</h3>
-              </div>
-
-              <p>
-                Sejak tahun 2000, HIMAPTIKA terus menjadi ruang bagi mahasiswa
-                Pendidikan Matematika FKIP Universitas Tadulako untuk belajar,
-                berkembang, berkarya, berkolaborasi, dan memberikan kontribusi
-                bagi kampus maupun masyarakat.
-              </p>
+              </article>
             </div>
           </div>
+
+          <div class="jprog"><i id="jbar"></i></div>
+          <p class="jhint">Scroll untuk berjalan maju ↓</p>
         </div>
       </section>
 
-      <!-- ================= VISI MISI ================= -->
+      <!-- VISI MISI -->
+      <section class="t-vm">
+        <div class="t-wrap">
+          <p class="t-eyebrow">Visi</p>
+          <p class="visi">
+            Mewujudkan HIMAPTIKA sebagai organisasi mahasiswa Pendidikan
+            Matematika yang aktif, progresif, serta berlandaskan nilai akademik,
+            solidaritas, dan spiritualitas dalam mendukung pengembangan potensi
+            mahasiswa.
+          </p>
 
-      <section class="about-vm">
-        <div class="container">
-          <!-- HEADER -->
-
-          <div class="vm-header">
-            <p class="section-label">ARAH ORGANISASI</p>
-
-            <h2>Visi & Misi</h2>
-
-            <p>
-              Arah pengembangan HIMAPTIKA dalam menjalankan perannya sebagai
-              organisasi mahasiswa.
-            </p>
-          </div>
-
-          <div class="vm-grid">
-            <!-- VISI -->
-
-            <div class="vm-main">
-              <div class="vm-icon">V</div>
-
-              <p class="vm-label">VISI</p>
-
-              <p>
-                Mewujudkan HIMAPTIKA sebagai organisasi mahasiswa Pendidikan
-                Matematika yang aktif, progresif, serta berlandaskan nilai
-                akademik, solidaritas, dan spiritualitas dalam mendukung
-                pengembangan potensi mahasiswa Pendidikan Matematika.
-              </p>
-            </div>
-
-            <!-- MISI -->
-
-            <div class="misi-wrapper">
-              <div class="misi-header">
-                <span class="misi-subtitle"> ARAH GERAK ORGANISASI </span>
-
-                <h3>MISI HIMAPTIKA</h3>
-
-                <p>Langkah strategis dalam mewujudkan visi organisasi.</p>
-              </div>
-
-              <div class="misi-list">
-                <div class="misi-item">
-                  <span>01</span>
-
-                  <div>
-                    <p>
-                      Meningkatkan kualitas akademik mahasiswa melalui program
-                      pelatihan dan pengembangan kompetensi mahasiswa.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="misi-item">
-                  <span>02</span>
-
-                  <div>
-                    <p>
-                      Mengembangkan minat dan bakat mahasiswa serta menumbuhkan
-                      solidaritas, kepedulian sosial, dan kreativitas mahasiswa
-                      Pendidikan Matematika.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="misi-item">
-                  <span>03</span>
-
-                  <div>
-                    <p>
-                      Meningkatkan profesionalisme organisasi melalui sistem
-                      administrasi yang tertib, transparan, dan terstruktur.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="misi-item">
-                  <span>04</span>
-
-                  <div>
-                    <p>
-                      Meningkatkan eksistensi dan citra positif HIMAPTIKA di
-                      kalangan mahasiswa Pendidikan Matematika dan di lingkungan
-                      Universitas Tadulako.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p class="t-eyebrow">Misi</p>
+          <ol class="misi">
+            <li>
+              Meningkatkan kualitas akademik mahasiswa melalui program pelatihan
+              dan pengembangan kompetensi.
+            </li>
+            <li>
+              Mengembangkan minat dan bakat mahasiswa serta menumbuhkan
+              solidaritas, kepedulian sosial, dan kreativitas.
+            </li>
+            <li>
+              Meningkatkan profesionalisme organisasi melalui sistem
+              administrasi yang tertib, transparan, dan terstruktur.
+            </li>
+            <li>
+              Meningkatkan eksistensi dan citra positif HIMAPTIKA di kalangan
+              mahasiswa Pendidikan Matematika dan di lingkungan Universitas
+              Tadulako.
+            </li>
+          </ol>
         </div>
       </section>
 
-      <!-- ================= NILAI ================= -->
-
-      <section class="about-values">
-        <div class="container">
-          <div class="section-heading">
-            <p class="section-label">NILAI ORGANISASI</p>
-
-            <h2>Nilai yang Kami Bangun</h2>
-          </div>
-
-          <div class="values-grid">
-            <div class="value-item">
-              <span> 01 </span>
-
-              <h3>Integritas</h3>
-
-              <p>Menjunjung sikap bertanggung jawab dan dapat dipercaya.</p>
-            </div>
-
-            <div class="value-item">
-              <span> 02 </span>
-
-              <h3>Kolaborasi</h3>
-
-              <p>Membangun kerja sama dan saling mendukung.</p>
-            </div>
-
-            <div class="value-item">
-              <span> 03 </span>
-
-              <h3>Kreativitas</h3>
-
-              <p>Mendorong lahirnya ide dan karya yang bermanfaat.</p>
-            </div>
-
-            <div class="value-item">
-              <span> 04 </span>
-
-              <h3>Kepedulian</h3>
-
-              <p>
-                Memiliki kepedulian terhadap lingkungan akademik dan sosial.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= CTA ================= -->
-
-      <section class="about-cta">
-        <div class="container">
-          <div class="cta-box">
-            <div>
-              <p class="section-label">JELAJAHI HIMAPTIKA</p>
-
-              <h2>Kenali lebih dekat kegiatan HIMAPTIKA</h2>
-
-              <p>
-                Lihat divisi dan program kerja yang menjadi bagian dari
-                perjalanan HIMAPTIKA.
-              </p>
-            </div>
-
-            <a href="divisi.html" class="tombol">
-              Lihat Divisi & Program Kerja
-            </a>
+      <!-- CTA -->
+      <section class="t-cta">
+        <div class="t-wrap">
+          <div class="cta">
+            <h2>Lihat apa saja yang kami kerjakan.</h2>
+            <a href="divisi.html">Divisi & Program Kerja</a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- ================= FOOTER ================= -->
-
     <footer>
       <div class="footer-content">
         <div>
           <h3>HIMAPTIKA</h3>
-
           <p>Himpunan Mahasiswa Pendidikan Matematika</p>
         </div>
-
         <div>
           <h3>FKIP UNTAD</h3>
-
           <p>Fakultas Keguruan dan Ilmu Pendidikan</p>
-
           <p>Universitas Tadulako</p>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
       </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // Jumlah tahun dihitung otomatis dari tahun berdiri
+      document.querySelectorAll("[data-since]").forEach((el) => {
+        el.textContent = new Date().getFullYear() - Number(el.dataset.since);
+      });
+
+      const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+      // ---------- Hero 3D: kursor, geser jari, giroskop HP, atau ayun otomatis ----------
+      const stack = document.getElementById("stack");
+      const scene = stack.parentElement;
+      let ptr = null,
+        gyro = null,
+        cx = -18,
+        cy = 12;
+
+      scene.addEventListener("pointermove", (e) => {
+        const r = scene.getBoundingClientRect();
+        ptr = {
+          x: (e.clientX - r.left) / r.width - 0.5,
+          y: (e.clientY - r.top) / r.height - 0.5,
+        };
+      });
+      const release = () => setTimeout(() => (ptr = null), 600);
+      scene.addEventListener("pointerleave", release);
+      scene.addEventListener("pointerup", release);
+      scene.addEventListener("pointercancel", release);
+
+      // Giroskop: Android langsung aktif, iOS butuh izin lewat sentuhan pertama
+      const onTilt = (e) => {
+        if (e.gamma == null) return;
+        gyro = { x: clamp(e.gamma, -35, 35), y: clamp(e.beta - 50, -30, 30) };
+      };
+      if ("DeviceOrientationEvent" in window) {
+        if (typeof DeviceOrientationEvent.requestPermission === "function") {
+          scene.addEventListener(
+            "click",
+            () =>
+              DeviceOrientationEvent.requestPermission()
+                .then(
+                  (r) =>
+                    r === "granted" &&
+                    addEventListener("deviceorientation", onTilt),
+                )
+                .catch(() => {}),
+            { once: true },
+          );
+        } else {
+          addEventListener("deviceorientation", onTilt);
+        }
+      }
+
+      // ---------- Perjalanan 3D: scroll = kamera maju ----------
+      const journey = document.getElementById("journey");
+      const world = document.getElementById("world");
+      const stops = [...world.children];
+      const bar = document.getElementById("jbar");
+      const road = document.querySelector(".road");
+      const GAP = 700; // jarak antar kartu di kedalaman (px)
+
+      stops.forEach((s, i) => s.style.setProperty("--d", -i * GAP + "px"));
+
+      // Ukuran diukur SEKALI (bukan tiap frame), diulang hanya saat layar berubah
+      let jTop = 0,
+        jTotal = 1,
+        target = 0,
+        current = 0,
+        lastP = -1;
+
+      function measure() {
+        jTop = journey.getBoundingClientRect().top + scrollY;
+        jTotal = journey.offsetHeight - journey.firstElementChild.offsetHeight;
+        onScroll();
+      }
+      function onScroll() {
+        target = clamp((scrollY - jTop) / jTotal, 0, 1);
+      }
+      addEventListener("scroll", onScroll, { passive: true });
+      addEventListener("resize", measure);
+      addEventListener("load", measure);
+      measure();
+
+      function journeyFrame() {
+        // lerp: progres "mengejar" target pelan-pelan, jadi scroll mouse tidak terasa melompat
+        current += (target - current) * 0.1;
+        if (Math.abs(target - current) < 0.0002) current = target;
+        if (current === lastP) return; // tidak ada perubahan = tidak ada kerja
+        lastP = current;
+
+        const z = current * (stops.length - 1) * GAP;
+        world.style.transform = `translateZ(${z}px)`;
+
+        stops.forEach((s, i) => {
+          const dz = z - i * GAP;
+          const vis =
+            dz < 0 ? 1 - Math.min(1, -dz / 1600) : 1 - Math.min(1, dz / 300);
+          s.style.opacity = vis.toFixed(3);
+          s.style.visibility = vis < 0.01 ? "hidden" : "visible"; // kartu tak terlihat tidak dirender
+        });
+
+        // 96 = tinggi satu pola garis, jadi lompatan di ujung tidak terlihat
+        road.style.setProperty("--ry", ((current * 1400) % 96) + "px");
+        bar.style.transform = `scaleX(${current})`;
+      }
+
+      // ---------- Satu loop animasi untuk semuanya ----------
+      let heroOn = true;
+      new IntersectionObserver(([e]) => (heroOn = e.isIntersecting)).observe(
+        scene,
+      );
+
+      function frame(t) {
+        if (heroOn) {
+          let ty, tx;
+          if (ptr) {
+            ty = ptr.x * 50;
+            tx = -ptr.y * 50;
+          } else if (gyro) {
+            ty = gyro.x * 1.3;
+            tx = 12 - gyro.y * 1.1;
+          } else {
+            ty = -18 + Math.sin(t / 1300) * 26;
+            tx = 12 + Math.cos(t / 1700) * 10;
+          }
+          cy += (ty - cy) * 0.08;
+          cx += (tx - cx) * 0.08;
+          stack.style.transform = `rotateX(${cx}deg) rotateY(${cy}deg)`;
+        }
+        journeyFrame();
+        requestAnimationFrame(frame);
+      }
+      if (!still) requestAnimationFrame(frame);
+    </script>
+
     <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
     <script type="module">
       import { auth } from "./js/firebase.js";
