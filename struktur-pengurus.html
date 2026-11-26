@@ -7,163 +7,218 @@
       name="description"
       content="Struktur kepengurusan HIMAPTIKA FKIP Universitas Tadulako periode 2026: pengurus inti, koordinator, dan anggota tiap divisi."
     />
+    <meta name="theme-color" content="#0d0d0a" />
     <title>Struktur Pengurus | HIMAPTIKA FKIP UNTAD</title>
+    <link rel="icon" type="image/png" href="images/logo-himaptika.png" />
 
-    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="style.css" />
 
     <style>
+      /* ============ TEMA SAMA DENGAN BERANDA: KACA GELAP + KUNING ============ */
       :root {
-        --ink: #17232e;
-        --muted: #5b6770;
-        --paper: #f1f4ef;
-        --surface: #e3e9e4;
-        --line: #cbd5ce;
-        --glass: rgba(255, 255, 255, 0.45);
-        --glass-line: rgba(255, 255, 255, 0.75);
-        --glass-shadow: 0 10px 34px rgba(30, 96, 145, 0.14);
-        --brand: #1e6091;
-        --accent: #f2b134;
-        --display: "Bricolage Grotesque", "Segoe UI", sans-serif;
-        --text: "Plus Jakarta Sans", "Segoe UI", sans-serif;
-      }
-      body.dark-mode {
-        --ink: #e8eee9;
-        --muted: #9fb0b8;
-        --paper: #121a21;
-        --surface: #1c2832;
-        --line: #2b3a46;
-        --glass: rgba(30, 44, 56, 0.5);
-        --glass-line: rgba(255, 255, 255, 0.14);
-        --glass-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
-        --brand: #7fb6de;
+        --accent: #fff112;
+        --on-accent: #14120a;
+        --deep: 13, 13, 10;
+        --bg: #0d0d0a;
+        --glow-1: #3a3704;
+        --glow-2: #26240a;
+        --text: #fffdf0;
+        --muted: rgba(255, 253, 240, 0.72);
+        --glass-edge: rgba(255, 255, 255, 0.28);
+        --glass: rgba(30, 28, 6, 0.45);
+        --card-edge: rgba(255, 255, 255, 0.14);
+        --blur: blur(18px) saturate(170%);
+        --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+        --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
       }
 
       * {
         box-sizing: border-box;
       }
-      body {
+
+      body,
+      body.dark-mode {
+        position: relative;
         margin: 0;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: var(--text);
+        color: var(--text);
+        background: var(--bg);
+        font-family: var(--font-body);
         line-height: 1.6;
       }
-
-      /* warna lembut statis di belakang panel kaca */
-      body::before {
+      body::before,
+      body::after {
         content: "";
         position: fixed;
-        inset: 0;
         z-index: -1;
+        border-radius: 50%;
+        filter: blur(100px);
         pointer-events: none;
-        background:
-          radial-gradient(
-            42vmax 42vmax at 8% 12%,
-            rgba(30, 96, 145, 0.34),
-            transparent 70%
-          ),
-          radial-gradient(
-            36vmax 36vmax at 92% 28%,
-            rgba(242, 177, 52, 0.4),
-            transparent 70%
-          ),
-          radial-gradient(
-            46vmax 46vmax at 38% 96%,
-            rgba(60, 170, 160, 0.28),
-            transparent 70%
-          );
       }
-      body.dark-mode::before {
-        opacity: 0.55;
+      body::before {
+        width: 600px;
+        height: 600px;
+        top: -180px;
+        left: -160px;
+        background: var(--glow-1);
+        opacity: 0.9;
       }
-      .glass,
-      .inti .orang,
-      .divisi,
-      .cari,
-      .ig-resmi,
-      .kotak,
-      .hero p {
-        background: var(--glass);
-        border: 1px solid var(--glass-line);
-        box-shadow: var(--glass-shadow);
-        -webkit-backdrop-filter: blur(16px) saturate(1.4);
-        backdrop-filter: blur(16px) saturate(1.4);
-      }
-      @supports not (backdrop-filter: blur(1px)) {
-        .inti .orang,
-        .divisi,
-        .cari,
-        .ig-resmi,
-        .kotak,
-        .hero p {
-          background: var(--paper);
-        }
+      body::after {
+        width: 560px;
+        height: 560px;
+        bottom: -200px;
+        right: -160px;
+        background: var(--glow-2);
+        opacity: 0.9;
       }
 
-      button {
+      button,
+      input {
         font: inherit;
         color: inherit;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      .brand-text h1,
+      .drawer-brand h2 {
+        font-family: var(--font-display);
       }
       :focus-visible {
         outline: 3px solid var(--accent);
         outline-offset: 3px;
       }
 
-      /* ---------- Hero: kertas grafik ---------- */
-      .hero {
-        padding: clamp(64px, 10vw, 120px) 6vw clamp(48px, 7vw, 80px);
-        background:
-          linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
-          linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 32px
-            32px,
-          transparent;
-        border-bottom: 1px solid var(--glass-line);
+      /* ---------- Header & navbar (sama dengan beranda) ---------- */
+      :is(body, body.dark-mode) .site-header {
+        background: rgba(var(--deep), 0.55);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid var(--glass-edge);
+        box-shadow:
+          0 10px 35px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.14);
       }
-      .hero h2 {
-        max-width: 14ch;
-        margin: 0 0 18px;
-        font-family: var(--display);
+      :is(body, body.dark-mode) :is(.brand-text h1, .drawer-brand h2, nav a) {
+        color: var(--text);
+      }
+      :is(body, body.dark-mode) :is(.brand-text p, .drawer-brand p) {
+        color: var(--muted);
+      }
+      :is(body, body.dark-mode) nav a {
+        border-radius: 10px;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      :is(body, body.dark-mode) nav a:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      :is(body, body.dark-mode) nav a.active {
+        color: var(--accent);
+        background: rgba(255, 241, 18, 0.12);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      }
+      :is(body, body.dark-mode) .menu-toggle span {
+        background: var(--text);
+      }
+      :is(body, body.dark-mode) .logout-button {
+        background: var(--accent);
+        color: var(--on-accent);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+        font-weight: 700;
+      }
+      @media (max-width: 960px) {
+        #mainNav {
+          background: rgba(var(--deep), 0.88);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          backdrop-filter: blur(24px) saturate(180%);
+          border-right: 1px solid var(--glass-edge);
+        }
+      }
+
+      /* ---------- Hero ---------- */
+      .hero-pengurus {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding: clamp(150px, 15vw, 200px) 24px clamp(40px, 6vw, 72px);
+      }
+      .hero-pengurus::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 520px;
+        height: 520px;
+        right: -190px;
+        top: -250px;
+        border: 1px solid rgba(255, 241, 18, 0.16);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 42px rgba(255, 241, 18, 0.025),
+          0 0 0 88px rgba(255, 241, 18, 0.015);
+      }
+      .hp-inner {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+      }
+      .hp-label {
+        margin: 0;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+      :is(body, body.dark-mode) .hero-pengurus {
+        background: transparent;
+        min-height: 0;
+        height: auto;
+      }
+      :is(body, body.dark-mode) .hero-pengurus h2 {
+        font-family: var(--font-display);
+        color: var(--text);
+        text-align: left;
+        max-width: 16ch;
+        margin: 16px 0 18px;
         font-weight: 800;
-        font-size: clamp(40px, 8vw, 88px);
-        line-height: 0.98;
+        font-size: clamp(34px, 6vw, 64px);
+        line-height: 1.05;
         letter-spacing: -0.03em;
+        overflow-wrap: break-word;
       }
-      .hero p {
-        max-width: 46ch;
+      :is(body, body.dark-mode) .hero-pengurus p#ringkas {
+        color: var(--muted);
+        text-align: left;
+        max-width: 52ch;
         margin: 0;
         color: var(--muted);
-        font-size: 17px;
-        display: inline-block;
-        padding: 10px 16px;
-        border-radius: 12px;
+        font-size: 16px;
+        line-height: 1.75;
       }
 
       .wrap {
-        width: min(1200px, 92%);
+        width: min(1160px, 100% - 48px);
         margin: 0 auto;
       }
-      section {
-        padding: clamp(40px, 6vw, 72px) 0;
+      section.blok {
+        padding: clamp(32px, 5vw, 56px) 0;
       }
       h3.judul {
         margin: 0 0 28px;
-        font-family: var(--display);
         font-weight: 700;
         font-size: clamp(26px, 4vw, 36px);
         letter-spacing: -0.02em;
       }
 
-      /* ---------- Orang (kartu foto) ---------- */
+      /* ---------- Kartu orang ---------- */
       .orang {
         position: relative;
         min-width: 0;
@@ -180,10 +235,11 @@
       .foto {
         aspect-ratio: 4 / 5;
         overflow: hidden;
-        border-radius: 6px;
-        background: var(--surface);
+        border-radius: 10px;
         display: grid;
         place-items: center;
+        background: rgba(255, 241, 18, 0.08);
+        border: 1px solid rgba(255, 241, 18, 0.22);
       }
       .foto img {
         width: 100%;
@@ -191,12 +247,16 @@
         object-fit: cover;
         object-position: center top;
         display: block;
+        transition: transform 0.35s ease;
+      }
+      .orang > button:hover .foto img {
+        transform: scale(1.04);
       }
       .foto b {
-        font-family: var(--display);
+        font-family: var(--font-display);
         font-size: 34px;
         font-weight: 700;
-        color: var(--brand);
+        color: var(--accent);
       }
       .nama {
         display: block;
@@ -204,60 +264,178 @@
         font-weight: 600;
         font-size: 14px;
         line-height: 1.35;
+        overflow-wrap: anywhere;
       }
       .jabatan {
         display: block;
         font-size: 13px;
         color: var(--muted);
       }
-      .orang .ig {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 32px;
-        height: 32px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: var(--glass);
-        border: 1px solid var(--glass-line);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        color: var(--ink);
+      .ig-link {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.3;
+        color: var(--accent);
         text-decoration: none;
-        opacity: 0;
-        transition: opacity 0.2s;
+        overflow-wrap: anywhere;
       }
-      .orang:hover .ig,
-      .orang:focus-within .ig {
-        opacity: 1;
+      .ig-link .ico {
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
       }
-      @media (hover: none) {
-        .orang .ig {
-          display: none;
+      .ig-link:hover {
+        text-decoration: underline;
+      }
+
+      /* ---------- Pengurus inti: susunan piramida 3D ---------- */
+      #judul-inti {
+        text-align: center;
+        margin-bottom: clamp(56px, 8vw, 88px);
+      }
+      .inti {
+        --px: 0;
+        --py: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px 24px;
+        align-items: start;
+        max-width: 880px;
+        margin: 0 auto;
+        perspective: 1300px;
+      }
+      .inti .orang::before,
+      .divisi,
+      .kotak {
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.07),
+            rgba(255, 255, 255, 0.025)
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--card-edge);
+        box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      }
+      .inti .orang {
+        --dn: 20;
+        position: relative;
+        padding: 10px 10px 14px;
+        border-radius: 18px;
+        transform-style: preserve-3d;
+        transform: translate3d(
+            calc(var(--px, 0) * var(--dn) * -0.3px),
+            calc(var(--py, 0) * var(--dn) * -0.2px),
+            calc(var(--dn) * 1px)
+          )
+          rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+        transition: transform 0.18s ease-out;
+        animation: kartuMengambang 6s ease-in-out infinite;
+        will-change: transform;
+      }
+      .inti .orang:first-child {
+        --dn: 70;
+        grid-column: 1 / -1;
+        width: min(100%, 320px);
+        justify-self: center;
+        animation-delay: 0s;
+      }
+      .inti .orang:nth-child(2) {
+        animation-delay: -1.5s;
+      }
+      .inti .orang:nth-child(3) {
+        animation-delay: -3s;
+      }
+      .inti .orang:nth-child(4) {
+        animation-delay: -4.5s;
+      }
+      /* lapis 1: cakram kaca di belakang */
+      .inti .orang::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .inti .orang:hover::before {
+        border-color: rgba(255, 241, 18, 0.45);
+        box-shadow:
+          0 24px 55px rgba(255, 241, 18, 0.13),
+          0 14px 40px rgba(0, 0, 0, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+      /* lapis 2: cincin kuning mengambang */
+      .inti .orang::after {
+        content: "";
+        position: absolute;
+        inset: -3%;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 241, 18, 0.35);
+        box-shadow:
+          0 0 30px rgba(255, 241, 18, 0.12),
+          inset 0 0 30px rgba(255, 241, 18, 0.05);
+        transform: translateZ(18px);
+        pointer-events: none;
+      }
+      /* lapis 3: foto & teks menonjol */
+      .inti .orang > button {
+        transform-style: preserve-3d;
+      }
+      .inti .foto {
+        transform: translateZ(40px);
+        box-shadow: 0 22px 30px rgba(0, 0, 0, 0.5);
+      }
+      .inti .orang:first-child .foto {
+        transform: translateZ(55px);
+      }
+      .inti .nama,
+      .inti .jabatan,
+      .inti .ig-link {
+        transform: translateZ(22px);
+      }
+      @keyframes kartuMengambang {
+        50% {
+          translate: 0 -8px;
         }
       }
 
-      /* ---------- Pengurus inti ---------- */
-      .inti {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr 1fr 1fr;
-        gap: 24px;
-        align-items: end;
+      /* kilau kaca & tilt ringan untuk foto anggota divisi */
+      .foto {
+        position: relative;
       }
-      .inti .orang {
-        padding: 10px 10px 14px;
-        border-radius: 16px;
+      .foto::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at var(--mx, 50%) var(--my, 30%),
+          rgba(255, 255, 255, 0.3),
+          transparent 55%
+        );
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
       }
-      .inti .foto {
-        border-radius: 10px;
+      .orang.miring .foto::after {
+        opacity: 1;
       }
       .inti .nama,
-      .inti .jabatan {
+      .inti .jabatan,
+      .inti .ig-link {
         padding: 0 4px;
       }
       .inti .nama {
-        font-family: var(--display);
+        font-family: var(--font-display);
         font-size: 17px;
       }
       .inti .orang:first-child .nama {
@@ -268,18 +446,17 @@
         border-bottom: 6px solid var(--accent);
       }
 
-      /* ---------- Divisi: satu baris per divisi ---------- */
+      /* ---------- Divisi ---------- */
       .divisi {
         display: grid;
         grid-template-columns: 260px 1fr;
         gap: clamp(24px, 5vw, 64px);
         padding: clamp(20px, 3vw, 32px);
         margin-bottom: 20px;
-        border-radius: 20px;
+        border-radius: 22px;
       }
       .divisi h4 {
         margin: 0 0 20px;
-        font-family: var(--display);
         font-weight: 700;
         font-size: clamp(24px, 3vw, 30px);
         line-height: 1.1;
@@ -288,23 +465,162 @@
       .divisi .koor {
         max-width: 150px;
       }
+      .divisi .koor .foto {
+        border-bottom: 5px solid var(--accent);
+      }
       .anggota {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
-        gap: 22px 16px;
-        align-content: start;
+        min-width: 0;
+      }
+
+      /* ---------- Chip filter divisi ---------- */
+      .chip-baris {
+        display: flex;
+        gap: 8px;
+        margin: 0 0 18px;
+        padding: 2px 2px 10px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .chip-baris::-webkit-scrollbar {
+        display: none;
+      }
+      .chip {
+        flex: 0 0 auto;
+        padding: 8px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--card-edge);
+        background: var(--glass);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .chip:hover {
+        border-color: rgba(255, 241, 18, 0.5);
+      }
+      .chip[aria-pressed="true"] {
+        background: var(--accent);
+        color: var(--on-accent);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      .luar {
+        display: none !important;
+      }
+      h3.judul {
+        scroll-margin-top: 110px;
+      }
+
+      /* ---------- Cincin 3D anggota divisi ---------- */
+      .cincin {
+        --cw: 140px;
+        position: relative;
+        height: 292px;
+        perspective: 900px;
+        touch-action: pan-y;
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        overflow-x: clip;
+        border-radius: 16px;
+      }
+      .cincin.geser {
+        cursor: grabbing;
+      }
+      .cincin .orang {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        width: var(--cw);
+        will-change: transform, opacity;
+        transition: opacity 0.2s;
+      }
+      .cincin .foto img {
+        pointer-events: none;
+        -webkit-user-drag: none;
+      }
+      .cincin .orang:not(.depan) .ig-link {
+        visibility: hidden;
+      }
+      .cincin .orang.depan .foto {
+        border-color: var(--accent);
+        box-shadow:
+          0 18px 36px rgba(0, 0, 0, 0.5),
+          0 0 28px rgba(255, 241, 18, 0.18);
+      }
+      .cincin-kontrol {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .cincin-kontrol button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--glass-edge);
+        background: var(--glass);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      }
+      .cincin-kontrol button:hover {
+        border-color: rgba(255, 241, 18, 0.5);
+        color: var(--accent);
+      }
+      .cincin-hitung {
+        min-width: 3.5em;
+        text-align: center;
+      }
+      .gyro-btn {
+        display: block;
+        margin: 22px auto 0;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 241, 18, 0.5);
+        background: var(--glass);
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .gyro-btn[hidden] {
+        display: none;
       }
 
       /* ---------- Cari ---------- */
       .cari {
+        display: block;
         width: min(100%, 360px);
-        padding: 11px 14px;
         margin: 0 0 24px;
+        padding: 11px 20px;
         border-radius: 999px;
-        padding-inline: 20px;
-        color: var(--ink);
-        font: inherit;
-        font-size: 15px;
+        font-size: 16px;
+        color: var(--text);
+        background: var(--glass);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--card-edge);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      }
+      .cari::placeholder {
+        color: var(--muted);
+      }
+      .cari:focus {
+        border-color: rgba(255, 241, 18, 0.5);
       }
       .tersembunyi {
         display: none !important;
@@ -314,7 +630,7 @@
         padding: 24px 0;
       }
 
-      /* ---------- Profil (popup) ---------- */
+      /* ---------- Popup profil ---------- */
       .modal {
         position: fixed;
         inset: 0;
@@ -322,7 +638,7 @@
         display: grid;
         place-items: center;
         padding: 20px;
-        background: rgba(10, 20, 30, 0.4);
+        background: rgba(var(--deep), 0.6);
         -webkit-backdrop-filter: blur(6px);
         backdrop-filter: blur(6px);
         opacity: 0;
@@ -336,6 +652,9 @@
       .kotak {
         position: relative;
         width: min(100%, 340px);
+        max-height: 90vh;
+        max-height: 90dvh;
+        overflow-y: auto;
         padding: 16px 16px 22px;
         border-radius: 22px;
         translate: 0 14px;
@@ -349,7 +668,6 @@
       }
       .kotak h5 {
         margin: 0;
-        font-family: var(--display);
         font-size: 21px;
         line-height: 1.2;
       }
@@ -359,7 +677,7 @@
         font-size: 14px;
       }
       .kotak a {
-        color: var(--brand);
+        color: var(--accent);
         font-weight: 600;
         font-size: 14px;
       }
@@ -367,48 +685,81 @@
         position: absolute;
         top: 24px;
         right: 24px;
-        width: 34px;
-        height: 34px;
-        border: 0;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--glass-edge);
         border-radius: 50%;
-        background: var(--paper);
+        background: rgba(var(--deep), 0.6);
         font-size: 22px;
         line-height: 1;
         cursor: pointer;
       }
 
+      /* ---------- Ajakan Instagram ---------- */
       .ig-resmi {
-        padding: 28px clamp(20px, 3vw, 32px);
-        margin-bottom: 56px;
-        border-radius: 20px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 16px;
+        padding: 28px clamp(20px, 3vw, 32px);
+        margin-bottom: 64px;
+        border-radius: 22px;
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.35),
+            transparent 45%
+          ),
+          linear-gradient(120deg, #fff112, #e3d500);
+        color: var(--on-accent);
       }
       .ig-resmi h3 {
         margin: 0;
-        font-family: var(--display);
         font-size: 24px;
       }
       .ig-resmi p {
         margin: 0;
-        color: var(--muted);
+        color: rgba(20, 18, 10, 0.75);
       }
       .ig-resmi a {
-        padding: 11px 20px;
-        border-radius: 6px;
-        background: var(--ink);
-        color: var(--paper);
-        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 14px;
+        background: var(--on-accent);
+        color: var(--accent);
+        font-weight: 700;
         text-decoration: none;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
       }
       .ig-resmi a:hover {
-        background: var(--brand);
+        transform: translateY(-2px);
       }
 
-      /* satu animasi masuk */
+      /* ---------- Footer (sama dengan beranda) ---------- */
+      :is(body, body.dark-mode) footer {
+        background: linear-gradient(180deg, rgba(var(--deep), 0.85), #070705);
+        border-top: 1px solid var(--card-edge);
+        color: var(--muted);
+      }
+      :is(body, body.dark-mode) footer h3 {
+        color: var(--accent);
+      }
+      footer a {
+        color: inherit;
+      }
+      .footer-content p {
+        display: flex;
+        align-items: center;
+      }
+      .ico {
+        width: 1.1em;
+        height: 1.1em;
+        flex-shrink: 0;
+        margin-right: 8px;
+        color: var(--accent);
+      }
+
+      /* ---------- Animasi masuk (satu saja) ---------- */
       .fade {
         opacity: 0;
         translate: 0 16px;
@@ -421,14 +772,19 @@
         translate: 0 0;
       }
       @media (prefers-reduced-motion: reduce) {
+        .inti .orang {
+          animation: none;
+        }
         .fade,
-        .kotak {
+        .kotak,
+        .foto img {
           opacity: 1;
           translate: none;
           transition: none;
         }
       }
 
+      /* ---------- Responsif ---------- */
       @media (max-width: 800px) {
         .inti {
           grid-template-columns: repeat(2, 1fr);
@@ -436,154 +792,103 @@
         }
         .inti .orang:first-child {
           grid-column: 1 / -1;
+          width: 100%;
           max-width: 260px;
+          margin-inline: auto;
         }
         .divisi {
           grid-template-columns: 1fr;
           gap: 22px;
-          border-radius: 16px;
+          border-radius: 18px;
         }
         .divisi .koor {
           max-width: 120px;
         }
-        .anggota {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 18px 12px;
+        .cincin {
+          --cw: 120px;
+          height: 270px;
+        }
+        .inti .orang:first-child {
+          --dn: 40;
+        }
+        .inti .orang:nth-child(4) {
+          grid-column: 1 / -1;
+          width: calc(50% - 9px);
+          justify-self: center;
+        }
+        .divisi,
+        .cari {
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+        }
+      }
+      @media (max-width: 560px) {
+        .hero-pengurus {
+          padding: 140px 24px 40px;
         }
       }
       @media (max-width: 420px) {
-        .anggota {
-          grid-template-columns: repeat(2, 1fr);
+        .cincin {
+          --cw: 112px;
+          height: 255px;
         }
-      }
-      /* perbaikan tampilan HP */
-      .cari {
-        font-size: 16px; /* cegah zoom otomatis di iPhone */
-      }
-      .nama {
-        overflow-wrap: anywhere;
-      }
-      .kotak {
-        max-height: 90vh;
-        max-height: 90dvh;
-        overflow-y: auto;
-      }
-      .tutup {
-        width: 40px;
-        height: 40px;
       }
 
-      @media (max-width: 800px) {
-        .inti .orang:first-child {
-          width: 100%;
-          margin-inline: auto; /* Ketua Umum di tengah */
-        }
-        /* blur lebih ringan supaya scroll tetap mulus */
+      @supports not (
+        (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+      ) {
+        .inti .orang::before,
         .divisi,
-        .inti .orang,
+        .kotak,
         .cari,
-        .ig-resmi,
-        .hero p {
-          -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+        :is(body, body.dark-mode) .site-header {
+          background: #1b1907;
         }
-      }
-      /* perbaikan hero di HP */
-      main .hero h2,
-      main .hero p {
-        position: static;
-        float: none;
-        transform: none;
-      }
-      main .hero h2 {
-        display: block;
-        max-width: none;
-        line-height: 1.08;
-        overflow-wrap: break-word;
-      }
-      main .hero p {
-        display: block;
-        width: fit-content;
-        max-width: 100%;
-        line-height: 1.55;
-      }
-
-      @media (max-width: 800px) {
-        .hero {
-          padding: 96px 5vw 40px; /* ruang untuk header di atas */
-        }
-        main .hero h2 {
-          font-size: clamp(30px, 9.5vw, 44px);
-          letter-spacing: -0.02em;
-          margin: 0 0 20px;
-        }
-        main .hero p {
-          font-size: 15px;
-          padding: 12px 14px;
-        }
-      }
-      .hero,
-      .sp-hero,
-      #sp-hero {
-        padding-top: 28px !important;
-        padding-bottom: 28px !important;
-        min-height: 0 !important;
-        height: auto !important;
-      }
-      .hero h2,
-      .sp-hero h2,
-      #sp-hero h2 {
-        margin-bottom: 14px !important;
-      }
-      /* FIX HERO MOBILE HIMAPTIKA */
-      @media (max-width: 800px) {
-        main .hero {
-          padding: 140px 5vw 45px !important;
-          min-height: auto !important;
-          height: auto !important;
-        }
-
-        main .hero h2 {
-          font-size: clamp(32px, 9vw, 44px);
-          line-height: 1.08;
-          margin-bottom: 18px;
-        }
-
-        main .hero p {
-          font-size: 15px;
-          max-width: 100%;
-        }
-      }
-      /* IG langsung terlihat di bawah nama */
-      .orang .ig-link {
-        display: block;
-        margin-top: 4px;
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--brand);
-        text-decoration: none;
-        overflow-wrap: anywhere;
-        line-height: 1.3;
-      }
-      .orang .ig-link i {
-        margin-right: 4px;
-      }
-      .orang .ig-link:hover,
-      .orang .ig-link:focus-visible {
-        text-decoration: underline;
-      }
-      .inti .orang .ig-link {
-        padding: 0 4px;
-      }
-
-      /* tombol bulat lama tidak diperlukan lagi */
-      .orang .ig {
-        display: none !important;
       }
     </style>
   </head>
 
   <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol
+        id="i-pin"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol
+        id="i-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="3" />
+        <path d="m3 7 9 6 9-6" />
+      </symbol>
+      <symbol
+        id="i-insta"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+      </symbol>
+    </svg>
+
     <header class="site-header">
       <button
         class="menu-toggle"
@@ -623,14 +928,6 @@
         <a href="agenda.html">Agenda</a>
         <a href="kontak.html">Kontak</a>
 
-        <button
-          id="darkModeToggle"
-          class="dark-mode-toggle"
-          type="button"
-          aria-label="Ganti mode gelap"
-        >
-          🌙
-        </button>
         <button id="logoutButton" class="logout-button" type="button">
           Logout
         </button>
@@ -638,21 +935,33 @@
     </header>
 
     <main>
-      <section class="hero" style="padding-bottom: clamp(48px, 7vw, 80px)">
-        <h2>Orang-orang di balik HIMAPTIKA</h2>
-        <p id="ringkas">
-          Pengurus HIMAPTIKA FKIP Universitas Tadulako periode 2026.
-        </p>
+      <section class="hero-pengurus">
+        <div class="hp-inner">
+          <p class="hp-label">STRUKTUR PENGURUS</p>
+          <h2>Orang-orang di balik HIMAPTIKA</h2>
+          <p id="ringkas">
+            Pengurus HIMAPTIKA FKIP Universitas Tadulako periode 2026.
+          </p>
+        </div>
       </section>
 
       <div class="wrap">
-        <section aria-labelledby="judul-inti">
+        <section class="blok" aria-labelledby="judul-inti">
           <h3 class="judul fade" id="judul-inti">Pengurus inti</h3>
           <div class="inti fade" id="inti"></div>
+          <button class="gyro-btn" id="gyroBtn" type="button" hidden>
+            Aktifkan efek miring
+          </button>
         </section>
 
-        <section aria-labelledby="judul-divisi" style="padding-top: 0">
+        <section class="blok" aria-labelledby="judul-divisi" style="padding-top: 0">
           <h3 class="judul fade" id="judul-divisi">Divisi</h3>
+          <div
+            class="chip-baris"
+            id="chip"
+            role="group"
+            aria-label="Filter divisi"
+          ></div>
           <input
             class="cari"
             id="cari"
@@ -684,8 +993,52 @@
     </main>
 
     <footer>
-      <p>© 2026 HIMAPTIKA FKIP Universitas Tadulako</p>
-      <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+      <div class="footer-content">
+        <div>
+          <h3>HIMAPTIKA</h3>
+          <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+          <p>FKIP Universitas Tadulako</p>
+        </div>
+
+        <div>
+          <h3>Tautan Cepat</h3>
+          <ul class="footer-links">
+            <li><a href="tentang.html">Tentang</a></li>
+            <li><a href="struktur-pengurus.html">Struktur Pengurus</a></li>
+            <li><a href="divisi.html">Divisi &amp; Program Kerja</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="jadwal-seminar.html">Jadwal Seminar</a></li>
+            <li><a href="pelayanan-akademik.html">Pelayanan Akademik</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Kontak</h3>
+          <p>
+            <svg class="ico" aria-hidden="true"><use href="#i-pin" /></svg
+            >Sekretariat himaptika, FKIP Universitas Tadulako, Palu
+          </p>
+          <p>
+            <svg class="ico" aria-hidden="true"><use href="#i-mail" /></svg
+            ><a href="mailto:Untadhimaptika@gmail.com"
+              >Untadhimaptika@gmail.com</a
+            >
+          </p>
+          <p>
+            <svg class="ico" aria-hidden="true"><use href="#i-insta" /></svg>
+            <a
+              href="https://www.instagram.com/himaptikafkipuntad/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >@himaptikafkipuntad</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
+      </div>
     </footer>
 
     <div
@@ -713,7 +1066,7 @@
         const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
         const body = document.body;
 
-        // [nama, file foto (kosong = inisial), username instagram]
+        // [nama, file foto (kosong = inisial), username instagram, jabatan]
         const inti = [
           [
             "I Made Agus Sufriyanto",
@@ -814,6 +1167,20 @@
             .map((w) => w[0].toUpperCase())
             .join("");
 
+        const igUrl = (u) =>
+          "https://www.instagram.com/" + encodeURIComponent(u) + "/";
+
+        function ikonIg() {
+          const ns = "http://www.w3.org/2000/svg";
+          const svg = document.createElementNS(ns, "svg");
+          svg.setAttribute("class", "ico");
+          svg.setAttribute("aria-hidden", "true");
+          const use = document.createElementNS(ns, "use");
+          use.setAttribute("href", "#i-insta");
+          svg.appendChild(use);
+          return svg;
+        }
+
         function fotoEl(nama, file) {
           const f = document.createElement("div");
           f.className = "foto";
@@ -828,7 +1195,7 @@
             pakaiInisial();
           } else {
             const img = document.createElement("img");
-            img.src = "images/" + file;
+            img.src = "images/" + encodeURIComponent(file);
             img.alt = "Foto " + nama;
             img.loading = "lazy";
             img.decoding = "async";
@@ -866,18 +1233,174 @@
           if (ig) {
             const a = document.createElement("a");
             a.className = "ig-link";
-            a.href =
-              "https://www.instagram.com/" + encodeURIComponent(ig) + "/";
+            a.href = igUrl(ig);
             a.target = "_blank";
             a.rel = "noopener noreferrer";
             a.setAttribute("aria-label", "Instagram " + nama);
-            a.innerHTML =
-              '<i class="fab fa-instagram" aria-hidden="true"></i>@' +
-              ig.replace(/[<>&"]/g, "");
+            a.append(ikonIg(), "@" + ig);
             w.appendChild(a);
           }
           b.addEventListener("click", () => buka(w, file));
           return w;
+        }
+
+        // ---------- Cincin 3D anggota divisi ----------
+        const kurang = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function buatCincin(ring, prev, next, hitung) {
+          const kartu = $$(".orang", ring);
+          let sudut = 0;
+          let target = 0;
+          let anim = null;
+          let tekan = false;
+          let seret = false;
+          let x0 = 0;
+          let sudut0 = 0;
+          let vel = 0;
+          let xTerakhir = 0;
+          let tTerakhir = 0;
+
+          const tampak = () =>
+            kartu.filter((k) => !k.classList.contains("tersembunyi"));
+          const langkah = () => 360 / Math.max(tampak().length, 1);
+          const bungkus = (d) => ((((d + 180) % 360) + 360) % 360) - 180;
+
+          function gambar() {
+            const v = tampak();
+            const n = v.length;
+            hitung.textContent = "";
+            if (!n) return;
+            const st = 360 / n;
+            const r = Math.min(ring.clientWidth * 0.34, 190);
+            const depan = ((Math.round(sudut / st) % n) + n) % n;
+            v.forEach((k, i) => {
+              const a = ((i * st - sudut) * Math.PI) / 180;
+              const sn = Math.sin(a);
+              const cs = Math.cos(a);
+              k.style.transform =
+                "translateX(-50%) translate3d(" +
+                (sn * r).toFixed(1) + "px,0," +
+                ((cs - 1) * r * 1.1).toFixed(1) + "px) rotateY(" +
+                (-sn * 26).toFixed(1) + "deg)";
+              k.style.opacity = (0.28 + 0.72 * Math.pow((cs + 1) / 2, 1.6)).toFixed(2);
+              k.style.zIndex = Math.round((cs + 1) * 50);
+              const f = i === depan;
+              k.classList.toggle("depan", f);
+              k.querySelector("button").tabIndex = f ? 0 : -1;
+            });
+            hitung.textContent = depan + 1 + " / " + n;
+          }
+
+          function jalan() {
+            if (kurang) {
+              sudut = target;
+              gambar();
+              return;
+            }
+            if (anim) return;
+            const f = () => {
+              const d = target - sudut;
+              if (Math.abs(d) < 0.05 && !seret) {
+                sudut = target;
+                gambar();
+                anim = null;
+                return;
+              }
+              if (!seret) sudut += d * 0.16;
+              gambar();
+              anim = requestAnimationFrame(f);
+            };
+            anim = requestAnimationFrame(f);
+          }
+
+          const geserKe = (arah) => {
+            const st = langkah();
+            target = Math.round(target / st) * st + arah * st;
+            jalan();
+          };
+          prev.addEventListener("click", () => geserKe(-1));
+          next.addEventListener("click", () => geserKe(1));
+          ring.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              geserKe(-1);
+            } else if (e.key === "ArrowRight") {
+              e.preventDefault();
+              geserKe(1);
+            }
+          });
+
+          ring.addEventListener("pointerdown", (e) => {
+            if (e.pointerType === "mouse" && e.button !== 0) return;
+            tekan = true;
+            seret = false;
+            x0 = xTerakhir = e.clientX;
+            tTerakhir = e.timeStamp;
+            sudut0 = sudut;
+            vel = 0;
+          });
+          ring.addEventListener("pointermove", (e) => {
+            if (!tekan) return;
+            const dx = e.clientX - x0;
+            if (!seret && Math.abs(dx) > 6) {
+              seret = true;
+              ring.setPointerCapture(e.pointerId);
+              ring.classList.add("geser");
+            }
+            if (!seret) return;
+            const dt = Math.max(e.timeStamp - tTerakhir, 1);
+            vel = (-(e.clientX - xTerakhir) * (langkah() / 110)) / dt;
+            xTerakhir = e.clientX;
+            tTerakhir = e.timeStamp;
+            sudut = sudut0 - dx * (langkah() / 110);
+            target = sudut;
+            gambar();
+            if (!anim && !kurang) jalan();
+          });
+          const lepas = () => {
+            if (!tekan) return;
+            tekan = false;
+            if (seret) {
+              const st = langkah();
+              target = Math.round((sudut + vel * 120) / st) * st;
+              seret = false;
+              ring.classList.remove("geser");
+              jalan();
+            }
+          };
+          ring.addEventListener("pointerup", lepas);
+          ring.addEventListener("pointercancel", lepas);
+
+          // ketuk kartu samping = putar ke depan; ketuk kartu depan = buka profil
+          ring.addEventListener(
+            "click",
+            (e) => {
+              const k = e.target.closest(".orang");
+              if (!k || k.classList.contains("depan")) return;
+              e.preventDefault();
+              e.stopPropagation();
+              const v = tampak();
+              const st = langkah();
+              target = sudut + bungkus(v.indexOf(k) * st - sudut);
+              jalan();
+            },
+            true,
+          );
+
+          if ("ResizeObserver" in window) {
+            new ResizeObserver(gambar).observe(ring);
+          } else {
+            window.addEventListener("resize", gambar);
+          }
+
+          return {
+            segarkan(reset) {
+              if (reset) {
+                sudut = target = 0;
+              }
+              gambar();
+            },
+          };
         }
 
         // ---------- Render ----------
@@ -887,6 +1410,8 @@
         divisi.forEach((d) => {
           const row = document.createElement("article");
           row.className = "divisi";
+          row.dataset.slug = d.nama.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+          row.id = "divisi-" + row.dataset.slug;
 
           const kiri = document.createElement("div");
           const h = document.createElement("h4");
@@ -900,12 +1425,36 @@
 
           const kanan = document.createElement("div");
           kanan.className = "anggota";
+
+          const ring = document.createElement("div");
+          ring.className = "cincin";
+          ring.tabIndex = 0;
+          ring.setAttribute("role", "group");
+          ring.setAttribute("aria-roledescription", "carousel");
+          ring.setAttribute("aria-label", "Anggota divisi " + d.nama);
           d.anggota.forEach((a) =>
-            kanan.appendChild(orang(a, { sub: "Anggota divisi " + d.nama })),
+            ring.appendChild(orang(a, { sub: "Anggota divisi " + d.nama })),
           );
 
+          const kontrol = document.createElement("div");
+          kontrol.className = "cincin-kontrol";
+          const prev = document.createElement("button");
+          prev.type = "button";
+          prev.textContent = "‹";
+          prev.setAttribute("aria-label", "Anggota sebelumnya");
+          const hitung = document.createElement("span");
+          hitung.className = "cincin-hitung";
+          hitung.setAttribute("aria-live", "polite");
+          const next = document.createElement("button");
+          next.type = "button";
+          next.textContent = "›";
+          next.setAttribute("aria-label", "Anggota berikutnya");
+          kontrol.append(prev, hitung, next);
+
+          kanan.append(ring, kontrol);
           row.append(kiri, kanan);
           wadah.appendChild(row);
+          row._cincin = buatCincin(ring, prev, next, hitung);
         });
 
         const total = $$(".orang").length;
@@ -914,6 +1463,45 @@
           " pengurus dalam " +
           divisi.length +
           " divisi menjalankan HIMAPTIKA FKIP Universitas Tadulako periode 2026.";
+
+        // ---------- Filter divisi (chip) ----------
+        const chipWadah = $("#chip");
+        const daftarChip = [{ slug: "semua", nama: "Semua" }].concat(
+          divisi.map((d) => ({
+            slug: d.nama.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+            nama: d.nama,
+          })),
+        );
+
+        function pilihDivisi(slug, ubahHash) {
+          $$(".chip", chipWadah).forEach((c) =>
+            c.setAttribute("aria-pressed", String(c.dataset.slug === slug)),
+          );
+          $$(".divisi").forEach((r) =>
+            r.classList.toggle("luar", slug !== "semua" && r.dataset.slug !== slug),
+          );
+          $("#cari").dispatchEvent(new Event("input"));
+          if (ubahHash) {
+            history.replaceState(
+              null,
+              "",
+              slug === "semua"
+                ? location.pathname + location.search
+                : "#divisi-" + slug,
+            );
+          }
+        }
+
+        daftarChip.forEach((c) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "chip";
+          b.dataset.slug = c.slug;
+          b.textContent = c.nama;
+          b.setAttribute("aria-pressed", String(c.slug === "semua"));
+          b.addEventListener("click", () => pilihDivisi(c.slug, true));
+          chipWadah.appendChild(b);
+        });
 
         // ---------- Cari ----------
         const kosong = $("#kosong");
@@ -928,10 +1516,20 @@
               if (cocok) cocokBaris++;
             });
             row.classList.toggle("tersembunyi", cocokBaris === 0);
-            if (cocokBaris) ada++;
+            if (cocokBaris && !row.classList.contains("luar")) ada++;
+            if (row._cincin) row._cincin.segarkan(true);
           });
           kosong.classList.toggle("tersembunyi", ada !== 0);
         });
+
+        // buka langsung divisi dari link, mis. struktur-pengurus.html#divisi-kerohanian
+        if (location.hash.indexOf("#divisi-") === 0) {
+          const slug = location.hash.slice(8);
+          if (daftarChip.some((c) => c.slug === slug)) {
+            pilihDivisi(slug, false);
+            $("#judul-divisi").scrollIntoView();
+          }
+        }
 
         // ---------- Popup profil ----------
         const modal = $("#modal");
@@ -949,10 +1547,7 @@
           ig.replaceChildren();
           if (w.dataset.ig) {
             const a = document.createElement("a");
-            a.href =
-              "https://www.instagram.com/" +
-              encodeURIComponent(w.dataset.ig) +
-              "/";
+            a.href = igUrl(w.dataset.ig);
             a.target = "_blank";
             a.rel = "noopener noreferrer";
             a.textContent = "Instagram @" + w.dataset.ig;
@@ -973,7 +1568,105 @@
           if (e.target === modal) tutupModal();
         });
 
-        // ---------- Menu & mode gelap ----------
+        // jaga fokus Tab tetap di dalam popup
+        modal.addEventListener("keydown", (e) => {
+          if (e.key !== "Tab") return;
+          const fokus = $$("a[href], button", modal);
+          if (!fokus.length) return;
+          const awal = fokus[0];
+          const akhir = fokus[fokus.length - 1];
+          if (e.shiftKey && document.activeElement === awal) {
+            e.preventDefault();
+            akhir.focus();
+          } else if (!e.shiftKey && document.activeElement === akhir) {
+            e.preventDefault();
+            awal.focus();
+          }
+        });
+
+        // ---------- Efek 3D: tilt kartu + parallax piramida ----------
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          const intiEl = $("#inti");
+          const atur = (el, k, v) => el.style.setProperty(k, v);
+
+          intiEl.addEventListener("pointermove", (e) => {
+            if (e.pointerType === "touch") return;
+            const r = intiEl.getBoundingClientRect();
+            atur(intiEl, "--px", (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+            atur(intiEl, "--py", (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+          });
+          intiEl.addEventListener("pointerleave", () => {
+            atur(intiEl, "--px", 0);
+            atur(intiEl, "--py", 0);
+          });
+
+          $$("#inti .orang").forEach((o) => {
+            const kuat = 14;
+            o.addEventListener("pointermove", (e) => {
+              if (e.pointerType === "touch") return;
+              const r = o.getBoundingClientRect();
+              const x = (e.clientX - r.left) / r.width;
+              const y = (e.clientY - r.top) / r.height;
+              atur(o, "--rx", ((0.5 - y) * kuat).toFixed(2) + "deg");
+              atur(o, "--ry", ((x - 0.5) * kuat).toFixed(2) + "deg");
+              atur(o, "--mx", (x * 100).toFixed(1) + "%");
+              atur(o, "--my", (y * 100).toFixed(1) + "%");
+              o.classList.add("miring");
+            });
+            o.addEventListener("pointerleave", () => {
+              ["--rx", "--ry", "--mx", "--my"].forEach((k) =>
+                o.style.removeProperty(k),
+              );
+              o.classList.remove("miring");
+            });
+          });
+
+          // ---------- Giroskop: kartu inti miring mengikuti ponsel ----------
+          const btn = $("#gyroBtn");
+          if (matchMedia("(hover: none)").matches && "DeviceOrientationEvent" in window) {
+            let dasar = null;
+            let terakhir = null;
+            let jadwal = false;
+            const klem = (v) => Math.max(-1, Math.min(1, v));
+            const saat = (e) => {
+              if (e.gamma == null || e.beta == null) return;
+              if (!dasar) dasar = { g: e.gamma, b: e.beta };
+              terakhir = e;
+              if (jadwal) return;
+              jadwal = true;
+              requestAnimationFrame(() => {
+                jadwal = false;
+                const gx = klem((terakhir.gamma - dasar.g) / 25);
+                const by = klem((terakhir.beta - dasar.b) / 25);
+                atur(intiEl, "--px", gx.toFixed(3));
+                atur(intiEl, "--py", by.toFixed(3));
+                atur(intiEl, "--ry", (gx * 12).toFixed(2) + "deg");
+                atur(intiEl, "--rx", (-by * 10).toFixed(2) + "deg");
+              });
+            };
+            const mulai = () => window.addEventListener("deviceorientation", saat);
+            if (typeof DeviceOrientationEvent.requestPermission === "function") {
+              btn.hidden = false;
+              btn.addEventListener("click", async () => {
+                try {
+                  const h = await DeviceOrientationEvent.requestPermission();
+                  if (h === "granted") {
+                    mulai();
+                    btn.hidden = true;
+                  } else {
+                    btn.textContent = "Izin ditolak";
+                  }
+                } catch (_) {
+                  btn.textContent = "Tidak didukung di perangkat ini";
+                }
+              });
+            } else {
+              mulai();
+            }
+          }
+        }
+
+        // ---------- Menu ----------
         const menuToggle = $("#menuToggle");
         const mainNav = $("#mainNav");
         function tutupMenu() {
@@ -1008,15 +1701,7 @@
           }
         });
 
-        const dm = $("#darkModeToggle");
-        if (dm) {
-          dm.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-            dm.textContent = body.classList.contains("dark-mode") ? "☀️" : "🌙";
-          });
-        }
-
-        // ---------- Satu animasi: fade-in saat scroll ----------
+        // ---------- Fade-in saat scroll ----------
         const items = $$(".fade");
         if ("IntersectionObserver" in window) {
           const io = new IntersectionObserver(
@@ -1044,29 +1729,42 @@
         signOut,
       } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
+      document.documentElement.style.visibility = "hidden";
+
+      // Jika Firebase tidak membalas dalam 8 detik, tampilkan pesan (bukan layar kosong)
+      const authTimeout = setTimeout(() => {
+        document.documentElement.style.visibility = "visible";
+        document.body.innerHTML =
+          '<p style="padding:48px 24px;text-align:center;font-family:sans-serif;color:#fffdf0;">' +
+          "Halaman gagal dimuat. Periksa koneksi internet lalu " +
+          '<a href="" style="color:#fff112">muat ulang</a>.</p>';
+      }, 8000);
+
+      const logoutButton = document.getElementById("logoutButton");
+      if (logoutButton) {
+        logoutButton.addEventListener("click", async () => {
+          if (!confirm("Apakah kamu yakin ingin keluar dari akun?")) return;
+          logoutButton.disabled = true;
+          try {
+            await signOut(auth);
+            window.location.replace("login.html");
+          } catch (error) {
+            console.error("Gagal logout:", error);
+            logoutButton.disabled = false;
+            alert("Gagal keluar. Silakan coba kembali.");
+          }
+        });
+      }
+
       onAuthStateChanged(auth, (user) => {
+        clearTimeout(authTimeout);
         if (user) {
           document.documentElement.style.visibility = "visible";
         } else {
           window.location.replace("login.html");
         }
       });
-
-      const logoutButton = document.getElementById("logoutButton");
-
-      if (logoutButton) {
-        logoutButton.addEventListener("click", async () => {
-          if (!confirm("Apakah kamu yakin ingin keluar dari akun?")) return;
-
-          try {
-            await signOut(auth);
-            window.location.replace("login.html");
-          } catch (error) {
-            console.error("Logout error:", error);
-            alert("Gagal keluar. Silakan coba kembali.");
-          }
-        });
-      }
     </script>
   </body>
 </html>
+</document_content>
