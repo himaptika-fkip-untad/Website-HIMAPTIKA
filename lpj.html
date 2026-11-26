@@ -1,1301 +1,1978 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPJ Pelayanan Akademik | HIMAPTIKA FKIP UNTAD</title>
+    <meta name="theme-color" content="#0d0d0a" />
+    <link rel="icon" type="image/png" href="images/logo-himaptika.png" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <title>Laporan Pertanggungjawaban Pelayanan Akademik | HIMAPTIKA FKIP UNTAD</title>
+    <link rel="stylesheet" href="style.css" />
 
-    <!-- CSS utama website HIMAPTIKA -->
-    <link rel="stylesheet" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
-    <!-- Ikon -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-inter/6.5.2/css/all.min.css">
+    <style id="glass-himaptika">
+      /* ============ GLASS GELAP + KUNING · SAMA DENGAN BERANDA ============ */
+      :root {
+        --accent: #fff112;
+        --on-accent: #14120a;
+        --deep: 13, 13, 10;
+        --bg: #0d0d0a;
+        --glow-1: #3a3704;
+        --glow-2: #26240a;
+        --text: #fffdf0;
+        --muted: rgba(255, 253, 240, 0.72);
+        --glass-edge: rgba(255, 255, 255, 0.28);
+        --glass: rgba(30, 28, 6, 0.45);
+        --card-edge: rgba(255, 255, 255, 0.14);
+        --blur: blur(18px) saturate(170%);
 
-    <style>
-        /* =====================================
-           LPJ PELAYANAN AKADEMIK
-        ===================================== */
+        --home-ink: var(--text);
+        --home-muted: var(--muted);
+        --home-blue: var(--accent);
+        --home-blue-dark: var(--text);
+        --home-soft: transparent;
+        --home-line: var(--card-edge);
 
-        .lpj-document-section {
-            scroll-margin-top: 100px;
+        --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+        --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      body,
+      body.dark-mode {
+        position: relative;
+        color: var(--text);
+        background: var(--bg);
+        font-family: var(--font-body);
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+      }
+      body::before {
+        width: 600px;
+        height: 600px;
+        top: -180px;
+        left: -160px;
+        background: var(--glow-1);
+        opacity: 0.9;
+      }
+      body::after {
+        width: 560px;
+        height: 560px;
+        bottom: -200px;
+        right: -160px;
+        background: var(--glow-2);
+        opacity: 0.9;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .brand-text h1,
+      .drawer-brand h2 {
+        font-family: var(--font-display);
+      }
+      h2,
+      h3 {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      /* ---------- Header & navbar (sama dengan beranda) ---------- */
+      :is(body, body.dark-mode) {
+        .site-header {
+          background: rgba(var(--deep), 0.55);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          backdrop-filter: blur(20px) saturate(180%);
+          border-bottom: 1px solid var(--glass-edge);
+          box-shadow:
+            0 10px 35px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.14);
         }
-
-        .lpj-program-card {
-            scroll-margin-top: 100px;
+        .brand-text h1,
+        .drawer-brand h2,
+        nav a {
+          color: var(--text);
         }
-
-        .lpj-program-detail {
-            margin-top: 20px;
+        .brand-text p,
+        .drawer-brand p {
+          color: var(--muted);
         }
-
-        .lpj-program-detail h4 {
-            color: #174b80;
-            margin-top: 18px;
-            margin-bottom: 8px;
+        nav a {
+          border-radius: 10px;
+          transition:
+            background 0.2s ease,
+            color 0.2s ease;
         }
-
-        .lpj-program-detail p,
-        .lpj-program-detail ul {
-            line-height: 1.8;
+        nav a:hover {
+          background: rgba(255, 255, 255, 0.1);
         }
-
-        .lpj-subsection {
-            margin-top: 20px;
+        nav a.active {
+          color: var(--accent);
+          background: rgba(255, 241, 18, 0.12);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
         }
-
-        .lpj-subsection h3 {
-            color: #174b80;
-            margin-bottom: 12px;
+        .menu-toggle span {
+          background: var(--text);
         }
-
-        .lpj-subsection h4 {
-            color: #174b80;
-            margin-top: 18px;
-            margin-bottom: 8px;
+        .logout-button {
+          background: var(--accent);
+          color: var(--on-accent);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 12px;
+          font-weight: 700;
         }
-
-        .lpj-evaluation-item {
-            background: #f5f9ff;
-            border-left: 4px solid #1266b5;
-            padding: 18px;
-            border-radius: 9px;
-            margin-top: 15px;
+        footer {
+          background: linear-gradient(180deg, rgba(var(--deep), 0.85), #070705);
+          border-top: 1px solid var(--card-edge);
+          color: var(--muted);
         }
-
-        .lpj-evaluation-item h3 {
-            margin-top: 0;
-            color: #174b80;
+        footer h3 {
+          color: var(--accent);
         }
+      }
 
-        .lpj-evaluation-item p {
-            line-height: 1.8;
+      @media (max-width: 960px) {
+        #mainNav {
+          background: rgba(var(--deep), 0.88);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          backdrop-filter: blur(24px) saturate(180%);
+          border-right: 1px solid var(--glass-edge);
         }
+      }
 
-        .lpj-finance-table {
-            min-width: 600px;
+      /* ============ HALAMAN LPJ ============ */
+      .lpj-page {
+        background: transparent;
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .lpj-container {
+        width: min(1180px, 100%);
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+
+      /* ---------- Hero ---------- */
+      .lpj-hero {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding: clamp(76px, 10vw, 120px) 0;
+        background: transparent;
+        color: var(--text);
+      }
+      .lpj-hero::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 520px;
+        height: 520px;
+        right: -190px;
+        top: -250px;
+        border: 1px solid rgba(255, 241, 18, 0.16);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 42px rgba(255, 241, 18, 0.025),
+          0 0 0 88px rgba(255, 241, 18, 0.015);
+      }
+      .lpj-hero .lpj-container {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr;
+        align-items: center;
+        gap: 45px;
+      }
+
+      .lpj-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 20px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+
+      .lpj-hero h1 {
+        margin-bottom: 20px;
+        color: var(--text);
+        font-size: clamp(34px, 5vw, 58px);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+      .lpj-hero h1 span {
+        display: block;
+        color: var(--accent);
+        text-shadow: 0 0 30px rgba(255, 241, 18, 0.3);
+      }
+      .lpj-hero p {
+        max-width: 620px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .lpj-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .lpj-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 13px 22px;
+        border-radius: 12px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+      .lpj-button:hover {
+        transform: translateY(-3px);
+      }
+      .lpj-button:focus-visible,
+      .lpj-back-button:focus-visible {
+        outline: 3px solid rgba(255, 241, 18, 0.5);
+        outline-offset: 3px;
+      }
+      .lpj-button-primary {
+        background: var(--accent);
+        color: var(--on-accent);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 10px 30px rgba(255, 241, 18, 0.18);
+      }
+      .lpj-button-outline {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--glass-edge);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+      }
+      .lpj-button-outline:hover {
+        background: rgba(255, 241, 18, 0.1);
+        border-color: rgba(255, 241, 18, 0.45);
+      }
+
+      /* kartu dekorasi kaca */
+      .lpj-decoration-card {
+        width: min(300px, 100%);
+        min-height: 260px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 13px;
+        text-align: center;
+        border-radius: 28px;
+        background:
+          radial-gradient(
+            circle at 30% 20%,
+            rgba(255, 255, 255, 0.22),
+            transparent 55%
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--glass-edge);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.5),
+          0 0 50px rgba(255, 241, 18, 0.1),
+          inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        animation: lpjFloat 6s ease-in-out infinite;
+      }
+      .lpj-decoration-card i {
+        color: var(--accent);
+        font-size: 55px;
+        filter: drop-shadow(0 0 22px rgba(255, 241, 18, 0.45));
+      }
+      .lpj-decoration-card span {
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 3px;
+      }
+      .lpj-decoration-card strong {
+        color: var(--text);
+        font-family: var(--font-display);
+        font-size: 23px;
+      }
+      .lpj-decoration-card small {
+        color: var(--muted);
+        letter-spacing: 1px;
+      }
+      @keyframes lpjFloat {
+        50% {
+          translate: 0 -14px;
         }
+      }
 
-        .lpj-finance-total-row {
-            background: #eaf3ff !important;
-            font-weight: bold;
+      /* ---------- Kartu kaca (dipakai di banyak bagian) ---------- */
+      .lpj-summary-card,
+      .lpj-sidebar,
+      .lpj-document-section {
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.07),
+            rgba(255, 255, 255, 0.025)
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--card-edge);
+        box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      }
+
+      /* ---------- Ringkasan ---------- */
+      .lpj-summary {
+        padding: 20px 0 35px;
+      }
+      .lpj-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .lpj-summary-card {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        padding: 23px;
+        border-radius: 20px;
+      }
+      .lpj-summary-icon {
+        width: 52px;
+        height: 52px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        color: var(--accent);
+        font-size: 21px;
+        background: rgba(255, 241, 18, 0.1);
+        border: 1px solid rgba(255, 241, 18, 0.3);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+      .lpj-summary-card span,
+      .lpj-summary-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .lpj-summary-card h3 {
+        margin: 4px 0;
+        color: var(--text);
+        font-size: 20px;
+      }
+
+      /* ---------- Isi laporan ---------- */
+      .lpj-main-section {
+        padding: 45px 0 80px;
+      }
+      .lpj-section-heading {
+        margin-bottom: 40px;
+        text-align: center;
+      }
+      .lpj-section-label {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+      .lpj-section-heading h2 {
+        margin: 10px 0;
+        color: var(--text);
+        font-size: clamp(26px, 4vw, 34px);
+      }
+      .lpj-section-heading p {
+        color: var(--muted);
+      }
+
+      .lpj-content-layout {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 30px;
+        align-items: start;
+      }
+
+      /* ---------- Daftar isi ---------- */
+      .lpj-sidebar {
+        position: sticky;
+        top: 110px;
+        padding: 22px;
+        border-radius: 20px;
+      }
+      .lpj-sidebar h3 {
+        margin: 0 0 17px;
+        color: var(--text);
+        font-size: 17px;
+      }
+      .lpj-sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 10px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        text-decoration: none;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      .lpj-sidebar-link span {
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .lpj-sidebar-link:hover,
+      .lpj-sidebar-link.active {
+        color: var(--accent);
+        background: rgba(255, 241, 18, 0.12);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      }
+      .lpj-sidebar-link:focus-visible {
+        outline: 2px solid rgba(255, 241, 18, 0.6);
+      }
+
+      .lpj-content {
+        min-width: 0;
+      }
+
+      .lpj-document-section {
+        margin-bottom: 25px;
+        padding: clamp(20px, 3vw, 30px);
+        border-radius: 22px;
+        scroll-margin-top: 110px;
+      }
+
+      .lpj-document-heading {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-bottom: 20px;
+        margin-bottom: 23px;
+        border-bottom: 1px solid var(--card-edge);
+      }
+      .lpj-document-heading > span {
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        color: var(--accent);
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 800;
+        background: rgba(255, 241, 18, 0.1);
+        border: 1px solid rgba(255, 241, 18, 0.3);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+      .lpj-document-heading h2 {
+        margin: 0 0 5px;
+        color: var(--text);
+        font-size: 21px;
+      }
+      .lpj-document-heading p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .lpj-info-box {
+        margin-bottom: 20px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 14px;
+        border-left: 4px solid var(--accent);
+      }
+      .lpj-info-box:last-child {
+        margin-bottom: 0;
+      }
+      .lpj-info-box h3 {
+        margin: 0 0 13px;
+        color: var(--text);
+        font-size: 17px;
+      }
+      .lpj-info-box h3:not(:first-child) {
+        margin-top: 22px;
+      }
+      .lpj-info-box h4 {
+        margin: 18px 0 8px;
+        color: var(--accent);
+        font-size: 14px;
+      }
+      .lpj-info-box p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+      .lpj-info-box p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ---------- Anggota ---------- */
+      .lpj-member-group {
+        margin-bottom: 28px;
+      }
+      .lpj-member-group h3,
+      .lpj-finance-group h3 {
+        margin-bottom: 15px;
+        color: var(--text);
+        font-size: 16px;
+      }
+
+      .lpj-coordinator-box {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--card-edge);
+        border-radius: 14px;
+      }
+      .lpj-member-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .lpj-member-detail span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .lpj-member-detail strong {
+        color: var(--text);
+        font-size: 14px;
+        overflow-wrap: anywhere;
+      }
+      .lpj-instagram-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .lpj-instagram-link:hover {
+        text-decoration: underline;
+      }
+      .lpj-instagram-link .fa-arrow-up-right-from-square {
+        font-size: 11px;
+      }
+
+      /* ---------- Tabel ---------- */
+      .lpj-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid var(--card-edge);
+        border-radius: 12px;
+      }
+      .lpj-table {
+        width: 100%;
+        min-width: 650px;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .lpj-table th {
+        padding: 14px 12px;
+        color: var(--accent);
+        text-align: left;
+        white-space: nowrap;
+        background: rgba(255, 241, 18, 0.12);
+        border-bottom: 1px solid rgba(255, 241, 18, 0.3);
+      }
+      .lpj-table td {
+        padding: 13px 12px;
+        color: var(--muted);
+        border-bottom: 1px solid var(--card-edge);
+      }
+      .lpj-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .lpj-table tbody tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.035);
+      }
+      .lpj-finance-total-row td {
+        color: var(--accent);
+        font-weight: 800;
+        background: rgba(255, 241, 18, 0.1) !important;
+        border-top: 1px solid rgba(255, 241, 18, 0.3);
+      }
+
+      /* ---------- Daftar ---------- */
+      .lpj-list {
+        padding-left: 22px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.9;
+      }
+      .lpj-list li {
+        padding-left: 5px;
+        margin-bottom: 8px;
+      }
+      .lpj-list li::marker {
+        color: var(--accent);
+      }
+
+      /* ---------- Program ---------- */
+      .lpj-program-card {
+        padding: 23px;
+        margin-bottom: 22px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--card-edge);
+        border-radius: 16px;
+      }
+      .lpj-program-card:last-child {
+        margin-bottom: 0;
+      }
+      .lpj-program-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+      .lpj-program-number {
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+      .lpj-status {
+        padding: 7px 12px;
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 999px;
+        background: rgba(255, 241, 18, 0.1);
+        border: 1px solid rgba(255, 241, 18, 0.3);
+      }
+      .lpj-program-card h3 {
+        margin: 0 0 10px;
+        color: var(--text);
+        font-size: 20px;
+      }
+      .lpj-program-card > p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .lpj-program-data {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .lpj-program-data > div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 14px 16px;
+        background: rgba(255, 241, 18, 0.06);
+        border: 1px solid rgba(255, 241, 18, 0.2);
+        border-radius: 12px;
+      }
+      .lpj-program-data span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .lpj-program-data strong {
+        color: var(--text);
+        font-size: 15px;
+      }
+      .lpj-program-detail {
+        padding-top: 13px;
+        margin-top: 15px;
+        border-top: 1px solid var(--card-edge);
+      }
+      .lpj-program-detail h4 {
+        margin: 15px 0 7px;
+        color: var(--accent);
+        font-size: 14px;
+      }
+      .lpj-program-detail p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      /* ---------- Evaluasi ---------- */
+      .lpj-evaluation-item {
+        margin-bottom: 15px;
+        padding: 20px 22px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--card-edge);
+        border-left: 4px solid var(--accent);
+        border-radius: 14px;
+      }
+      .lpj-evaluation-item:last-child {
+        margin-bottom: 0;
+      }
+      .lpj-evaluation-item h3 {
+        margin: 0 0 10px;
+        color: var(--text);
+        font-size: 16px;
+      }
+      .lpj-evaluation-item p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      /* ---------- Keuangan ---------- */
+      .lpj-finance-group {
+        margin-bottom: 27px;
+      }
+      .lpj-finance-group:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ---------- Penutup ---------- */
+      .lpj-closing {
+        padding: 27px;
+        background: rgba(255, 241, 18, 0.06);
+        border: 1px solid rgba(255, 241, 18, 0.2);
+        border-left: 4px solid var(--accent);
+        border-radius: 14px;
+      }
+      .lpj-closing > i {
+        margin-bottom: 15px;
+        color: var(--accent);
+        font-size: 28px;
+      }
+      .lpj-closing p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.9;
+      }
+      .lpj-closing strong {
+        display: block;
+        margin-top: 20px;
+        color: var(--accent);
+        font-size: 13px;
+        letter-spacing: 0.05em;
+      }
+
+      /* ---------- Kembali ---------- */
+      .lpj-bottom-action {
+        margin-top: 30px;
+      }
+      .lpj-back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 22px;
+        color: var(--on-accent);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        background: var(--accent);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(255, 241, 18, 0.18);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .lpj-back-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 38px rgba(255, 241, 18, 0.3);
+      }
+
+      /* ---------- Footer & ikon ---------- */
+      .footer-content {
+        gap: 40px;
+      }
+      .footer-content p {
+        display: flex;
+        align-items: center;
+      }
+      .ico {
+        width: 1.1em;
+        height: 1.1em;
+        flex-shrink: 0;
+        margin-right: 8px;
+        color: var(--accent);
+      }
+
+      /* ---------- HP ---------- */
+      @media (max-width: 900px) {
+        .lpj-content-layout {
+          grid-template-columns: 1fr;
         }
-
-        .lpj-finance-total-row td {
-            color: #174b80;
+        .lpj-sidebar {
+          position: static;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 5px;
         }
-
-        .lpj-finance-group {
-            margin-top: 25px;
+        .lpj-sidebar h3 {
+          grid-column: 1 / -1;
         }
+      }
 
-        .lpj-finance-group h3 {
-            color: #174b80;
-            margin-bottom: 15px;
+      @media (max-width: 650px) {
+        .lpj-container {
+          padding-inline: 20px;
         }
-
-        .lpj-closing {
-            line-height: 1.9;
+        .lpj-hero {
+          padding: 68px 0 50px;
         }
-
-        .lpj-instagram-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
+        .lpj-hero .lpj-container,
+        .lpj-summary-grid,
+        .lpj-coordinator-box,
+        .lpj-program-data,
+        .lpj-sidebar {
+          grid-template-columns: 1fr;
         }
+        .lpj-decoration-card {
+          min-height: 200px;
+        }
+        .lpj-document-heading h2 {
+          font-size: 18px;
+        }
+        .lpj-hero-actions {
+          flex-direction: column;
+        }
+        .lpj-button {
+          width: 100%;
+        }
+      }
 
-        @media print {
+      @media (prefers-reduced-motion: reduce) {
+        .lpj-decoration-card {
+          animation: none !important;
+        }
+        .lpj-button,
+        .lpj-back-button {
+          transition: none;
+        }
+      }
+
+      @supports not (
+        (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+      ) {
+        :is(body, body.dark-mode)
+          :is(
             .site-header,
+            .lpj-summary-card,
             .lpj-sidebar,
-            .lpj-hero-actions,
-            .lpj-bottom-action,
-            .site-footer {
-                display: none !important;
-            }
+            .lpj-document-section,
+            .lpj-decoration-card
+          ) {
+          background: #1b1907;
+        }
+      }
 
-            .lpj-page {
-                background: white !important;
-            }
-
-            .lpj-content {
-                width: 100%;
-            }
-
-            .lpj-document-section {
-                break-inside: avoid;
-                box-shadow: none !important;
-            }
-
-            .lpj-content-layout {
-                display: block !important;
-            }
+      /* ---------- Cetak: kembali ke dokumen terang ---------- */
+      @media print {
+        .site-header,
+        footer,
+        .back-to-top,
+        .lpj-hero-actions,
+        .lpj-sidebar,
+        .lpj-bottom-action,
+        .lpj-decoration-card,
+        .lpj-summary {
+          display: none !important;
         }
 
-        body.dark-mode .lpj-evaluation-item {
-            background: #243a54;
+        body,
+        body.dark-mode {
+          background: #fff !important;
+          color: #000 !important;
+        }
+        body::before,
+        body::after,
+        .lpj-hero::before {
+          display: none !important;
         }
 
-        body.dark-mode .lpj-evaluation-item h3,
-        body.dark-mode .lpj-program-detail h4,
-        body.dark-mode .lpj-subsection h3,
-        body.dark-mode .lpj-subsection h4,
-        body.dark-mode .lpj-finance-group h3 {
-            color: #a9d0ff;
+        .lpj-page *,
+        .lpj-page *::before {
+          color: #000 !important;
+          text-shadow: none !important;
+          box-shadow: none !important;
+          -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+          animation: none !important;
         }
 
-        body.dark-mode .lpj-finance-total-row {
-            background: #243a54 !important;
+        .lpj-hero {
+          padding: 20px 0;
+        }
+        .lpj-hero .lpj-container,
+        .lpj-content-layout {
+          display: block;
         }
 
-        body.dark-mode .lpj-finance-total-row td {
-            color: #a9d0ff;
+        .lpj-document-section,
+        .lpj-program-card,
+        .lpj-info-box,
+        .lpj-closing,
+        .lpj-evaluation-item,
+        .lpj-coordinator-box {
+          background: #fff !important;
+          border-color: #999 !important;
+          break-inside: avoid;
         }
+
+        .lpj-table-wrapper {
+          overflow: visible;
+          border-color: #999;
+        }
+        .lpj-table {
+          min-width: 0;
+          font-size: 9px;
+        }
+        .lpj-table th {
+          background: #e5e5e5 !important;
+          border-color: #999 !important;
+        }
+        .lpj-table td {
+          border-color: #bbb !important;
+        }
+        .lpj-table tbody tr:nth-child(even),
+        .lpj-finance-total-row td {
+          background: #f2f2f2 !important;
+        }
+        .lpj-table th,
+        .lpj-table td {
+          padding: 6px;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body class="halaman-lpj">
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol
+        id="i-pin"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol
+        id="i-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="3" />
+        <path d="m3 7 9 6 9-6" />
+      </symbol>
+      <symbol
+        id="i-insta"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+      </symbol>
+    </svg>
 
-<!-- =====================================
-     HEADER WEBSITE HIMAPTIKA
-===================================== -->
-
-<header class="site-header">
-
-    <button
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <button
         class="menu-toggle"
         id="menuToggle"
         aria-label="Buka menu navigasi"
         aria-expanded="false"
-        type="button">
-
+        type="button"
+      >
         <span></span>
         <span></span>
         <span></span>
+      </button>
 
-    </button>
-
-    <div class="brand">
-
-        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
-
+      <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
         <div class="brand-text">
-            <h1>HIMAPTIKA</h1>
-            <p>FKIP UNIVERSITAS TADULAKO</p>
+          <h1>HIMAPTIKA</h1>
+          <p>FKIP UNIVERSITAS TADULAKO</p>
         </div>
+      </div>
 
-    </div>
-
-    <nav id="mainNav">
-
+      <nav id="mainNav">
         <div class="drawer-brand">
-
-            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
-
-            <div>
-                <h2>HIMAPTIKA</h2>
-                <p>FKIP UNIVERSITAS TADULAKO</p>
-            </div>
-
+          <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+          <div>
+            <h2>HIMAPTIKA</h2>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+          </div>
         </div>
 
         <a href="index.html">Beranda</a>
         <a href="tentang.html">Tentang</a>
         <a href="struktur-pengurus.html">Struktur Pengurus</a>
-        <a href="divisi.html">Divisi & Program Kerja</a>
+        <a href="divisi.html" class="active">Divisi &amp; Program Kerja</a>
         <a href="informasi.html">Informasi</a>
         <a href="agenda.html">Agenda</a>
         <a href="kontak.html">Kontak</a>
 
-        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
-            🌙
+        <button id="logoutButton" class="logout-button" type="button">
+          Logout
         </button>
+      </nav>
+    </header>
 
-    </nav>
-
-</header>
-
-
-<!-- =====================================
-     KONTEN LPJ
-===================================== -->
-
-<div class="lpj-page">
-
-    <!-- HERO -->
-
-    <section class="lpj-hero">
-
+    <div class="lpj-page">
+      <!-- ================= HERO ================= -->
+      <section class="lpj-hero">
         <div class="lpj-container">
+          <div class="lpj-hero-content">
+            <span class="lpj-eyebrow">
+              <i class="fas fa-file-alt" aria-hidden="true"></i>
+              DOKUMEN PERTANGGUNGJAWABAN BIDANG
+            </span>
 
-            <div class="lpj-hero-content">
+            <h1>
+              Laporan Pertanggungjawaban
+              <span>Pelayanan Akademik</span>
+            </h1>
 
-                <span class="lpj-eyebrow">
-                    <i class="fas fa-file-alt"></i>
-                    DOKUMEN PERTANGGUNGJAWABAN BIDANG
-                </span>
+            <p>
+              Dokumentasi pelaksanaan tugas, program kerja, evaluasi, dan
+              rekomendasi Bidang Pelayanan Akademik HIMAPTIKA FKIP Universitas
+              Tadulako.
+            </p>
 
-                <h1>
-                    Laporan Pertanggungjawaban
-                    <span>Pelayanan Akademik</span>
-                </h1>
+            <div class="lpj-hero-actions">
+              <a href="#informasi-bidang" class="lpj-button lpj-button-primary">
+                <i class="fas fa-arrow-down" aria-hidden="true"></i>
+                Lihat Laporan
+              </a>
 
-                <p>
-                    Dokumentasi pelaksanaan tugas, program kerja, evaluasi,
-                    dan rekomendasi Bidang Pelayanan Akademik HIMAPTIKA
-                    FKIP Universitas Tadulako.
-                </p>
-
-                <div class="lpj-hero-actions">
-
-                    <a href="#informasi-bidang"
-                       class="lpj-button lpj-button-primary">
-
-                        <i class="fas fa-arrow-down"></i>
-                        Lihat Laporan
-
-                    </a>
-
-                    <button class="lpj-button lpj-button-outline"
-                            onclick="window.print()">
-
-                        <i class="fas fa-print"></i>
-                        Cetak LPJ
-
-                    </button>
-
-                </div>
-
+              <button
+                class="lpj-button lpj-button-outline"
+                onclick="window.print()"
+                type="button"
+              >
+                <i class="fas fa-print" aria-hidden="true"></i>
+                Cetak LPJ
+              </button>
             </div>
+          </div>
 
-            <div class="lpj-hero-decoration">
-
-                <div class="lpj-decoration-card">
-
-                    <i class="fas fa-graduation-cap"></i>
-
-                    <span>PELAYANAN AKADEMIK</span>
-
-                    <strong>HIMAPTIKA</strong>
-
-                    <small>FKIP UNIVERSITAS TADULAKO</small>
-
-                </div>
-
+          <div class="lpj-hero-decoration" aria-hidden="true">
+            <div class="lpj-decoration-card">
+              <i class="fas fa-graduation-cap"></i>
+              <span>PELAYANAN AKADEMIK</span>
+              <strong>HIMAPTIKA</strong>
+              <small>FKIP UNIVERSITAS TADULAKO</small>
             </div>
-
+          </div>
         </div>
+      </section>
 
-    </section>
-
-
-    <!-- =====================================
-         RINGKASAN
-    ===================================== -->
-
-    <section class="lpj-summary">
-
+      <!-- ================= RINGKASAN ================= -->
+      <section class="lpj-summary">
         <div class="lpj-container">
-
-            <div class="lpj-summary-grid">
-
-                <div class="lpj-summary-card">
-
-                    <div class="lpj-summary-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-
-                    <div>
-                        <span>Tim Bidang</span>
-                        <h3>6 Orang</h3>
-                        <p>1 koordinator dan 5 anggota</p>
-                    </div>
-
-                </div>
-
-
-                <div class="lpj-summary-card">
-
-                    <div class="lpj-summary-icon">
-                        <i class="fas fa-list-check"></i>
-                    </div>
-
-                    <div>
-                        <span>Program Kerja</span>
-                        <h3>3 Program</h3>
-                        <p>Program kerja bidang</p>
-                    </div>
-
-                </div>
-
-
-                <div class="lpj-summary-card">
-
-                    <div class="lpj-summary-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-
-                    <div>
-                        <span>Buku Kontrol</span>
-                        <h3>41 Buku</h3>
-                        <p>Jumlah buku yang terjual</p>
-                    </div>
-
-                </div>
-
+          <div class="lpj-summary-grid">
+            <div class="lpj-summary-card">
+              <div class="lpj-summary-icon">
+                <i class="fas fa-users" aria-hidden="true"></i>
+              </div>
+              <div>
+                <span>Tim Bidang</span>
+                <h3>6 Orang</h3>
+                <p>1 koordinator dan 5 anggota</p>
+              </div>
             </div>
 
+            <div class="lpj-summary-card">
+              <div class="lpj-summary-icon">
+                <i class="fas fa-list-check" aria-hidden="true"></i>
+              </div>
+              <div>
+                <span>Program Kerja</span>
+                <h3>3 Program</h3>
+                <p>Program kerja bidang</p>
+              </div>
+            </div>
+
+            <div class="lpj-summary-card">
+              <div class="lpj-summary-icon">
+                <i class="fas fa-book" aria-hidden="true"></i>
+              </div>
+              <div>
+                <span>Buku Kontrol</span>
+                <h3>41 Buku</h3>
+                <p>Jumlah buku yang terjual</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-    </section>
-
-
-    <!-- =====================================
-         NAVIGASI LAPORAN
-    ===================================== -->
-
-    <section class="lpj-main-section">
-
+      <!-- ================= ISI LAPORAN ================= -->
+      <section class="lpj-main-section">
         <div class="lpj-container">
-
-            <div class="lpj-section-heading">
-
-                <span class="lpj-section-label">DOKUMEN BIDANG</span>
-
-                <h2>Isi Laporan</h2>
-
-                <p>
-                    Berikut merupakan bagian-bagian laporan pertanggungjawaban
-                    Bidang Pelayanan Akademik.
-                </p>
-
-            </div>
-
-
-            <div class="lpj-content-layout">
-
-
-                <!-- SIDEBAR -->
-
-                <aside class="lpj-sidebar">
-
-                    <h3>Daftar Isi</h3>
-
-                    <a href="#informasi-bidang"
-                       class="lpj-sidebar-link active">
-
-                        <span>01</span>
-                        Informasi Bidang
-
-                    </a>
-
-                    <a href="#anggota-bidang"
-                       class="lpj-sidebar-link">
-
-                        <span>02</span>
-                        Data Anggota
-
-                    </a>
-
-                    <a href="#tugas-bidang"
-                       class="lpj-sidebar-link">
-
-                        <span>03</span>
-                        Rincian dan Laporan Tugas Pokok
-
-                    </a>
-
-                    <a href="#program-kerja"
-                       class="lpj-sidebar-link">
-
-                        <span>04</span>
-                        Rancangan dan Pelaksanaan Program Kerja
-
-                    </a>
-
-                    <a href="#evaluasi"
-                       class="lpj-sidebar-link">
-
-                        <span>05</span>
-                        Evaluasi
-
-                    </a>
-
-                    <a href="#rekomendasi"
-                       class="lpj-sidebar-link">
-
-                        <span>06</span>
-                        Saran dan Rekomendasi
-
-                    </a>
-
-                    <a href="#keuangan"
-                       class="lpj-sidebar-link">
-
-                        <span>07</span>
-                        Laporan Arus Keuangan Bidang
-
-                    </a>
-
-                    <a href="#penutup"
-                       class="lpj-sidebar-link">
-
-                        <span>08</span>
-                        Penutup
-
-                    </a>
-
-                </aside>
-
-
-                <!-- =====================================
-                     ISI LAPORAN
-                ===================================== -->
-
-                <main class="lpj-content">
-
-
-                    <!-- 01 INFORMASI BIDANG -->
-
-                    <section class="lpj-document-section"
-                             id="informasi-bidang">
-
-                        <div class="lpj-document-heading">
-
-                            <span>01</span>
-
-                            <div>
-                                <h2>Informasi Bidang</h2>
-                                <p>
-                                    Gambaran umum Bidang Pelayanan Akademik.
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div class="lpj-info-box">
-
-                            <h3>Pelayanan Akademik</h3>
-
-                            <p>
-                                Bidang Pelayanan Akademik merupakan salah satu
-                                bidang dalam kepengurusan HIMAPTIKA FKIP
-                                Universitas Tadulako yang berfokus pada
-                                pengembangan dan peningkatan kualitas akademik
-                                mahasiswa Pendidikan Matematika.
-                            </p>
-
-                            <p>
-                                Bidang ini berupaya menghadirkan program dan
-                                layanan yang dapat membantu mahasiswa dalam
-                                memperoleh informasi akademik, mengembangkan
-                                kemampuan ilmiah, serta meningkatkan
-                                keterlibatan mahasiswa dalam kegiatan
-                                pembelajaran dan pengembangan akademik.
-                            </p>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <!-- 02 DATA ANGGOTA -->
-
-                    <section class="lpj-document-section"
-                             id="anggota-bidang">
-
-                        <div class="lpj-document-heading">
-
-                            <span>02</span>
-
-                            <div>
-                                <h2>Data Anggota Bidang</h2>
-                                <p>
-                                    Identitas koordinator dan anggota
-                                    Bidang Pelayanan Akademik.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <!-- KOORDINATOR -->
-
-                        <div class="lpj-member-group">
-
-                            <h3>1. Koordinator</h3>
-
-                            <div class="lpj-coordinator-box">
-
-                                <div class="lpj-member-detail">
-                                    <span>Nama</span>
-                                    <strong>Aril Thandy Angka</strong>
-                                </div>
-
-                                <div class="lpj-member-detail">
-                                    <span>Stambuk</span>
-                                    <strong>A 231 24 080</strong>
-                                </div>
-
-                                <div class="lpj-member-detail">
-                                    <span>Alamat</span>
-                                    <strong>Jl roviga</strong>
-                                </div>
-
-                                <div class="lpj-member-detail">
-                                    <span>Nomor Handphone</span>
-                                    <strong>0815-2833-9511</strong>
-                                </div>
-
-                                <div class="lpj-member-detail">
-                                    <span>Email</span>
-                                    <strong>Arilthandyangka45@gmail.com</strong>
-                                </div>
-
-                                <div class="lpj-member-detail">
-                                    <span>Media Sosial</span>
-
-                                    <strong>
-                                        <a href="https://www.instagram.com/ziellile/"
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           class="lpj-instagram-link">
-
-                                            <i class="fab fa-instagram"></i>
-                                            Instagram
-                                            <i class="fas fa-arrow-up-right-from-square"></i>
-
-                                        </a>
-                                    </strong>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- ANGGOTA -->
-
-                        <div class="lpj-member-group">
-
-                            <h3>2. Anggota</h3>
-
-                            <div class="lpj-table-wrapper">
-
-                                <table class="lpj-table lpj-member-table">
-
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Nama</th>
-                                            <th>Stambuk</th>
-                                            <th>Alamat</th>
-                                            <th>Nomor Handphone</th>
-                                            <th>Email</th>
-                                            <th>Media Sosial</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Moh. Risqi</td>
-                                            <td>A 231 25 20 060</td>
-                                            <td>Tinggede</td>
-                                            <td>0838-4364-3594</td>
-                                            <td>mohrisqi230@gmail.com</td>
-                                            <td>
-                                                <a href="https://www.instagram.com/es.kik0oo/"
-                                                   target="_blank"
-                                                   rel="noopener noreferrer"
-                                                   class="lpj-instagram-link">
-                                                    <i class="fab fa-instagram"></i>
-                                                    Instagram
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Dela Safitri</td>
-                                            <td>A 231 24 116</td>
-                                            <td>Bukit Tadulako</td>
-                                            <td>0822-9117-3583</td>
-                                            <td>delasafitriaz@gmail.com</td>
-                                            <td>
-                                                <a href="https://www.instagram.com/delasft.z/"
-                                                   target="_blank"
-                                                   rel="noopener noreferrer"
-                                                   class="lpj-instagram-link">
-                                                    <i class="fab fa-instagram"></i>
-                                                    Instagram
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Putriana</td>
-                                            <td>A 231 24 065</td>
-                                            <td>Isi Alamat</td>
-                                            <td>0853-1404-6312</td>
-                                            <td>uttianzyx@gmail.com</td>
-                                            <td>
-                                                <a href="https://www.instagram.com/ptri_an4/"
-                                                   target="_blank"
-                                                   rel="noopener noreferrer"
-                                                   class="lpj-instagram-link">
-                                                    <i class="fab fa-instagram"></i>
-                                                    Instagram
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Nur Anadya Putri</td>
-                                            <td>A 231 25 20 057</td>
-                                            <td>Isi Alamat</td>
-                                            <td>0821-9471-6244</td>
-                                            <td>nuranadyaputri@gmail.com</td>
-                                            <td>
-                                                <a href="https://www.instagram.com/nurandyptr_/"
-                                                   target="_blank"
-                                                   rel="noopener noreferrer"
-                                                   class="lpj-instagram-link">
-                                                    <i class="fab fa-instagram"></i>
-                                                    Instagram
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Nur Fadhilah</td>
-                                            <td>A 231 25 10 001</td>
-                                            <td>Isi Alamat</td>
-                                            <td>0831-3237-4108</td>
-                                            <td>nf030207@gmail.com</td>
-                                            <td>
-                                                <a href="https://www.instagram.com/fadilaaa_dilaa/"
-                                                   target="_blank"
-                                                   rel="noopener noreferrer"
-                                                   class="lpj-instagram-link">
-                                                    <i class="fab fa-instagram"></i>
-                                                    Instagram
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <!-- 03 RINCIAN DAN LAPORAN TUGAS POKOK -->
-
-                    <section class="lpj-document-section"
-                             id="tugas-bidang">
-
-                        <div class="lpj-document-heading">
-
-                            <span>03</span>
-
-                            <div>
-                                <h2>Rincian dan Laporan Pelaksanaan Tugas Pokok</h2>
-                                <p>
-                                    Rincian tugas pokok dan laporan pelaksanaannya.
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div class="lpj-info-box">
-
-                            <h3>1. Tugas Pokok</h3>
-
-                            <h4>Rincian</h4>
-
-                            <ol class="lpj-list">
-
-                                <li>
-                                    Merancang dan melaksanakan program kerja
-                                    yang berkaitan dengan pengembangan
-                                    akademik mahasiswa.
-                                </li>
-
-                                <li>
-                                    Menyediakan fasilitas dan informasi
-                                    pendukung kebutuhan akademik mahasiswa.
-                                </li>
-
-                                <li>
-                                    Mendorong peningkatan kemampuan mahasiswa
-                                    dalam bidang akademik dan karya ilmiah.
-                                </li>
-
-                                <li>
-                                    Menjalin koordinasi dengan pihak terkait
-                                    dalam pelaksanaan kegiatan akademik.
-                                </li>
-
-                                <li>
-                                    Melakukan evaluasi terhadap pelaksanaan
-                                    program kerja bidang.
-                                </li>
-
-                            </ol>
-
-                            <h4>Laporan</h4>
-
-                            <p>
-                                Dalam menjalankan tugas pokoknya, Bidang
-                                Pelayanan Akademik melaksanakan kegiatan
-                                berdasarkan program kerja yang telah
-                                direncanakan. Pelaksanaan dilakukan melalui
-                                koordinasi antaranggota serta penyesuaian
-                                terhadap kondisi dan kebutuhan mahasiswa.
-                            </p>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <!-- 04 RANCANGAN DAN PELAKSANAAN PROGRAM KERJA -->
-
-                    <section class="lpj-document-section"
-                             id="program-kerja">
-
-                        <div class="lpj-document-heading">
-
-                            <span>04</span>
-
-                            <div>
-                                <h2>Rancangan dan Pelaksanaan Program Kerja</h2>
-                                <p>
-                                    Rincian rancangan dan pelaksanaan
-                                    setiap program kerja bidang.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <!-- PROGRAM 1 -->
-
-                        <article class="lpj-program-card">
-
-                            <div class="lpj-program-top">
-
-                                <span class="lpj-program-number">
-                                    PROGRAM 01
-                                </span>
-
-                                <span class="lpj-status status-running">
-                                    Berjalan
-                                </span>
-
-                            </div>
-
-                            <h3>Pengadaan Buku Kontrol</h3>
-
-                            <p>
-                                Program pengadaan Buku Kontrol ditujukan
-                                untuk membantu mahasiswa dalam mencatat
-                                perkembangan kegiatan bimbingan dan
-                                pelaksanaan tugas akhir.
-                            </p>
-
-                            <div class="lpj-program-data">
-
-                                <div>
-                                    <span>Jumlah Terjual</span>
-                                    <strong>41 Buku</strong>
-                                </div>
-
-                                <div>
-                                    <span>Perkembangan</span>
-                                    <strong>Berjalan</strong>
-                                </div>
-
-                            </div>
-
-                            <div class="lpj-program-detail">
-
-                                <h4>Rancangan</h4>
-
-                                <p>
-                                    Pengadaan Buku Kontrol dirancang
-                                    sebagai fasilitas pendukung bagi
-                                    mahasiswa dalam mencatat dan memantau
-                                    perkembangan bimbingan serta
-                                    pelaksanaan tugas akhir.
-                                </p>
-
-                                <h4>Pelaksanaan</h4>
-
-                                <p>
-                                    Program telah berjalan selama kurang
-                                    lebih tiga bulan dengan jumlah buku
-                                    yang terjual sebanyak 35 buku.
-                                </p>
-
-                            </div>
-
-                        </article>
-
-
-
-                        <!-- PROGRAM 2 -->
-
-                        <article class="lpj-program-card">
-
-                            <div class="lpj-program-top">
-
-                                <span class="lpj-program-number">
-                                    PROGRAM 02
-                                </span>
-
-                                <span class="lpj-status status-done">
-                                    Terlaksana
-                                </span>
-
-                            </div>
-
-                            <h3>HIMAPTIKA Mengajar</h3>
-
-                            <p>
-                                HIMAPTIKA Mengajar merupakan program
-                                pengabdian yang memberikan kesempatan
-                                kepada mahasiswa untuk berbagi ilmu
-                                pengetahuan dan pengalaman belajar.
-                            </p>
-
-                            <div class="lpj-program-detail">
-
-                                <h4>Rancangan</h4>
-
-                                <p>
-                                    Program ini dirancang sebagai wadah
-                                    pengabdian mahasiswa melalui kegiatan
-                                    berbagi ilmu pengetahuan dan pengalaman
-                                    belajar kepada peserta didik.
-                                </p>
-
-                                <h4>Pelaksanaan</h4>
-
-                                <p>
-                                    Program telah dilaksanakan melalui
-                                    kegiatan turun langsung ke sekolah
-                                    sebagai bentuk kontribusi mahasiswa
-                                    dalam bidang pendidikan.
-                                </p>
-
-                            </div>
-
-                        </article>
-
-
-
-                        <!-- PROGRAM 3 -->
-
-                        <article class="lpj-program-card">
-
-                            <div class="lpj-program-top">
-
-                                <span class="lpj-program-number">
-                                    PROGRAM 03
-                                </span>
-
-                                <span class="lpj-status status-check">
-                                    Perlu dilengkapi
-                                </span>
-
-                            </div>
-
-                            <h3>Seminar HIMAPTIKA</h3>
-
-                            <p>
-                                Program seminar dirancang sebagai wadah
-                                pengembangan wawasan, pengetahuan, dan
-                                kemampuan akademik mahasiswa.
-                            </p>
-
-                            <div class="lpj-program-detail">
-
-                                <h4>Rancangan</h4>
-
-                                <p>
-                                    Seminar HIMAPTIKA dirancang untuk
-                                    memberikan wawasan kepada mahasiswa
-                                    serta meningkatkan pemahaman dan
-                                    kemampuan dalam bidang akademik
-                                    dan karya ilmiah.
-                                </p>
-
-                                <h4>Pelaksanaan</h4>
-
-                                <p>
-                                    Informasi mengenai pelaksanaan,
-                                    capaian, dokumentasi, dan hasil
-                                    kegiatan dilengkapi berdasarkan
-                                    data aktual pelaksanaan seminar.
-                                </p>
-
-                            </div>
-
-                        </article>
-
-
-                    </section>
-
-
-
-                    <!-- 05 EVALUASI -->
-
-                    <section class="lpj-document-section"
-                             id="evaluasi">
-
-                        <div class="lpj-document-heading">
-
-                            <span>05</span>
-
-                            <div>
-                                <h2>Evaluasi</h2>
-                                <p>
-                                    Evaluasi terhadap pelaksanaan tugas
-                                    dan program kerja bidang.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div class="lpj-evaluation-item">
-
-                            <h3>Kendala yang Dihadapi</h3>
-
-                            <p>
-                                Dalam pelaksanaan tugas dan program kerja,
-                                terdapat beberapa kendala, di antaranya
-                                keterlambatan berkas yang dibutuhkan
-                                dalam pengadaan Buku Kontrol, tingkat
-                                pembelian yang masih rendah, serta
-                                keterbatasan pemahaman dan waktu dalam
-                                penyusunan Academic Survival Guide.
-                            </p>
-
-                        </div>
-
-
-                        <div class="lpj-evaluation-item">
-
-                            <h3>Upaya yang Dilakukan</h3>
-
-                            <p>
-                                Melakukan koordinasi antaranggota,
-                                mengupayakan pemenuhan kebutuhan
-                                pengadaan Buku Kontrol, serta
-                                menyesuaikan pelaksanaan program
-                                dengan kondisi dan kemampuan bidang.
-                                Untuk program yang belum terlaksana,
-                                diperlukan peninjauan dan perencanaan
-                                kembali.
-                            </p>
-
-                        </div>
-
-
-                        <div class="lpj-evaluation-item">
-
-                            <h3>Hasil</h3>
-
-                            <p>
-                                Bidang Pelayanan Akademik telah
-                                melaksanakan beberapa program kerja,
-                                di antaranya pengadaan Buku Kontrol
-                                dan HIMAPTIKA Mengajar. Pelaksanaan
-                                program memberikan pengalaman serta
-                                pembelajaran bagi anggota bidang.
-                                Sementara itu, program yang belum
-                                terlaksana menjadi bahan evaluasi
-                                untuk kepengurusan selanjutnya.
-                            </p>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <!-- 06 SARAN DAN REKOMENDASI -->
-
-                    <section class="lpj-document-section"
-                             id="rekomendasi">
-
-                        <div class="lpj-document-heading">
-
-                            <span>06</span>
-
-                            <div>
-                                <h2>Saran dan Rekomendasi</h2>
-                                <p>
-                                    Masukan untuk peningkatan kinerja
-                                    bidang pada periode selanjutnya.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div class="lpj-info-box">
-
-                            <h3>Saran</h3>
-
-                            <p>
-                                Diharapkan pengurus Bidang Pelayanan
-                                Akademik selanjutnya dapat meningkatkan
-                                koordinasi, memperhatikan pembagian
-                                tugas, serta menyusun perencanaan
-                                kegiatan secara lebih matang agar
-                                setiap program kerja dapat berjalan
-                                dengan baik.
-                            </p>
-
-
-                            <h3>Rekomendasi</h3>
-
-                            <p>
-                                Program kerja yang telah terlaksana
-                                maupun yang belum terlaksana diharapkan
-                                dapat menjadi bahan pertimbangan bagi
-                                kepengurusan berikutnya. Perlu adanya
-                                dokumentasi dan mekanisme serah terima
-                                agar keberlanjutan program dapat terjaga.
-                            </p>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <!-- 07 LAPORAN ARUS KEUANGAN BIDANG -->
-
-                    <section class="lpj-document-section"
-                             id="keuangan">
-
-                        <div class="lpj-document-heading">
-
-                            <span>07</span>
-
-                            <div>
-                                <h2>Laporan Arus Keuangan Bidang</h2>
-                                <p>
-                                    Laporan arus keuangan Bidang
-                                    Pelayanan Akademik.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div class="lpj-finance-group">
-
-                            <div class="lpj-table-wrapper">
-
-                                <table class="lpj-table lpj-finance-table">
-
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Hari/Tanggal</th>
-                                            <th>Asal Dana</th>
-                                            <th>Jumlah</th>
-                                            <th>Keterangan</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>2</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>3</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>4</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>5</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                        <tr class="lpj-finance-total-row">
-                                            <td colspan="3">Total</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <!-- 08 PENUTUP -->
-
-                    <section class="lpj-document-section"
-                             id="penutup">
-
-                        <div class="lpj-document-heading">
-
-                            <span>08</span>
-
-                            <div>
-                                <h2>Penutup</h2>
-                                <p>
-                                    Bagian akhir laporan pertanggungjawaban.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div class="lpj-closing">
-
-                            <i class="fas fa-quote-left"></i>
-
-                            <p>
-                                Demikian laporan pertanggungjawaban
-                                Bidang Pelayanan Akademik ini disusun
-                                sebagai bentuk pertanggungjawaban atas
-                                pelaksanaan tugas dan program kerja
-                                selama masa kepengurusan.
-                            </p>
-
-                            <p>
-                                Kami menyadari bahwa dalam pelaksanaan
-                                tugas dan program kerja masih terdapat
-                                kekurangan. Oleh karena itu, kritik,
-                                saran, dan evaluasi sangat diharapkan
-                                sebagai bahan perbaikan bagi
-                                kepengurusan selanjutnya.
-                            </p>
-
-                            <p>
-                                Semoga laporan ini dapat menjadi bahan
-                                evaluasi sekaligus pedoman dalam
-                                meningkatkan kualitas pelayanan
-                                akademik HIMAPTIKA FKIP Universitas
-                                Tadulako.
-                            </p>
-
-                            <strong>
-                                HIMAPTIKA FKIP UNIVERSITAS TADULAKO
-                            </strong>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <!-- TOMBOL KEMBALI -->
-
-                    <div class="lpj-bottom-action">
-
-                        <a href="pelayanan-akademik.html"
-                           class="lpj-back-button">
-
-                            <i class="fas fa-arrow-left"></i>
-                            Kembali ke Pelayanan Akademik
-
+          <div class="lpj-section-heading">
+            <span class="lpj-section-label">DOKUMEN BIDANG</span>
+            <h2>Isi Laporan</h2>
+            <p>
+              Berikut merupakan bagian-bagian laporan pertanggungjawaban Bidang
+              Pelayanan Akademik.
+            </p>
+          </div>
+
+          <div class="lpj-content-layout">
+            <!-- SIDEBAR -->
+            <aside class="lpj-sidebar">
+              <h3>Daftar Isi</h3>
+
+              <a href="#informasi-bidang" class="lpj-sidebar-link active">
+                <span>01</span> Informasi Bidang
+              </a>
+              <a href="#anggota-bidang" class="lpj-sidebar-link">
+                <span>02</span> Data Anggota
+              </a>
+              <a href="#tugas-bidang" class="lpj-sidebar-link">
+                <span>03</span> Tugas Pokok dan Laporan
+              </a>
+              <a href="#program-kerja" class="lpj-sidebar-link">
+                <span>04</span> Program Kerja
+              </a>
+              <a href="#evaluasi" class="lpj-sidebar-link">
+                <span>05</span> Evaluasi
+              </a>
+              <a href="#rekomendasi" class="lpj-sidebar-link">
+                <span>06</span> Saran dan Rekomendasi
+              </a>
+              <a href="#keuangan" class="lpj-sidebar-link">
+                <span>07</span> Laporan Keuangan
+              </a>
+              <a href="#penutup" class="lpj-sidebar-link">
+                <span>08</span> Penutup
+              </a>
+            </aside>
+
+            <!-- ISI DOKUMEN -->
+            <div class="lpj-content">
+              <!-- 01 INFORMASI BIDANG -->
+              <section class="lpj-document-section" id="informasi-bidang">
+                <div class="lpj-document-heading">
+                  <span>01</span>
+                  <div>
+                    <h2>Informasi Bidang</h2>
+                    <p>Gambaran umum Bidang Pelayanan Akademik.</p>
+                  </div>
+                </div>
+
+                <div class="lpj-info-box">
+                  <h3>Pelayanan Akademik</h3>
+
+                  <p>
+                    Bidang Pelayanan Akademik merupakan salah satu bidang dalam
+                    kepengurusan HIMAPTIKA FKIP Universitas Tadulako yang
+                    berfokus pada pengembangan dan peningkatan kualitas akademik
+                    mahasiswa Pendidikan Matematika.
+                  </p>
+
+                  <p>
+                    Bidang ini berupaya menghadirkan program dan layanan yang
+                    dapat membantu mahasiswa dalam memperoleh informasi
+                    akademik, mengembangkan kemampuan ilmiah, serta meningkatkan
+                    keterlibatan mahasiswa dalam kegiatan pembelajaran dan
+                    pengembangan akademik.
+                  </p>
+                </div>
+              </section>
+
+              <!-- 02 DATA ANGGOTA -->
+              <section class="lpj-document-section" id="anggota-bidang">
+                <div class="lpj-document-heading">
+                  <span>02</span>
+                  <div>
+                    <h2>Data Anggota Bidang</h2>
+                    <p>Identitas koordinator dan anggota.</p>
+                  </div>
+                </div>
+
+                <div class="lpj-member-group">
+                  <h3>1. Koordinator</h3>
+
+                  <div class="lpj-coordinator-box">
+                    <div class="lpj-member-detail">
+                      <span>Nama</span>
+                      <strong>Aril Thandy Angka</strong>
+                    </div>
+
+                    <div class="lpj-member-detail">
+                      <span>Stambuk</span>
+                      <strong>A 231 24 080</strong>
+                    </div>
+
+                    <div class="lpj-member-detail">
+                      <span>Alamat</span>
+                      <strong>Jl. Roviga</strong>
+                    </div>
+
+                    <div class="lpj-member-detail">
+                      <span>Nomor Handphone</span>
+                      <strong>0815-2833-9511</strong>
+                    </div>
+
+                    <div class="lpj-member-detail">
+                      <span>Email</span>
+                      <strong>Arilthandyangka45@gmail.com</strong>
+                    </div>
+
+                    <div class="lpj-member-detail">
+                      <span>Media Sosial</span>
+                      <strong>
+                        <a
+                          href="https://www.instagram.com/ziellile/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="lpj-instagram-link"
+                        >
+                          <i class="fab fa-instagram" aria-hidden="true"></i>
+                          Instagram
+                          <i
+                            class="fas fa-arrow-up-right-from-square"
+                            aria-hidden="true"
+                          ></i>
                         </a>
-
+                      </strong>
                     </div>
+                  </div>
+                </div>
 
+                <div class="lpj-member-group">
+                  <h3>2. Anggota</h3>
 
-                </main>
+                  <div class="lpj-table-wrapper">
+                    <table class="lpj-table lpj-member-table">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Nama</th>
+                          <th>Stambuk</th>
+                          <th>Alamat</th>
+                          <th>Nomor Handphone</th>
+                          <th>Email</th>
+                          <th>Media Sosial</th>
+                        </tr>
+                      </thead>
 
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Moh. Risqi</td>
+                          <td>A 231 25 20 060</td>
+                          <td>Tinggede</td>
+                          <td>0838-4364-3594</td>
+                          <td>mohrisqi230@gmail.com</td>
+                          <td>
+                            <a
+                              href="https://www.instagram.com/es.kik0oo/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="lpj-instagram-link"
+                            >
+                              <i
+                                class="fab fa-instagram"
+                                aria-hidden="true"
+                              ></i>
+                              Instagram
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Dela Safitri</td>
+                          <td>A 231 24 116</td>
+                          <td>Bukit Tadulako</td>
+                          <td>0822-9117-3583</td>
+                          <td>delasafitriaz@gmail.com</td>
+                          <td>
+                            <a
+                              href="https://www.instagram.com/delasft.z/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="lpj-instagram-link"
+                            >
+                              <i
+                                class="fab fa-instagram"
+                                aria-hidden="true"
+                              ></i>
+                              Instagram
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Putriana</td>
+                          <td>A 231 24 065</td>
+                          <td>-</td>
+                          <td>0853-1404-6312</td>
+                          <td>uttianzyx@gmail.com</td>
+                          <td>
+                            <a
+                              href="https://www.instagram.com/ptri_an4/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="lpj-instagram-link"
+                            >
+                              <i
+                                class="fab fa-instagram"
+                                aria-hidden="true"
+                              ></i>
+                              Instagram
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Nur Anadya Putri</td>
+                          <td>A 231 25 20 057</td>
+                          <td>-</td>
+                          <td>0821-9471-6244</td>
+                          <td>nuranadyaputri@gmail.com</td>
+                          <td>
+                            <a
+                              href="https://www.instagram.com/nurandyptr_/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="lpj-instagram-link"
+                            >
+                              <i
+                                class="fab fa-instagram"
+                                aria-hidden="true"
+                              ></i>
+                              Instagram
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Nur Fadhilah</td>
+                          <td>A 231 25 10 001</td>
+                          <td>-</td>
+                          <td>0831-3237-4108</td>
+                          <td>nf030207@gmail.com</td>
+                          <td>
+                            <a
+                              href="https://www.instagram.com/fadilaaa_dilaa/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="lpj-instagram-link"
+                            >
+                              <i
+                                class="fab fa-instagram"
+                                aria-hidden="true"
+                              ></i>
+                              Instagram
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 03 TUGAS POKOK -->
+              <section class="lpj-document-section" id="tugas-bidang">
+                <div class="lpj-document-heading">
+                  <span>03</span>
+                  <div>
+                    <h2>Tugas Pokok dan Pelaksanaan</h2>
+                    <p>Rincian tugas pokok dan laporan pelaksanaannya.</p>
+                  </div>
+                </div>
+
+                <div class="lpj-info-box">
+                  <h3>Rincian Tugas Pokok</h3>
+
+                  <ol class="lpj-list">
+                    <li>
+                      Merancang dan melaksanakan program kerja yang berkaitan
+                      dengan pengembangan akademik mahasiswa.
+                    </li>
+                    <li>
+                      Menyediakan fasilitas dan informasi pendukung kebutuhan
+                      akademik mahasiswa.
+                    </li>
+                    <li>
+                      Mendorong peningkatan kemampuan mahasiswa dalam bidang
+                      akademik dan karya ilmiah.
+                    </li>
+                    <li>
+                      Menjalin koordinasi dengan pihak terkait dalam pelaksanaan
+                      kegiatan akademik.
+                    </li>
+                    <li>
+                      Melakukan evaluasi terhadap pelaksanaan program kerja
+                      bidang.
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="lpj-info-box">
+                  <h3>Laporan Pelaksanaan</h3>
+
+                  <p>
+                    Dalam menjalankan tugas pokoknya, Bidang Pelayanan Akademik
+                    melaksanakan kegiatan berdasarkan program kerja yang telah
+                    direncanakan. Pelaksanaan dilakukan melalui koordinasi
+                    antaranggota serta penyesuaian terhadap kondisi dan
+                    kebutuhan mahasiswa.
+                  </p>
+                </div>
+              </section>
+
+              <!-- 04 PROGRAM KERJA -->
+              <section class="lpj-document-section" id="program-kerja">
+                <div class="lpj-document-heading">
+                  <span>04</span>
+                  <div>
+                    <h2>Rancangan dan Pelaksanaan Program Kerja</h2>
+                    <p>
+                      Rincian rancangan dan pelaksanaan setiap program kerja.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- PROGRAM 1 -->
+                <article class="lpj-program-card" id="program-buku-kontrol">
+                  <div class="lpj-program-top">
+                    <span class="lpj-program-number">PROGRAM 01</span>
+                    <span class="lpj-status status-running">Berjalan</span>
+                  </div>
+
+                  <h3>Pengadaan Buku Kontrol</h3>
+
+                  <p>
+                    Program pengadaan Buku Kontrol ditujukan untuk membantu
+                    mahasiswa dalam mencatat perkembangan kegiatan bimbingan dan
+                    pelaksanaan tugas akhir.
+                  </p>
+
+                  <div class="lpj-program-data">
+                    <div>
+                      <span>Jumlah Terjual</span>
+                      <strong>41 Buku</strong>
+                    </div>
+                    <div>
+                      <span>Perkembangan</span>
+                      <strong>Berjalan</strong>
+                    </div>
+                  </div>
+
+                  <div class="lpj-program-detail">
+                    <h4>Rancangan</h4>
+                    <p>
+                      Pengadaan Buku Kontrol dirancang sebagai fasilitas
+                      pendukung bagi mahasiswa dalam mencatat dan memantau
+                      perkembangan bimbingan serta pelaksanaan tugas akhir.
+                    </p>
+
+                    <h4>Pelaksanaan</h4>
+                    <p>
+                      Program telah berjalan selama kurang lebih tiga bulan
+                      dengan jumlah buku yang terjual sebanyak 35 buku.
+                    </p>
+                  </div>
+                </article>
+
+                <!-- PROGRAM 2 -->
+                <article
+                  class="lpj-program-card"
+                  id="program-himaptika-mengajar"
+                >
+                  <div class="lpj-program-top">
+                    <span class="lpj-program-number">PROGRAM 02</span>
+                    <span class="lpj-status status-done">Terlaksana</span>
+                  </div>
+
+                  <h3>HIMAPTIKA Mengajar</h3>
+
+                  <p>
+                    HIMAPTIKA Mengajar merupakan program pengabdian yang
+                    memberikan kesempatan kepada mahasiswa untuk berbagi ilmu
+                    pengetahuan dan pengalaman belajar.
+                  </p>
+
+                  <div class="lpj-program-detail">
+                    <h4>Rancangan</h4>
+                    <p>
+                      Program ini dirancang sebagai wadah pengabdian mahasiswa
+                      melalui kegiatan berbagi ilmu pengetahuan dan pengalaman
+                      belajar kepada peserta didik.
+                    </p>
+
+                    <h4>Pelaksanaan</h4>
+                    <p>
+                      Program telah dilaksanakan melalui kegiatan turun langsung
+                      ke sekolah sebagai bentuk kontribusi mahasiswa dalam
+                      bidang pendidikan.
+                    </p>
+                  </div>
+                </article>
+
+                <!-- PROGRAM 3 -->
+                <article class="lpj-program-card" id="program-seminar">
+                  <div class="lpj-program-top">
+                    <span class="lpj-program-number">PROGRAM 03</span>
+                    <span class="lpj-status status-check"
+                      >Perlu dilengkapi</span
+                    >
+                  </div>
+
+                  <h3>Seminar HIMAPTIKA</h3>
+
+                  <p>
+                    Program seminar dirancang sebagai wadah pengembangan
+                    wawasan, pengetahuan, dan kemampuan akademik mahasiswa.
+                  </p>
+
+                  <div class="lpj-program-detail">
+                    <h4>Rancangan</h4>
+                    <p>
+                      Seminar HIMAPTIKA dirancang untuk memberikan wawasan
+                      kepada mahasiswa serta meningkatkan pemahaman dan
+                      kemampuan dalam bidang akademik dan karya ilmiah.
+                    </p>
+
+                    <h4>Pelaksanaan</h4>
+                    <p>
+                      Informasi mengenai pelaksanaan, capaian, dokumentasi, dan
+                      hasil kegiatan dilengkapi berdasarkan data aktual
+                      pelaksanaan seminar.
+                    </p>
+                  </div>
+                </article>
+              </section>
+
+              <!-- 05 EVALUASI -->
+              <section class="lpj-document-section" id="evaluasi">
+                <div class="lpj-document-heading">
+                  <span>05</span>
+                  <div>
+                    <h2>Evaluasi</h2>
+                    <p>
+                      Evaluasi terhadap pelaksanaan tugas dan program kerja.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="lpj-evaluation-item">
+                  <h3>Kendala yang Dihadapi</h3>
+                  <p>
+                    Dalam pelaksanaan tugas dan program kerja, terdapat beberapa
+                    kendala, di antaranya keterlambatan berkas yang dibutuhkan
+                    dalam pengadaan Buku Kontrol, tingkat pembelian yang masih
+                    rendah, serta keterbatasan pemahaman dan waktu dalam
+                    penyusunan Academic Survival Guide.
+                  </p>
+                </div>
+
+                <div class="lpj-evaluation-item">
+                  <h3>Upaya yang Dilakukan</h3>
+                  <p>
+                    Melakukan koordinasi antaranggota, mengupayakan pemenuhan
+                    kebutuhan pengadaan Buku Kontrol, serta menyesuaikan
+                    pelaksanaan program dengan kondisi dan kemampuan bidang.
+                    Untuk program yang belum terlaksana, diperlukan peninjauan
+                    dan perencanaan kembali.
+                  </p>
+                </div>
+
+                <div class="lpj-evaluation-item">
+                  <h3>Hasil</h3>
+                  <p>
+                    Bidang Pelayanan Akademik telah melaksanakan beberapa
+                    program kerja, di antaranya pengadaan Buku Kontrol dan
+                    HIMAPTIKA Mengajar. Pelaksanaan program memberikan
+                    pengalaman serta pembelajaran bagi anggota bidang. Sementara
+                    itu, program yang belum terlaksana menjadi bahan evaluasi
+                    untuk kepengurusan selanjutnya.
+                  </p>
+                </div>
+              </section>
+
+              <!-- 06 SARAN DAN REKOMENDASI -->
+              <section class="lpj-document-section" id="rekomendasi">
+                <div class="lpj-document-heading">
+                  <span>06</span>
+                  <div>
+                    <h2>Saran dan Rekomendasi</h2>
+                    <p>
+                      Masukan untuk peningkatan kinerja bidang pada periode
+                      selanjutnya.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="lpj-info-box">
+                  <h3>Saran</h3>
+                  <p>
+                    Diharapkan pengurus Bidang Pelayanan Akademik selanjutnya
+                    dapat meningkatkan koordinasi, memperhatikan pembagian
+                    tugas, serta menyusun perencanaan kegiatan secara lebih
+                    matang agar setiap program kerja dapat berjalan dengan baik.
+                  </p>
+
+                  <h3>Rekomendasi</h3>
+                  <p>
+                    Program kerja yang telah terlaksana maupun yang belum
+                    terlaksana diharapkan dapat menjadi bahan pertimbangan bagi
+                    kepengurusan berikutnya. Perlu adanya dokumentasi dan
+                    mekanisme serah terima agar keberlanjutan program dapat
+                    terjaga.
+                  </p>
+                </div>
+              </section>
+
+              <!-- 07 KEUANGAN -->
+              <section class="lpj-document-section" id="keuangan">
+                <div class="lpj-document-heading">
+                  <span>07</span>
+                  <div>
+                    <h2>Laporan Arus Keuangan Bidang</h2>
+                    <p>Rekapitulasi pemasukan dan pengeluaran.</p>
+                  </div>
+                </div>
+
+                <div class="lpj-finance-group">
+                  <h3>a. Pemasukan Bidang</h3>
+
+                  <div class="lpj-table-wrapper">
+                    <table class="lpj-table lpj-finance-table">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Hari/Tanggal</th>
+                          <th>Asal Dana</th>
+                          <th>Jumlah</th>
+                          <th>Keterangan</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr class="lpj-finance-total-row">
+                          <td colspan="3">Total</td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="lpj-finance-group">
+                  <h3>b. Pengeluaran Bidang</h3>
+
+                  <div class="lpj-table-wrapper">
+                    <table class="lpj-table lpj-expense-table">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Hari/Tanggal</th>
+                          <th>Nama Kegiatan</th>
+                          <th>Rincian</th>
+                          <th>Volume</th>
+                          <th>Satuan</th>
+                          <th>Jumlah</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr class="lpj-finance-total-row">
+                          <td colspan="6">Total</td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 08 PENUTUP -->
+              <section class="lpj-document-section" id="penutup">
+                <div class="lpj-document-heading">
+                  <span>08</span>
+                  <div>
+                    <h2>Penutup</h2>
+                    <p>Bagian akhir laporan pertanggungjawaban.</p>
+                  </div>
+                </div>
+
+                <div class="lpj-closing">
+                  <i class="fas fa-quote-left" aria-hidden="true"></i>
+
+                  <p>
+                    Demikian laporan pertanggungjawaban Bidang Pelayanan
+                    Akademik ini disusun sebagai bentuk pertanggungjawaban atas
+                    pelaksanaan tugas dan program kerja selama masa
+                    kepengurusan.
+                  </p>
+
+                  <p>
+                    Kami menyadari bahwa dalam pelaksanaan tugas dan program
+                    kerja masih terdapat kekurangan. Oleh karena itu, kritik,
+                    saran, dan evaluasi sangat diharapkan sebagai bahan
+                    perbaikan bagi kepengurusan selanjutnya.
+                  </p>
+
+                  <p>
+                    Semoga laporan ini dapat menjadi bahan evaluasi sekaligus
+                    pedoman dalam meningkatkan kualitas pelayanan akademik
+                    HIMAPTIKA FKIP Universitas Tadulako.
+                  </p>
+
+                  <strong>HIMAPTIKA FKIP UNIVERSITAS TADULAKO</strong>
+                </div>
+              </section>
+
+              <!-- KEMBALI -->
+              <div class="lpj-bottom-action">
+                <a href="pelayanan-akademik.html" class="lpj-back-button">
+                  <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                  Kembali ke Pelayanan Akademik
+                </a>
+              </div>
             </div>
-
+          </div>
         </div>
-
-    </section>
-
-</div>
-
-
-<!-- =====================================
-     FOOTER
-===================================== -->
-
-<footer class="site-footer">
-
-    <div class="container footer-content">
-
-        <p>
-            &copy; HIMAPTIKA FKIP Universitas Tadulako.
-            All Rights Reserved.
-        </p>
-
+      </section>
     </div>
 
-</footer>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>HIMAPTIKA</h3>
+          <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+          <p>FKIP Universitas Tadulako</p>
+        </div>
 
+        <div>
+          <h3>Kontak</h3>
+          <p>
+            <svg class="ico"><use href="#i-pin" /></svg>Sekretariat himaptika,
+            FKIP Universitas Tadulako, Palu
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-mail" /></svg
+            ><a href="mailto:Untadhimaptika@gmail.com"
+              >Untadhimaptika@gmail.com</a
+            >
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-insta" /></svg>
+            <a
+              href="https://www.instagram.com/himaptikafkipuntad"
+              target="_blank"
+              rel="noopener noreferrer"
+              >@himaptikafkipuntad</a
+            >
+          </p>
+        </div>
+      </div>
 
-<!-- JAVASCRIPT UTAMA WEBSITE -->
+      <div class="footer-bottom">
+        <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
+      </div>
+    </footer>
 
-<script src="script.js"></script>
+    <button
+      id="backToTop"
+      class="back-to-top"
+      type="button"
+      aria-label="Kembali ke atas"
+    >
+      ↑
+    </button>
 
-</body>
+    <script src="script.js"></script>
+
+    <script>
+      // --- Daftar isi LPJ: tandai bagian yang sedang dibaca ---
+      (function () {
+        const sections = document.querySelectorAll(".lpj-document-section");
+        const links = document.querySelectorAll(".lpj-sidebar-link");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              links.forEach((link) => link.classList.remove("active"));
+
+              const activeLink = document.querySelector(
+                `.lpj-sidebar-link[href="#${entry.target.id}"]`,
+              );
+              if (activeLink) activeLink.classList.add("active");
+            });
+          },
+          { rootMargin: "-20% 0px -65% 0px" },
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      })();
+
+      // --- Tombol kembali ke atas ---
+      (function () {
+        const button = document.getElementById("backToTop");
+        if (!button) return;
+
+        window.addEventListener(
+          "scroll",
+          () => button.classList.toggle("show", window.scrollY > 600),
+          { passive: true },
+        );
+
+        button.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+    </script>
+
+    <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
+    <script type="module">
+      import { auth } from "./js/firebase.js";
+
+      import {
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+      document.documentElement.style.visibility = "hidden";
+
+      const authTimeout = setTimeout(() => {
+        document.documentElement.style.visibility = "visible";
+        document.body.innerHTML =
+          '<p style="padding:48px 24px;text-align:center;font-family:sans-serif;color:#fffdf0;">' +
+          "Halaman gagal dimuat. Periksa koneksi internet lalu " +
+          '<a href="" style="color:#fff112">muat ulang</a>.</p>';
+      }, 8000);
+
+      onAuthStateChanged(auth, (user) => {
+        clearTimeout(authTimeout);
+        const logoutButton = document.getElementById("logoutButton");
+
+        if (logoutButton) {
+          logoutButton.addEventListener("click", async () => {
+            logoutButton.disabled = true;
+
+            try {
+              await signOut(auth);
+              window.location.replace("login.html");
+            } catch (error) {
+              console.error("Gagal logout:", error);
+              logoutButton.disabled = false;
+              alert("Logout gagal. Coba lagi.");
+            }
+          });
+        }
+
+        if (user) {
+          document.documentElement.style.visibility = "visible";
+        } else {
+          window.location.replace("login.html");
+        }
+      });
+    </script>
+  </body>
 </html>
