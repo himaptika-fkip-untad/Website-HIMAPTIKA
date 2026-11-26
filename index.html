@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <meta
@@ -1053,9 +1053,165 @@
         }
       }
     </style>
+    <style id="tipografi">
+      :root {
+        --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+        --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      body,
+      button,
+      input,
+      select,
+      textarea {
+        font-family: var(--font-body);
+      }
+
+      h1,
+      h2,
+      h3,
+      .brand-text h1,
+      .drawer-brand h2,
+      .statistik-card h3,
+      .program-icon,
+      .math-symbol,
+      .agenda-category {
+        font-family: var(--font-display);
+      }
+
+      h2,
+      h3 {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      /* judul hero (di HTML kamu <h2>, bukan <h1>) */
+      .hero-modern-content h1 {
+        margin: 18px 0;
+        font-size: clamp(38px, 5.4vw, 64px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: var(--text);
+      }
+      .hero-modern-content h span {
+        display: block;
+        color: var(--accent);
+      }
+
+      /* label kecil: lebih tenang */
+      .hero-label,
+      .section-label,
+      .statistik-heading > span,
+      .agenda-label,
+      .home-seminar-label {
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+
+      .hero-description,
+      .intro-text > p,
+      .program-card p {
+        line-height: 1.75;
+      }
+      .statistik-icon {
+        width: 52px;
+        height: 52px;
+        margin: 0 auto 16px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        color: var(--accent);
+        background: rgba(255, 241, 18, 0.1);
+        border: 1px solid rgba(255, 241, 18, 0.3);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+
+      .statistik-icon svg {
+        width: 26px;
+        height: 26px;
+      }
+      .ico {
+        width: 1.1em;
+        height: 1.1em;
+        flex-shrink: 0;
+        margin-right: 8px;
+        color: var(--accent);
+      }
+
+      .agenda-detail span,
+      .home-seminar-meta span,
+      .footer-content p {
+        display: flex;
+        align-items: center;
+      }
+    </style>
   </head>
 
   <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol
+        id="i-cal"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="4" width="18" height="18" rx="3" />
+        <path d="M16 2v4M8 2v4M3 10h18" />
+      </symbol>
+      <symbol
+        id="i-pin"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol
+        id="i-clock"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol
+        id="i-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="3" />
+        <path d="m3 7 9 6 9-6" />
+      </symbol>
+      <symbol
+        id="i-insta"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+      </symbol>
+    </svg>
     <!-- HEADER -->
     <header class="site-header">
       <button
@@ -1213,25 +1369,77 @@
 
           <div class="statistik-grid">
             <div class="statistik-card">
-              <div class="statistik-icon">🏛️</div>
+              <div class="statistik-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 3 3 8h18z" />
+                  <path d="M5 10v10M9.5 10v10M14.5 10v10M19 10v10" />
+                  <path d="M3 21h18" />
+                </svg>
+              </div>
               <h3><span data-count="7" data-pad="2">07</span></h3>
               <p>Divisi Organisasi</p>
             </div>
 
             <div class="statistik-card">
-              <div class="statistik-icon">👥</div>
+              <div class="statistik-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
               <h3><span data-count="0">0</span>+</h3>
               <p>Anggota Aktif</p>
             </div>
 
             <div class="statistik-card">
-              <div class="statistik-icon">📅</div>
+              <div class="statistik-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="3" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+              </div>
               <h3><span data-count="0">0</span>+</h3>
               <p>Kegiatan per Periode</p>
             </div>
 
             <div class="statistik-card">
-              <div class="statistik-icon">🎓</div>
+              <div class="statistik-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10 12 5 2 10l10 5z" />
+                  <path d="M6 12v5c3 2 9 2 12 0v-5" />
+                  <path d="M22 10v6" />
+                </svg>
+              </div>
               <h3><span data-count="0">0</span>+</h3>
               <p>Angkatan / Alumni</p>
             </div>
@@ -1274,8 +1482,13 @@
                 <h3>MUSYAWARAH BESAR</h3>
 
                 <div class="agenda-detail">
-                  <span>📅 COMING SOON</span>
-                  <span>📍SOON </span>
+                  <span
+                    ><svg class="ico"><use href="#i-cal" /></svg>COMING
+                    SOON</span
+                  >
+                  <span
+                    ><svg class="ico"><use href="#i-pin" /></svg>SOON</span
+                  >
                 </div>
 
                 <a
@@ -1306,8 +1519,13 @@
                 <h3>Dies Natalis HIMAPTIKA KE-XXXIII</h3>
 
                 <div class="agenda-detail">
-                  <span>📅 Tanggal kegiatan</span>
-                  <span>📍 Lokasi kegiatan</span>
+                  <span
+                    ><svg class="ico"><use href="#i-cal" /></svg>COMING
+                    SOON</span
+                  >
+                  <span
+                    ><svg class="ico"><use href="#i-pin" /></svg>SOON</span
+                  >
                 </div>
 
                 <a
@@ -1338,8 +1556,13 @@
                 <h3>Sport and Art HIMAPTIKA</h3>
 
                 <div class="agenda-detail">
-                  <span>📅 jum'at, 02 oktober 2026</span>
-                  <span>📍 fkip 07</span>
+                  <span
+                    ><svg class="ico"><use href="#i-cal" /></svg>COMING
+                    SOON</span
+                  >
+                  <span
+                    ><svg class="ico"><use href="#i-pin" /></svg>SOON</span
+                  >
                 </div>
 
                 <a
@@ -1538,15 +1761,21 @@
 
         <div>
           <h3>Kontak</h3>
-          <p>📍 GANTI_ALAMAT_SEKRETARIAT, FKIP Universitas Tadulako, Palu</p>
-          <p>✉️ <a href="mailto:GANTI_EMAIL">GANTI_EMAIL</a></p>
           <p>
-            📷
+            <svg class="ico"><use href="#i-pin" /></svg>Sekretariat himaptika,
+            FKIP Universitas Tadulako, Palu
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-mail" /></svg
+            ><a href="mailto:GANTI_EMAIL">Untadhimaptika@gmail.com</a>
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-insta" /></svg>
             <a
-              href="https://www.instagram.com/GANTI_AKUN"
+              href="https://www.instagram.com/himaptikafkipuntad?utm_source=ig_web_button_share_sheet&lqvp=ZDNlZDc0MzIxNw==/GANTI_AKUN"
               target="_blank"
               rel="noopener noreferrer"
-              >@GANTI_AKUN</a
+              >@himaptikafkipuntad</a
             >
           </p>
         </div>
@@ -1925,16 +2154,26 @@
 
         const meta = document.createElement("div");
         meta.className = "home-seminar-meta";
+        function iconSvg(id) {
+          const ns = "http://www.w3.org/2000/svg";
+          const svg = document.createElementNS(ns, "svg");
+          svg.setAttribute("class", "ico");
+          svg.setAttribute("aria-hidden", "true");
+          const use = document.createElementNS(ns, "use");
+          use.setAttribute("href", "#" + id);
+          svg.appendChild(use);
+          return svg;
+        }
 
         const details = [
-          "📅 " + formatSeminarDate(item.tanggalObj || item.tanggal),
-          "🕒 " + (item.waktu || "Waktu belum ditentukan"),
-          "📍 " + (item.ruangan || "Ruangan belum ditentukan"),
+          ["i-cal", formatSeminarDate(item.tanggalObj || item.tanggal)],
+          ["i-clock", item.waktu || "Waktu belum ditentukan"],
+          ["i-pin", item.ruangan || "Ruangan belum ditentukan"],
         ];
 
-        details.forEach((value) => {
+        details.forEach(([icon, text]) => {
           const span = document.createElement("span");
-          span.textContent = value;
+          span.append(iconSvg(icon), text);
           meta.appendChild(span);
         });
 
