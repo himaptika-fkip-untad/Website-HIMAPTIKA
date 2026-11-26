@@ -1,473 +1,1059 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Divisi &amp; Program Kerja | HIMAPTIKA FKIP UNTAD</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="Tujuh divisi HIMAPTIKA FKIP Universitas Tadulako beserta program kerjanya dalam satu periode kepengurusan."
+    />
+    <meta name="theme-color" content="#0d0d0a" />
+    <link rel="icon" type="image/png" href="images/logo-himaptika.png" />
 
-    <title>Divisi & Program Kerja | HIMAPTIKA FKIP UNTAD</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("dv-anim");
+      }
+    </script>
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    <style id="glass-himaptika">
+      /* ============ GLASS GELAP + KUNING · SAMA DENGAN BERANDA ============ */
+      :root {
+        --accent: #fff112;
+        --on-accent: #14120a;
+        --deep: 13, 13, 10;
+        --bg: #0d0d0a;
+        --glow-1: #3a3704;
+        --glow-2: #26240a;
+        --text: #fffdf0;
+        --muted: rgba(255, 253, 240, 0.72);
+        --glass-edge: rgba(255, 255, 255, 0.28);
+        --glass: rgba(30, 28, 6, 0.45);
+        --card-edge: rgba(255, 255, 255, 0.14);
+        --blur: blur(18px) saturate(170%);
 
-<body>
+        --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+        --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      body,
+      body.dark-mode {
+        position: relative;
+        color: var(--text);
+        background: var(--bg);
+        font-family: var(--font-body);
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+      }
+      body::before {
+        width: 600px;
+        height: 600px;
+        top: -180px;
+        left: -160px;
+        background: var(--glow-1);
+        opacity: 0.9;
+      }
+      body::after {
+        width: 560px;
+        height: 560px;
+        bottom: -200px;
+        right: -160px;
+        background: var(--glow-2);
+        opacity: 0.9;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font-family: var(--font-body);
+      }
+
+      h1,
+      h2,
+      h3,
+      .brand-text h1,
+      .drawer-brand h2 {
+        font-family: var(--font-display);
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      :is(body, body.dark-mode) {
+        /* ---------- Header & navbar ---------- */
+        .site-header {
+          background: rgba(var(--deep), 0.55);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          backdrop-filter: blur(20px) saturate(180%);
+          border-bottom: 1px solid var(--glass-edge);
+          box-shadow:
+            0 10px 35px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+
+        .brand-text h1,
+        .drawer-brand h2,
+        nav a {
+          color: var(--text);
+        }
+        .brand-text p,
+        .drawer-brand p {
+          color: var(--muted);
+        }
+
+        nav a {
+          border-radius: 10px;
+          transition:
+            background 0.2s ease,
+            color 0.2s ease;
+        }
+        nav a:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        nav a.active {
+          color: var(--accent);
+          background: rgba(255, 241, 18, 0.12);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        .menu-toggle span {
+          background: var(--text);
+        }
+
+        .logout-button {
+          background: var(--accent);
+          color: var(--on-accent);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 12px;
+          font-weight: 700;
+        }
+
+        /* ---------- Tombol ---------- */
+        .tombol {
+          background: var(--accent);
+          color: var(--on-accent);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 14px;
+          padding: 13px 20px;
+          font-weight: 700;
+          box-shadow:
+            0 12px 30px rgba(255, 241, 18, 0.28),
+            inset 0 1px 0 rgba(255, 255, 255, 0.55);
+          transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+        }
+        .tombol:hover {
+          transform: translateY(-3px);
+          box-shadow:
+            0 16px 38px rgba(255, 241, 18, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+          background: linear-gradient(180deg, rgba(var(--deep), 0.85), #070705);
+          border-top: 1px solid var(--card-edge);
+          color: var(--muted);
+        }
+        footer h3 {
+          color: var(--accent);
+          font-family: var(--font-display);
+        }
+        footer a {
+          color: inherit;
+        }
+      }
+
+      /* Menu samping di HP */
+      @media (max-width: 960px) {
+        #mainNav {
+          background: rgba(var(--deep), 0.88);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          backdrop-filter: blur(24px) saturate(180%);
+          border-right: 1px solid var(--glass-edge);
+        }
+      }
+
+      .footer-content {
+        gap: 40px;
+      }
+      .footer-content p {
+        display: flex;
+        align-items: center;
+      }
+      .ico {
+        width: 1.1em;
+        height: 1.1em;
+        flex-shrink: 0;
+        margin-right: 8px;
+        color: var(--accent);
+      }
+    </style>
+
+    <style id="halaman-divisi">
+      /* ============ KHUSUS HALAMAN DIVISI ============ */
+
+      .container {
+        width: min(1160px, 100%);
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+
+      /* ---------- Hero ---------- */
+      .dv-hero {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        /* atas diberi ruang ekstra karena header menempel di atas halaman */
+        padding: clamp(124px, 16vw, 172px) 24px clamp(40px, 6vw, 72px);
+      }
+      .dv-hero::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 520px;
+        height: 520px;
+        right: -190px;
+        top: -250px;
+        border: 1px solid rgba(255, 241, 18, 0.16);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 42px rgba(255, 241, 18, 0.025),
+          0 0 0 88px rgba(255, 241, 18, 0.015);
+      }
+      .dv-hero-inner {
+        width: min(1160px, 100%);
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: clamp(16px, 5vw, 64px);
+      }
+      .dv-hero-text {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ---------- Angka 7 timbul (tujuh divisi) ---------- */
+      .dv-seven {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 300px;
+        perspective: 900px;
+      }
+      .dv-seven-inner {
+        display: grid;
+        transform-style: preserve-3d;
+        transform: rotateX(calc(8deg + var(--rx, 0deg)))
+          rotateY(calc(-20deg + var(--ry, 0deg)));
+        transition: transform 0.18s ease-out;
+        animation: dvFloat 6s ease-in-out infinite;
+        will-change: transform;
+      }
+      .dv-seven-inner span {
+        grid-area: 1 / 1;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(150px, 20vw, 260px);
+        line-height: 1;
+        color: hsl(54 100% calc(52% - var(--i) * 2.6%));
+        transform: translateZ(calc(var(--i) * -4px));
+        user-select: none;
+      }
+      .dv-seven-inner span:first-child {
+        color: var(--accent);
+        text-shadow: 0 0 40px rgba(255, 241, 18, 0.3);
+      }
+      .dv-seven-inner span:last-child {
+        text-shadow: 0 34px 44px rgba(0, 0, 0, 0.6);
+      }
+      @keyframes dvFloat {
+        50% {
+          translate: 0 -10px;
+        }
+      }
+      @media (max-width: 760px) {
+        .dv-hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .dv-seven {
+          position: absolute;
+          top: 96px;
+          right: 6px;
+          min-height: 0;
+          opacity: 0.38;
+          pointer-events: none;
+        }
+        .dv-seven-inner span {
+          font-size: 150px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .dv-seven-inner {
+          animation: none;
+        }
+      }
+
+      .dv-label {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+      .dv-hero h1 {
+        max-width: 14ch;
+        margin: 18px 0;
+        color: var(--text);
+        font-size: clamp(38px, 5.4vw, 64px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+      .dv-hero p.dv-lead {
+        max-width: 560px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      /* ---------- Kartu masuk sekali saat terlihat ---------- */
+      @property --enter {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+      .dv-anim .dv-card:not(.in) {
+        opacity: 0;
+      }
+      .dv-anim .dv-card.in {
+        animation: dvEnter 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation-delay: var(--d, 0ms);
+      }
+      @keyframes dvEnter {
+        from {
+          opacity: 0;
+          --enter: 16deg;
+          translate: 0 30px;
+        }
+        to {
+          opacity: 1;
+          --enter: 0deg;
+          translate: 0 0;
+        }
+      }
+
+      /* ---------- Daftar divisi ---------- */
+      .dv-list {
+        padding: clamp(24px, 4vw, 40px) 0 clamp(64px, 8vw, 96px);
+      }
+      .dv-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .dv-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-height: 230px;
+        padding: 26px;
+        color: var(--text);
+        text-decoration: none;
+        border-radius: 18px;
+        transform-style: preserve-3d;
+        transform: perspective(900px)
+          rotateX(calc(var(--rx, 0deg) + var(--enter))) rotateY(var(--ry, 0deg))
+          translateY(var(--lift, 0px));
+        transition: transform 0.18s ease-out;
+        will-change: transform;
+      }
+      /* kaca dipindah ke ::before supaya isi kartu bisa 3D
+         (backdrop-filter di induk akan meratakan efek 3D) */
+      .dv-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+          radial-gradient(
+            circle at var(--mx, 30%) var(--my, 15%),
+            rgba(255, 255, 255, 0.14),
+            transparent 55%
+          ),
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.07),
+            rgba(255, 255, 255, 0.025)
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--card-edge);
+        box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+        pointer-events: none;
+      }
+      .dv-card:hover,
+      .dv-card:focus-visible {
+        --lift: -6px;
+      }
+      .dv-card:hover::before,
+      .dv-card:focus-visible::before {
+        border-color: rgba(255, 241, 18, 0.45);
+        box-shadow:
+          0 34px 70px rgba(0, 0, 0, 0.55),
+          0 0 44px rgba(255, 241, 18, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+      /* isi kartu di kedalaman berbeda */
+      .dv-card > .dv-num {
+        transform: translateZ(44px);
+      }
+      .dv-card > .dv-body {
+        transform: translateZ(24px);
+      }
+      .dv-card > .dv-more {
+        transform: translateZ(32px);
+      }
+      .dv-card:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .dv-num {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        color: var(--accent);
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 19px;
+        text-shadow:
+          1px 1px 0 #c9bd00,
+          2px 2px 0 #9a9100,
+          3px 3px 0 #6e6700,
+          4px 6px 8px rgba(0, 0, 0, 0.55);
+        background: rgba(255, 241, 18, 0.1);
+        border: 1px solid rgba(255, 241, 18, 0.3);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+      .dv-card h3 {
+        margin: 4px 0 0;
+        color: var(--text);
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .dv-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .dv-more {
+        margin-top: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .dv-more span {
+        transition: transform 0.2s ease;
+      }
+      .dv-card:hover .dv-more span,
+      .dv-card:focus-visible .dv-more span {
+        transform: translateX(5px);
+      }
+
+      /* kartu ke-7 melebar supaya tidak yatim di baris terakhir */
+      @media (min-width: 981px) {
+        .dv-card:last-child {
+          grid-column: 1 / -1;
+          min-height: 0;
+          flex-direction: row;
+          align-items: center;
+          gap: 24px;
+        }
+        .dv-card:last-child .dv-body {
+          flex: 1;
+        }
+        .dv-card:last-child .dv-more {
+          margin-top: 0;
+        }
+        .dv-card:last-child p {
+          max-width: 60ch;
+        }
+      }
+
+      /* ---------- CTA ---------- */
+      .dv-cta {
+        perspective: 1000px;
+        padding: clamp(56px, 7vw, 88px) 0;
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.35),
+            transparent 45%
+          ),
+          linear-gradient(120deg, #fff112, #e3d500);
+      }
+      .dv-cta-inner {
+        transform-style: preserve-3d;
+        transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+        transition: transform 0.18s ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 28px;
+      }
+      .dv-cta .dv-label,
+      .dv-cta h2 {
+        color: var(--on-accent);
+      }
+      .dv-cta h2 {
+        transform: translateZ(18px);
+        max-width: 22ch;
+        margin: 10px 0 8px;
+        font-size: clamp(26px, 3.6vw, 38px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+      .dv-cta p {
+        margin: 0;
+        color: rgba(20, 18, 10, 0.75);
+      }
+      :is(body, body.dark-mode) .dv-cta .tombol:hover {
+        transform: translateZ(40px) translateY(-3px);
+      }
+      :is(body, body.dark-mode) .dv-cta .tombol {
+        transform: translateZ(40px);
+        background: var(--on-accent);
+        color: var(--accent);
+        border-color: rgba(0, 0, 0, 0.2);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ---------- Responsif ---------- */
+      @media (max-width: 980px) {
+        .dv-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 620px) {
+        .dv-grid {
+          grid-template-columns: 1fr;
+        }
+        .dv-card {
+          min-height: 0;
+        }
+        .dv-hero {
+          padding-inline: 20px;
+        }
+      }
+
+      /* Fallback tanpa backdrop-filter */
+      @supports not (
+        (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+      ) {
+        :is(body, body.dark-mode) .site-header,
+        .dv-card::before {
+          background: #1b1907;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .dv-card,
+        .dv-more span {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol
+        id="i-pin"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol
+        id="i-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="3" />
+        <path d="m3 7 9 6 9-6" />
+      </symbol>
+      <symbol
+        id="i-insta"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+      </symbol>
+    </svg>
 
     <!-- ================= HEADER ================= -->
-
     <header class="site-header">
-
-    <!-- Tombol hamburger -->
-    <button
+      <button
         class="menu-toggle"
         id="menuToggle"
         aria-label="Buka menu navigasi"
         aria-expanded="false"
-        type="button">
+        type="button"
+      >
         <span></span>
         <span></span>
         <span></span>
-    </button>
+      </button>
 
-    <!-- Identitas di header atas -->
-    <div class="brand">
-        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+      <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
         <div class="brand-text">
-            <h1>HIMAPTIKA</h1>
-            <p>FKIP UNIVERSITAS TADULAKO</p>
+          <h1>HIMAPTIKA</h1>
+          <p>FKIP UNIVERSITAS TADULAKO</p>
         </div>
-    </div>
+      </div>
 
-    <!-- Sidebar -->
-    <nav id="mainNav">
-
+      <nav id="mainNav">
         <div class="drawer-brand">
-            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
-            <div>
-                <h2>HIMAPTIKA</h2>
-                <p>FKIP UNIVERSITAS TADULAKO</p>
-            </div>
+          <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+          <div>
+            <h2>HIMAPTIKA</h2>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+          </div>
         </div>
 
-        <a href="index.html" >Beranda</a>
+        <a href="index.html">Beranda</a>
         <a href="tentang.html">Tentang</a>
         <a href="struktur-pengurus.html">Struktur Pengurus</a>
-        <a href="divisi.html"class="active">Divisi & Program Kerja</a>
+        <a href="divisi.html" class="active">Divisi &amp; Program Kerja</a>
         <a href="informasi.html">Informasi</a>
         <a href="agenda.html">Agenda</a>
         <a href="kontak.html">Kontak</a>
 
-        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
-            🌙
-        </button>
         <button id="logoutButton" class="logout-button" type="button">
-                Logout
-            </button>
-
-    </nav>
-</header>
-
+          Logout
+        </button>
+      </nav>
+    </header>
 
     <!-- ================= ISI ================= -->
-
     <main>
+      <!-- HERO -->
+      <section class="dv-hero">
+        <div class="dv-hero-inner">
+          <div class="dv-hero-text">
+            <p class="dv-label">STRUKTUR ORGANISASI</p>
 
+            <h1>Divisi &amp; Program Kerja</h1>
 
-        <!-- HERO -->
+            <p class="dv-lead">
+              Kenali tujuh divisi HIMAPTIKA FKIP UNTAD beserta ruang kerja dan
+              program kerjanya dalam satu periode kepengurusan.
+            </p>
+          </div>
 
-        <section class="division-page-hero">
+          <div class="dv-seven" id="dvSeven" aria-hidden="true">
+            <div class="dv-seven-inner">
+              <span style="--i: 0">7</span>
+              <span style="--i: 1">7</span>
+              <span style="--i: 2">7</span>
+              <span style="--i: 3">7</span>
+              <span style="--i: 4">7</span>
+              <span style="--i: 5">7</span>
+              <span style="--i: 6">7</span>
+              <span style="--i: 7">7</span>
+              <span style="--i: 8">7</span>
+              <span style="--i: 9">7</span>
+              <span style="--i: 10">7</span>
+              <span style="--i: 11">7</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="division-hero-circle circle-one"></div>
-            <div class="division-hero-circle circle-two"></div>
+      <!-- DAFTAR DIVISI -->
+      <section class="dv-list" aria-labelledby="judulDivisi">
+        <div class="container">
+          <h2 id="judulDivisi" style="position: absolute; left: -9999px">
+            Daftar divisi HIMAPTIKA
+          </h2>
 
-            <div class="division-page-content">
-
-                <p class="section-label">
-                    STRUKTUR ORGANISASI
-                </p>
-
-                <h2>
-                    Divisi & Program Kerja
-                </h2>
-
+          <div class="dv-grid">
+            <a href="pemikat.html" class="dv-card">
+              <div class="dv-num" aria-hidden="true">01</div>
+              <div class="dv-body">
+                <h3>Pemikat</h3>
                 <p>
-                    Mengenal Tujuh divisi HIMAPTIKA FKIP UNTAD
-                    beserta ruang kerja dan program kerja
-                    dalam satu periode kepengurusan.
+                  Mendukung kegiatan dan pengembangan mahasiswa melalui bidang
+                  olahraga.
                 </p>
+              </div>
+              <span class="dv-more">Lihat divisi <span>→</span></span>
+            </a>
 
-                <div class="hero-small-line"></div>
+            <a href="event-organizer.html" class="dv-card">
+              <div class="dv-num" aria-hidden="true">02</div>
+              <div class="dv-body">
+                <h3>Event Organizer</h3>
+                <p>
+                  Mengelola dan mendukung pelaksanaan berbagai kegiatan
+                  HIMAPTIKA.
+                </p>
+              </div>
+              <span class="dv-more">Lihat divisi <span>→</span></span>
+            </a>
 
+            <a href="admeinfo.html" class="dv-card">
+              <div class="dv-num" aria-hidden="true">03</div>
+              <div class="dv-body">
+                <h3>Admeinfo</h3>
+                <p>
+                  Mendukung pengelolaan administrasi dan informasi organisasi.
+                </p>
+              </div>
+              <span class="dv-more">Lihat divisi <span>→</span></span>
+            </a>
+
+            <a href="pelayanan-akademik.html" class="dv-card">
+              <div class="dv-num" aria-hidden="true">04</div>
+              <div class="dv-body">
+                <h3>Pelayanan Akademik</h3>
+                <p>Mendukung kebutuhan dan perjalanan akademik mahasiswa.</p>
+              </div>
+              <span class="dv-more">Lihat divisi <span>→</span></span>
+            </a>
+
+            <a href="kerohanian.html" class="dv-card">
+              <div class="dv-num" aria-hidden="true">05</div>
+              <div class="dv-body">
+                <h3>Kerohanian</h3>
+                <p>
+                  Menjadi ruang kegiatan dan pengembangan kerohanian mahasiswa.
+                </p>
+              </div>
+              <span class="dv-more">Lihat divisi <span>→</span></span>
+            </a>
+
+            <a href="kewirausahaan.html" class="dv-card">
+              <div class="dv-num" aria-hidden="true">06</div>
+              <div class="dv-body">
+                <h3>Kewirausahaan</h3>
+                <p>
+                  Mengembangkan kegiatan kewirausahaan dan kreativitas
+                  mahasiswa.
+                </p>
+              </div>
+              <span class="dv-more">Lihat divisi <span>→</span></span>
+            </a>
+
+            <a href="hubungan-masyarakat.html" class="dv-card">
+              <div class="dv-num" aria-hidden="true">07</div>
+              <div class="dv-body">
+                <h3>Hubungan Masyarakat</h3>
+                <p>
+                  Membangun komunikasi dan hubungan HIMAPTIKA dengan lingkungan
+                  internal maupun eksternal.
+                </p>
+              </div>
+              <span class="dv-more">Lihat divisi <span>→</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="dv-cta">
+        <div class="container">
+          <div class="dv-cta-inner">
+            <div>
+              <p class="dv-label">HIMAPTIKA FKIP UNTAD</p>
+              <h2>Satu organisasi, banyak ruang untuk berkembang.</h2>
+              <p>Kenali lebih dekat struktur dan kegiatan HIMAPTIKA.</p>
             </div>
 
-        </section>
-
-
-
-        <!-- ================= DIVISI ================= -->
-
-        <section class="division-selection">
-
-            <div class="container">
-
-                <div class="division-selection-heading">
-
-                    <div>
-
-                        <p class="section-label">
-                            DIVISI HIMAPTIKA
-                        </p>
-
-                        <h2>
-                            Tujuh Divisi,<br>
-                            Satu HIMAPTIKA
-                        </h2>
-
-                    </div>
-
-                    <p>
-                        Setiap divisi memiliki peran dan tanggung
-                        jawab masing-masing dalam mendukung jalannya
-                        organisasi serta menghadirkan kegiatan yang
-                        bermanfaat bagi mahasiswa Pendidikan Matematika.
-                    </p>
-
-                </div>
-
-
-                <!-- KARTU DIVISI -->
-
-                <div class="division-card-grid">
-
-
-                    <!-- 01 PEMIKAT -->
-
-                    <a href="pemikat.html" class="division-card">
-
-                        <div class="division-card-number">
-                            01
-                        </div>
-
-                        <div class="division-card-icon">
-                            ✦
-                        </div>
-
-                        <div class="division-card-content">
-
-                            <h3>
-                                Pemikat
-                            </h3>
-
-                            <p>
-                                Informasi dan program kerja
-                                Divisi Pemikat.
-                            </p>
-
-                        </div>
-
-                        <div class="division-card-arrow">
-                            →
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- 02 EVENT ORGANIZER -->
-
-                    <a href="event-organizer.html" class="division-card">
-
-                        <div class="division-card-number">
-                            02
-                        </div>
-
-                        <div class="division-card-icon">
-                            ◇
-                        </div>
-
-                        <div class="division-card-content">
-
-                            <h3>
-                                Event Organizer
-                            </h3>
-
-                            <p>
-                                Informasi dan program kerja
-                                Divisi Event Organizer.
-                            </p>
-
-                        </div>
-
-                        <div class="division-card-arrow">
-                            →
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- 03 ADMEINFO -->
-
-                    <a href="admeinfo.html" class="division-card">
-
-                        <div class="division-card-number">
-                            03
-                        </div>
-
-                        <div class="division-card-icon">
-                            ∑
-                        </div>
-
-                        <div class="division-card-content">
-
-                            <h3>
-                                Admeinfo
-                            </h3>
-
-                            <p>
-                                Informasi dan program kerja
-                                Divisi Admeinfo.
-                            </p>
-
-                        </div>
-
-                        <div class="division-card-arrow">
-                            →
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- 04 PELAYANAN AKADEMIK -->
-
-                    <a href="pelayanan-akademik.html" class="division-card">
-
-                        <div class="division-card-number">
-                            04
-                        </div>
-
-                        <div class="division-card-icon">
-                            √
-                        </div>
-
-                        <div class="division-card-content">
-
-                            <h3>
-                                Pelayanan Akademik
-                            </h3>
-
-                            <p>
-                                Informasi dan program kerja
-                                Divisi Pelayanan Akademik.
-                            </p>
-
-                        </div>
-
-                        <div class="division-card-arrow">
-                            →
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- 05 KEROHANIAN -->
-
-                    <a href="kerohanian.html" class="division-card">
-
-                        <div class="division-card-number">
-                            05
-                        </div>
-
-                        <div class="division-card-icon">
-                            ✧
-                        </div>
-
-                        <div class="division-card-content">
-
-                            <h3>
-                                Kerohanian
-                            </h3>
-
-                            <p>
-                                Informasi dan program kerja
-                                Divisi Kerohanian.
-                            </p>
-
-                        </div>
-
-                        <div class="division-card-arrow">
-                            →
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- 06 KEWIRAUSAHAAN -->
-
-                    <a href="kewirausahaan.html" class="division-card">
-
-                        <div class="division-card-number">
-                            06
-                        </div>
-
-                        <div class="division-card-icon">
-                            ◆
-                        </div>
-
-                        <div class="division-card-content">
-
-                            <h3>
-                                Kewirausahaan
-                            </h3>
-
-                            <p>
-                                Informasi dan program kerja
-                                Divisi Kewirausahaan.
-                            </p>
-
-                        </div>
-
-                        <div class="division-card-arrow">
-                            →
-                        </div>
-
-                    </a>
-
-
-                    <!-- 06 HUBUNGAN MASYARAKAT -->
-
-                    <a href="Hubungan-Masyarakat.html" class="division-card">
-
-    <div class="division-card-number">
-        07
-    </div>
-
-    <div class="division-card-icon">
-        ◇
-    </div>
-
-    <div class="division-card-content">
-
-        <h3>
-            Hubungan Masyarakat
-        </h3>
-
-        <p>
-            Membangun komunikasi dan relasi
-            HIMAPTIKA dengan lingkungan
-            internal maupun eksternal.
-        </p>
-
-    </div>
-
-    <div class="division-card-arrow">
-        →
-    </div>
-
-</a>
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= CTA ================= -->
-
-        <section class="division-page-cta">
-
-            <div class="container">
-
-                <div class="division-page-cta-box">
-
-                    <div>
-
-                        <p class="section-label">
-                            HIMAPTIKA FKIP UNTAD
-                        </p>
-
-                        <h2>
-                            Satu organisasi,
-                            banyak ruang untuk berkembang.
-                        </h2>
-
-                        <p>
-                            Kenali lebih dekat struktur dan
-                            kegiatan HIMAPTIKA.
-                        </p>
-
-                    </div>
-
-
-                    <a href="tentang.html" class="tombol">
-                        Tentang HIMAPTIKA
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
+            <a href="tentang.html" class="tombol">Tentang HIMAPTIKA →</a>
+          </div>
+        </div>
+      </section>
     </main>
 
-
-
     <!-- ================= FOOTER ================= -->
-
     <footer>
-
-        <div class="footer-content">
-
-            <div>
-
-                <h3>
-                    HIMAPTIKA
-                </h3>
-
-                <p>
-                    Himpunan Mahasiswa Pendidikan Matematika
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    FKIP UNTAD
-                </h3>
-
-                <p>
-                    Fakultas Keguruan dan Ilmu Pendidikan
-                </p>
-
-                <p>
-                    Universitas Tadulako
-                </p>
-
-            </div>
-
+      <div class="footer-content">
+        <div>
+          <h3>HIMAPTIKA</h3>
+          <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+          <p>FKIP Universitas Tadulako</p>
         </div>
 
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 HIMAPTIKA FKIP UNTAD
-            </p>
-
+        <div>
+          <h3>Tautan Cepat</h3>
+          <ul class="footer-links">
+            <li><a href="tentang.html">Tentang</a></li>
+            <li><a href="struktur-pengurus.html">Struktur Pengurus</a></li>
+            <li><a href="divisi.html">Divisi &amp; Program Kerja</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="jadwal-seminar.html">Jadwal Seminar</a></li>
+            <li><a href="pelayanan-akademik.html">Pelayanan Akademik</a></li>
+          </ul>
         </div>
 
+        <div>
+          <h3>Kontak</h3>
+          <p>
+            <svg class="ico"><use href="#i-pin" /></svg>Sekretariat himaptika,
+            FKIP Universitas Tadulako, Palu
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-mail" /></svg
+            ><a href="mailto:Untadhimaptika@gmail.com"
+              >Untadhimaptika@gmail.com</a
+            >
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-insta" /></svg>
+            <a
+              href="https://www.instagram.com/himaptikafkipuntad"
+              target="_blank"
+              rel="noopener noreferrer"
+              >@himaptikafkipuntad</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
+      </div>
     </footer>
 
-
+    <button
+      id="backToTop"
+      class="back-to-top"
+      type="button"
+      aria-label="Kembali ke atas"
+    >
+      ↑
+    </button>
 
     <script src="script.js"></script>
+    <script>
+      // --- Kartu masuk sekali saat terlihat ---
+      (function () {
+        const cards = document.querySelectorAll(".dv-card");
 
-</body>
+        cards.forEach((card, i) =>
+          card.style.setProperty("--d", (i % 3) * 90 + "ms"),
+        );
 
+        if (!("IntersectionObserver" in window)) {
+          cards.forEach((card) => card.classList.add("in"));
+          return;
+        }
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+
+        cards.forEach((card) => io.observe(card));
+      })();
+
+      // --- Efek miring 3D mengikuti kursor (hanya mouse, bukan layar sentuh) ---
+      (function () {
+        const canHover = window.matchMedia(
+          "(hover: hover) and (pointer: fine)",
+        ).matches;
+        const reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        if (!canHover || reduce) return;
+
+        // Kartu divisi
+        document.querySelectorAll(".dv-card").forEach((card) => {
+          card.addEventListener("pointermove", (e) => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width;
+            const y = (e.clientY - r.top) / r.height;
+
+            card.style.setProperty("--ry", (x - 0.5) * 6 + "deg");
+            card.style.setProperty("--rx", (0.5 - y) * 6 + "deg");
+            card.style.setProperty("--mx", x * 100 + "%");
+            card.style.setProperty("--my", y * 100 + "%");
+          });
+
+          card.addEventListener("pointerleave", () => {
+            card.style.removeProperty("--rx");
+            card.style.removeProperty("--ry");
+          });
+        });
+
+        // Pita CTA
+        const cta = document.querySelector(".dv-cta");
+        const ctaInner = document.querySelector(".dv-cta-inner");
+
+        if (cta && ctaInner) {
+          cta.addEventListener("pointermove", (e) => {
+            const r = cta.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width;
+            const y = (e.clientY - r.top) / r.height;
+
+            ctaInner.style.setProperty("--ry", (x - 0.5) * 5 + "deg");
+            ctaInner.style.setProperty("--rx", (0.5 - y) * 4 + "deg");
+          });
+
+          cta.addEventListener("pointerleave", () => {
+            ctaInner.style.removeProperty("--rx");
+            ctaInner.style.removeProperty("--ry");
+          });
+        }
+
+        // Angka 7 di hero
+        const hero = document.querySelector(".dv-hero");
+        const seven = document.querySelector(".dv-seven-inner");
+
+        if (hero && seven) {
+          hero.addEventListener("pointermove", (e) => {
+            const r = hero.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width;
+            const y = (e.clientY - r.top) / r.height;
+
+            seven.style.setProperty("--ry", (x - 0.5) * 16 + "deg");
+            seven.style.setProperty("--rx", (0.5 - y) * 12 + "deg");
+          });
+
+          hero.addEventListener("pointerleave", () => {
+            seven.style.removeProperty("--rx");
+            seven.style.removeProperty("--ry");
+          });
+        }
+      })();
+
+      // --- Tombol kembali ke atas ---
+      (function () {
+        const button = document.getElementById("backToTop");
+        if (!button) return;
+
+        window.addEventListener(
+          "scroll",
+          () => button.classList.toggle("show", window.scrollY > 600),
+          { passive: true },
+        );
+
+        button.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+    </script>
+
+    <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
+    <script type="module">
+      import { auth } from "./js/firebase.js";
+
+      import {
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+      document.documentElement.style.visibility = "hidden";
+
+      // Jika Firebase tidak membalas dalam 8 detik, tampilkan pesan (bukan layar kosong)
+      const authTimeout = setTimeout(() => {
+        document.documentElement.style.visibility = "visible";
+        document.body.innerHTML =
+          '<p style="padding:48px 24px;text-align:center;font-family:Inter,sans-serif;color:#fffdf0;">' +
+          "Halaman gagal dimuat. Periksa koneksi internet lalu " +
+          '<a href="" style="color:#fff112">muat ulang</a>.</p>';
+      }, 8000);
+
+      onAuthStateChanged(auth, (user) => {
+        clearTimeout(authTimeout);
+        const logoutButton = document.getElementById("logoutButton");
+
+        if (logoutButton) {
+          logoutButton.addEventListener("click", async () => {
+            logoutButton.disabled = true;
+
+            try {
+              await signOut(auth);
+              window.location.replace("login.html");
+            } catch (error) {
+              console.error("Gagal logout:", error);
+              logoutButton.disabled = false;
+              alert("Logout gagal. Coba lagi.");
+            }
+          });
+        }
+
+        if (user) {
+          document.documentElement.style.visibility = "visible";
+        } else {
+          window.location.replace("login.html");
+        }
+      });
+
+      // Catatan: pengecekan login di browser hanya mengatur tampilan.
+      // Perlindungan data yang sebenarnya harus lewat aturan (rules) Firebase.
+    </script>
+  </body>
 </html>
