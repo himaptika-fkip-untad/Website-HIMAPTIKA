@@ -1,364 +1,924 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hubungan Masyarakat | HIMAPTIKA FKIP UNTAD</title>
+    <meta name="theme-color" content="#0d0d0a" />
+    <link rel="icon" type="image/png" href="images/logo-himaptika.png" />
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
+    <link rel="stylesheet" href="style.css" />
 
+    <style id="glass-himaptika">
+      /* ============ GLASS GELAP + KUNING · SAMA DENGAN BERANDA ============ */
+      :root {
+        --accent: #fff112;
+        --on-accent: #14120a;
+        --deep: 13, 13, 10;
+        --bg: #0d0d0a;
+        --glow-1: #3a3704;
+        --glow-2: #26240a;
+        --text: #fffdf0;
+        --muted: rgba(255, 253, 240, 0.72);
+        --glass-edge: rgba(255, 255, 255, 0.28);
+        --glass: rgba(30, 28, 6, 0.45);
+        --card-edge: rgba(255, 255, 255, 0.14);
+        --blur: blur(18px) saturate(170%);
+
+        --home-ink: var(--text);
+        --home-muted: var(--muted);
+        --home-blue: var(--accent);
+        --home-blue-dark: var(--text);
+        --home-soft: transparent;
+        --home-line: var(--card-edge);
+
+        --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+        --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      body,
+      body.dark-mode {
+        position: relative;
+        color: var(--text);
+        background: var(--bg);
+        font-family: var(--font-body);
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+      }
+      body::before {
+        width: 600px;
+        height: 600px;
+        top: -180px;
+        left: -160px;
+        background: var(--glow-1);
+        opacity: 0.9;
+      }
+      body::after {
+        width: 560px;
+        height: 560px;
+        bottom: -200px;
+        right: -160px;
+        background: var(--glow-2);
+        opacity: 0.9;
+      }
+
+      h1,
+      h2,
+      h3,
+      .brand-text h1,
+      .drawer-brand h2 {
+        font-family: var(--font-display);
+      }
+      h2,
+      h3 {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      /* ---------- Header & navbar (sama dengan beranda) ---------- */
+      :is(body, body.dark-mode) {
+        .site-header {
+          background: rgba(var(--deep), 0.55);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          backdrop-filter: blur(20px) saturate(180%);
+          border-bottom: 1px solid var(--glass-edge);
+          box-shadow:
+            0 10px 35px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+        .brand-text h1,
+        .drawer-brand h2,
+        nav a {
+          color: var(--text);
+        }
+        .brand-text p,
+        .drawer-brand p {
+          color: var(--muted);
+        }
+        nav a {
+          border-radius: 10px;
+          transition:
+            background 0.2s ease,
+            color 0.2s ease;
+        }
+        nav a:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        nav a.active {
+          color: var(--accent);
+          background: rgba(255, 241, 18, 0.12);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+        .menu-toggle span {
+          background: var(--text);
+        }
+        .logout-button {
+          background: var(--accent);
+          color: var(--on-accent);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 12px;
+          font-weight: 700;
+        }
+        footer {
+          background: linear-gradient(180deg, rgba(var(--deep), 0.85), #070705);
+          border-top: 1px solid var(--card-edge);
+          color: var(--muted);
+        }
+        footer h3 {
+          color: var(--accent);
+        }
+      }
+
+      @media (max-width: 960px) {
+        #mainNav {
+          background: rgba(var(--deep), 0.88);
+          -webkit-backdrop-filter: blur(24px) saturate(180%);
+          backdrop-filter: blur(24px) saturate(180%);
+          border-right: 1px solid var(--glass-edge);
+        }
+      }
+
+      /* ============ HALAMAN DETAIL DIVISI ============ */
+      .container {
+        width: min(1160px, 100%);
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+
+      .section-label {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+
+      /* buang dekorasi lama dari style.css */
+      .division-detail-hero::before,
+      .division-detail-hero::after,
+      .detail-program-card::before,
+      .detail-program-card::after,
+      .detail-bottom-box::before,
+      .detail-bottom-box::after {
+        content: none !important;
+      }
+      .division-detail-hero,
+      .division-detail-about,
+      .detail-program-section,
+      .detail-bottom {
+        background: transparent !important;
+      }
+      .division-detail-content h2,
+      .detail-about-grid h2,
+      .section-heading h2,
+      .detail-bottom-box h2 {
+        color: var(--text) !important;
+        font-family: var(--font-display) !important;
+      }
+
+      /* ---------- Hero ---------- */
+      .division-detail-hero {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        display: block;
+        padding: clamp(76px, 10vw, 130px) 24px;
+        text-align: center;
+        perspective: 1100px;
+      }
+
+      .division-detail-hero::before {
+        content: "" !important;
+        position: absolute;
+        z-index: -1;
+        width: 520px;
+        height: 520px;
+        right: -190px;
+        top: -250px;
+        border: 1px solid rgba(255, 241, 18, 0.16);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 42px rgba(255, 241, 18, 0.025),
+          0 0 0 88px rgba(255, 241, 18, 0.015);
+      }
+
+      /* nomor divisi sebagai simbol kaca melayang 3D */
+      .detail-number {
+        position: absolute;
+        z-index: 1;
+        top: 18%;
+        left: 8%;
+        right: auto;
+        bottom: auto;
+        width: clamp(70px, 10vw, 120px);
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 28%;
+        color: var(--accent);
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(34px, 5vw, 60px);
+        opacity: 1;
+        background:
+          radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.25),
+            transparent 55%
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: blur(14px) saturate(170%);
+        backdrop-filter: blur(14px) saturate(170%);
+        border: 1px solid var(--glass-edge);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.5),
+          0 0 50px rgba(255, 241, 18, 0.1),
+          inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        text-shadow:
+          0 1px 0 #d4c800,
+          0 2px 0 #b9ae00,
+          0 3px 0 #9d9400,
+          0 4px 0 #827a00,
+          0 0 24px rgba(255, 241, 18, 0.4);
+        transform: rotateX(14deg) rotateY(-18deg);
+        animation: divFloat 6s ease-in-out infinite;
+      }
+
+      @keyframes divFloat {
+        50% {
+          translate: 0 -14px;
+        }
+      }
+
+      .division-detail-content {
+        position: relative;
+        z-index: 2;
+        max-width: 680px;
+        margin: auto;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 22px;
+        padding: 8px 16px;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 999px;
+        background: var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--card-edge);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .back-link:hover,
+      .back-link:focus-visible {
+        color: var(--accent);
+        border-color: rgba(255, 241, 18, 0.45);
+        outline: none;
+      }
+
+      .division-detail-content h2 {
+        margin: 18px 0;
+        font-size: clamp(36px, 5.4vw, 62px);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .division-detail-content > p:not(.section-label) {
+        max-width: 560px;
+        margin: 0 auto;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hero-small-line {
+        width: 90px;
+        height: 4px;
+        margin: 30px auto 0;
+        border-radius: 4px;
+        background: var(--accent);
+        box-shadow: 0 0 24px rgba(255, 241, 18, 0.5);
+      }
+
+      /* ---------- Tentang divisi ---------- */
+      .division-detail-about,
+      .detail-program-section,
+      .detail-bottom {
+        padding-block: clamp(56px, 8vw, 96px);
+      }
+
+      .detail-about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        gap: clamp(24px, 5vw, 64px);
+        padding: clamp(28px, 5vw, 58px);
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.07),
+            rgba(255, 255, 255, 0.025)
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--card-edge);
+        border-radius: 24px;
+        box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      }
+      .detail-about-grid h2 {
+        margin-top: 10px;
+        line-height: 1.2;
+      }
+      .detail-about-grid p:not(.section-label) {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .detail-about-grid p:not(.section-label) + p {
+        margin-top: 14px;
+      }
+
+      /* ---------- Program kerja ---------- */
+      .section-heading {
+        max-width: 640px;
+        margin-bottom: 44px;
+      }
+      .section-heading h2 {
+        margin-top: 10px;
+        line-height: 1.2;
+      }
+      .section-heading > p:not(.section-label) {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .detail-program-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+
+      .detail-program-card {
+        display: flex;
+        flex-direction: column;
+        padding: 28px;
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.07),
+            rgba(255, 255, 255, 0.025)
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--card-edge);
+        border-radius: 20px;
+        box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.16);
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .detail-program-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 241, 18, 0.45);
+        box-shadow:
+          0 24px 55px rgba(255, 241, 18, 0.13),
+          0 14px 40px rgba(0, 0, 0, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      }
+
+      .detail-program-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 22px;
+      }
+      .detail-program-top span {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+      .detail-program-top strong {
+        color: var(--muted);
+        font-family: var(--font-display);
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .detail-program-icon {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        border-radius: 16px;
+        color: var(--accent);
+        font-size: 24px;
+        background: rgba(255, 241, 18, 0.1);
+        border: 1px solid rgba(255, 241, 18, 0.3);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+
+      .detail-program-card h3 {
+        margin: 0 0 12px;
+        color: var(--text);
+      }
+      .detail-program-card p {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      /* ---------- CTA bawah ---------- */
+      .detail-bottom-box {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: clamp(24px, 5vw, 64px);
+        padding: clamp(28px, 5vw, 58px);
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 241, 18, 0.07),
+            rgba(255, 255, 255, 0.025)
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: var(--blur);
+        backdrop-filter: var(--blur);
+        border: 1px solid var(--card-edge);
+        border-radius: 24px;
+        box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      }
+      .detail-bottom-box h2 {
+        margin: 10px 0 0;
+        line-height: 1.25;
+      }
+      .detail-bottom-box .tombol {
+        display: inline-block;
+        padding: 14px 26px;
+        color: var(--on-accent);
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+        background: var(--accent);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(255, 241, 18, 0.18);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .detail-bottom-box .tombol:hover,
+      .detail-bottom-box .tombol:focus-visible {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 36px rgba(255, 241, 18, 0.3);
+        outline: none;
+      }
+
+      /* ---------- Footer ---------- */
+      .footer-content {
+        gap: 40px;
+      }
+      .footer-content p {
+        display: flex;
+        align-items: center;
+      }
+      .ico {
+        width: 1.1em;
+        height: 1.1em;
+        flex-shrink: 0;
+        margin-right: 8px;
+        color: var(--accent);
+      }
+
+      /* ---------- Responsif ---------- */
+      .detail-program-grid.is-three {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (max-width: 1000px) {
+        .detail-program-grid:not(.is-three) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 850px) {
+        .detail-program-grid.is-three {
+          grid-template-columns: 1fr;
+        }
+        .detail-about-grid,
+        .detail-bottom-box {
+          grid-template-columns: 1fr;
+        }
+        .detail-number {
+          top: 6%;
+          left: 3%;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .division-detail-hero {
+          padding: 68px 20px 58px;
+        }
+        .detail-number {
+          opacity: 0.55;
+        }
+        .detail-program-grid {
+          grid-template-columns: 1fr;
+        }
+        .container {
+          padding-inline: 20px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .detail-number {
+          animation: none !important;
+        }
+      }
+
+      @supports not (
+        (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+      ) {
+        :is(body, body.dark-mode)
+          :is(
+            .site-header,
+            .detail-program-card,
+            .detail-about-grid,
+            .detail-bottom-box,
+            .detail-number,
+            .back-link
+          ) {
+          background: #1b1907;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="halaman-divisi-detail">
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol
+        id="i-pin"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol
+        id="i-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="3" />
+        <path d="m3 7 9 6 9-6" />
+      </symbol>
+      <symbol
+        id="i-insta"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+      </symbol>
+    </svg>
 
     <!-- ================= HEADER ================= -->
-
     <header class="site-header">
-
-    <!-- Tombol hamburger -->
-    <button
+      <button
         class="menu-toggle"
         id="menuToggle"
         aria-label="Buka menu navigasi"
         aria-expanded="false"
-        type="button">
+        type="button"
+      >
         <span></span>
         <span></span>
         <span></span>
-    </button>
+      </button>
 
-    <!-- Identitas di header atas -->
-    <div class="brand">
-        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
+      <div class="brand">
+        <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
         <div class="brand-text">
-            <h1>HIMAPTIKA</h1>
-            <p>FKIP UNIVERSITAS TADULAKO</p>
+          <h1>HIMAPTIKA</h1>
+          <p>FKIP UNIVERSITAS TADULAKO</p>
         </div>
-    </div>
+      </div>
 
-    <!-- Sidebar -->
-    <nav id="mainNav">
-
+      <nav id="mainNav">
         <div class="drawer-brand">
-            <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA">
-            <div>
-                <h2>HIMAPTIKA</h2>
-                <p>FKIP UNIVERSITAS TADULAKO</p>
-            </div>
+          <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
+          <div>
+            <h2>HIMAPTIKA</h2>
+            <p>FKIP UNIVERSITAS TADULAKO</p>
+          </div>
         </div>
 
-        <a href="index.html" >Beranda</a>
+        <a href="index.html">Beranda</a>
         <a href="tentang.html">Tentang</a>
         <a href="struktur-pengurus.html">Struktur Pengurus</a>
-        <a href="divisi.html"class="active">Divisi & Program Kerja</a>
+        <a href="divisi.html" class="active">Divisi &amp; Program Kerja</a>
         <a href="informasi.html">Informasi</a>
         <a href="agenda.html">Agenda</a>
         <a href="kontak.html">Kontak</a>
 
-        <button id="darkModeToggle" class="dark-mode-toggle" type="button">
-            🌙
+        <button id="logoutButton" class="logout-button" type="button">
+          Logout
         </button>
+      </nav>
+    </header>
 
-    </nav>
-</header>
-
-
-
-    <!-- ================= HERO ================= -->
-
-    <section class="division-detail-hero">
+    <main>
+      <!-- ================= HERO DIVISI ================= -->
+      <section class="division-detail-hero">
+        <div class="detail-number" aria-hidden="true">07</div>
 
         <div class="division-detail-content">
+          <a href="divisi.html" class="back-link">← Kembali ke Divisi</a>
 
-            <a href="divisi.html" class="back-link">
-                ← Kembali ke Divisi
-            </a>
+          <p class="section-label">DIVISI 07</p>
 
-            <p class="section-label">
-                DIVISI 07
-            </p>
+          <h2>Hubungan Masyarakat</h2>
 
-            <h2>
-                Hubungan Masyarakat
-            </h2>
+          <p>
+            Membangun komunikasi, kepedulian, dan hubungan yang baik antara
+            HIMAPTIKA dengan lingkungan internal maupun eksternal organisasi.
+          </p>
+
+          <div class="hero-small-line"></div>
+        </div>
+      </section>
+
+      <!-- ================= TENTANG DIVISI ================= -->
+      <section class="division-detail-about">
+        <div class="container">
+          <div class="detail-about-grid">
+            <div>
+              <p class="section-label">TENTANG DIVISI</p>
+              <h2>Hubungan Masyarakat</h2>
+            </div>
+
+            <div>
+              <p>
+                Divisi Hubungan Masyarakat merupakan bagian dari HIMAPTIKA yang
+                berperan dalam membangun dan menjaga komunikasi serta hubungan
+                organisasi dengan berbagai pihak.
+              </p>
+
+              <p>
+                Divisi ini menjadi salah satu penghubung HIMAPTIKA dengan
+                mahasiswa, civitas akademika, organisasi kemahasiswaan, maupun
+                lingkungan masyarakat melalui berbagai kegiatan sosial dan
+                kemasyarakatan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PROGRAM KERJA ================= -->
+      <section class="detail-program-section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">PROGRAM KERJA</p>
+
+            <h2>Program Kerja Hubungan Masyarakat</h2>
 
             <p>
-                Membangun komunikasi, kepedulian, dan hubungan
-                yang baik antara HIMAPTIKA dengan lingkungan
-                internal maupun eksternal organisasi.
+              Tiga program kerja Divisi Hubungan Masyarakat dalam membangun
+              kepedulian dan hubungan bersama.
             </p>
+          </div>
 
-            <div class="hero-small-line"></div>
+          <div class="detail-program-grid is-three">
+            <!-- PROGRAM KERJA 01 -->
+            <div class="detail-program-card">
+              <div class="detail-program-top">
+                <span>PROKER 01</span>
+                <strong>01</strong>
+              </div>
 
+              <div class="detail-program-icon" aria-hidden="true">◇</div>
+
+              <h3>BAKTI LINGKUNGAN</h3>
+
+              <p>
+                Kegiatan yang menjadi wadah bagi HIMAPTIKA untuk berkontribusi
+                dalam menjaga kebersihan dan kelestarian lingkungan serta
+                menumbuhkan kepedulian terhadap lingkungan sekitar.
+              </p>
+            </div>
+
+            <!-- PROGRAM KERJA 02 -->
+            <div class="detail-program-card">
+              <div class="detail-program-top">
+                <span>PROKER 02</span>
+                <strong>02</strong>
+              </div>
+
+              <div class="detail-program-icon" aria-hidden="true">+</div>
+
+              <h3>Peduli Bersama</h3>
+
+              <p>
+                Kegiatan yang menjadi wadah untuk menumbuhkan rasa kepedulian
+                dan solidaritas melalui aksi bersama yang memberikan manfaat
+                bagi sesama.
+              </p>
+            </div>
+
+            <!-- PROGRAM KERJA 03 -->
+            <div class="detail-program-card">
+              <div class="detail-program-top">
+                <span>PROKER 03</span>
+                <strong>03</strong>
+              </div>
+
+              <div class="detail-program-icon" aria-hidden="true">◈</div>
+
+              <h3>SAPA</h3>
+
+              <p>
+                Program kerja yang menjadi sarana untuk membangun komunikasi dan
+                interaksi yang lebih dekat antara HIMAPTIKA dengan mahasiswa
+                maupun lingkungan di sekitarnya.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-
-        <div class="detail-number">
-            07
-        </div>
-
-    </section>
-
-
-
-    <!-- ================= TENTANG DIVISI ================= -->
-
-    <section class="division-detail-about">
-
+      <!-- ================= CTA ================= -->
+      <section class="detail-bottom">
         <div class="container">
+          <div class="detail-bottom-box">
+            <div>
+              <p class="section-label">HUBUNGAN MASYARAKAT</p>
 
-            <div class="detail-about-grid">
-
-                <div>
-
-                    <p class="section-label">
-                        TENTANG DIVISI
-                    </p>
-
-                    <h2>
-                        Hubungan Masyarakat
-                    </h2>
-
-                </div>
-
-
-                <div>
-
-                    <p>
-                        Divisi Hubungan Masyarakat merupakan
-                        bagian dari HIMAPTIKA yang berperan
-                        dalam membangun dan menjaga komunikasi
-                        serta hubungan organisasi dengan berbagai
-                        pihak.
-                    </p>
-
-                    <p>
-                        Divisi ini menjadi salah satu penghubung
-                        HIMAPTIKA dengan mahasiswa, civitas
-                        akademika, organisasi kemahasiswaan,
-                        maupun lingkungan masyarakat melalui
-                        berbagai kegiatan sosial dan kemasyarakatan.
-                    </p>
-
-                </div>
-
+              <h2>Membangun kepedulian dan hubungan bersama HIMAPTIKA.</h2>
             </div>
 
+            <a href="divisi.html" class="tombol">Lihat Divisi Lain</a>
+          </div>
         </div>
-
-    </section>
-
-
-
-    <!-- ================= PROGRAM KERJA ================= -->
-
-    <section class="detail-program-section">
-
-        <div class="container">
-
-            <div class="section-heading">
-
-                <p class="section-label">
-                    PROGRAM KERJA
-                </p>
-
-                <h2>
-                    Program Kerja Hubungan Masyarakat
-                </h2>
-
-                <p>
-                    Tiga program kerja Divisi Hubungan
-                    Masyarakat dalam membangun kepedulian
-                    dan hubungan bersama.
-                </p>
-
-            </div>
-
-
-            <div class="detail-program-grid">
-
-
-                <!-- ================= PROKER 01 ================= -->
-
-                <div class="detail-program-card">
-
-                    <div class="detail-program-top">
-
-                        <span>
-                            PROKER 01
-                        </span>
-
-                        <strong>
-                            01
-                        </strong>
-
-                    </div>
-
-
-                    <div class="detail-program-icon">
-                        ◇
-                    </div>
-
-
-                    <h3>
-                        BAKTI LINGKUNGAN
-                    </h3>
-
-                    <p>
-                        Kegiatan yang menjadi wadah bagi
-                        HIMAPTIKA untuk berkontribusi dalam
-                        menjaga kebersihan dan kelestarian
-                        lingkungan serta menumbuhkan kepedulian
-                        terhadap lingkungan sekitar.
-                    </p>
-
-                </div>
-
-
-
-                <!-- ================= PROKER 02 ================= -->
-
-                <div class="detail-program-card">
-
-                    <div class="detail-program-top">
-
-                        <span>
-                            PROKER 02
-                        </span>
-
-                        <strong>
-                            02
-                        </strong>
-
-                    </div>
-
-
-                    <div class="detail-program-icon">
-                        +
-                    </div>
-
-
-                    <h3>
-                        Peduli Bersama
-                    </h3>
-
-                    <p>
-                        Kegiatan yang menjadi wadah untuk
-                        menumbuhkan rasa kepedulian dan
-                        solidaritas melalui aksi bersama
-                        yang memberikan manfaat bagi
-                        sesama.
-                    </p>
-
-                </div>
-
-
-
-                <!-- ================= PROKER 03 ================= -->
-
-                <div class="detail-program-card">
-
-                    <div class="detail-program-top">
-
-                        <span>
-                            PROKER 03
-                        </span>
-
-                        <strong>
-                            03
-                        </strong>
-
-                    </div>
-
-
-                    <div class="detail-program-icon">
-                        ◈
-                    </div>
-
-
-                    <h3>
-                        SAPA
-                    </h3>
-
-                    <p>
-                        Program kerja yang menjadi sarana
-                        untuk membangun komunikasi dan
-                        interaksi yang lebih dekat antara
-                        HIMAPTIKA dengan mahasiswa maupun
-                        lingkungan di sekitarnya.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================= CTA ================= -->
-
-    <section class="detail-bottom">
-
-        <div class="container">
-
-            <div class="detail-bottom-box">
-
-                <div>
-
-                    <p class="section-label">
-                        HUBUNGAN MASYARAKAT
-                    </p>
-
-                    <h2>
-                        Membangun kepedulian dan hubungan
-                        bersama HIMAPTIKA.
-                    </h2>
-
-                </div>
-
-
-                <a href="divisi.html" class="tombol">
-                    Lihat Divisi Lain
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
+      </section>
+    </main>
 
     <!-- ================= FOOTER ================= -->
-
     <footer>
-
-        <div class="container">
-
-            <p>
-                © 2026 HIMAPTIKA FKIP UNTAD
-            </p>
-
-            <p>
-                Himpunan Mahasiswa Pendidikan Matematika
-            </p>
-
+      <div class="footer-content">
+        <div>
+          <h3>HIMAPTIKA</h3>
+          <p>Himpunan Mahasiswa Pendidikan Matematika</p>
+          <p>FKIP Universitas Tadulako</p>
         </div>
 
+        <div>
+          <h3>Kontak</h3>
+          <p>
+            <svg class="ico"><use href="#i-pin" /></svg>Sekretariat himaptika,
+            FKIP Universitas Tadulako, Palu
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-mail" /></svg
+            ><a href="mailto:Untadhimaptika@gmail.com"
+              >Untadhimaptika@gmail.com</a
+            >
+          </p>
+          <p>
+            <svg class="ico"><use href="#i-insta" /></svg>
+            <a
+              href="https://www.instagram.com/himaptikafkipuntad"
+              target="_blank"
+              rel="noopener noreferrer"
+              >@himaptikafkipuntad</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 HIMAPTIKA FKIP UNTAD</p>
+      </div>
     </footer>
 
-
-
-    <!-- JAVASCRIPT -->
+    <button
+      id="backToTop"
+      class="back-to-top"
+      type="button"
+      aria-label="Kembali ke atas"
+    >
+      ↑
+    </button>
 
     <script src="script.js"></script>
+    <script>
+      // --- Tombol kembali ke atas ---
+      (function () {
+        const button = document.getElementById("backToTop");
+        if (!button) return;
 
-</body>
+        window.addEventListener(
+          "scroll",
+          () => button.classList.toggle("show", window.scrollY > 600),
+          { passive: true },
+        );
 
+        button.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+    </script>
+
+    <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
+    <script type="module">
+      import { auth } from "./js/firebase.js";
+
+      import {
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+      document.documentElement.style.visibility = "hidden";
+
+      const authTimeout = setTimeout(() => {
+        document.documentElement.style.visibility = "visible";
+        document.body.innerHTML =
+          '<p style="padding:48px 24px;text-align:center;font-family:sans-serif;color:#fffdf0;">' +
+          "Halaman gagal dimuat. Periksa koneksi internet lalu " +
+          '<a href="" style="color:#fff112">muat ulang</a>.</p>';
+      }, 8000);
+
+      onAuthStateChanged(auth, (user) => {
+        clearTimeout(authTimeout);
+        const logoutButton = document.getElementById("logoutButton");
+
+        if (logoutButton) {
+          logoutButton.addEventListener("click", async () => {
+            logoutButton.disabled = true;
+
+            try {
+              await signOut(auth);
+              window.location.replace("login.html");
+            } catch (error) {
+              console.error("Gagal logout:", error);
+              logoutButton.disabled = false;
+              alert("Logout gagal. Coba lagi.");
+            }
+          });
+        }
+
+        if (user) {
+          document.documentElement.style.visibility = "visible";
+        } else {
+          window.location.replace("login.html");
+        }
+      });
+    </script>
+  </body>
 </html>
