@@ -770,6 +770,79 @@
           transform: none;
         }
       }
+      main {
+        overflow: hidden;
+      }
+
+      .ag-intro {
+        position: relative;
+        isolation: isolate;
+        perspective: 1100px;
+      }
+      .ag-wrap {
+        position: relative;
+        z-index: 2;
+      }
+
+      .agenda-symbol {
+        position: absolute;
+        z-index: 1;
+        width: clamp(70px, 9vw, 110px);
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 28%;
+        color: var(--accent);
+        background:
+          radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.25),
+            transparent 55%
+          ),
+          var(--glass);
+        -webkit-backdrop-filter: blur(14px) saturate(170%);
+        backdrop-filter: blur(14px) saturate(170%);
+        border: 1px solid var(--glass-edge);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.5),
+          0 0 50px rgba(255, 241, 18, 0.1),
+          inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        animation: agFloat 6s ease-in-out infinite;
+      }
+      .agenda-symbol svg {
+        width: 52%;
+        height: 52%;
+        filter: drop-shadow(0 3px 0 #9d9400)
+          drop-shadow(0 0 14px rgba(255, 241, 18, 0.5));
+      }
+      .agenda-symbol.symbol-left {
+        top: 14%;
+        right: 18%;
+        transform: rotateX(14deg) rotateY(-18deg);
+      }
+      .agenda-symbol.symbol-right {
+        top: 46%;
+        right: 5%;
+        transform: rotateX(12deg) rotateY(18deg);
+        animation-delay: -3s;
+      }
+
+      @keyframes agFloat {
+        50% {
+          translate: 0 -14px;
+        }
+      }
+
+      @media (max-width: 850px) {
+        .agenda-symbol {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .agenda-symbol {
+          animation: none;
+        }
+      }
 
       /* Fallback tanpa backdrop-filter */
       @supports not (
@@ -787,9 +860,6 @@
     </style>
     <style id="paksa-tema">
       /* Penimpa: pastikan tema gelap menang atas style.css */
-      html {
-        background: #0d0d0a !important;
-      }
       html body,
       html body.dark-mode {
         background: #0d0d0a !important;
@@ -887,6 +957,32 @@
       <main>
         <!-- PEMBUKA -->
         <section class="ag-intro">
+          <div class="agenda-symbol symbol-left" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="5" width="18" height="16" rx="3" />
+              <path d="M3 10h18M8 3v4M16 3v4" />
+            </svg>
+          </div>
+          <div class="agenda-symbol symbol-right" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 2" />
+            </svg>
+          </div>
           <div class="ag-wrap">
             <span class="ag-label">Agenda HIMAPTIKA</span>
             <h2>Agenda kegiatan <span>HIMAPTIKA</span></h2>
