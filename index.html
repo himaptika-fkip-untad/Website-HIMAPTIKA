@@ -16,7 +16,7 @@
       content="Website resmi HIMAPTIKA FKIP Universitas Tadulako, Himpunan Mahasiswa Pendidikan Matematika. Agenda kegiatan, jadwal seminar, dan pelayanan akademik."
     />
     <meta name="theme-color" content="#0d0d0a" />
-    <link rel="icon" type="image/png" href="images/logo-himaptika.png" />
+    <link rel="icon" type="images/png" href="images/logo himaptika.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="HIMAPTIKA FKIP UNTAD" />
@@ -26,11 +26,27 @@
     />
     <!-- og:image HARUS alamat lengkap (https://...), bukan alamat relatif -->
     <meta
-      property="og:image"
-      content="https://GANTI_DOMAIN_KAMU/images/logo-himaptika.png"
+      property="og:images"
+      content="https://GANTI_DOMAIN_KAMU/images/logo himaptika.png"
     />
     <meta property="og:url" content="https://GANTI_DOMAIN_KAMU/" />
 
+    <script>
+      // Sembunyikan halaman sampai status login diketahui.
+      // Jika Firebase tidak membalas dalam 8 detik, halaman tetap ditampilkan dengan pesan.
+      document.documentElement.style.visibility = "hidden";
+      window.__authFallback = setTimeout(function () {
+        document.documentElement.style.visibility = "visible";
+        var b = document.createElement("div");
+        b.id = "authBanner";
+        b.setAttribute("role", "alert");
+        b.style.cssText =
+          "padding:12px 20px;text-align:center;background:#26240a;color:#fffdf0;font:14px sans-serif;";
+        b.innerHTML =
+          'Gagal memverifikasi sesi. Periksa koneksi internet lalu <a href="" style="color:#fff112">muat ulang</a>.';
+        document.body.prepend(b);
+      }, 8000);
+    </script>
     <link rel="stylesheet" href="style.css" />
 
     <style>
@@ -598,14 +614,14 @@
 
         /* ---------- Teks ---------- */
         .hero-modern-content h1,
-        .intro-text h1,
-        .survival-text h1,
-        .section-title h1,
-        .section-heading h1,
-        .statistik-heading h1,
-        .informasi-header h1,
-        .agenda-heading h1,
-        .home-seminar-heading h1 {
+        .intro-text h2,
+        .survival-text h2,
+        .section-title h2,
+        .section-heading h2,
+        .statistik-heading h2,
+        .informasi-header h2,
+        .agenda-heading h2,
+        .home-seminar-heading h2 {
           color: var(--text);
         }
         .hero-modern-content h1 span {
@@ -836,14 +852,16 @@
             inset 0 1px 0 rgba(255, 255, 255, 0.14);
         }
 
-        .brand-text h1,
-        .drawer-brand h2,
-        nav a {
-          color: var(--text);
+        .brand-name,
+        .statistik-card h3,
+        .program-icon,
+        .agenda-category {
+          font-family: var(--font-display);
         }
-        .brand-text p,
-        .drawer-brand p {
-          color: var(--muted);
+        .brand-name {
+          font-size: 18px;
+          font-weight: 700;
+          color: var(--text);
         }
 
         nav a {
@@ -904,152 +922,167 @@
       }
     </style>
     <style id="logo-3d">
-      /* ============ LOGO HIMAPTIKA 3D ============ */
+      /* ============ LOGO 3D + CINCIN SIMBOL ============ */
       .hero-modern-visual {
-        perspective: 1100px;
+        --size: clamp(200px, 22vw, 280px); /* ukuran logo */
+        --d: calc(var(--size) * 1.85); /* lebar cincin */
+        --s: 0.28; /* kepipihan cincin (0.2–0.35) */
+        --tilt: 18deg; /* kemiringan cincin */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        min-height: 440px;
       }
 
-      /* kartu kaca pindah ke ::before supaya anak-anaknya bisa 3D
-     (backdrop-filter di elemen induk akan meratakan efek 3D) */
-      :is(body, body.dark-mode) .logo-circle {
+      .planet {
         position: relative;
-        background: none;
-        border: 0;
-        box-shadow: none;
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
+        width: var(--size);
+        aspect-ratio: 1;
+        isolation: isolate;
+      }
+
+      /* ---------- logo 3D ---------- */
+      .logo3d {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        perspective: 900px;
+        touch-action: pan-y;
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .logo3d.dragging {
+        cursor: grabbing;
+      }
+
+      .logo3d-body {
+        position: absolute;
+        inset: 0;
         transform-style: preserve-3d;
-        transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-        transition: transform 0.18s ease-out;
-        animation: logoFloat 6s ease-in-out infinite;
         will-change: transform;
       }
+      .logo3d-body > * {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        -webkit-user-drag: none;
+        pointer-events: none;
+      }
 
-      /* lapis 1 · cakram kaca (paling belakang) */
-      .logo-circle::before {
+      .logo3d-front,
+      .logo3d-back {
+        backface-visibility: hidden;
+      }
+
+      .logo3d-edge {
+        filter: brightness(0.5) sepia(1) saturate(3);
+      }
+
+      .logo3d-glare {
+        backface-visibility: hidden;
+        background: linear-gradient(
+          105deg,
+          transparent 38%,
+          rgba(255, 255, 255, 0.5) 50%,
+          transparent 62%
+        );
+        background-size: 260% 100%;
+        background-repeat: no-repeat;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+      }
+
+      .logo3d-hint {
+        margin: 0;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        transition: opacity 0.4s ease;
+      }
+      .planet:has(.logo3d.touched) + .logo3d-hint {
+        opacity: 0;
+      }
+
+      /* ---------- cincin ---------- */
+      .saturn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--d);
+        height: var(--d);
+        margin: calc(var(--d) / -2) 0 0 calc(var(--d) / -2);
+        transform: rotate(calc(var(--tilt) * -1)) scaleY(var(--s));
+        pointer-events: none;
+      }
+      .saturn::before {
         content: "";
         position: absolute;
         inset: 0;
         border-radius: 50%;
-        background:
-          radial-gradient(
-            circle at var(--mx, 30%) var(--my, 25%),
-            rgba(255, 255, 255, 0.28),
-            transparent 48%
-          ),
-          radial-gradient(
-            circle at 30% 25%,
-            rgba(255, 241, 18, 0.14),
-            transparent 60%
-          ),
-          var(--glass);
-        -webkit-backdrop-filter: blur(22px) saturate(180%);
-        backdrop-filter: blur(22px) saturate(180%);
-        border: 1px solid var(--glass-edge);
-        box-shadow:
-          0 40px 90px rgba(0, 0, 0, 0.55),
-          0 0 80px rgba(255, 241, 18, 0.12),
-          inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        border: calc(var(--d) * 0.035) solid rgba(255, 241, 18, 0.16);
       }
-
-      /* lapis 2 · cincin kuning mengambang di tengah */
-      .logo-circle::after {
-        content: "";
-        position: absolute;
-        inset: -7%;
-        border-radius: 50%;
-        border: 1px solid rgba(255, 241, 18, 0.4);
-        box-shadow:
-          0 0 40px rgba(255, 241, 18, 0.18),
-          inset 0 0 40px rgba(255, 241, 18, 0.08);
-        transform: translateZ(30px);
-        pointer-events: none;
-      }
-
-      /* lapis 3 · logo menonjol + ketebalan (extrusion) */
-      .logo-circle img {
-        position: relative;
-        transform: translateZ(85px);
-        filter: drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #d4c800)
-          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #b9ae00)
-          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #9d9400)
-          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #827a00)
-          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #686200)
-          drop-shadow(var(--dx, 0px) var(--dy, 1.5px) 0 #504b00)
-          drop-shadow(0 0 26px rgba(255, 241, 18, 0.35))
-          drop-shadow(0 26px 24px rgba(0, 0, 0, 0.55));
-      }
-
-      /* bayangan di bawah logo */
-      .hero-modern-visual::after {
-        content: "";
-        position: absolute;
+      /* belakang: separuh atas, di bawah logo. depan: separuh bawah, di atas logo */
+      .saturn-back {
         z-index: 1;
+        clip-path: inset(-60px -60px 50% -60px);
+      }
+      .saturn-front {
+        z-index: 3;
+        clip-path: inset(50% -60px -60px -60px);
+      }
+
+      /* ---------- simbol di cincin ---------- */
+      .orbit-item {
+        position: absolute;
+        inset: calc(var(--d) * 0.0175);
+        animation: orbitSpin 40s linear infinite;
+        animation-delay: calc(var(--i) * -8s);
+      }
+      .sym {
+        position: absolute;
+        top: 0;
         left: 50%;
-        bottom: 2%;
-        width: 46%;
-        height: 26px;
-        translate: -50% 0;
-        border-radius: 50%;
-        background: radial-gradient(
-          closest-side,
-          rgba(255, 241, 18, 0.3),
-          transparent
-        );
-        filter: blur(10px);
-        animation: shadowPulse 6s ease-in-out infinite;
+        width: 36px;
+        height: 36px;
+        margin: -18px 0 0 -18px;
+        display: grid;
+        place-items: center;
+        font: 700 24px var(--font-display);
+        color: var(--accent);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        animation: orbitCounter 40s linear infinite;
+        animation-delay: calc(var(--i) * -8s);
       }
 
-      /* simbol matematika melayang di kedalaman berbeda */
-      .math-symbol {
-        transform: translateZ(55px);
-        animation: symFloat 5s ease-in-out infinite;
-      }
-      .symbol-two {
-        animation-delay: -1s;
-      }
-      .symbol-three {
-        animation-delay: -2s;
-      }
-      .symbol-four {
-        animation-delay: -3s;
-      }
-      .symbol-five {
-        animation-delay: -4s;
-      }
-
-      .ring-two {
-        animation: ringSpin 40s linear infinite;
-      }
-
-      @keyframes logoFloat {
-        50% {
-          translate: 0 -12px;
-        }
-      }
-      @keyframes symFloat {
-        50% {
-          translate: 0 -10px;
-        }
-      }
-      @keyframes shadowPulse {
-        50% {
-          scale: 0.82;
-          opacity: 0.6;
-        }
-      }
-      @keyframes ringSpin {
+      @keyframes orbitSpin {
         to {
           transform: rotate(360deg);
         }
       }
+      @keyframes orbitCounter {
+        from {
+          transform: rotate(0deg) scaleY(calc(1 / var(--s))) rotate(var(--tilt));
+        }
+        to {
+          transform: rotate(-360deg) scaleY(calc(1 / var(--s)))
+            rotate(var(--tilt));
+        }
+      }
 
       @media (prefers-reduced-motion: reduce) {
-        .logo-circle,
-        .math-symbol,
-        .ring-two,
-        .hero-modern-visual::after {
-          animation: none !important;
+        .orbit-item,
+        .sym {
+          animation-play-state: paused;
         }
       }
     </style>
@@ -1085,7 +1118,7 @@
         letter-spacing: -0.02em;
       }
 
-      /* judul hero (di HTML kamu <h2>, bukan <h1>) */
+      /* judul hero */
       .hero-modern-content h1 {
         margin: 18px 0;
         font-size: clamp(38px, 5.4vw, 64px);
@@ -1094,7 +1127,7 @@
         letter-spacing: -0.03em;
         color: var(--text);
       }
-      .hero-modern-content h span {
+      .hero-modern-content h1 span {
         display: block;
         color: var(--accent);
       }
@@ -1144,6 +1177,15 @@
       .footer-content p {
         display: flex;
         align-items: center;
+      }
+
+      .brand-text .brand-name,
+      .drawer-brand .brand-name {
+        margin: 0;
+        line-height: 1.15;
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--text);
       }
     </style>
   </head>
@@ -1229,7 +1271,7 @@
       <div class="brand">
         <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
         <div class="brand-text">
-          <h1>HIMAPTIKA</h1>
+          <div class="brand-name">HIMAPTIKA</div>
           <p>FKIP UNIVERSITAS TADULAKO</p>
         </div>
       </div>
@@ -1238,7 +1280,7 @@
         <div class="drawer-brand">
           <img src="images/logo himaptika.png" alt="Logo HIMAPTIKA" />
           <div>
-            <h2>HIMAPTIKA</h2>
+            <div class="brand-name">HIMAPTIKA</div>
             <p>FKIP UNIVERSITAS TADULAKO</p>
           </div>
         </div>
@@ -1264,10 +1306,10 @@
           <div class="hero-modern-content">
             <p class="hero-label">HIMAPTIKA FKIP UNTAD</p>
 
-            <h2>
+            <h1>
               Himpunan Mahasiswa
               <span>Pendidikan Matematika</span>
-            </h2>
+            </h1>
 
             <p class="hero-university">
               Fakultas Keguruan dan Ilmu Pendidikan
@@ -1276,9 +1318,8 @@
             </p>
 
             <p class="hero-description">
-              Wadah mahasiswa Pendidikan Matematika untuk berkembang, berkarya,
-              berkolaborasi, dan memberikan kontribusi bagi lingkungan akademik
-              maupun masyarakat.
+              Informasi seminar, agenda kegiatan, dan layanan akademik mahasiswa
+              Pendidikan Matematika Untad, dalam satu tempat.
             </p>
 
             <div class="hero-buttons">
@@ -1296,21 +1337,64 @@
           </div>
 
           <div class="hero-modern-visual">
-            <div class="logo-ring ring-one"></div>
-            <div class="logo-ring ring-two"></div>
+            <div class="planet">
+              <!-- cincin: separuh belakang -->
+              <div class="saturn saturn-back" aria-hidden="true">
+                <div class="orbit-item" style="--i: 0">
+                  <span class="sym">π</span>
+                </div>
+                <div class="orbit-item" style="--i: 1">
+                  <span class="sym">∑</span>
+                </div>
+                <div class="orbit-item" style="--i: 2">
+                  <span class="sym">∞</span>
+                </div>
+                <div class="orbit-item" style="--i: 3">
+                  <span class="sym">√</span>
+                </div>
+                <div class="orbit-item" style="--i: 4">
+                  <span class="sym">x²</span>
+                </div>
+              </div>
 
-            <div class="logo-circle">
-              <img
-                src="images/logo himaptika.png"
-                alt="Logo HIMAPTIKA FKIP UNTAD"
-              />
+              <!-- logo 3D -->
+              <div
+                class="logo3d"
+                id="logo3d"
+                role="img"
+                aria-label="Logo HIMAPTIKA, geser untuk memutar"
+              >
+                <div class="logo3d-body" id="logo3dBody">
+                  <img
+                    class="logo3d-front"
+                    src="images/logo himaptika.png"
+                    alt="Logo HIMAPTIKA FKIP UNTAD"
+                    draggable="false"
+                  />
+                </div>
+              </div>
+
+              <!-- cincin: separuh depan (isi sama persis) -->
+              <div class="saturn saturn-front" aria-hidden="true">
+                <div class="orbit-item" style="--i: 0">
+                  <span class="sym">π</span>
+                </div>
+                <div class="orbit-item" style="--i: 1">
+                  <span class="sym">∑</span>
+                </div>
+                <div class="orbit-item" style="--i: 2">
+                  <span class="sym">∞</span>
+                </div>
+                <div class="orbit-item" style="--i: 3">
+                  <span class="sym">√</span>
+                </div>
+                <div class="orbit-item" style="--i: 4">
+                  <span class="sym">x²</span>
+                </div>
+              </div>
             </div>
 
-            <div class="math-symbol symbol-one">∑</div>
-            <div class="math-symbol symbol-two">π</div>
-            <div class="math-symbol symbol-three">∞</div>
-            <div class="math-symbol symbol-four">√</div>
-            <div class="math-symbol symbol-five">x²</div>
+            <p class="logo3d-hint">Geser untuk memutar logo</p>
           </div>
         </div>
       </section>
@@ -1322,7 +1406,10 @@
             <div class="intro-text">
               <p class="section-label">TENTANG HIMAPTIKA</p>
 
-              <h2>Ruang Tumbuh dan Berkarya Mahasiswa Pendidikan Matematika</h2>
+              <h2>
+                Wadah mahasiswa Pendidikan Matematika untuk bertumbuh dan
+                berkarya.
+              </h2>
 
               <p>
                 HIMAPTIKA FKIP UNTAD merupakan wadah mahasiswa Pendidikan
@@ -1360,13 +1447,15 @@
         <div class="statistik-container">
           <div class="statistik-heading">
             <span>HIMAPTIKA DALAM ANGKA</span>
-            <h2>Bersama Tumbuh dan Berkembang</h2>
+            <h2>HIMAPTIKA dalam angka</h2>
             <p>
               Menjadi ruang kolaborasi dan pengembangan potensi mahasiswa
               Pendidikan Matematika.
             </p>
           </div>
 
+          <!-- Kartu dengan data-count="0" otomatis disembunyikan.
+               Ganti angka 0 dengan angka asli agar kartunya muncul. -->
           <div class="statistik-grid">
             <div class="statistik-card">
               <div class="statistik-icon" aria-hidden="true">
@@ -1452,12 +1541,9 @@
         <div class="agenda-container">
           <div class="agenda-heading">
             <div>
-              <span class="agenda-label">JANGAN LEWATKAN</span>
-              <h2>Agenda Mendatang</h2>
-              <p>
-                Ikuti berbagai kegiatan dan aktivitas HIMAPTIKA yang akan
-                datang.
-              </p>
+              <span class="agenda-label">AGENDA & KEGIATAN</span>
+              <h2>Agenda Kegiatan</h2>
+              <p>Kegiatan terbaru dan yang akan datang dari HIMAPTIKA.</p>
             </div>
 
             <a href="agenda.html" class="agenda-all"> Semua Agenda → </a>
@@ -1505,13 +1591,13 @@
             <div class="agenda-card">
               <div class="agenda-poster">
                 <img
-                  src="images/dies natalis.jpg"
+                  src="images/dies-natalis.jpg"
                   alt="Pamflet kegiatan HIMAPTIKA"
                   loading="lazy"
                   decoding="async"
                 />
 
-                <span class="agenda-status"> selesai </span>
+                <span class="agenda-status">Selesai</span>
               </div>
 
               <div class="agenda-content">
@@ -1520,11 +1606,8 @@
 
                 <div class="agenda-detail">
                   <span
-                    ><svg class="ico"><use href="#i-cal" /></svg>COMING
-                    SOON</span
-                  >
-                  <span
-                    ><svg class="ico"><use href="#i-pin" /></svg>SOON</span
+                    ><svg class="ico"><use href="#i-cal" /></svg>Telah
+                    dilaksanakan</span
                   >
                 </div>
 
@@ -1542,13 +1625,13 @@
             <div class="agenda-card">
               <div class="agenda-poster">
                 <img
-                  src="images/Sparta.jpeg"
+                  src="images/sparta.jpeg"
                   alt="Pamflet kegiatan HIMAPTIKA"
                   loading="lazy"
                   decoding="async"
                 />
 
-                <span class="agenda-status"> selesai </span>
+                <span class="agenda-status">Selesai</span>
               </div>
 
               <div class="agenda-content">
@@ -1557,22 +1640,10 @@
 
                 <div class="agenda-detail">
                   <span
-                    ><svg class="ico"><use href="#i-cal" /></svg>COMING
-                    SOON</span
-                  >
-                  <span
-                    ><svg class="ico"><use href="#i-pin" /></svg>SOON</span
+                    ><svg class="ico"><use href="#i-cal" /></svg>Telah
+                    dilaksanakan</span
                   >
                 </div>
-
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="agenda-button"
-                >
-                  Lihat Informasi →
-                </a>
               </div>
             </div>
           </div>
@@ -1748,18 +1819,6 @@
         </div>
 
         <div>
-          <h3>Tautan Cepat</h3>
-          <ul class="footer-links">
-            <li><a href="tentang.html">Tentang</a></li>
-            <li><a href="struktur-pengurus.html">Struktur Pengurus</a></li>
-            <li><a href="divisi.html">Divisi &amp; Program Kerja</a></li>
-            <li><a href="agenda.html">Agenda</a></li>
-            <li><a href="jadwal-seminar.html">Jadwal Seminar</a></li>
-            <li><a href="pelayanan-akademik.html">Pelayanan Akademik</a></li>
-          </ul>
-        </div>
-
-        <div>
           <h3>Kontak</h3>
           <p>
             <svg class="ico"><use href="#i-pin" /></svg>Sekretariat himaptika,
@@ -1767,12 +1826,14 @@
           </p>
           <p>
             <svg class="ico"><use href="#i-mail" /></svg
-            ><a href="mailto:GANTI_EMAIL">Untadhimaptika@gmail.com</a>
+            ><a href="mailto:untadhimaptika@gmail.com"
+              >Untadhimaptika@gmail.com</a
+            >
           </p>
           <p>
             <svg class="ico"><use href="#i-insta" /></svg>
             <a
-              href="https://www.instagram.com/himaptikafkipuntad?utm_source=ig_web_button_share_sheet&lqvp=ZDNlZDc0MzIxNw==/GANTI_AKUN"
+              href="https://www.instagram.com/himaptikafkipuntad/"
               target="_blank"
               rel="noopener noreferrer"
               >@himaptikafkipuntad</a
@@ -1798,6 +1859,12 @@
     <script>
       // --- Hitung naik angka statistik ---
       (function () {
+        // Kartu dengan data-count="0" disembunyikan sampai diisi angka asli
+        document.querySelectorAll(".statistik-card").forEach((card) => {
+          const n = card.querySelector("[data-count]");
+          if (n && Number(n.dataset.count) === 0) card.remove();
+        });
+
         const counters = document.querySelectorAll("[data-count]");
 
         if (!counters.length) return;
@@ -1877,35 +1944,27 @@
         signOut,
       } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-      document.documentElement.style.visibility = "hidden";
+      const logoutButton = document.getElementById("logoutButton");
 
-      // Jika Firebase tidak membalas dalam 8 detik, tampilkan pesan (bukan layar kosong)
-      const authTimeout = setTimeout(() => {
-        document.documentElement.style.visibility = "visible";
-        document.body.innerHTML =
-          '<p style="padding:48px 24px;text-align:center;font-family:Inter,sans-serif;color:#fffdf0;">' +
-          "Halaman gagal dimuat. Periksa koneksi internet lalu " +
-          '<a href="" style="color:#fff112">muat ulang</a>.</p>';
-      }, 8000);
+      if (logoutButton) {
+        logoutButton.addEventListener("click", async () => {
+          logoutButton.disabled = true;
+
+          try {
+            await signOut(auth);
+            window.location.replace("login.html");
+          } catch (error) {
+            console.error("Gagal logout:", error);
+            logoutButton.disabled = false;
+            alert("Logout gagal. Coba lagi.");
+          }
+        });
+      }
 
       onAuthStateChanged(auth, (user) => {
-        clearTimeout(authTimeout);
-        const logoutButton = document.getElementById("logoutButton");
-
-        if (logoutButton) {
-          logoutButton.addEventListener("click", async () => {
-            logoutButton.disabled = true;
-
-            try {
-              await signOut(auth);
-              window.location.replace("login.html");
-            } catch (error) {
-              console.error("Gagal logout:", error);
-              logoutButton.disabled = false;
-              alert("Logout gagal. Coba lagi.");
-            }
-          });
-        }
+        clearTimeout(window.__authFallback);
+        const banner = document.getElementById("authBanner");
+        if (banner) banner.remove();
 
         if (user) {
           document.documentElement.style.visibility = "visible";
@@ -1921,7 +1980,7 @@
     <!-- JADWAL SEMINAR DARI GOOGLE SHEETS -->
     <script>
       const SEMINAR_CSV_URL =
-        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSq3a1AyVPkuMx-KqObYcwH2g_QscvZACuB-fe2M6ywQTzJbDyChw5rUt5qd7Ts6WZ3d1m3YUwdFL21/pub?gid=1444305561&single=true&output=csv";
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSR6jtF_EoWZfmTQAc9ZMOA0HH9WEg4bOvbY-EDy8UeGSLCSvZnJIsLWDPBoZ5ajtIwGhYq658sevpU/pub?gid=960502525&single=true&output=csv";
 
       function parseCSV(text) {
         const rows = [];
@@ -2263,6 +2322,175 @@
 
       // Perbarui data secara berkala selama halaman terbuka.
       setInterval(renderHomeSeminars, 300000);
+    </script>
+    <script>
+      (function () {
+        const stage = document.getElementById("logo3d");
+        const body = document.getElementById("logo3dBody");
+        if (!stage || !body) return;
+
+        const front = body.querySelector(".logo3d-front");
+        const src = front.getAttribute("src");
+        const DEPTH = 22; // ketebalan logo (px)
+        const LAYERS = 8; // jumlah lapisan tebal
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* ---------- bangun lapisan 3D ---------- */
+        function layer(cls, z, flip) {
+          const el = document.createElement("img");
+          el.src = src;
+          el.alt = "";
+          el.draggable = false;
+          el.setAttribute("aria-hidden", "true");
+          el.className = cls;
+          el.style.transform =
+            "translateZ(" + z + "px)" + (flip ? " rotateY(180deg)" : "");
+          return el;
+        }
+
+        body.prepend(layer("logo3d-back", -DEPTH / 2, true));
+        for (let i = 1; i <= LAYERS; i++) {
+          body.insertBefore(
+            layer("logo3d-edge", DEPTH / 2 - (i * DEPTH) / (LAYERS + 1)),
+            front,
+          );
+        }
+        front.style.transform = "translateZ(" + DEPTH / 2 + "px)";
+
+        const glare = document.createElement("div");
+        glare.className = "logo3d-glare";
+        glare.style.webkitMaskImage = glare.style.maskImage =
+          'url("' + src + '")';
+        glare.style.transform = "translateZ(" + (DEPTH / 2 + 0.5) + "px)";
+        body.appendChild(glare);
+
+        /* ---------- status ---------- */
+        let rx = 0,
+          ry = 0,
+          vx = 0,
+          vy = 0;
+        let dragging = false,
+          lastX = 0,
+          lastY = 0;
+        let hover = null; // posisi mouse di atas logo (-1..1)
+        let gyro = null; // kemiringan HP
+        let visible = true,
+          running = false;
+
+        /* ---------- sentuhan / geser ---------- */
+        stage.addEventListener("pointerdown", (e) => {
+          dragging = true;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          vx = vy = 0;
+          stage.setPointerCapture(e.pointerId);
+          stage.classList.add("dragging", "touched");
+          enableGyro();
+        });
+
+        stage.addEventListener("pointermove", (e) => {
+          if (dragging) {
+            const dx = e.clientX - lastX;
+            const dy = e.clientY - lastY;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            vy = dx * 0.55;
+            ry += vy;
+            rx = Math.max(-45, Math.min(45, rx - dy * 0.35));
+          } else if (e.pointerType === "mouse") {
+            const r = stage.getBoundingClientRect();
+            hover = {
+              x: ((e.clientX - r.left) / r.width - 0.5) * 2,
+              y: ((e.clientY - r.top) / r.height - 0.5) * 2,
+            };
+          }
+        });
+
+        function release() {
+          if (!dragging) return;
+          dragging = false;
+          stage.classList.remove("dragging");
+          if (Math.abs(vy) > 8 && navigator.vibrate) navigator.vibrate(8);
+        }
+        stage.addEventListener("pointerup", release);
+        stage.addEventListener("pointercancel", release);
+        stage.addEventListener("pointerleave", (e) => {
+          if (e.pointerType === "mouse") hover = null;
+        });
+
+        /* ---------- sensor gerak HP ---------- */
+        function onOrient(e) {
+          if (e.gamma == null || e.beta == null) return;
+          gyro = {
+            x: Math.max(-30, Math.min(30, e.gamma)),
+            y: Math.max(-30, Math.min(30, (e.beta - 45) * 0.6)),
+          };
+        }
+        let gyroAsked = false;
+        function enableGyro() {
+          if (gyroAsked || !("DeviceOrientationEvent" in window)) return;
+          gyroAsked = true;
+          const D = window.DeviceOrientationEvent;
+          if (typeof D.requestPermission === "function") {
+            D.requestPermission()
+              .then((s) => {
+                if (s === "granted")
+                  addEventListener("deviceorientation", onOrient);
+              })
+              .catch(() => {});
+          } else {
+            addEventListener("deviceorientation", onOrient);
+          }
+        }
+
+        /* ---------- animasi ---------- */
+        function frame(t) {
+          if (!dragging) {
+            const base = Math.round((ry + vy * 10) / 360) * 360;
+            let ty = 0,
+              tx = 0;
+
+            if (hover) {
+              ty = hover.x * 24;
+              tx = -hover.y * 18;
+            } else if (gyro) {
+              ty = gyro.x;
+              tx = gyro.y;
+            } else if (!reduce) {
+              ty = Math.sin(t / 1700) * 14;
+              tx = Math.cos(t / 2300) * 6;
+            }
+
+            vy += (base + ty - ry) * 0.055;
+            vy *= 0.86;
+            vx += (tx - rx) * 0.055;
+            vx *= 0.86;
+            ry += vy;
+            rx += vx;
+          }
+
+          body.style.transform =
+            "rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
+          glare.style.backgroundPosition =
+            50 - Math.sin((ry * Math.PI) / 180) * 80 - rx * 1.5 + "% 0";
+
+          if (visible) requestAnimationFrame(frame);
+          else running = false;
+        }
+
+        function start() {
+          if (running) return;
+          running = true;
+          requestAnimationFrame(frame);
+        }
+
+        new IntersectionObserver(([en]) => {
+          visible = en.isIntersecting;
+          if (visible) start();
+        }).observe(stage);
+
+        start();
+      })();
     </script>
   </body>
 </html>
