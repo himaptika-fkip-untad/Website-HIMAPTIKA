@@ -14,8 +14,6 @@
     <style>
       :root {
         --y: #fff112;
-        --bg: #0f0f0c;
-        --paper: #19180f;
         --line: rgba(255, 253, 240, 0.14);
         --text: #fffdf0;
         --muted: rgba(255, 253, 240, 0.68);
@@ -29,14 +27,12 @@
         color: var(--text);
         font-family: var(--sans);
       }
-      body::before,
-      body::after {
-        content: "";
-        position: fixed;
-        z-index: -1;
-        border-radius: 50%;
-        filter: blur(100px);
-        pointer-events: none;
+      body {
+        background:
+          radial-gradient(600px 600px at 0% 0%, #3a3704, transparent 70%),
+          radial-gradient(560px 560px at 100% 100%, #26240a, transparent 70%),
+          #0d0d0a;
+        background-attachment: fixed;
       }
       body::before {
         width: 600px;
@@ -99,8 +95,6 @@
         color: var(--y);
       }
 
-      /* PENTING: position: sticky mati kalau ada overflow: hidden di induknya.
-         "clip" memotong konten yang meluber, tapi tidak merusak sticky. */
       html,
       body,
       main {
@@ -130,7 +124,6 @@
         color: var(--text);
       }
 
-      /* ---------- Hero 3D ---------- */
       .t-hero {
         padding: 72px 0 56px;
       }
@@ -246,7 +239,6 @@
         color: rgba(255, 253, 240, 0.12);
       }
 
-      /* ---------- Cerita ---------- */
       .t-story {
         padding: 56px 0;
       }
@@ -280,20 +272,19 @@
         padding: 16px;
       }
 
-      /* ---------- Perjalanan 3D ---------- */
       .journey {
-        height: 420vh; /* makin tinggi = scroll makin panjang */
+        height: 420vh;
         position: relative;
       }
       .journey-sticky {
         position: sticky;
         top: 0;
         height: 100vh;
-        height: 100svh; /* tinggi layar HP yang benar (tanpa bar browser) */
+        height: 100svh;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        padding-top: 88px; /* ruang untuk header */
+        padding-top: 88px;
       }
       .journey-head {
         text-align: center;
@@ -309,7 +300,6 @@
         perspective-origin: 50% 40%;
       }
 
-      /* Jalan: bidang miring dengan garis putus-putus yang mengalir */
       .road {
         position: absolute;
         left: 50%;
@@ -328,7 +318,7 @@
         );
         overflow: hidden;
       }
-      /* garis putus-putus: elemen terpisah yang digeser pakai transform (murah) */
+
       .road::before {
         content: "";
         position: absolute;
@@ -346,7 +336,7 @@
         transform: translate3d(0, var(--ry, 0px), 0);
         will-change: transform;
       }
-      /* pengganti mask-image: lapisan yang memudarkan jalan di kejauhan */
+
       .road::after {
         content: "";
         position: absolute;
@@ -370,7 +360,7 @@
         padding: 26px 28px;
         border-radius: 18px;
         opacity: 0;
-        /* TANPA backdrop-filter, dibuat hampir solid sebagai gantinya */
+
         background:
           linear-gradient(
             145deg,
@@ -400,6 +390,11 @@
         font-size: 3.4rem;
         line-height: 1;
         color: var(--y);
+        text-shadow:
+          1px 1px 0 #b8ad00,
+          2px 2px 0 #a39a00,
+          3px 3px 0 #8f8700,
+          6px 8px 14px rgba(0, 0, 0, 0.5);
       }
       .stop .d {
         font-size: 0.78rem;
@@ -441,7 +436,6 @@
         color: var(--muted);
       }
 
-      /* ---------- Visi misi ---------- */
       .t-vm {
         padding: 56px 0;
       }
@@ -476,7 +470,6 @@
         color: var(--y);
       }
 
-      /* ---------- CTA ---------- */
       .t-cta {
         padding: 40px 0 88px;
       }
@@ -816,8 +809,8 @@
       const scene = stack.parentElement;
       let ptr = null,
         gyro = null,
-        cx = -18,
-        cy = 12;
+        cx = 12,
+        cy = -18;
 
       scene.addEventListener("pointermove", (e) => {
         const r = scene.getBoundingClientRect();
