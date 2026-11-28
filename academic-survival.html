@@ -148,15 +148,6 @@
         }
       }
 
-      @media (max-width: 960px) {
-        #mainNav {
-          background: rgba(var(--deep), 0.88);
-          -webkit-backdrop-filter: blur(24px) saturate(180%);
-          backdrop-filter: blur(24px) saturate(180%);
-          border-right: 1px solid var(--glass-edge);
-        }
-      }
-
       /* ============ HALAMAN DETAIL DIVISI ============ */
       .container {
         width: min(1160px, 100%);
@@ -409,12 +400,11 @@
           box-shadow 0.25s ease;
       }
       .detail-program-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(255, 241, 18, 0.45);
+        transform: translateY(-4px);
+        border-color: rgba(255, 241, 18, 0.4);
         box-shadow:
-          0 24px 55px rgba(255, 241, 18, 0.13),
-          0 14px 40px rgba(0, 0, 0, 0.45),
-          inset 0 1px 0 rgba(255, 255, 255, 0.22);
+          0 18px 40px rgba(0, 0, 0, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
       }
 
       .detail-program-top {
@@ -448,6 +438,10 @@
         background: rgba(255, 241, 18, 0.1);
         border: 1px solid rgba(255, 241, 18, 0.3);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+      .card-ico {
+        width: 26px;
+        height: 26px;
       }
 
       .detail-program-card h3 {
@@ -644,58 +638,27 @@
       .detail-program-link span {
         transition: transform 0.25s ease;
       }
-      .detail-quote {
-        padding: clamp(36px, 6vw, 72px) clamp(24px, 5vw, 58px);
-        text-align: center;
-        background:
-          linear-gradient(
-            145deg,
-            rgba(255, 241, 18, 0.07),
-            rgba(255, 255, 255, 0.025)
-          ),
-          var(--glass);
-        -webkit-backdrop-filter: var(--blur);
-        backdrop-filter: var(--blur);
-        border: 1px solid var(--card-edge);
-        border-radius: 24px;
-        box-shadow:
-          0 14px 40px rgba(0, 0, 0, 0.4),
-          inset 0 1px 0 rgba(255, 255, 255, 0.16);
-      }
-      .detail-quote .quote-symbol {
-        color: var(--accent);
-        font-family: var(--font-display);
-        font-size: 56px;
-        line-height: 1;
-      }
-      .detail-quote h2 {
-        max-width: 760px;
-        margin: 16px auto 20px;
-        color: var(--text);
-        font-size: clamp(24px, 3.6vw, 36px);
-        line-height: 1.35;
-      }
-      .drive-desc {
-        margin-top: 12px;
-        max-width: 520px;
-        color: var(--muted);
-        line-height: 1.8;
-      }
-      @media (max-width: 560px) {
-        .detail-bottom-box .tombol {
-          white-space: normal;
-          text-align: center;
-        }
-      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
         }
       }
+      .auth-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        color: var(--muted);
+        font-weight: 600;
+      }
     </style>
   </head>
 
   <body class="halaman-divisi-detail">
+    <div id="authLoader" class="auth-loader" role="status">Memuat halaman…</div>
     <svg width="0" height="0" style="position: absolute" aria-hidden="true">
       <symbol
         id="i-pin"
@@ -733,6 +696,43 @@
         <rect x="3" y="3" width="18" height="18" rx="5" />
         <circle cx="12" cy="12" r="4" />
         <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+      </symbol>
+      <symbol
+        id="i-book"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z" />
+        <path d="M4 19V5" />
+        <path d="M9 7h6" />
+      </symbol>
+      <symbol
+        id="i-calendar"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="16" rx="3" />
+        <path d="M3 10h18M8 3v4M16 3v4" />
+      </symbol>
+      <symbol
+        id="i-info"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 11v2a2 2 0 0 0 2 2h2l5 4V5L7 9H5a2 2 0 0 0-2 2z" />
+        <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
       </symbol>
     </svg>
 
@@ -785,21 +785,20 @@
       <!-- ================= HERO ================= -->
       <section class="division-detail-hero">
         <div class="division-detail-content">
-          <p class="section-label">HIMAPTIKA ACADEMIC PORTAL</p>
+          <p class="section-label">PELAYANAN AKADEMIK</p>
 
           <h2>
-            Navigate Your<br />
-            <span class="accent-text">Academic Journey.</span>
+            Semua kebutuhan kuliah,<br />
+            <span class="accent-text">satu tempat.</span>
           </h2>
 
           <p>
-            Satu ruang digital untuk mendukung perjalanan akademik mahasiswa
-            Pendidikan Matematika. Temukan materi, informasi, dan layanan
-            akademik dalam satu tempat.
+            Materi per semester, jadwal seminar proposal dan hasil, serta
+            pengumuman akademik Pendidikan Matematika UNTAD.
           </p>
 
           <a href="#academic-services" class="hero-button">
-            Jelajahi Layanan <span>↓</span>
+            Lihat layanan <span>↓</span>
           </a>
 
           <div class="hero-small-line"></div>
@@ -810,26 +809,24 @@
       <section class="detail-program-section" id="academic-services">
         <div class="container">
           <div class="section-heading">
-            <p class="section-label">YOUR ACADEMIC RESOURCE CENTER</p>
-
-            <h2>Explore Your Academic Space.</h2>
-
+            <h2>Pilih layanan yang kamu butuhkan</h2>
             <p>
-              Pilih layanan akademik yang kamu butuhkan. Semua dirancang untuk
-              membantu mahasiswa dalam menjalani proses perkuliahan.
+              Materi kuliah, jadwal seminar, dan informasi akademik terbaru dari
+              HIMAPTIKA.
             </p>
           </div>
+          >
 
           <div class="detail-program-grid is-three">
             <!-- LAYANAN 01 -->
             <a href="materi.html" class="detail-program-card portal-card">
               <div class="detail-program-top">
-                <span>LAYANAN 01</span>
-                <strong>01</strong>
+                <span>01</span>
               </div>
 
-              <div class="detail-program-icon" aria-hidden="true">📚</div>
-
+              <div class="detail-program-icon" aria-hidden="true">
+                <svg class="card-ico"><use href="#i-book" /></svg>
+              </div>
               <h3>Pusat Materi &amp; Catatan</h3>
 
               <p>
@@ -848,12 +845,12 @@
               class="detail-program-card portal-card"
             >
               <div class="detail-program-top">
-                <span>LAYANAN 02</span>
-                <strong>02</strong>
+                <span>01</span>
               </div>
 
-              <div class="detail-program-icon" aria-hidden="true">📅</div>
-
+              <div class="detail-program-icon" aria-hidden="true">
+                <svg class="card-icon"><use href="#i-calendar" /></svg>
+              </div>
               <h3>Jadwal Seminar</h3>
 
               <p>
@@ -867,12 +864,12 @@
             <!-- LAYANAN 03 -->
             <a href="informasi.html" class="detail-program-card portal-card">
               <div class="detail-program-top">
-                <span>LAYANAN 03</span>
-                <strong>03</strong>
+                <span>03</span>
               </div>
 
-              <div class="detail-program-icon" aria-hidden="true">📢</div>
-
+              <div class="detail-program-icon" aria-hidden="true">
+                <svg class="card-icon"><use href="#i-info" /></svg>
+              </div>
               <h3>Informasi Akademik</h3>
 
               <p>
@@ -888,40 +885,12 @@
         </div>
       </section>
 
-      <!-- ================= QUOTE ================= -->
-      <section class="division-detail-about">
-        <div class="container">
-          <div class="detail-quote">
-            <div class="quote-symbol" aria-hidden="true">“</div>
-
-            <h2>
-              Every step in your academic journey is a step toward your future.
-            </h2>
-
-            <p class="section-label">LEARN • GROW • ACHIEVE</p>
-          </div>
-        </div>
-      </section>
-
       <!-- ================= CTA ================= -->
       <section class="detail-bottom">
         <div class="container">
-          <div class="detail-bottom-box">
-            <div>
-              <p class="section-label">ACADEMIC SURVIVAL WEB</p>
-
-              <h2>Ready for Your Next Step?</h2>
-
-              <p class="drive-desc">
-                Terus berkembang, perluas wawasan, dan manfaatkan setiap
-                kesempatan dalam perjalanan akademikmu.
-              </p>
-            </div>
-
-            <a href="pelayanan-akademik.html" class="tombol">
-              ← Kembali ke Pelayanan Akademik
-            </a>
-          </div>
+          <a href="pelayanan-akademik.html" class="back-link">
+            ← Kembali ke Pelayanan Akademik
+          </a>
         </div>
       </section>
     </main>
@@ -995,43 +964,36 @@
     <!-- AUTENTIKASI DAN LOGOUT FIREBASE -->
     <script type="module">
       import { auth } from "./js/firebase.js";
-
       import {
         onAuthStateChanged,
         signOut,
       } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-      document.documentElement.style.visibility = "hidden";
+      const loader = document.getElementById("authLoader");
+      const logoutButton = document.getElementById("logoutButton");
 
       const authTimeout = setTimeout(() => {
-        document.documentElement.style.visibility = "visible";
-        document.body.innerHTML =
-          '<p style="padding:48px 24px;text-align:center;font-family:sans-serif;color:#fffdf0;">' +
-          "Halaman gagal dimuat. Periksa koneksi internet lalu " +
-          '<a href="" style="color:#fff112">muat ulang</a>.</p>';
+        loader.innerHTML =
+          'Halaman gagal dimuat. Periksa koneksi lalu <a href="" style="color:#fff112;margin-left:6px">muat ulang</a>.';
       }, 8000);
+
+      // pasang listener logout sekali saja
+      logoutButton?.addEventListener("click", async () => {
+        logoutButton.disabled = true;
+        try {
+          await signOut(auth);
+          window.location.replace("login.html");
+        } catch (error) {
+          console.error("Gagal logout:", error);
+          logoutButton.disabled = false;
+          alert("Logout gagal. Coba lagi.");
+        }
+      });
 
       onAuthStateChanged(auth, (user) => {
         clearTimeout(authTimeout);
-        const logoutButton = document.getElementById("logoutButton");
-
-        if (logoutButton) {
-          logoutButton.addEventListener("click", async () => {
-            logoutButton.disabled = true;
-
-            try {
-              await signOut(auth);
-              window.location.replace("login.html");
-            } catch (error) {
-              console.error("Gagal logout:", error);
-              logoutButton.disabled = false;
-              alert("Logout gagal. Coba lagi.");
-            }
-          });
-        }
-
         if (user) {
-          document.documentElement.style.visibility = "visible";
+          loader.remove();
         } else {
           window.location.replace("login.html");
         }
